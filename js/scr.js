@@ -182,7 +182,7 @@ function buysuperclick() {
       window.alert("Już kupiłeś Super Klikacz!");
     }
   } else if (bal < upgrades[0]["price"]) {
-    window.alert("Nie masz tyle pieniędzy!");
+    window.alert("Nie stać cię!");
     console.log("nieudana proba kupna superclick");
   }
 }
@@ -203,7 +203,7 @@ function buyMana20() {
       window.alert("Już wykorzystałeś swoje kupno darmowego autobusu!");
     }
   } else if (bal < a20[0].price) {
-    window.alert("Nie masz tyle pieniędzy!");
+    window.alert("Nie stać cię!");
   }
 }
 
@@ -246,20 +246,22 @@ function buyBusChecker() {
   if (isEmpty(inputEl.value)) {
     if (!hasAlertedEmpty) {
       console.log("from buyBusChecker: improper value input");
-      window.alert("Wprowadź poprawną wartość!");
+      finishBtn.removeEventListener("click", buyBusChecker);
+      //   window.alert("Wprowadź poprawną wartość!"); - unused because works really buggy
       hasAlertedEmpty = true;
       silentSaveGame();
       inputEl.value = "";
       updateTotal();
       chosenBus = "";
       menu.style.display = "none";
+      return;
     }
   } else {
     if (bal > buyTotal) {
       buyBusRight();
     } else if (bal < buyTotal) {
       console.log("from buyBusChecker: not enough money");
-      window.alert("Nie masz wystarczająco pieniędzy!");
+      window.alert("Nie stać cię!");
       inputEl.value = "";
       updateTotal();
       silentSaveGame();
