@@ -1,0 +1,70 @@
+:root{
+    --bgcolor: rgb(231, 231, 149);
+    --busitemcolor: rgb(225, 207, 207);
+    --border5: solid 5px black;
+    --border2: solid 2px black;
+}
+
+/* Changelog main window */
+
+#changelog{
+    position: absolute;
+    top: 17.5%;
+    left: 20%;
+    width: 60%;
+    height: 65%;
+    background-color: white;
+    border: var(--border5);
+    border-radius: 10px;
+    overflow: auto;
+    display: none;
+}
+
+.changelog-item{
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Changelog elements */
+
+#small-title-changelog {
+    font-size: 27px;
+    position: absolute;
+    top: 1%;
+    left: 10%;
+}
+
+#changelog-left-nav {
+    position: absolute;
+    width: 25%;
+    height: 75%;
+    top: 15%;
+    left: 5%;
+}
+
+.ver-item{
+    border: var(--border5);
+    border-radius: 10px;
+    background-color: var(--busitemcolor);
+    width: 120px;
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 21%;
+    transition: background-color 0.3s, transform 0.3s;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.ver-item:hover{
+    transform: scale(1.05);
+    background-color: wheat;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+#content-container-changelog {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+}
