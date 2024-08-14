@@ -17,3 +17,4 @@ the code is horrible, please dont look at it now 😭😭
 ❌ Routes editor\
 ❌ An actual tutorial on how to start playing\
 ❌ Better alert system (eg. not using window.alert but a custom function with a cool UI)
+❌ Special categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses)
