@@ -1,0 +1,19 @@
+:root {
+  --bgcolor: rgb(231, 231, 149);
+  --busitemcolor: rgb(225, 207, 207);
+  --border5: solid 5px black;
+  --border2: solid 2px black;
+}
+
+#game-save-window {
+  position: absolute;
+  top: 10%;
+  left: 17%;
+  background-color: white;
+  width: 70vw;
+  height: 500px;
+  border: var(--border5);
+  border-radius: 20px;
+
+  flex-direction: column;
+}
