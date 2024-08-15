@@ -32,6 +32,8 @@ function silentSaveGame() {
   localStorage.setItem("clickmod", JSON.stringify(clickmod));
   localStorage.setItem("bghta20", JSON.stringify(bghta20));
   localStorage.setItem("bghtsuperclick", JSON.stringify(bghtsuperclick));
+
+  console.log("game saved");
 }
 
 // JAK DODAĆ AUTOBUS
@@ -369,8 +371,13 @@ async function add() {
   await sleep(1000);
   bal = bal + income;
   displaybal();
-  silentSaveGame();
   add();
+}
+
+async function gameSaver() {
+  await sleep(3000);
+  silentSaveGame();
+  gameSaver();
 }
 
 const navopenBtn = document.getElementById("nav-open-btn");
@@ -483,6 +490,7 @@ function isEmpty(value) {
 const busCntGUIBtn = document.getElementById("closebuymenu");
 busCntGUIBtn.addEventListener("click", hideBusCntGUI, false);
 window.addEventListener("load", add, false);
+window.addEventListener("load", gameSaver, false);
 window.addEventListener("load", displaybal, false);
 updateTotal();
 
