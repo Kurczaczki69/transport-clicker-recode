@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/loginPage/loginStyles.css" />
+    <script type="module" src="js/firebaseAuth.js"></script>
+    <title>Transport Clicker - Rejestracja</title>
+  </head>
+  <body>
+    <div id="login-box">
+      <h2 id="login-box-title">Transport Clicker<br />Rejestracja</h2>
+      <h4 id="login-box-register-link">
+        Masz już konto?
+        <a href="login.html" id="register-link">Zaloguj się</a>
+      </h4>
+
+      <form id="login-form">
+        <div id="errorMsgRegister" class="msgDiv" style="display: none"></div>
+        <input
+          type="text"
+          id="username-input reg-name"
+          class="form-input"
+          placeholder="Nazwa Użytkownika"
+        />
+        <input
+          type="email"
+          id="email-input reg-email"
+          class="form-input"
+          placeholder="E-mail"
+        />
+        <br />
+        <input
+          type="password"
+          id="password-input reg-pass"
+          class="form-input"
+          placeholder="Hasło"
+        />
+        <br />
+        <button id="submit-form-btn register-btn">Zarejestruj się</button>
+      </form>
+    </div>
+  </body>
+</html>
