@@ -9,6 +9,7 @@ the code is horrible, please dont look at it now 😭😭
 
 ✅ Javascript recode\
 ✅ New changelog system\
+❌ Login system(WIP)\
 ❌ Codes system\
 ❌ New UI\
 ❌ Trolleybuses\
