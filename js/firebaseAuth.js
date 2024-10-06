@@ -4,7 +4,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore,

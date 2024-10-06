@@ -3,6 +3,19 @@
   --busitemcolor: rgb(225, 207, 207);
   --border5: solid 5px black;
   --border2: solid 2px black;
+  --linkcolor: rgb(239, 228, 10);
+}
+
+#dont-remember-pass-link {
+  color: var(--linkcolor);
+  text-decoration: none;
+  font-weight: 600;
+  position: absolute;
+  bottom: 14%;
+}
+
+#dont-remember-pass-link:visited {
+  color: var(--linkcolor);
 }
 
 #accMenuInfoWrapper {
