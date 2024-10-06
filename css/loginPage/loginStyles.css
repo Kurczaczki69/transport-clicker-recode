@@ -59,9 +59,10 @@ body {
   padding: 2.5%;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
+  margin-top: 10px;
 }
 
-#submit-form-btn {
+.submit-form-btn {
   cursor: pointer;
   width: 40%;
   padding: 2.5%;
@@ -75,6 +76,13 @@ body {
   );
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.submit-form-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
 }
 
 #return-btn {
@@ -100,4 +108,6 @@ body {
 
 .msgDiv {
   color: red;
+  opacity: 0;
+  display: none;
 }

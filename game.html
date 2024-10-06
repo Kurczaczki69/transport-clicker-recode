@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/scrlbar.css" />
+    <link rel="stylesheet" href="css/tooltips.css" />
+    <link rel="stylesheet" href="css/upgrMenuStyles.css" />
+    <link rel="stylesheet" href="css/changelogStyles.css" />
+    <link rel="stylesheet" href="css/codesStyles.css" />
+    <link rel="stylesheet" href="css/saveWindowStyles.css" />
+    <link rel="stylesheet" href="css/accountMenuStyles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <title>Transport Clicker</title>
+  </head>
+  <body>
+    <div class="open-nav" id="nav-open-btn">
+      <span class="material-symbols-outlined">segment</span>
+    </div>
+
+    <div class="navbar" id="nav">
+      <div class="nav-item tooltip" id="nav-item-buy">
+        <span class="material-symbols-outlined">directions_bus</span>
+        <span class="tooltiptext">Kup pojazdy</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-upgr-menu">
+        <span class="material-symbols-outlined">star</span>
+        <span class="tooltiptext">Kup ulepszenia</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-codes-menu">
+        <span class="material-symbols-outlined">code</span>
+        <span class="tooltiptext">Kody</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-save-game">
+        <span class="material-symbols-outlined">save</span>
+        <span class="tooltiptext">Zapisz grę</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-open-changelog">
+        <span class="material-symbols-outlined">list</span>
+        <span class="tooltiptext">Lista zmian</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-account-page">
+        <span class="material-symbols-outlined">account_circle</span>
+        <span class="tooltiptext">Konto</span>
+      </div>
+      <div class="nav-item tooltip" id="nav-item-close-nav">
+        <span class="material-symbols-outlined">close</span>
+        <span class="tooltiptext">Zamknij menu</span>
+      </div>
+    </div>
+
+    <!-- account window elements -->
+
+    <section id="accountbox">
+      <div class="closegui" id="acc-menu-close-btn">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+
+      <div id="accMenuWrapper">
+        <h2 id="accWelcome">Witaj, <span id="accName"></span> 👋</h2>
+        <div id="email-wrap"><b>E-mail: </b><span id="accEmail"></span></div>
+        <div id="acc-btn-wrapper">
+          <button id="change-pass-btn" class="btns-acc-window">
+            Zmień hasło
+          </button>
+          <button id="logout-btn" class="btns-acc-window">Wyloguj się</button>
+          <button id="delete-account-btn" class="btns-acc-window">
+            Usuń konto
+          </button>
+        </div>
+      </div>
+
+      <div id="areYouSureWrapper">
+        <h2 id="are-you-sure-title">⚠️ Czy na pewno chcesz usunąć konto?</h2>
+        <h4 id="are-you-sure-desc">Jeżeli tak, wpisz swoje hasło</h4>
+        <h4 id="are-you-sure-warning">UWAGA! Ta akcja jest nieodwracalna!</h4>
+
+        <div id="input-msg"></div>
+        <input
+          type="password"
+          placeholder="Podaj swoje hasło"
+          id="are-you-sure-pass-input"
+          class="inputs"
+        />
+        <div id="are-you-sure-btn-wrapper">
+          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns">
+            Anuluj
+          </button>
+          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns">
+            Usuń konto
+          </button>
+        </div>
+      </div>
+
+      <div id="changePassWrapper">
+        <h2 id="change-pass-title">Zmień hasło</h2>
+        <div id="input-msg-change-pass"></div>
+        <div id="change-pass-input-wrapper">
+          <input
+            type="password"
+            placeholder="Podaj stare hasło"
+            id="change-pass-old-input"
+            class="inputs"
+          />
+          <input
+            type="password"
+            placeholder="Podaj nowe hasło"
+            id="change-pass-new-input"
+            class="inputs"
+          />
+        </div>
+        <div id="change-pass-btn-wrapper">
+          <button id="change-pass-cancel-btn" class="change-pass-btns">
+            Anuluj
+          </button>
+          <button id="change-pass-confirm-btn" class="change-pass-btns">
+            Zmień hasło
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- changelog window elements -->
+
+    <div id="changelog">
+      <div class="closegui" id="close-changelog-btn">
+        <span class="material-symbols-outlined">close</span>
+      </div>
+
+      <h2 id="small-title-changelog"><b>Lista zmian</b></h2>
+
+      <div id="changelog-left-nav">
+        <div class="ver-item" id="al4">ALPHA 0.4</div>
+        <div class="ver-item" id="al31">ALPHA 0.3.1</div>
+        <div class="ver-item" id="al3">ALPHA 0.3</div>
+        <div class="ver-item" id="al2">ALPHA 0.2</div>
+        <div class="ver-item" id="al11">ALPHA 0.1.1</div>
+        <div class="ver-item" id="al1">ALPHA 0.1</div>
+      </div>
+
+      <div id="content-container-changelog">
+        <h3>Wersja Alpha 0.4</h3>
+        <h4>14/08/2024</h4>
+        <br />
+        - Zmieniono system kupna autobusów. Od teraz można kupować wiele
+        autobusów na raz <br />
+        - Menu "Lista zmian" zostało zmienione aby było bardziej czytelne <br />
+        - Dodano okno dla przycisku "Kody" - na ten moment nie robi nic
+        specjalnego <br />
+        - Dodano okno dla przycisku "Kup ulepszenia" - funkcjonalność zostanie
+        dodana w przyszłości <br />
+        - Kilka błędów zostało naprawionych <br />
+        - Wiadomości "Nie masz wystarczająco pieniędzy!" zostały zamienione na
+        "Nie stać cię!" <br />
+        - Dodano 2 nowe autobusy: <br />
+        |- Solaris Vacanza 12 <br />
+        |- Solaris Vacanza 13 <br />
+        - Wiele innych mniejszych zmian i poprawek
+      </div>
+    </div>
+
+    <div id="codes-menu">
+      <div id="close-codes-gui-btn">
+        <span class="material-symbols-outlined">close</span>
+      </div>
+      <div id="codeMenuInfoWrapper">
+        <span id="codeMenuInfo"
+          ><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span
+        >
+      </div>
+    </div>
+
+    <section id="main">
+      <section id="vars">
+        <div class="vars-item">
+          Pieniądze: <span id="bal-show">brak</span> $
+        </div>
+        <!-- 
+            OLD THINGS FROM LEFT PANEL
+            Now basically unused but i left it there because i may use want to use in the future
+
+            <div class="vars-item">
+                Autobusy: <span id="bus-show">brak</span>
+            </div>
+            <div class="vars-item">
+                Trolejbusy: <span id="trolley-show">brak</span>
+            </div>
+            <div class="vars-item">
+                Tramwaje: <span id="tram-show">brak</span>
+            </div> -->
+        <div class="vars-item"><span id="income-show">brak</span> $/sek.</div>
+        <div class="vars-item"><span id="click-show">brak</span> $/klik.</div>
+      </section>
+      <p id="here-click">Klikaj tu 🡻</p>
+      <section id="clicker"></section>
+    </section>
+
+    <div id="buy-bus">
+      <div class="closegui" id="close-bus-gui-btn">
+        <span class="material-symbols-outlined">close</span>
+      </div>
+      <div id="busguicont">
+        <div id="categs">
+          <div class="categ" id="categ-bus"><br />Autobusy</div>
+          <div class="categ" id="categ-trolley"><br />Trolejbusy</div>
+          <div class="categ" id="categ-tram"><br />Tramwaje</div>
+        </div>
+        <div id="bus-cnt">
+          <div class="bus-item" id="mana20">
+            MAN A20 <br /><br /><br />
+            0$<br /><br />
+            +1 do $/klik.
+          </div>
+          <div class="bus-item" id="u8">
+            Solaris Urbino 8 <br /><br /><br />
+            500$<br /><br />
+            +1 do $/sek.
+          </div>
+          <div class="bus-item" id="u95">
+            Solaris Urbino 9 <br /><br /><br />
+            4000$<br /><br />
+            +2 do $/sek.
+          </div>
+          <div class="bus-item" id="u105">
+            Solaris Urbino 10.5 <br /><br />
+            6000$<br /><br />
+            +1 do $/klik.
+          </div>
+          <div class="bus-item" id="u12">
+            Solaris Urbino 12 <br /><br /><br />
+            8000$ <br /><br />
+            +2 do $/klik.
+          </div>
+          <div class="bus-item" id="alp86">
+            Solaris Alpino 8.6 <br /><br /><br />
+            15000$<br />+2 do $/klik. i $/sek.
+          </div>
+          <div class="bus-item" id="u18">
+            Solaris Urbino 18 <br /><br /><br />
+            16000$<br /><br />
+            +4 do $/sek.
+          </div>
+          <div class="bus-item" id="u24">
+            Solaris Urbino 24 <br /><br /><br />
+            21000$ <br /><br />
+            +4 do $/klik.
+          </div>
+          <div class="bus-item" id="manlion">
+            MAN Lion's City <br /><br /><br />
+            24000$ <br /><br />
+            +6 do $/klik.
+          </div>
+          <div class="bus-item" id="u12hyd">
+            Solaris Urbino 12 Hydrogen <br /><br />
+            24500$ <br /><br />
+            +7 do $/klik.
+          </div>
+          <div class="bus-item" id="jelczm121m">
+            Jelcz M121M <br /><br /><br />
+            25500$ <br /><br />
+            +6 do $/sek.
+          </div>
+          <div class="bus-item" id="u18hyd">
+            Solaris Urbino 18 Hydrogen <br /><br />
+            27500$ <br /><br />
+            +8 do $/klik.
+          </div>
+          <div class="bus-item" id="manlionlong">
+            MAN Lion's City GXL <br /><br />
+            35000$ <br />
+            +8 do $/klik. i +4 do $/sek.
+          </div>
+          <div class="bus-item" id="vacanza12">
+            Solaris Vacanza 12 <br /><br />
+            40000$ <br /><br />
+            +8 do $/sek.
+          </div>
+          <div class="bus-item" id="vacanza13">
+            Solaris Vacanza 13 <br /><br />
+            58000$ <br /><br />
+            +8 do $/sek. i +10 do $/klik.
+          </div>
+        </div>
+
+        <div id="trolley-cnt">
+          <h2 class="header2">
+            Trolejbusy będą dostępne w przyszłych aktualizacjach!
+          </h2>
+        </div>
+
+        <div id="tram-cnt">
+          <h2 class="header2">
+            Tramwaje będą dostępne w przyszłych aktualizacjach!
+          </h2>
+        </div>
+
+        <div id="buy-menu">
+          <div class="closegui" id="closebuymenu">
+            <span class="material-symbols-outlined"> close </span>
+          </div>
+          <h2 class="header2">Menu kupna</h2>
+          <br />
+          Ile autobusów chcesz kupić?<br />
+          <input
+            type="number"
+            placeholder="Wpisz ilość"
+            id="small-input"
+            min="1"
+            oninput="this.value = 
+                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null; updateTotal()"
+          />
+          Koszt: <span id="cost-bus"></span
+          ><span class="not-ready">Patrz "Łączny koszt"</span> <br /><br />
+          <h3><b>Wybierz trasę: </b></h3>
+          <select name="routes" id="route-dropdown">
+            <option value="1">Linia 1 10$</option>
+            <option value="2">Linia 2 20$</option>
+            <option value="5">Linia 5 75$</option>
+            <option value="7">Linia 7 100$</option>
+            <option value="8">Linia 8 150$</option>
+            <option value="9">Linia 9 220$</option>
+            <option value="12">Linia 12 350$</option>
+            <option value="14">Linia 14 500$</option>
+            <option value="15">Linia 15 750$</option>
+            <option value="18">Linia 18 1100$</option>
+            <option value="19">Linia 19 2500$</option>
+            <option value="22">Linia 22 4000$</option>
+            <option value="25">Linia 25 10k$</option>
+            <option value="26">Linia 26 20k$</option>
+          </select>
+          <span class="not-ready"
+            >Trasy będą dostępne w przyszłych aktualizacjach!</span
+          >
+          Boost trasy: <span id="show-line-boost"></span><br /><br />
+          <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
+          <div id="finish-operation-btn">
+            <span class="material-symbols-outlined" id="done-icon"> done </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="upgrades">
+      <div class="closegui" id="upgr-menu-close-btn">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+      <!-- <div id="bus-cnt">
+            <div class="upgrade-item">Super klikacz <br><br> 100000$<br><br> $/klik. * 2</div>
+            <div class="upgrade-item"></div>
+            <div class="upgrade-item"></div>
+            <div class="upgrade-item"></div>
+            <div class="upgrade-item"></div> -->
+      <div id="upgrMenuInfoWrapper">
+        <span id="upgrMenuInfo"
+          ><b>Ulepszenia będą dostępne w przyszłych aktualizacjach!</b></span
+        >
+      </div>
+    </section>
+
+    <section id="game-save-window">
+      <div class="closegui" id="save-menu-close-btn">
+        <span class="material-symbols-outlined">close</span>
+      </div>
+    </section>
+
+    <section id="ver">vALPHA0.4 by luku123</section>
+
+    <script src="js/scr.js"></script>
+    <script src="js/changelog.js"></script>
+    <script src="js/codes.js"></script>
+    <script src="js/accountWindow.js"></script>
+    <script type="module" src="js/infoDisplay.js"></script>
+    <script type="module" src="js/deleteAccount.js"></script>
+    <script type="module" src="js/changePassword.js"></script>
+  </body>
+</html>

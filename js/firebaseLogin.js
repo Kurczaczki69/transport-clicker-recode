@@ -38,39 +38,32 @@ function showMsg(message, divId) {
   }, 5000);
 }
 
-const RegisterBtn = document.querySelector("#register-btn");
-RegisterBtn.addEventListener("click", (event) => {
+const LoginBtn = document.querySelector("#login-btn");
+LoginBtn.addEventListener("click", (event) => {
+  console.log("btn clicked");
   event.preventDefault();
-  const username = document.getElementById("username-input reg-name").value;
-  const email = document.getElementById("email-input reg-email").value;
-  const password = document.getElementById("password-input reg-pass").value;
-
+  const email = document.getElementById("email-input-login").value;
+  const password = document.getElementById("password-input-login").value;
   const auth = getAuth();
-  const db = getFirestore();
 
-  createUserWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
+      console.log("login successfull");
+      showMsg("Zalogowano pomyślnie!", "errorMsgLogin");
       const user = userCredential.user;
-      const userData = {
-        email: email,
-        username: username,
-      };
-      showMsg("Konto utworzone pomyślnie!", "errorMsgRegister");
-      const docRef = doc(db, "users", user.uid);
-      setDoc(docRef, userData)
-        .then(() => {
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          console.error("error writing document", error);
-        });
+      localStorage.setItem("loggedInUserId", user.uid);
+      localStorage.setItem("loggedIn", true);
+      console.log("saved user id: " + user.uid);
+      window.location.href = "game.html";
     })
     .catch((error) => {
       const errorCode = error.code;
-      if (errorCode == "auth/email-already-in-use") {
-        showMsg("Istnieje już konto z tym adresem email", "errorMsgRegister");
+      if (errorCode === "auth/invalid-credential") {
+        console.log("invalid credential");
+        showMsg("Niepoprawny email lub hasło", "errorMsgLogin");
       } else {
-        showMsg("Nie można utworzyć konta", "errorMsgRegister");
+        console.log("login failed");
+        showMsg("Konto nie istnieje", "errorMsgLogin");
       }
     });
 });

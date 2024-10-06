@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/loginPage/loginStyles.css" />
-    <script type="module" src="js/firebaseAuth.js"></script>
     <title>Transport Clicker - Rejestracja</title>
   </head>
   <body>
@@ -12,11 +11,11 @@
       <h2 id="login-box-title">Transport Clicker<br />Rejestracja</h2>
       <h4 id="login-box-register-link">
         Masz już konto?
-        <a href="login.html" id="register-link">Zaloguj się</a>
+        <a href="index.html" id="register-link">Zaloguj się</a>
       </h4>
 
       <form id="login-form">
-        <div id="errorMsgRegister" class="msgDiv" style="display: none"></div>
+        <div id="errorMsgRegister" class="msgDiv"></div>
         <input
           type="text"
           id="username-input reg-name"
@@ -37,8 +36,11 @@
           placeholder="Hasło"
         />
         <br />
-        <button id="submit-form-btn register-btn">Zarejestruj się</button>
+        <button id="register-btn" class="submit-form-btn">
+          Zarejestruj się
+        </button>
       </form>
     </div>
+    <script type="module" src="js/firebaseAuth.js"></script>
   </body>
 </html>

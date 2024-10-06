@@ -1,0 +1,246 @@
+:root {
+  --bgcolor: rgb(231, 231, 149);
+  --busitemcolor: rgb(225, 207, 207);
+  --border5: solid 5px black;
+  --border2: solid 2px black;
+}
+
+#accMenuInfoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+}
+
+#accountbox {
+  position: absolute;
+  top: 10%;
+  left: 17%;
+  background-color: white;
+  width: 70vw;
+  height: 500px;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 9999;
+}
+
+#accWelcome {
+  text-align: left;
+  position: absolute;
+  left: 5%;
+  font-size: 35px;
+}
+
+#email-wrap {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  font-size: 20px;
+}
+
+#acc-btn-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btns-acc-window {
+  width: 325%;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-bottom: 15%;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: rgb(255, 222, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 222, 0, 1) 20%,
+    rgba(207, 151, 102, 1) 83%
+  );
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.btns-acc-window:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+#delete-account-btn {
+  background: rgb(255, 17, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 17, 0, 1) 20%,
+    rgba(232, 110, 3, 1) 83%
+  );
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+}
+
+#areYouSureWrapper {
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  position: absolute;
+  top: -20%;
+  left: 40%;
+  background-color: white;
+  width: 50%;
+  height: 50%;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 9999;
+  padding: 10px;
+  font-size: 2.5vh;
+}
+
+#are-you-sure-desc {
+  text-align: left;
+  font-size: 2.25vh;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+#are-you-sure-warning {
+  text-align: left;
+  font-size: 2.5vh;
+  font-weight: 1000;
+  margin-bottom: 20px;
+  color: red;
+}
+
+#are-you-sure-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+}
+
+.are-you-sure-btns {
+  width: 325%;
+  padding: 12%;
+  margin-right: 2vh;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: rgb(255, 222, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 222, 0, 1) 20%,
+    rgba(207, 151, 102, 1) 83%
+  );
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.are-you-sure-btns:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+#are-you-sure-confirm-btn {
+  background: rgb(255, 17, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 17, 0, 1) 20%,
+    rgba(232, 110, 3, 1) 83%
+  );
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+}
+
+.inputs {
+  width: 60%;
+  padding: 2.5%;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  margin-top: 2.5vh;
+}
+
+#input-msg {
+  font-size: 2vh;
+  color: red;
+  position: absolute;
+}
+
+#input-msg-change-pass {
+  font-size: 2vh;
+  color: red;
+  position: absolute;
+}
+
+#changePassWrapper {
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  position: absolute;
+  top: -20%;
+  left: 40%;
+  background-color: white;
+  width: 50%;
+  height: 50%;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 9999;
+  padding: 10px;
+  font-size: 2.5vh;
+}
+
+#change-pass-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#change-pass-new-input {
+  margin-top: 1.5vh;
+}
+
+#change-pass-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 23.5%;
+  right: 5%;
+}
+
+.change-pass-btns {
+  width: 325%;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-bottom: 15%;
+  margin-left: 5%;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: rgb(255, 222, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 222, 0, 1) 20%,
+    rgba(207, 151, 102, 1) 83%
+  );
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.change-pass-btns:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
