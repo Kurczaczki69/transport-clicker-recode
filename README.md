@@ -10,6 +10,7 @@ the code is horrible, please dont look at it now 😭😭
 ✅ Javascript recode\
 ✅ New changelog system\
 ❌ Login system(WIP)\
+❌ Language changing system and a translation service for translators(eg. crowdin or something like that)\
 ❌ Codes system\
 ❌ New UI\
 ❌ Trolleybuses\
