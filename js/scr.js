@@ -295,38 +295,51 @@ function buyBusRight() {
   menu.style.display = "none";
 }
 
+// bus purcache menu opening script
 const navItemBuy = document.getElementById("nav-item-buy");
-navItemBuy.addEventListener("click", showBuyGui, false);
+navItemBuy.addEventListener(
+  "click",
+  function () {
+    const buygui = document.getElementById("buy-bus");
+    buygui.style.display = "flex";
+  },
+  false
+);
 
-function showBuyGui() {
-  const buygui = document.getElementById("buy-bus");
-  buygui.style.display = "flex";
-}
-
-const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
-navItemOpenChangeLog.addEventListener("click", changeLog, false);
-
-function changeLog() {
-  const changelogmenu = document.getElementById("changelog");
-  changelogmenu.style.display = "block";
-}
-
-const closeChangeLogBtn = document.getElementById("close-changelog-btn");
-closeChangeLogBtn.addEventListener("click", closeChangeLog, false);
-
-function closeChangeLog() {
-  const changelogmenu = document.getElementById("changelog");
-  changelogmenu.style.display = "none";
-}
-
+// bus purcache menu closing script
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
-closeBusGuiBtn.addEventListener("click", closeBusGui, false);
+closeBusGuiBtn.addEventListener(
+  "click",
+  function () {
+    const buygui = document.getElementById("buy-bus");
+    buygui.style.display = "none";
+  },
+  false
+);
 
-function closeBusGui() {
-  const buygui = document.getElementById("buy-bus");
-  buygui.style.display = "none";
-}
+// opening changelog menu
+const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
+navItemOpenChangeLog.addEventListener(
+  "click",
+  function () {
+    const changelogmenu = document.getElementById("changelog");
+    changelogmenu.style.display = "block";
+  },
+  false
+);
 
+// closing changelog menu
+const closeChangeLogBtn = document.getElementById("close-changelog-btn");
+closeChangeLogBtn.addEventListener(
+  "click",
+  function () {
+    const changelogmenu = document.getElementById("changelog");
+    changelogmenu.style.display = "none";
+  },
+  false
+);
+
+// displaying data from local storage in main game screen
 function displaybal() {
   document.getElementById("bal-show").innerHTML = bal;
   document.getElementById("income-show").innerHTML = income;
@@ -336,6 +349,8 @@ function displaybal() {
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
+// table with maximum quantity of each bus
+// TODO: it can be done better but idk how
 const busPrices = {
   [buses[0].code]: { price: buses[0].price, maxQuantity: 1000 },
   [buses[1].code]: { price: buses[1].price, maxQuantity: 1000 },
@@ -353,6 +368,7 @@ const busPrices = {
   [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
 };
 
+// updating the total in bus buy window
 function updateTotal() {
   const busData = busPrices[chosenBus];
   const price = busData ? busData.price : 0;
@@ -374,12 +390,14 @@ async function add() {
   add();
 }
 
+// saving game every 3 seconds to local storage
+// TODO: change from local storage to storing in firestore on user account
 async function gameSaver() {
   await sleep(3000);
   silentSaveGame();
   gameSaver();
 }
-
+// opening navigation menu
 const navopenBtn = document.getElementById("nav-open-btn");
 navopenBtn.addEventListener("click", showNav, false);
 
@@ -391,13 +409,16 @@ async function showNav() {
   navbar.style.opacity = "1.0";
 }
 
+// closing navigation menu
 const navItemCloseNav = document.getElementById("nav-item-close-nav");
-navItemCloseNav.addEventListener("click", hideNav, false);
-
-function hideNav() {
-  const navbar = document.getElementById("nav");
-  navbar.style.display = "none";
-}
+navItemCloseNav.addEventListener(
+  "click",
+  function () {
+    const navbar = document.getElementById("nav");
+    navbar.style.display = "none";
+  },
+  false
+);
 
 const trolleySwitchBtn = document.getElementById("categ-trolley");
 const busSwitchBtn = document.getElementById("categ-bus");
@@ -442,6 +463,7 @@ function switchToTram() {
   silentSaveGame();
 }
 
+// hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
   const busCntGUI = document.getElementById("buy-menu");
   inputEl.value = "";
@@ -451,23 +473,27 @@ function hideBusCntGUI() {
   busCntGUI.style.display = "none";
 }
 
+// opening upgrade menu
 const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-navItemUpgrMenu.addEventListener("click", showUpgradeMenu, false);
+navItemUpgrMenu.addEventListener(
+  "click",
+  function () {
+    const upgradeGUI = document.getElementById("upgrades");
+    upgradeGUI.style.display = "flex";
+  },
+  false
+);
 
-function showUpgradeMenu() {
-  const upgradeGUI = document.getElementById("upgrades");
-
-  upgradeGUI.style.display = "flex";
-}
-
+// closing upgrade menu
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
-upgrMenuCloseBtn.addEventListener("click", hideUpgrMenu, false);
-
-function hideUpgrMenu() {
-  const upgradeGUI = document.getElementById("upgrades");
-
-  upgradeGUI.style.display = "none";
-}
+upgrMenuCloseBtn.addEventListener(
+  "click",
+  function () {
+    const upgradeGUI = document.getElementById("upgrades");
+    upgradeGUI.style.display = "none";
+  },
+  false
+);
 
 const clickspace = document.getElementById("clicker");
 clickspace.addEventListener("click", clicker, false);
