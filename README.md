@@ -5,6 +5,8 @@ English language support will be added to the game.
 
 the code is horrible, please dont look at it now 😭😭
 
+If someone wants to contribute pls DM me on discord: lukuu_
+
 ## PLANNED FEATURES
 
 ✅ Javascript recode\
