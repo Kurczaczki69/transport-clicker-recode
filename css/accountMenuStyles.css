@@ -12,6 +12,7 @@
   font-weight: 600;
   position: absolute;
   bottom: 14%;
+  cursor: pointer;
 }
 
 #dont-remember-pass-link:visited {

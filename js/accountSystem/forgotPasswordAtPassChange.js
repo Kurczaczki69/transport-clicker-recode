@@ -18,29 +18,33 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const forgotPassBtn = document.getElementById("forgot-pass-link");
 
-forgotPassBtn.addEventListener("click", (event) => {
+const forgotPassBtnAtPassChange = document.getElementById(
+  "dont-remember-pass-link"
+);
+
+forgotPassBtnAtPassChange.addEventListener("click", (event) => {
   event.preventDefault();
   const auth = getAuth();
-  const email = document.getElementById("email-input-login").value;
+  const user = auth.currentUser;
+  const email = user.email;
   sendPasswordResetEmail(auth, email)
     .then(() => {
       showMsg(
         "Link do resetowania hasła został wysłany na podany email",
-        "errorMsgLogin"
+        "input-msg-change-pass"
       );
       console.log("password reset email sent");
     })
     .catch((error) => {
       const errorCode = error.code;
       if (errorCode === "auth/missing-email") {
-        showMsg("Podaj email!", "errorMsgLogin");
+        showMsg("Podaj email!", "input-msg-change-pass");
         console.log(errorCode);
       } else if (errorCode === "auth/invalid-email") {
-        showMsg("Niepoprawny email!", "errorMsgLogin");
+        showMsg("Niepoprawny email!", "input-msg-change-pass");
       } else {
-        showMsg("Wystąpił bład!", "errorMsgLogin");
+        showMsg("Wystąpił bład!", "input-msg-change-pass");
         console.log(errorCode);
       }
     });

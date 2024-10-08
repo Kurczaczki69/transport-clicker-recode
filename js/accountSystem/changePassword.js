@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -21,7 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 const changePassBtn = document.getElementById("change-pass-btn");
 const oldPassInput = document.getElementById("change-pass-old-input");
@@ -62,8 +60,18 @@ confirmBtn.addEventListener("click", (event) => {
               console.log("password changed successfully");
             })
             .catch((error) => {
-              showMsg("Wystąpił błąd!", "input-msg-change-pass");
-              console.error("password change failed - error occured:", error);
+              const errorCode = error.code;
+              if (errorCode == "auth/password-does-not-meet-requirements") {
+                showMsg(
+                  "Nowe hasło musi mieć conajmniej 8 znaków, zawierać dużą i małą literę oraz cyfrę",
+                  "input-msg-change-pass"
+                );
+                console.log(errorCode);
+              } else {
+                showMsg("Wystąpił błąd!", "input-msg-change-pass");
+                console.error("password change failed - error occured:", error);
+                console.log(errorCode);
+              }
             });
         })
         .catch((error) => {
@@ -73,6 +81,7 @@ confirmBtn.addEventListener("click", (event) => {
             showMsg("Niepoprawne stare hasło!", "input-msg-change-pass");
           } else {
             console.error("password change failed - error occured:", error);
+            console.log(errorCode);
             showMsg("Wystąpił błąd!", "input-msg-change-pass");
           }
         });
