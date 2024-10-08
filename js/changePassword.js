@@ -31,6 +31,7 @@ const confirmBtn = document.getElementById("change-pass-confirm-btn");
 
 changePassBtn.addEventListener("click", () => {
   document.getElementById("changePassWrapper").style.display = "block";
+  document.getElementById("areYouSureWrapper").style.display = "none";
 });
 
 cancelBtn.addEventListener("click", () => {

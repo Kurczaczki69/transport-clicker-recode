@@ -24,13 +24,13 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 // showing the window and hiding it
-const accDelWindow = document.getElementById("areYouSureWrapper");
 const accDelBtn = document.getElementById("delete-account-btn");
 const cancelBtn = document.getElementById("are-you-sure-cancel-btn");
 accDelBtn.addEventListener(
   "click",
   function () {
-    accDelWindow.style.display = "block";
+    document.getElementById("areYouSureWrapper").style.display = "block";
+    document.getElementById("changePassWrapper").style.display = "none";
   },
   false
 );
@@ -38,7 +38,7 @@ accDelBtn.addEventListener(
 cancelBtn.addEventListener(
   "click",
   function () {
-    accDelWindow.style.display = "none";
+    document.getElementById("areYouSureWrapper").style.display = "none";
   },
   false
 );
