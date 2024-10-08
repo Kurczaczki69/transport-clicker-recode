@@ -10,7 +10,7 @@ If someone wants to contribute pls DM me on discord: lukuu_
 ## PLANNED FEATURES
 
 ✅ Javascript recode\
-✅ New changelog system\
+❌ New changelog system (it was done but I want to do it again since it's horribly designed)\
 ❌ Login system(WIP)\
 ❌ Language changing system and a translation service for translators(eg. crowdin or something like that)\
 ❌ Codes system\
