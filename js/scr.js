@@ -509,7 +509,9 @@ function sleep(ms) {
 
 function isEmpty(value) {
   return (
-    value == null || (typeof value === "string" && value.trim().length === 0)
+    value == null ||
+    (typeof value === "string" && value.trim().length === 0) ||
+    value == 0
   );
 }
 
