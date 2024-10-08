@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,7 +11,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
   authDomain: "transport-clicker-f0d1c.firebaseapp.com",
@@ -25,7 +23,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 function showMsg(message, divId) {
   var messageDiv = document.getElementById(divId);
@@ -68,8 +65,15 @@ RegisterBtn.addEventListener("click", (event) => {
       const errorCode = error.code;
       if (errorCode == "auth/email-already-in-use") {
         showMsg("Istnieje już konto z tym adresem email", "errorMsgRegister");
+      } else if (errorCode == "auth/password-does-not-meet-requirements") {
+        showMsg(
+          "Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę",
+          "errorMsgRegister"
+        );
+        console.log(errorCode);
       } else {
-        showMsg("Nie można utworzyć konta", "errorMsgRegister");
+        showMsg("Wystąpił błąd!", "errorMsgRegister");
+        console.log(errorCode);
       }
     });
 });

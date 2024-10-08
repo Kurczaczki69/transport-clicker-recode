@@ -507,6 +507,8 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// checking if input is empty
+// NOTE: also checks for strings and 0
 function isEmpty(value) {
   return (
     value == null ||

@@ -47,6 +47,17 @@ body {
   color: var(--linkcolor);
 }
 
+#forgot-pass-link {
+  color: var(--linkcolor);
+  margin-top: 4vh;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#forgot-pass-link:visited {
+  color: var(--linkcolor);
+}
+
 #login-form {
   align-items: center;
   justify-content: center;
