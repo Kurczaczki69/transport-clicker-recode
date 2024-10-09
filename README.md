@@ -17,7 +17,7 @@ If someone wants to contribute pls DM me on discord: lukuu_
 ❌ New UI\
 ❌ Trolleybuses\
 ❌ Trams\
-❌ Downloading and uploading saves\
+❌ ~~Downloading and uploading saves~~ - cancelled because of risk of cheating\
 ❌ Routes editor\
 ❌ An actual tutorial on how to start playing\
 ❌ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
