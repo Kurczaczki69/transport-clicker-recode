@@ -161,7 +161,7 @@ const buses = [
     name: "Solaris Urbino 8",
     clickmod: 0,
     incomemod: 1,
-    price: 250,
+    price: 500,
     requiredUpgr: "none",
   },
   {
