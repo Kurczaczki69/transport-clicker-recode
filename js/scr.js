@@ -31,6 +31,12 @@ let bghta20 = false;
 let bal = 0;
 let income = 0;
 
+let buyTotal = 0;
+let chosenBus = "";
+
+const navItemSaveGame = document.getElementById("nav-item-save-game");
+navItemSaveGame.addEventListener("click", saveGame, false);
+
 document.addEventListener("DOMContentLoaded", () => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   if (loggedInUserId) {
@@ -83,18 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-let buyTotal = 0;
-let chosenBus = "";
-
-const navItemSaveGame = document.getElementById("nav-item-save-game");
-navItemSaveGame.addEventListener("click", saveGame, false);
-
 function saveGame() {
-  // localStorage.setItem("balance", JSON.stringify(bal));
-  // localStorage.setItem("income", JSON.stringify(income));
-  // localStorage.setItem("clickmod", JSON.stringify(clickmod));
-  // localStorage.setItem("bghta20", JSON.stringify(bghta20));
-  // window.alert("Zapisano grę!");
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   getDoc(docRef)
@@ -112,6 +107,7 @@ function saveGame() {
         setDoc(docRef, userDatatoSave)
           .then(() => {
             console.log("saved data to server");
+            window.alert("Zapisano grę!");
           })
           .catch((error) => {
             console.error("error writing document", error);
@@ -125,12 +121,33 @@ function saveGame() {
 }
 
 function silentSaveGame() {
-  localStorage.setItem("balance", JSON.stringify(bal));
-  localStorage.setItem("income", JSON.stringify(income));
-  localStorage.setItem("clickmod", JSON.stringify(clickmod));
-  localStorage.setItem("bghta20", JSON.stringify(bghta20));
-
-  console.log("game saved");
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const docRef = doc(db, "users", loggedInUserId);
+  getDoc(docRef)
+    .then((docSnap) => {
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        const userDatatoSave = {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+        };
+        setDoc(docRef, userDatatoSave)
+          .then(() => {
+            console.log("saved data to server silently");
+          })
+          .catch((error) => {
+            console.error("error writing document", error);
+            window.location.href = "index.html";
+          });
+      }
+    })
+    .catch((error) => {
+      console.log("error getting document", error);
+    });
 }
 
 // JAK DODAĆ AUTOBUS
@@ -327,7 +344,6 @@ function buyBusChecker() {
       finishBtn.removeEventListener("click", buyBusChecker);
       //   window.alert("Wprowadź poprawną wartość!"); - unused because works really buggy
       hasAlertedEmpty = true;
-      silentSaveGame();
       inputEl.value = "";
       updateTotal();
       chosenBus = "";
@@ -478,13 +494,13 @@ async function add() {
   add();
 }
 
-// saving game every 3 seconds to local storage
-// TODO: change from local storage to storing in firestore on user account
+// saving game every 90 seconds to firestore
 async function gameSaver() {
-  await sleep(3000);
+  await sleep(90000);
   silentSaveGame();
   gameSaver();
 }
+
 // opening navigation menu
 const navopenBtn = document.getElementById("nav-open-btn");
 navopenBtn.addEventListener("click", showNav, false);
@@ -525,7 +541,6 @@ function switchToTrolley() {
   // tram.style.display = "none";
   // trolley.style.display = "flex";
   window.alert("Trolejbusy będą dostępne w przyszłych aktualizacjach!");
-  silentSaveGame();
 }
 
 function switchToBus() {
@@ -536,7 +551,6 @@ function switchToBus() {
   bus.style.display = "flex";
   tram.style.display = "none";
   trolley.style.display = "none";
-  silentSaveGame();
 }
 
 function switchToTram() {
@@ -548,7 +562,6 @@ function switchToTram() {
   // trolley.style.display = "none";
   // tram.style.display = "flex";
   window.alert("Tramwaje będą dostępne w przyszłych aktualizacjach!");
-  silentSaveGame();
 }
 
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
@@ -556,7 +569,6 @@ function hideBusCntGUI() {
   const busCntGUI = document.getElementById("buy-menu");
   inputEl.value = "";
   chosenBus = "";
-  silentSaveGame();
   updateTotal();
   busCntGUI.style.display = "none";
 }
@@ -611,6 +623,12 @@ window.addEventListener("load", add, false);
 window.addEventListener("load", gameSaver, false);
 window.addEventListener("load", displaybal, false);
 updateTotal();
+
+// warn the user about saving the game before closing
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  event.returnValue = "";
+});
 
 // event listeners and definitions for bus purchase menu
 
