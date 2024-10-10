@@ -218,12 +218,12 @@
         <div id="bus-cnt">
           <div class="bus-item" id="mana20">
             MAN A20 <br /><br /><br />
-            0$<br /><br />
+            <b>DARMO</b><br /><br />
             +1 do $/klik.
           </div>
           <div class="bus-item" id="u8">
             Solaris Urbino 8 <br /><br /><br />
-            500$<br /><br />
+            250$<br /><br />
             +1 do $/sek.
           </div>
           <div class="bus-item" id="u95">
@@ -316,8 +316,6 @@
             placeholder="Wpisz ilość"
             id="small-input"
             min="1"
-            oninput="this.value = 
-                !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null; updateTotal()"
           />
           Koszt: <span id="cost-bus"></span
           ><span class="not-ready">Patrz "Łączny koszt"</span> <br /><br />
@@ -375,7 +373,7 @@
 
     <section id="ver">vALPHA0.5DEV by luku123</section>
 
-    <script src="js/scr.js"></script>
+    <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
     <script src="js/codes.js"></script>
     <script src="js/accountSystem/accountWindow.js"></script>

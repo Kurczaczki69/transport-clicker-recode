@@ -1,15 +1,87 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore,
+  getDoc,
+  setDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
+  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
+  projectId: "transport-clicker-f0d1c",
+  storageBucket: "transport-clicker-f0d1c.appspot.com",
+  messagingSenderId: "177489808647",
+  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
+  measurementId: "G-CP6HMGD0N1",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth();
+const db = getFirestore();
+
 let clickmod = 1;
 let bghta20 = false;
-let bal = JSON.parse(localStorage.getItem("balance"));
-let income = JSON.parse(localStorage.getItem("income"));
-clickmod = JSON.parse(localStorage.getItem("clickmod"));
-bghta20 = JSON.parse(localStorage.getItem("bghta20"));
-bghta20 = bghta20 === true;
+let bal = 0;
+let income = 0;
 
-let bghtsuperclick = false;
-bghtsuperclick = bghtsuperclick === true;
-
-bghtsuperclick = JSON.parse(localStorage.getItem("bghtsuperclick"));
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  if (loggedInUserId) {
+    const docRef = doc(db, "users", loggedInUserId);
+    getDoc(docRef)
+      .then((docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          if (
+            userData.balance == null ||
+            userData.income == null ||
+            userData.clickmod == null ||
+            userData.bghta20 == null
+          ) {
+            const userDatatoSave = {
+              email: userData.email,
+              username: userData.username,
+              balance: bal,
+              income: income,
+              clickmod: clickmod,
+              bghta20: bghta20,
+            };
+            setDoc(docRef, userDatatoSave)
+              .then(() => {
+                console.log("saved data to server");
+              })
+              .catch((error) => {
+                console.error("error writing document", error);
+              });
+          } else {
+            bal = userData.balance;
+            income = userData.income;
+            clickmod = userData.clickmod;
+            bghta20 = userData.bghta20;
+            console.log("data loaded from server");
+          }
+        } else {
+          console.log("no document found matching id");
+          localStorage.removeItem("loggedInUserId");
+          localStorage.setItem("loggedIn", false);
+          window.location.href = "index.html";
+          console.log("no document found matching id");
+        }
+      })
+      .catch((error) => {
+        console.log("error getting document", error);
+      });
+  } else {
+    window.location.href = "index.html";
+  }
+});
 
 let buyTotal = 0;
 let chosenBus = "";
@@ -18,12 +90,38 @@ const navItemSaveGame = document.getElementById("nav-item-save-game");
 navItemSaveGame.addEventListener("click", saveGame, false);
 
 function saveGame() {
-  localStorage.setItem("balance", JSON.stringify(bal));
-  localStorage.setItem("income", JSON.stringify(income));
-  localStorage.setItem("clickmod", JSON.stringify(clickmod));
-  localStorage.setItem("bghta20", JSON.stringify(bghta20));
-  localStorage.setItem("bghtsuperclick", JSON.stringify(bghtsuperclick));
-  window.alert("Zapisano grę!");
+  // localStorage.setItem("balance", JSON.stringify(bal));
+  // localStorage.setItem("income", JSON.stringify(income));
+  // localStorage.setItem("clickmod", JSON.stringify(clickmod));
+  // localStorage.setItem("bghta20", JSON.stringify(bghta20));
+  // window.alert("Zapisano grę!");
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const docRef = doc(db, "users", loggedInUserId);
+  getDoc(docRef)
+    .then((docSnap) => {
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        const userDatatoSave = {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+        };
+        setDoc(docRef, userDatatoSave)
+          .then(() => {
+            console.log("saved data to server");
+          })
+          .catch((error) => {
+            console.error("error writing document", error);
+            window.location.href = "index.html";
+          });
+      }
+    })
+    .catch((error) => {
+      console.log("error getting document", error);
+    });
 }
 
 function silentSaveGame() {
@@ -31,7 +129,6 @@ function silentSaveGame() {
   localStorage.setItem("income", JSON.stringify(income));
   localStorage.setItem("clickmod", JSON.stringify(clickmod));
   localStorage.setItem("bghta20", JSON.stringify(bghta20));
-  localStorage.setItem("bghtsuperclick", JSON.stringify(bghtsuperclick));
 
   console.log("game saved");
 }
@@ -47,7 +144,7 @@ const buses = [
     name: "Solaris Urbino 8",
     clickmod: 0,
     incomemod: 1,
-    price: 500,
+    price: 250,
     requiredUpgr: "none",
   },
   {
@@ -167,28 +264,7 @@ const a20 = [
   },
 ];
 
-const upgrades = [
-  { code: "superclick", name: "Super Klikacz", price: "1000000" },
-];
-
-function buysuperclick() {
-  if (bal >= upgrades[0]["price"]) {
-    if (bghta20 == false) {
-      bal = bal - upgrades[0]["price"];
-      console.log("kupiono superclick");
-      clickmod = clickmod * 2;
-      bghtsuperclick = true;
-      window.alert("Kupiono Super Klikacz");
-      silentSaveGame();
-    } else {
-      window.alert("Już kupiłeś Super Klikacz!");
-    }
-  } else if (bal < upgrades[0]["price"]) {
-    window.alert("Nie stać cię!");
-    console.log("nieudana proba kupna superclick");
-  }
-}
-
+// buying mana20
 const manA20Btn = document.getElementById("mana20");
 manA20Btn.addEventListener("click", buyMana20, false);
 
@@ -382,6 +458,18 @@ function updateTotal() {
   buyTotal = inputEl.value * price;
   totalEl.innerHTML = buyTotal;
 }
+
+inputEl.addEventListener(
+  "input",
+  () => {
+    inputEl.value =
+      !!inputEl.value && Math.abs(inputEl.value) >= 0
+        ? Math.abs(inputEl.value)
+        : null;
+    updateTotal();
+  },
+  false
+);
 
 async function add() {
   await sleep(1000);
