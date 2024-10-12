@@ -5,43 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/accountSystem/loginStyles.css" />
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
-    <title>Transport Clicker - Logowanie</title>
+    <title>Transport Clicker - Rejestracja</title>
   </head>
-
   <body>
     <div id="login-box">
-      <h2 id="login-box-title">Transport Clicker<br />Logowanie</h2>
+      <h2 id="login-box-title">Transport Clicker<br />Rejestracja</h2>
       <h4 id="login-box-register-link">
-        Nie masz konta?
-        <a href="register.html" id="register-link">Zarejestruj się</a>
-        <br />
-        <label id="forgot-pass-link">Nie pamiętasz hasła?</label>
+        Masz już konto?
+        <a href="index.html" id="register-link">Zaloguj się</a>
       </h4>
 
       <form id="login-form">
-        <div id="errorMsgLogin" class="msgDiv" style="display: none"></div>
+        <div id="errorMsgRegister" class="msgDiv"></div>
+        <input
+          type="text"
+          id="username-input reg-name"
+          class="form-input"
+          placeholder="Nazwa Użytkownika"
+        />
         <input
           type="email"
-          id="email-input-login"
+          id="email-input reg-email"
           class="form-input"
           placeholder="E-mail"
         />
         <br />
         <input
           type="password"
-          id="password-input-login"
+          id="password-input reg-pass"
           class="form-input"
           placeholder="Hasło"
         />
         <br />
-        <button id="login-btn" class="submit-form-btn">Zaloguj się</button>
+        <button id="register-btn" class="submit-form-btn">
+          Zarejestruj się
+        </button>
       </form>
     </div>
 
     <section id="ver">vALPHA0.5.0 by luku123</section>
 
-    <script type="module" src="js/accountSystem/firebaseLogin.js"></script>
-    <script type="module" src="js/accountSystem/redirectIfLoggedIn.js"></script>
-    <script type="module" src="js/accountSystem/forgotPassword.js"></script>
+    <script type="module" src="js/accountSystem/firebaseAuth.js"></script>
   </body>
 </html>

@@ -1,15 +1,34 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore,
+  getDoc,
+  setDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
+  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
+  projectId: "transport-clicker-f0d1c",
+  storageBucket: "transport-clicker-f0d1c.appspot.com",
+  messagingSenderId: "177489808647",
+  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
+  measurementId: "G-CP6HMGD0N1",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore();
+
 let clickmod = 1;
 let bghta20 = false;
-let bal = JSON.parse(localStorage.getItem("balance"));
-let income = JSON.parse(localStorage.getItem("income"));
-clickmod = JSON.parse(localStorage.getItem("clickmod"));
-bghta20 = JSON.parse(localStorage.getItem("bghta20"));
-bghta20 = bghta20 === true;
-
-let bghtsuperclick = false;
-bghtsuperclick = bghtsuperclick === true;
-
-bghtsuperclick = JSON.parse(localStorage.getItem("bghtsuperclick"));
+let bal = 0;
+let income = 0;
 
 let buyTotal = 0;
 let chosenBus = "";
@@ -17,21 +36,117 @@ let chosenBus = "";
 const navItemSaveGame = document.getElementById("nav-item-save-game");
 navItemSaveGame.addEventListener("click", saveGame, false);
 
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  if (loggedInUserId) {
+    const docRef = doc(db, "users", loggedInUserId);
+    getDoc(docRef)
+      .then((docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          if (
+            userData.balance == null ||
+            userData.income == null ||
+            userData.clickmod == null ||
+            userData.bghta20 == null
+          ) {
+            const userDatatoSave = {
+              email: userData.email,
+              username: userData.username,
+              balance: bal,
+              income: income,
+              clickmod: clickmod,
+              bghta20: bghta20,
+            };
+            setDoc(docRef, userDatatoSave)
+              .then(() => {
+                console.log("saved data to server");
+              })
+              .catch((error) => {
+                console.error("error writing document", error);
+              });
+          } else {
+            bal = userData.balance;
+            income = userData.income;
+            clickmod = userData.clickmod;
+            bghta20 = userData.bghta20;
+            console.log("data loaded from server");
+          }
+        } else {
+          console.log("no document found matching id");
+          localStorage.removeItem("loggedInUserId");
+          localStorage.setItem("loggedIn", false);
+          window.location.href = "index.html";
+          console.log("no document found matching id");
+        }
+      })
+      .catch((error) => {
+        console.log("error getting document", error);
+      });
+  } else {
+    window.location.href = "index.html";
+  }
+});
+
 function saveGame() {
-  localStorage.setItem("balance", JSON.stringify(bal));
-  localStorage.setItem("income", JSON.stringify(income));
-  localStorage.setItem("clickmod", JSON.stringify(clickmod));
-  localStorage.setItem("bghta20", JSON.stringify(bghta20));
-  localStorage.setItem("bghtsuperclick", JSON.stringify(bghtsuperclick));
-  window.alert("Zapisano grę!");
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const docRef = doc(db, "users", loggedInUserId);
+  getDoc(docRef)
+    .then((docSnap) => {
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        const userDatatoSave = {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+        };
+        setDoc(docRef, userDatatoSave)
+          .then(() => {
+            console.log("saved data to server");
+            window.alert("Zapisano grę!");
+          })
+          .catch((error) => {
+            console.error("error writing document", error);
+            window.location.href = "index.html";
+          });
+      }
+    })
+    .catch((error) => {
+      console.log("error getting document", error);
+    });
 }
 
 function silentSaveGame() {
-  localStorage.setItem("balance", JSON.stringify(bal));
-  localStorage.setItem("income", JSON.stringify(income));
-  localStorage.setItem("clickmod", JSON.stringify(clickmod));
-  localStorage.setItem("bghta20", JSON.stringify(bghta20));
-  localStorage.setItem("bghtsuperclick", JSON.stringify(bghtsuperclick));
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const docRef = doc(db, "users", loggedInUserId);
+  getDoc(docRef)
+    .then((docSnap) => {
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        const userDatatoSave = {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+        };
+        setDoc(docRef, userDatatoSave)
+          .then(() => {
+            console.log("saved data to server silently");
+          })
+          .catch((error) => {
+            console.error("error writing document", error);
+            window.location.href = "index.html";
+          });
+      }
+    })
+    .catch((error) => {
+      console.log("error getting document", error);
+    });
 }
 
 // JAK DODAĆ AUTOBUS
@@ -165,28 +280,7 @@ const a20 = [
   },
 ];
 
-const upgrades = [
-  { code: "superclick", name: "Super Klikacz", price: "1000000" },
-];
-
-function buysuperclick() {
-  if (bal >= upgrades[0]["price"]) {
-    if (bghta20 == false) {
-      bal = bal - upgrades[0]["price"];
-      console.log("kupiono superclick");
-      clickmod = clickmod * 2;
-      bghtsuperclick = true;
-      window.alert("Kupiono Super Klikacz");
-      silentSaveGame();
-    } else {
-      window.alert("Już kupiłeś Super Klikacz!");
-    }
-  } else if (bal < upgrades[0]["price"]) {
-    window.alert("Nie stać cię!");
-    console.log("nieudana proba kupna superclick");
-  }
-}
-
+// buying mana20
 const manA20Btn = document.getElementById("mana20");
 manA20Btn.addEventListener("click", buyMana20, false);
 
@@ -249,7 +343,6 @@ function buyBusChecker() {
       finishBtn.removeEventListener("click", buyBusChecker);
       //   window.alert("Wprowadź poprawną wartość!"); - unused because works really buggy
       hasAlertedEmpty = true;
-      silentSaveGame();
       inputEl.value = "";
       updateTotal();
       chosenBus = "";
@@ -293,38 +386,29 @@ function buyBusRight() {
   menu.style.display = "none";
 }
 
+// bus purcache menu opening script
 const navItemBuy = document.getElementById("nav-item-buy");
-navItemBuy.addEventListener("click", showBuyGui, false);
+navItemBuy.addEventListener(
+  "click",
+  function () {
+    const buygui = document.getElementById("buy-bus");
+    buygui.style.display = "flex";
+  },
+  false
+);
 
-function showBuyGui() {
-  const buygui = document.getElementById("buy-bus");
-  buygui.style.display = "flex";
-}
-
-const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
-navItemOpenChangeLog.addEventListener("click", changeLog, false);
-
-function changeLog() {
-  const changelogmenu = document.getElementById("changelog");
-  changelogmenu.style.display = "block";
-}
-
-const closeChangeLogBtn = document.getElementById("close-changelog-btn");
-closeChangeLogBtn.addEventListener("click", closeChangeLog, false);
-
-function closeChangeLog() {
-  const changelogmenu = document.getElementById("changelog");
-  changelogmenu.style.display = "none";
-}
-
+// bus purcache menu closing script
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
-closeBusGuiBtn.addEventListener("click", closeBusGui, false);
+closeBusGuiBtn.addEventListener(
+  "click",
+  function () {
+    const buygui = document.getElementById("buy-bus");
+    buygui.style.display = "none";
+  },
+  false
+);
 
-function closeBusGui() {
-  const buygui = document.getElementById("buy-bus");
-  buygui.style.display = "none";
-}
-
+// displaying data from local storage in main game screen
 function displaybal() {
   document.getElementById("bal-show").innerHTML = bal;
   document.getElementById("income-show").innerHTML = income;
@@ -334,6 +418,8 @@ function displaybal() {
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
+// table with maximum quantity of each bus
+// TODO: it can be done better but idk how
 const busPrices = {
   [buses[0].code]: { price: buses[0].price, maxQuantity: 1000 },
   [buses[1].code]: { price: buses[1].price, maxQuantity: 1000 },
@@ -351,6 +437,7 @@ const busPrices = {
   [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
 };
 
+// updating the total in bus buy window
 function updateTotal() {
   const busData = busPrices[chosenBus];
   const price = busData ? busData.price : 0;
@@ -365,14 +452,33 @@ function updateTotal() {
   totalEl.innerHTML = buyTotal;
 }
 
+inputEl.addEventListener(
+  "input",
+  () => {
+    inputEl.value =
+      !!inputEl.value && Math.abs(inputEl.value) >= 0
+        ? Math.abs(inputEl.value)
+        : null;
+    updateTotal();
+  },
+  false
+);
+
 async function add() {
   await sleep(1000);
   bal = bal + income;
   displaybal();
-  silentSaveGame();
   add();
 }
 
+// saving game every 90 seconds to firestore
+async function gameSaver() {
+  await sleep(90000);
+  silentSaveGame();
+  gameSaver();
+}
+
+// opening navigation menu
 const navopenBtn = document.getElementById("nav-open-btn");
 navopenBtn.addEventListener("click", showNav, false);
 
@@ -384,13 +490,16 @@ async function showNav() {
   navbar.style.opacity = "1.0";
 }
 
+// closing navigation menu
 const navItemCloseNav = document.getElementById("nav-item-close-nav");
-navItemCloseNav.addEventListener("click", hideNav, false);
-
-function hideNav() {
-  const navbar = document.getElementById("nav");
-  navbar.style.display = "none";
-}
+navItemCloseNav.addEventListener(
+  "click",
+  function () {
+    const navbar = document.getElementById("nav");
+    navbar.style.display = "none";
+  },
+  false
+);
 
 const trolleySwitchBtn = document.getElementById("categ-trolley");
 const busSwitchBtn = document.getElementById("categ-bus");
@@ -409,7 +518,6 @@ function switchToTrolley() {
   // tram.style.display = "none";
   // trolley.style.display = "flex";
   window.alert("Trolejbusy będą dostępne w przyszłych aktualizacjach!");
-  silentSaveGame();
 }
 
 function switchToBus() {
@@ -420,7 +528,6 @@ function switchToBus() {
   bus.style.display = "flex";
   tram.style.display = "none";
   trolley.style.display = "none";
-  silentSaveGame();
 }
 
 function switchToTram() {
@@ -432,35 +539,38 @@ function switchToTram() {
   // trolley.style.display = "none";
   // tram.style.display = "flex";
   window.alert("Tramwaje będą dostępne w przyszłych aktualizacjach!");
-  silentSaveGame();
 }
 
+// hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
   const busCntGUI = document.getElementById("buy-menu");
   inputEl.value = "";
   chosenBus = "";
-  silentSaveGame();
   updateTotal();
   busCntGUI.style.display = "none";
 }
 
+// opening upgrade menu
 const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-navItemUpgrMenu.addEventListener("click", showUpgradeMenu, false);
+navItemUpgrMenu.addEventListener(
+  "click",
+  function () {
+    const upgradeGUI = document.getElementById("upgrades");
+    upgradeGUI.style.display = "flex";
+  },
+  false
+);
 
-function showUpgradeMenu() {
-  const upgradeGUI = document.getElementById("upgrades");
-
-  upgradeGUI.style.display = "flex";
-}
-
+// closing upgrade menu
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
-upgrMenuCloseBtn.addEventListener("click", hideUpgrMenu, false);
-
-function hideUpgrMenu() {
-  const upgradeGUI = document.getElementById("upgrades");
-
-  upgradeGUI.style.display = "none";
-}
+upgrMenuCloseBtn.addEventListener(
+  "click",
+  function () {
+    const upgradeGUI = document.getElementById("upgrades");
+    upgradeGUI.style.display = "none";
+  },
+  false
+);
 
 const clickspace = document.getElementById("clicker");
 clickspace.addEventListener("click", clicker, false);
@@ -474,17 +584,28 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// checking if input is empty
+// NOTE: also checks for strings and 0
 function isEmpty(value) {
   return (
-    value == null || (typeof value === "string" && value.trim().length === 0)
+    value == null ||
+    (typeof value === "string" && value.trim().length === 0) ||
+    value == 0
   );
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
 busCntGUIBtn.addEventListener("click", hideBusCntGUI, false);
 window.addEventListener("load", add, false);
+window.addEventListener("load", gameSaver, false);
 window.addEventListener("load", displaybal, false);
 updateTotal();
+
+// warn the user about saving the game before closing
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  event.returnValue = "";
+});
 
 // event listeners and definitions for bus purchase menu
 

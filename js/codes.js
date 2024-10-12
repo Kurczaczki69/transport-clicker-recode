@@ -6,13 +6,17 @@ const openGuiBtn = document.getElementById("nav-item-codes-menu");
 
 // listeners
 
-openGuiBtn.addEventListener("click", openGui, false);
-closeGuiBtn.addEventListener("click", closeGui, false);
-
-function openGui() {
+openGuiBtn.addEventListener(
+  "click",
+  function () {
     codesMenu.style.display = "block";
-}
-
-function closeGui() {
+  },
+  false
+);
+closeGuiBtn.addEventListener(
+  "click",
+  function () {
     codesMenu.style.display = "none";
-}
+  },
+  false
+);
