@@ -60,7 +60,7 @@ LoginBtn.addEventListener("click", (event) => {
         showMsg("Niepoprawny email!", "errorMsgLogin");
       } else {
         console.log("login failed");
-        showMsg("Wystąpił błąd", "errorMsgLogin");
+        showMsg("Wystąpił błąd!", "errorMsgLogin");
         console.log(errorCode);
       }
     });
