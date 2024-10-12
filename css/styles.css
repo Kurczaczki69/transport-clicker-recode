@@ -171,13 +171,6 @@ a {
   overflow: auto;
 }
 
-#ver {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: rgb(99, 96, 96);
-}
-
 .buslist {
   margin-left: 0.5vw;
   margin-top: 0.5vw;

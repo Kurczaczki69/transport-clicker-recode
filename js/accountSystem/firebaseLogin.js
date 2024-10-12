@@ -3,7 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
@@ -21,7 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 function showMsg(message, divId) {
   var messageDiv = document.getElementById(divId);
@@ -56,9 +54,14 @@ LoginBtn.addEventListener("click", (event) => {
       if (errorCode === "auth/invalid-credential") {
         console.log("invalid credential");
         showMsg("Niepoprawny email lub hasło", "errorMsgLogin");
+      } else if (errorCode === "auth/user-disabled") {
+        showMsg("Twoje konto jest zablokowane!", "errorMsgLogin");
+      } else if (errorCode === "auth/invalid-email") {
+        showMsg("Niepoprawny email!", "errorMsgLogin");
       } else {
         console.log("login failed");
-        showMsg("Konto nie istnieje", "errorMsgLogin");
+        showMsg("Wystąpił błąd", "errorMsgLogin");
+        console.log(errorCode);
       }
     });
 });

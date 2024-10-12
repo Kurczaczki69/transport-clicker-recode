@@ -64,7 +64,7 @@ RegisterBtn.addEventListener("click", (event) => {
     .catch((error) => {
       const errorCode = error.code;
       if (errorCode == "auth/email-already-in-use") {
-        showMsg("Istnieje już konto z tym adresem email", "errorMsgRegister");
+        showMsg("Istnieje już konto z tym adresem email!", "errorMsgRegister");
       } else if (errorCode == "auth/password-does-not-meet-requirements") {
         showMsg(
           "Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę",

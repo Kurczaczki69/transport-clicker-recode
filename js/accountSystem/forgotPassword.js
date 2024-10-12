@@ -39,6 +39,8 @@ forgotPassBtn.addEventListener("click", (event) => {
         console.log(errorCode);
       } else if (errorCode === "auth/invalid-email") {
         showMsg("Niepoprawny email!", "errorMsgLogin");
+      } else if (errorCode === "auth/requires-recent-login") {
+        showMsg("Proszę kliknąć w przycisk ponownie!");
       } else {
         showMsg("Wystąpił bład!", "errorMsgLogin");
         console.log(errorCode);

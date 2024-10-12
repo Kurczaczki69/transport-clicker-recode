@@ -31,7 +31,7 @@ forgotPassBtnAtPassChange.addEventListener("click", (event) => {
   sendPasswordResetEmail(auth, email)
     .then(() => {
       showMsg(
-        "Link do resetowania hasła został wysłany na podany email",
+        "Link do resetowania hasła został wysłany na twój email",
         "input-msg-change-pass"
       );
       console.log("password reset email sent");
@@ -43,6 +43,8 @@ forgotPassBtnAtPassChange.addEventListener("click", (event) => {
         console.log(errorCode);
       } else if (errorCode === "auth/invalid-email") {
         showMsg("Niepoprawny email!", "input-msg-change-pass");
+      } else if (errorCode === "auth/requires-recent-login") {
+        showMsg("Proszę kliknąć w przycisk ponownie!");
       } else {
         showMsg("Wystąpił bład!", "input-msg-change-pass");
         console.log(errorCode);

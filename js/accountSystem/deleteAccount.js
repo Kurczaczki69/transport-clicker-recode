@@ -83,9 +83,12 @@ confirmBtn.addEventListener("click", (event) => {
       if (errorCode === "auth/invalid-credential") {
         showMsg("Niepoprawne hasło!", "input-msg");
         console.error("deletion unsuccesful - wrong password");
+      } else if (errorCode === "auth/requires-recent-login") {
+        showMsg("Proszę kliknąć w przycisk ponownie!");
       } else {
         showMsg("Wystąpił błąd!", "input-msg");
         console.error("deletion unsuccesful - error:", error);
+        console.log(errorCode);
       }
     });
 });

@@ -23,7 +23,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
 const db = getFirestore();
 
 let clickmod = 1;
@@ -405,28 +404,6 @@ closeBusGuiBtn.addEventListener(
   function () {
     const buygui = document.getElementById("buy-bus");
     buygui.style.display = "none";
-  },
-  false
-);
-
-// opening changelog menu
-const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
-navItemOpenChangeLog.addEventListener(
-  "click",
-  function () {
-    const changelogmenu = document.getElementById("changelog");
-    changelogmenu.style.display = "block";
-  },
-  false
-);
-
-// closing changelog menu
-const closeChangeLogBtn = document.getElementById("close-changelog-btn");
-closeChangeLogBtn.addEventListener(
-  "click",
-  function () {
-    const changelogmenu = document.getElementById("changelog");
-    changelogmenu.style.display = "none";
   },
   false
 );
