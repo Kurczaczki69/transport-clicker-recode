@@ -4,9 +4,8 @@
   <!-- 1. Bus subcategories (eg. intercity etc.) -->
   <!-- 2. Upgrades system (in this version only one category of upgrades -
     the upgrades that unlock vehicle subcategories and categories) -->
-  <!-- 3. Mobile display improvements -->
-  <!-- 4. Make a favicon -->
-  <!-- 5. add some more graphics and stuff like that to the game to make it feel more alive -->
+  <!-- 3. Make a favicon -->
+  <!-- 4. add some more graphics and stuff like that to the game to make it feel more alive -->
 
   <head>
     <meta charset="UTF-8" />
@@ -369,10 +368,27 @@
       <div class="closegui" id="upgr-menu-close-btn">
         <span class="material-symbols-outlined"> close </span>
       </div>
-      <div id="upgrMenuInfoWrapper">
-        <span id="upgrMenuInfo"
-          ><b>Ulepszenia będą dostępne w przyszłych aktualizacjach!</b></span
-        >
+
+      <div id="upgr-menu-title-wrapper">
+        <h2 id="upgr-menu-header">⚡ Ulepszenia</h2>
+        <h4 id="upgr-menu-category-name">
+          Kategoria:
+          <select name="upgr-categories" id="upgr-menu-category-dropdown">
+            <option value="0">Typy pojazdów</option>
+            <option value="1">Ulepszenia klikania</option>
+            <option value="2">Ulepszenia zarobków</option>
+            <option value="3">Trasy</option>
+          </select>
+        </h4>
+      </div>
+
+      <div id="upgr-menu-main-section-wrapper">
+        <div id="upgr-menu-vehicle-type-category"></div>
+        <div id="upgr-menu-other-categories">
+          <h5 id="upgr-menu-not-ready-indicator">
+            Dostępne w przyszłych aktualizacjach!
+          </h5>
+        </div>
       </div>
     </section>
 
@@ -382,6 +398,7 @@
     <script src="js/changelog.js"></script>
     <script src="js/codes.js"></script>
     <script src="js/accountSystem/accountWindow.js"></script>
+    <script src="js/upgradeMenu.js"></script>
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>

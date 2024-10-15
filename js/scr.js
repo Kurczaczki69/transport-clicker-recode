@@ -550,28 +550,6 @@ function hideBusCntGUI() {
   busCntGUI.style.display = "none";
 }
 
-// opening upgrade menu
-const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-navItemUpgrMenu.addEventListener(
-  "click",
-  function () {
-    const upgradeGUI = document.getElementById("upgrades");
-    upgradeGUI.style.display = "flex";
-  },
-  false
-);
-
-// closing upgrade menu
-const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
-upgrMenuCloseBtn.addEventListener(
-  "click",
-  function () {
-    const upgradeGUI = document.getElementById("upgrades");
-    upgradeGUI.style.display = "none";
-  },
-  false
-);
-
 const clickspace = document.getElementById("clicker");
 clickspace.addEventListener("click", clicker, false);
 
