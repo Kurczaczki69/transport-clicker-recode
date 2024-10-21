@@ -7,6 +7,9 @@
   <!-- 3. Make a favicon -->
   <!-- 4. add some more graphics and stuff like that to the game to make it feel more alive -->
 
+  <!-- THINGS THAT ARE done: -->
+  <!-- Fixed a bug - scrollbar appears out of nowhere when opening nav menu -->
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,8 +24,7 @@
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Transport Clicker</title>
   </head>
   <body>
@@ -74,13 +76,9 @@
         <h2 id="accWelcome">Witaj, <span id="accName"></span> 👋</h2>
         <div id="email-wrap"><b>E-mail: </b><span id="accEmail"></span></div>
         <div id="acc-btn-wrapper">
-          <button id="change-pass-btn" class="btns-acc-window">
-            Zmień hasło
-          </button>
+          <button id="change-pass-btn" class="btns-acc-window">Zmień hasło</button>
           <button id="logout-btn" class="btns-acc-window">Wyloguj się</button>
-          <button id="delete-account-btn" class="btns-acc-window">
-            Usuń konto
-          </button>
+          <button id="delete-account-btn" class="btns-acc-window">Usuń konto</button>
         </div>
       </div>
 
@@ -90,19 +88,10 @@
         <h4 id="are-you-sure-warning">UWAGA! Ta akcja jest nieodwracalna!</h4>
 
         <div id="input-msg"></div>
-        <input
-          type="password"
-          placeholder="Podaj swoje hasło"
-          id="are-you-sure-pass-input"
-          class="inputs"
-        />
+        <input type="password" placeholder="Podaj swoje hasło" id="are-you-sure-pass-input" class="inputs" />
         <div id="are-you-sure-btn-wrapper">
-          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns">
-            Anuluj
-          </button>
-          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns">
-            Usuń konto
-          </button>
+          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns">Anuluj</button>
+          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns">Usuń konto</button>
         </div>
       </div>
 
@@ -110,29 +99,15 @@
         <h2 id="change-pass-title">🔑 Zmień hasło</h2>
         <div id="input-msg-change-pass"></div>
         <div id="change-pass-input-wrapper">
-          <input
-            type="password"
-            placeholder="Podaj stare hasło"
-            id="change-pass-old-input"
-            class="inputs"
-          />
-          <input
-            type="password"
-            placeholder="Podaj nowe hasło"
-            id="change-pass-new-input"
-            class="inputs"
-          />
+          <input type="password" placeholder="Podaj stare hasło" id="change-pass-old-input" class="inputs" />
+          <input type="password" placeholder="Podaj nowe hasło" id="change-pass-new-input" class="inputs" />
           <div id="dont-remember-pass">
             <label id="dont-remember-pass-link">Nie pamiętasz hasła?</label>
           </div>
         </div>
         <div id="change-pass-btn-wrapper">
-          <button id="change-pass-cancel-btn" class="change-pass-btns">
-            Anuluj
-          </button>
-          <button id="change-pass-confirm-btn" class="change-pass-btns">
-            Zmień hasło
-          </button>
+          <button id="change-pass-cancel-btn" class="change-pass-btns">Anuluj</button>
+          <button id="change-pass-confirm-btn" class="change-pass-btns">Zmień hasło</button>
         </div>
       </div>
     </section>
@@ -165,13 +140,12 @@
         - Dodano system logowania, tworzenia konta itp. <br />
         - Poprawki interfejsu, estetyki <br />
         - Wiele poprawek i optymalizacji kodu gry <br />
-        - Gra zapisuje się teraz co 90 sekund zamiast co 3 sekundy, ponieważ
-        dane są teraz przesyłane na serwery a nie zapisywane lokalnie(jedyne co
-        przechowujemy to dane gry typu ilość pieniędzy itp. oraz twój email więc
-        nie ma się o co martwić 😉) <br />
+        - Gra zapisuje się teraz co 90 sekund zamiast co 3 sekundy, ponieważ dane są teraz przesyłane na serwery a nie
+        zapisywane lokalnie(jedyne co przechowujemy to dane gry typu ilość pieniędzy itp. oraz twój email więc nie ma
+        się o co martwić 😉) <br />
         - Nowe menu listy zmian (tak, znowu) <br />
-        - Od teraz wpisanie zera w polu ilości autobusów przy kupnie autobusu
-        nie zostanie zaakceptowane i nic się nie stanie <br />
+        - Od teraz wpisanie zera w polu ilości autobusów przy kupnie autobusu nie zostanie zaakceptowane i nic się nie
+        stanie <br />
         - Wiele innych mniejszych zmian i poprawek
       </div>
     </div>
@@ -183,9 +157,7 @@
         <span class="material-symbols-outlined">close</span>
       </div>
       <div id="codeMenuInfoWrapper">
-        <span id="codeMenuInfo"
-          ><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span
-        >
+        <span id="codeMenuInfo"><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span>
       </div>
     </div>
 
@@ -193,9 +165,7 @@
 
     <section id="main">
       <section id="vars">
-        <div class="vars-item">
-          Pieniądze: <span id="bal-show">brak</span> $
-        </div>
+        <div class="vars-item">Pieniądze: <span id="bal-show">brak</span> $</div>
         <!-- 
             OLD THINGS FROM LEFT PANEL
             Now basically unused but i left it there because i may use want to use in the future
@@ -306,15 +276,11 @@
         </div>
 
         <div id="trolley-cnt">
-          <h2 class="header2">
-            Trolejbusy będą dostępne w przyszłych aktualizacjach!
-          </h2>
+          <h2 class="header2">Trolejbusy będą dostępne w przyszłych aktualizacjach!</h2>
         </div>
 
         <div id="tram-cnt">
-          <h2 class="header2">
-            Tramwaje będą dostępne w przyszłych aktualizacjach!
-          </h2>
+          <h2 class="header2">Tramwaje będą dostępne w przyszłych aktualizacjach!</h2>
         </div>
 
         <!-- bus purchase window (with stuff like quantity etc.) -->
@@ -326,12 +292,7 @@
           <h2 class="header2">Menu kupna</h2>
           <br />
           Ile autobusów chcesz kupić?<br />
-          <input
-            type="number"
-            placeholder="Wpisz ilość"
-            id="small-input"
-            min="1"
-          />
+          <input type="number" placeholder="Wpisz ilość" id="small-input" min="1" />
           <br /><br />
           <h3><b>Wybierz trasę: </b></h3>
           <select name="routes" id="route-dropdown">
@@ -350,9 +311,7 @@
             <option value="25">Linia 25 10k$</option>
             <option value="26">Linia 26 20k$</option>
           </select>
-          <span class="not-ready"
-            >Trasy będą dostępne w przyszłych aktualizacjach!</span
-          >
+          <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
           Boost trasy: <span id="show-line-boost"></span><br /><br />
           <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
           <div id="finish-operation-btn">
@@ -386,16 +345,46 @@
       <div id="upgr-menu-main-section-wrapper">
         <div id="upgr-menu-vehicle-type-category">
           <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">
-              Autobusy Miejskie
-            </h4>
-            <span class="upgr-menu-vehicle-type-item-price"><b>DARMO</b></span>
+            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Miejskie</h4>
+            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
+            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item1"
+              ><b>DARMO</b></span
+            >
+            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+          </div>
+          <div class="upgr-menu-vehicle-type-item">
+            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Wodorowe</h4>
+            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
+            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item2"
+              ><b>25000 $</b></span
+            >
+            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+          </div>
+          <div class="upgr-menu-vehicle-type-item">
+            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Międzymiastowe</h4>
+            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
+            <span class="upgr-menu-vehicle-type-item-price"><b>50000 $</b></span>
+            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+          </div>
+          <div class="upgr-menu-vehicle-type-item">
+            <h4 class="upgr-menu-vehicle-type-item-header">Trolejbusy</h4>
+            <span style="display: block" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
+            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item4"
+              ><b>250000 $</b></span
+            >
+            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+          </div>
+          <div class="upgr-menu-vehicle-type-item">
+            <h4 class="upgr-menu-vehicle-type-item-header">Tramwaje</h4>
+            <span style="display: block" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
+            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item5"
+              ><b>500000 $</b></span
+            >
+            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
           </div>
         </div>
         <div id="upgr-menu-other-categories">
-          <h5 id="upgr-menu-not-ready-indicator">
-            Dostępne w przyszłych aktualizacjach!
-          </h5>
+          <h5 id="upgr-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
         </div>
       </div>
     </section>
@@ -410,9 +399,6 @@
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
-    <script
-      type="module"
-      src="js/accountSystem/forgotPasswordAtPassChange.js"
-    ></script>
+    <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
   </body>
 </html>

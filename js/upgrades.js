@@ -1,7 +1,5 @@
 const notReadySection = document.getElementById("upgr-menu-other-categories");
-const vehicleTypeSection = document.getElementById(
-  "upgr-menu-vehicle-type-category"
-);
+const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
 const dropdown = document.getElementById("upgr-menu-category-dropdown");
 
 // upgrade menu category dropdown

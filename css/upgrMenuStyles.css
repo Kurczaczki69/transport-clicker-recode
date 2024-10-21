@@ -84,11 +84,7 @@
   background-color: rgb(88, 84, 84);
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   border: var(--border2);
   color: white;
@@ -98,11 +94,23 @@
   padding: 5px;
 }
 
+#upgr-menu-main-section-wrapper {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 1px;
+}
+
 .upgr-menu-vehicle-type-item {
   height: 20%;
   width: 100%;
   border-top: var(--border2);
   border-bottom: var(--border2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .upgr-menu-vehicle-type-item-header {
@@ -115,4 +123,44 @@
   position: relative;
   left: 5%;
   font-size: 15px;
+}
+
+#upgr-menu-vehicle-type-item-price-item1 {
+  left: 8.4%;
+}
+
+#upgr-menu-vehicle-type-item-price-item2 {
+  left: 7.5%;
+}
+
+#upgr-menu-vehicle-type-item-price-item4 {
+  left: -2.1%;
+}
+
+#upgr-menu-vehicle-type-item-price-item5 {
+  left: -2%;
+}
+
+.upgr-menu-vehicle-type-item-is-avaible {
+  color: red;
+}
+
+.upgr-menu-vehicle-type-item-btn {
+  margin-right: 5%;
+  cursor: pointer;
+  width: 10%;
+  padding: 1%;
+  border: none;
+  border-radius: 5px;
+  background: rgb(255, 222, 0);
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.upgr-menu-vehicle-type-item-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
 }

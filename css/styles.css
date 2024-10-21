@@ -12,6 +12,7 @@ body {
   padding: 0;
   background-color: var(--bgcolor);
   font-family: "Lato", sans-serif;
+  overflow-y: hidden;
 }
 
 a {
@@ -262,11 +263,7 @@ a {
   border: var(--border2);
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   padding: 5px;
   color: white;
@@ -279,32 +276,12 @@ a {
   font-family: "Lato", sans-serif;
 }
 
-/* input[type=number]::-webkit-inner-spin-button,
-      input[type=number]::-webkit-outer-spin-button {
-        opacity: 1;
-      }
-
-      input[type=number]::-webkit-outer-spin-button, 
-      input[type=number]::-webkit-inner-spin-button {
-        -webkit-appearance: inner-spin-button !important;
-        width: 10%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        background-color: rgb(103, 100, 100);
-      } */
-
 #route-dropdown {
   font-family: "Lato", sans-serif;
   background-color: rgb(88, 84, 84);
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   border: var(--border2);
   color: white;

@@ -375,9 +375,7 @@ function buyBusRight() {
   income += parseInt(busProp.incomemod) * parseInt(inputEl.value);
   clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
 
-  console.log(
-    `from buyBusRight: kupiono ${bus.name} w ilości ${parseInt(inputEl.value)}`
-  );
+  console.log(`from buyBusRight: kupiono ${bus.name} w ilości ${parseInt(inputEl.value)}`);
   window.alert(`Kupiono autobusy ${bus.name}`);
   silentSaveGame();
   inputEl.value = "0";
@@ -456,9 +454,7 @@ inputEl.addEventListener(
   "input",
   () => {
     inputEl.value =
-      !!inputEl.value && Math.abs(inputEl.value) >= 0
-        ? Math.abs(inputEl.value)
-        : null;
+      !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
     updateTotal();
   },
   false
@@ -565,11 +561,7 @@ function sleep(ms) {
 // checking if input is empty
 // NOTE: also checks for strings and 0
 function isEmpty(value) {
-  return (
-    value == null ||
-    (typeof value === "string" && value.trim().length === 0) ||
-    value == 0
-  );
+  return value == null || (typeof value === "string" && value.trim().length === 0) || value == 0;
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
