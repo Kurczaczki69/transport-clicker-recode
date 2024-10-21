@@ -188,8 +188,10 @@ a {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   justify-content: space-evenly;
+  padding: 0.5vh;
 }
 
 .categ {
