@@ -7,7 +7,7 @@
   <!-- 3. Make a favicon -->
   <!-- 4. add some more graphics and stuff like that to the game to make it feel more alive -->
 
-  <!-- THINGS THAT ARE done: -->
+  <!-- THINGS THAT ARE DONE: -->
   <!-- Fixed a bug - scrollbar appears out of nowhere when opening nav menu -->
 
   <head>
@@ -344,44 +344,64 @@
 
       <div id="upgr-menu-main-section-wrapper">
         <div id="upgr-menu-vehicle-type-category">
-          <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Miejskie</h4>
-            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
-            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item1"
-              ><b>DARMO</b></span
-            >
-            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
-          </div>
-          <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Wodorowe</h4>
-            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
-            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item2"
-              ><b>25000 $</b></span
-            >
-            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
-          </div>
-          <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">Autobusy Międzymiastowe</h4>
-            <span style="display: none" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
-            <span class="upgr-menu-vehicle-type-item-price"><b>50000 $</b></span>
-            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
-          </div>
-          <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">Trolejbusy</h4>
-            <span style="display: block" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
-            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item4"
-              ><b>250000 $</b></span
-            >
-            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
-          </div>
-          <div class="upgr-menu-vehicle-type-item">
-            <h4 class="upgr-menu-vehicle-type-item-header">Tramwaje</h4>
-            <span style="display: block" class="upgr-menu-vehicle-type-item-is-avaible">Niedostępne!</span>
-            <span class="upgr-menu-vehicle-type-item-price" id="upgr-menu-vehicle-type-item-price-item5"
-              ><b>500000 $</b></span
-            >
-            <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
-          </div>
+          <table id="upgr-menu-vehicle-type-table">
+            <!-- city buses -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Miejskie</h4></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"><b>DARMO</b></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+              </th>
+            </tr>
+            <!-- Hydrogen buses -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Wodorowe</h4></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"><b>25000 $</b></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+              </th>
+            </tr>
+            <!-- intercity buses -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Międzymiastowe</h4></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"><b>50000 $</b></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+              </th>
+            </tr>
+            <!-- trolleybuses -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header"><h4>Trolejbusy</h4></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"><b>250000 $</b></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+              </th>
+            </tr>
+            <!-- trams -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header"><h4>Tramwaje</h4></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"><b>500000 $</b></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+              </th>
+            </tr>
+          </table>
+          <!-- other categories -->
         </div>
         <div id="upgr-menu-other-categories">
           <h5 id="upgr-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
