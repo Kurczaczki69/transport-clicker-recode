@@ -17,7 +17,6 @@ If someone wants to contribute pls DM me on discord: lukuu\_
 ❌ New UI\
 ❌ Trolleybuses\
 ❌ Trams\
-❌ ~~Downloading and uploading saves~~ - cancelled because of risk of cheating\
 ❌ Routes editor\
 ❌ Upgrades system (example: "intercity" buses upgrade to unlock all InterCity buses. Also Upgrades will be sorted into categories example: category for upgrades that unlock vehicles or also other categories)\
 ❌ An actual tutorial on how to start playing\
