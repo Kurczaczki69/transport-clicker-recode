@@ -11,6 +11,7 @@
   <!-- Fixed a bug - scrollbar appears out of nowhere when opening nav menu -->
   <!-- Added a loading screen -->
   <!-- Upgrade menu design -->
+  <!-- utilities script -->
 
   <head>
     <meta charset="UTF-8" />
@@ -370,7 +371,7 @@
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>DARMO</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn" id="citybus">Kup</button>
               </th>
             </tr>
             <!-- Hydrogen buses -->
@@ -381,7 +382,7 @@
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>25000 $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn" id="hydrogenbus">Kup</button>
               </th>
             </tr>
             <!-- intercity buses -->
@@ -392,7 +393,7 @@
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>50000 $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn" id="intercitybus">Kup</button>
               </th>
             </tr>
             <!-- trolleybuses -->
@@ -403,7 +404,7 @@
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>250000 $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn" id="trolleybus">Kup</button>
               </th>
             </tr>
             <!-- trams -->
@@ -414,7 +415,7 @@
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>500000 $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn" id="tram">Kup</button>
               </th>
             </tr>
           </table>
@@ -423,20 +424,35 @@
         <div id="upgr-menu-other-categories">
           <h5 id="upgr-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
         </div>
+
+        <!-- confirmation dialog when buying an upgrade -->
+        <div id="confirm-upgrade-dialog">
+          <h5 id="confirm-upgrade-dialog-text">
+            Czy chcesz kupić ulepszenie <span id="confirm-upgrade-dialog-text-name">placeholderrrrrrrrr</span>?
+          </h5>
+
+          <div id="confirm-upgrade-dialog-btns">
+            <button id="confirm-upgr-btn">Kup</button>
+            <button id="cancel-upgr-btn">Anuluj</button>
+          </div>
+        </div>
       </div>
     </section>
+    <!-- TODO: REMOVE THAT BEFORE RELEASE -->
 
+    <button id="skibidi-btn">skibidi super przycisk</button>
     <section id="ver">vALPHA0.6.0DEV by luku123</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
     <script src="js/codes.js"></script>
     <script src="js/accountSystem/accountWindow.js"></script>
-    <script src="js/upgrades.js"></script>
+    <script type="module" src="js/upgrades.js"></script>
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
     <script src="js/utilities.js"></script>
+    <script src="js/data/upgradeData.js"></script>
   </body>
 </html>

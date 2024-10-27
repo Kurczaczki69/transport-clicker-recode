@@ -4,7 +4,6 @@ import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/fireb
 import { sleep, isEmpty } from "./utilities.js";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
   authDomain: "transport-clicker-f0d1c.firebaseapp.com",
@@ -27,11 +26,26 @@ let income = 0;
 
 let buyTotal = 0;
 let chosenBus = "";
+let bghtUpgrs = [];
 
 const navItemSaveGame = document.getElementById("nav-item-save-game");
 navItemSaveGame.addEventListener("click", saveGame, false);
 
+// TODO: REMOVE THAT BEFORE RELEASE
+function adminTool() {
+  bal = bal + 10000;
+  silentSaveGame();
+}
+
+const skibidiBtn = document.getElementById("skibidi-btn");
+
+skibidiBtn.addEventListener("click", (event) => {
+  adminTool();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
+  // TODO: REMOVE THAT BEFORE RELEASE (only the line saying "adminTool")
+  adminTool();
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   if (loggedInUserId) {
     const docRef = doc(db, "users", loggedInUserId);
@@ -52,12 +66,38 @@ document.addEventListener("DOMContentLoaded", () => {
               income: income,
               clickmod: clickmod,
               bghta20: bghta20,
+              bghtUpgrs: bghtUpgrs,
             };
             setDoc(docRef, userDatatoSave)
               .then(() => {
                 console.log("saved data to server");
+                console.log(bghtUpgrs);
                 sleep(700).then(() => {
                   $("#loader-wrapper").fadeOut("slow");
+                });
+              })
+              .catch((error) => {
+                console.error("error writing document", error);
+              });
+          } else if (userData.bghtUpgrs == null) {
+            console.log("bghtUpgrs is null");
+            const userDatatoSave = {
+              email: userData.email,
+              username: userData.username,
+              balance: userData.balance,
+              income: userData.income,
+              clickmod: userData.clickmod,
+              bghta20: userData.bghta20,
+              bghtUpgrs: bghtUpgrs,
+            };
+            setDoc(docRef, userDatatoSave)
+              .then(() => {
+                console.log("saved bghtUpgrs to server");
+                sleep(700).then(() => {
+                  $("#loader-wrapper").fadeOut("slow");
+                  window.alert(
+                    "Twoje konto zostało zaaktualizowane zgodnie z nową wersją gry. Proszę odświeżyć stronę aby grać"
+                  );
                 });
               })
               .catch((error) => {
@@ -68,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             income = userData.income;
             clickmod = userData.clickmod;
             bghta20 = userData.bghta20;
+            bghtUpgrs = userData.bghtUpgrs;
             console.log("data loaded from server");
             sleep(700).then(() => {
               $("#loader-wrapper").fadeOut("slow");
@@ -103,6 +144,7 @@ function saveGame() {
           income: income,
           clickmod: clickmod,
           bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
         };
         setDoc(docRef, userDatatoSave)
           .then(() => {
@@ -134,6 +176,7 @@ function silentSaveGame() {
           income: income,
           clickmod: clickmod,
           bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
         };
         setDoc(docRef, userDatatoSave)
           .then(() => {
@@ -566,6 +609,23 @@ window.addEventListener("beforeunload", function (event) {
   event.preventDefault();
   event.returnValue = "";
 });
+
+// getter and setter for upgrades
+export function getBal() {
+  return bal;
+}
+
+export function setBal(newBal) {
+  bal = newBal;
+}
+
+export function getBghtUpgrs() {
+  return bghtUpgrs;
+}
+
+export function setBghtUpgrs(newBghtUpgrs) {
+  bghtUpgrs = newBghtUpgrs;
+}
 
 // event listeners and definitions for bus purchase menu
 
