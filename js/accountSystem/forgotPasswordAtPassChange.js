@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getAuth,
-  sendPasswordResetEmail,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { showMsg } from "../utilities.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,9 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const forgotPassBtnAtPassChange = document.getElementById(
-  "dont-remember-pass-link"
-);
+const forgotPassBtnAtPassChange = document.getElementById("dont-remember-pass-link");
 
 forgotPassBtnAtPassChange.addEventListener("click", (event) => {
   event.preventDefault();
@@ -30,10 +26,7 @@ forgotPassBtnAtPassChange.addEventListener("click", (event) => {
   const email = user.email;
   sendPasswordResetEmail(auth, email)
     .then(() => {
-      showMsg(
-        "Link do resetowania hasła został wysłany na twój email",
-        "input-msg-change-pass"
-      );
+      showMsg("Link do resetowania hasła został wysłany na twój email", "input-msg-change-pass");
       console.log("password reset email sent");
     })
     .catch((error) => {
@@ -51,13 +44,3 @@ forgotPassBtnAtPassChange.addEventListener("click", (event) => {
       }
     });
 });
-
-function showMsg(message, divId) {
-  var messageDiv = document.getElementById(divId);
-  messageDiv.style.display = "block";
-  messageDiv.innerHTML = message;
-  messageDiv.style.opacity = 1;
-  setTimeout(function () {
-    messageDiv.style.opacity = 1;
-  }, 5000);
-}

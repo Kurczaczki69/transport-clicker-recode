@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getAuth,
-  sendPasswordResetEmail,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { showMsg } from "../utilities.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -26,10 +24,7 @@ forgotPassBtn.addEventListener("click", (event) => {
   const email = document.getElementById("email-input-login").value;
   sendPasswordResetEmail(auth, email)
     .then(() => {
-      showMsg(
-        "Link do resetowania hasła został wysłany na podany email",
-        "errorMsgLogin"
-      );
+      showMsg("Link do resetowania hasła został wysłany na podany email", "errorMsgLogin");
       console.log("password reset email sent");
     })
     .catch((error) => {
@@ -47,13 +42,3 @@ forgotPassBtn.addEventListener("click", (event) => {
       }
     });
 });
-
-function showMsg(message, divId) {
-  var messageDiv = document.getElementById(divId);
-  messageDiv.style.display = "block";
-  messageDiv.innerHTML = message;
-  messageDiv.style.opacity = 1;
-  setTimeout(function () {
-    messageDiv.style.opacity = 1;
-  }, 5000);
-}

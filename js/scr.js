@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { sleep, isEmpty } from "./utilities.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -552,16 +552,6 @@ clickspace.addEventListener("click", clicker, false);
 function clicker() {
   bal = bal + clickmod;
   displaybal();
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// checking if input is empty
-// NOTE: also checks for strings and 0
-function isEmpty(value) {
-  return value == null || (typeof value === "string" && value.trim().length === 0) || value == 0;
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
