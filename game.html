@@ -9,6 +9,8 @@
 
   <!-- THINGS THAT ARE DONE: -->
   <!-- Fixed a bug - scrollbar appears out of nowhere when opening nav menu -->
+  <!-- Added a loading screen -->
+  <!-- Upgrade menu design -->
 
   <head>
     <meta charset="UTF-8" />
@@ -22,12 +24,27 @@
     <link rel="stylesheet" href="css/codesStyles.css" />
     <link rel="stylesheet" href="css/accountSystem/accountMenuStyles.css" />
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
+    <link rel="stylesheet" href="css/loading.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Transport Clicker</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
+    <div id="loader-wrapper">
+      <div class="col-sm-2">
+        <div id="square5">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <h5 id="loading-text">Ładowanie...</h5>
+        </div>
+      </div>
+    </div>
+
     <div class="open-nav" id="nav-open-btn">
       <span class="material-symbols-outlined">segment</span>
     </div>
@@ -420,5 +437,6 @@
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
+    <script src="js/loadingScreen.js"></script>
   </body>
 </html>

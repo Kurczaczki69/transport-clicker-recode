@@ -1,12 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  getFirestore,
-  getDoc,
-  setDoc,
-  doc,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -61,6 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
             setDoc(docRef, userDatatoSave)
               .then(() => {
                 console.log("saved data to server");
+                sleep(700).then(() => {
+                  $("#loader-wrapper").fadeOut("slow");
+                });
               })
               .catch((error) => {
                 console.error("error writing document", error);
@@ -71,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
             clickmod = userData.clickmod;
             bghta20 = userData.bghta20;
             console.log("data loaded from server");
+            sleep(700).then(() => {
+              $("#loader-wrapper").fadeOut("slow");
+            });
           }
         } else {
           console.log("no document found matching id");
@@ -453,8 +454,7 @@ function updateTotal() {
 inputEl.addEventListener(
   "input",
   () => {
-    inputEl.value =
-      !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
+    inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
     updateTotal();
   },
   false
