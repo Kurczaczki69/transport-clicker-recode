@@ -15,3 +15,8 @@ export function showMsg(message, divId) {
     messageDiv.style.opacity = 0;
   });
 }
+
+export function clearMsg(divId) {
+  var messageDiv = document.getElementById(divId);
+  messageDiv.style.display = "none";
+}

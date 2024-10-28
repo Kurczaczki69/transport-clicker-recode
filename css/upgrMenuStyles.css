@@ -233,3 +233,17 @@
   justify-content: space-between;
   align-items: center;
 }
+
+#msg-confirm-upgrade {
+  text-align: center;
+  color: red;
+  margin-top: -5%;
+  margin-bottom: 5%;
+}
+
+#confirm-uppgrade-dialog-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

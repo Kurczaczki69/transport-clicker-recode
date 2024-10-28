@@ -1,5 +1,6 @@
 import { upgrades, upgradeCategories } from "./data/upgradeData.js";
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs } from "./scr.js";
+import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
+import { showMsg, clearMsg } from "./utilities.js";
 
 const notReadySection = document.getElementById("upgr-menu-other-categories");
 const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
@@ -38,22 +39,48 @@ upgrMenuCloseBtn.addEventListener(
   false
 );
 
+// buy upgrade after confirming it
 function buyUpgrade(upgrade) {
   const upgradeToBuy = upgrades.find((u) => u.id === upgrade);
   let bal = getBal();
   let bghtUpgrs = getBghtUpgrs();
   if (upgradeToBuy.isAvailable) {
-    if (bal >= upgradeToBuy.price) {
-      bghtUpgrs.push(upgradeToBuy);
-      setBal((bal -= upgradeToBuy.price));
-      setBghtUpgrs(bghtUpgrs);
-      console.log(bghtUpgrs);
+    if (!bghtUpgrs.includes(upgradeToBuy.id)) {
+      if (bal <= upgradeToBuy.price) {
+        showMsg("Nie stać cię!", "msg-confirm-upgrade");
+      } else {
+        bghtUpgrs.push(upgradeToBuy.id);
+        setBal((bal -= upgradeToBuy.price));
+        setBghtUpgrs(bghtUpgrs);
+        showMsg("Kupiono ulepszenie!", "msg-confirm-upgrade");
+        silentSaveGame();
+      }
     } else {
-      window.alert("Nie stać cię!");
+      showMsg("Już kupiłeś to ulepszenie!", "msg-confirm-upgrade");
     }
   } else {
-    window.alert("To ulepszenie będzie dostępne w następnych aktualizacjach!");
+    showMsg("To ulepszenie będzie dostępne w następnych aktualizacjach!", "msg-confirm-upgrade");
   }
+}
+
+// confirm if the user wants to buy the upgrade
+function confirmUpgrade(upgradetobuy) {
+  const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
+  const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
+  const confirmBtn = document.querySelector("#confirm-upgr-btn");
+  const cancelBtn = document.querySelector("#cancel-upgr-btn");
+  const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
+  upgradeName.textContent = upgradeToBuy.name;
+  clearMsg("msg-confirm-upgrade");
+  confirmationDialog.style.display = "block";
+
+  confirmBtn.addEventListener("click", () => {
+    buyUpgrade(upgradetobuy);
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    confirmationDialog.style.display = "none";
+  });
 }
 
 // listeners for different upgrades
@@ -65,21 +92,21 @@ const trolleybusBtn = document.getElementById("trolleybus");
 const tramBtn = document.getElementById("tram");
 
 cityBusBtn.addEventListener("click", () => {
-  buyUpgrade("citybus");
+  confirmUpgrade("citybus");
 });
 
 hydrogenBusBtn.addEventListener("click", () => {
-  buyUpgrade("hydrogenbus");
+  confirmUpgrade("hydrogenbus");
 });
 
 intercityBusBtn.addEventListener("click", () => {
-  buyUpgrade("intercitybus");
+  confirmUpgrade("intercitybus");
 });
 
 trolleybusBtn.addEventListener("click", () => {
-  buyUpgrade("trolleybus");
+  confirmUpgrade("trolleybus");
 });
 
 tramBtn.addEventListener("click", () => {
-  buyUpgrade("tram");
+  confirmUpgrade("tram");
 });

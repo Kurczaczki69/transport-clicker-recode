@@ -162,7 +162,7 @@ function saveGame() {
     });
 }
 
-function silentSaveGame() {
+export function silentSaveGame() {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   getDoc(docRef)
