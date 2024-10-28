@@ -6,6 +6,9 @@ export const upgrades = [
     name: "Autobusy Miejskie",
     price: 0,
     isAvailable: true,
+    unlockcategory: "citybus",
+    incomeboost: 0,
+    clickboost: 0,
   },
   {
     category: "vehicleType",
@@ -13,6 +16,9 @@ export const upgrades = [
     name: "Autobusy Wodorowe",
     price: 25000,
     isAvailable: true,
+    unlockcategory: "hydrogenbus",
+    incomeboost: 0,
+    clickboost: 0,
   },
   {
     category: "vehicleType",
@@ -20,6 +26,9 @@ export const upgrades = [
     name: "Autobusy Międzymiastowe",
     price: 50000,
     isAvailable: true,
+    unlockcategory: "intercitybus",
+    incomeboost: 0,
+    clickboost: 0,
   },
   {
     category: "vehicleType",
@@ -27,6 +36,9 @@ export const upgrades = [
     name: "Trolejbusy",
     price: 250000,
     isAvailable: false,
+    unlockcategory: "trolleybus",
+    incomeboost: 0,
+    clickboost: 0,
   },
   {
     category: "vehicleType",
@@ -34,6 +46,9 @@ export const upgrades = [
     name: "Tramwaje",
     price: 500000,
     isAvailable: false,
+    unlockcategory: "tram",
+    incomeboost: 0,
+    clickboost: 0,
   },
 ];
 

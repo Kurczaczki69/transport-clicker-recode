@@ -1,4 +1,4 @@
-import { upgrades, upgradeCategories } from "./data/upgradeData.js";
+import { upgrades } from "./data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
 import { showMsg, clearMsg } from "./utilities.js";
 
