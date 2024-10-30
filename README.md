@@ -23,4 +23,4 @@ If someone wants to contribute pls DM me on discord: lukuu\_
 ❌ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
 ❌ Special categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")\
 ❌ Special seasonal vehicles (eg. christmas, easter, halloween)\
-❌ A planning event on the game of celebrated christmas
+❌ A planned event for celebrating christmas
