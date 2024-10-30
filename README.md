@@ -21,5 +21,5 @@ If someone wants to contribute pls DM me on discord: lukuu\_
 ❌ Upgrades system (example: "intercity" buses upgrade to unlock all InterCity buses. Also Upgrades will be sorted into categories example: category for upgrades that unlock vehicles or also other categories)\
 ❌ An actual tutorial on how to start playing\
 ❌ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
-❌ Special categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")
+❌ Special categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")\
 ❌ Special seasonal vehicles (eg. christmas, easter, halloween)
