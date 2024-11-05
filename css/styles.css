@@ -49,19 +49,30 @@ a {
   margin-left: 25px;
 }
 
-.animation-nav {
+.animation-nav-show {
   animation: show-nav 0.3s ease-in-out;
+}
+
+.animation-nav-hide {
+  animation: hide-nav 0.3s ease-in-out;
 }
 
 @keyframes show-nav {
   0% {
     display: flex;
-  }
-  50% {
     margin-left: -100px;
   }
   100% {
     margin-left: 25px;
+  }
+}
+
+@keyframes hide-nav {
+  0% {
+    margin-left: 25px;
+  }
+  100% {
+    margin-left: -100px;
   }
 }
 
@@ -79,18 +90,6 @@ a {
   transform: scale(1.01);
   background-color: wheat;
   transition: transform 0.3s, background-color 0.3s;
-}
-
-#buy-bus {
-  position: absolute;
-  top: 10%;
-  left: 17%;
-  background-color: white;
-  width: 70vw;
-  height: 500px;
-  border: var(--border5);
-  border-radius: 20px;
-  display: none;
 }
 
 .closegui {
@@ -162,166 +161,4 @@ a {
   left: 34.5%;
   text-align: center;
   font-size: 3vw;
-}
-
-#busimgs {
-  border-left: var(--border5);
-  height: 650px;
-  width: 50%;
-  margin-left: 40px;
-  overflow: auto;
-}
-
-.buslist {
-  margin-left: 0.5vw;
-  margin-top: 0.5vw;
-  background-color: var(--busitemcolor);
-  height: 120px;
-  width: 85%;
-  padding: 10px;
-  border: var(--border5);
-  border-radius: 10px;
-}
-
-#bus-cnt {
-  width: 75%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  overflow-x: hidden;
-  justify-content: space-evenly;
-  padding: 0.5vh;
-}
-
-.categ {
-  width: 100px;
-  height: 60px;
-  border: var(--border5);
-  border-radius: 10px;
-  background-color: var(--busitemcolor);
-  transition: background-color 0.3s, transform 0.3s;
-  text-align: center;
-  padding: 0;
-}
-
-.categ:hover {
-  background-color: wheat;
-  transform: scale(1.05);
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#categs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 75%;
-  margin-top: 20px;
-  box-shadow: -10px 10px 5px 0px 100px rgb(0, 0, 0);
-}
-
-#busguicont {
-  display: flex;
-  flex-direction: column;
-}
-
-#trolley-cnt {
-  width: 75%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
-  justify-content: space-evenly;
-  display: none;
-}
-
-#tram-cnt {
-  width: 75%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
-  justify-content: space-evenly;
-  display: none;
-}
-
-#buy-menu {
-  background-color: white;
-  border: var(--border5);
-  border-radius: 20px;
-  width: 40%;
-  height: 65%;
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  padding: 10px;
-  display: none;
-}
-
-#small-input {
-  width: 25%;
-  height: 5%;
-  border: var(--border2);
-  border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  padding: 5px;
-  color: white;
-  font-weight: 100;
-}
-
-#small-input::placeholder {
-  color: white;
-  font-weight: 200;
-  font-family: "Lato", sans-serif;
-}
-
-#route-dropdown {
-  font-family: "Lato", sans-serif;
-  background-color: rgb(88, 84, 84);
-  border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  border: var(--border2);
-  color: white;
-  font-weight: 200;
-}
-
-option {
-  font-family: "Lato", sans-serif;
-  color: rgb(235, 217, 217);
-  background-color: rgb(97, 93, 93);
-}
-
-#finish-operation-btn {
-  border: var(--border5);
-  border-radius: 10px;
-  background-color: var(--busitemcolor);
-  width: 25%;
-  height: 10%;
-  position: absolute;
-  top: 80%;
-  left: 70%;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-#finish-operation-btn:hover {
-  transform: scale(1.05);
-  background-color: wheat;
-  transition: background-color 0.3s, transform 0.3s;
-  cursor: pointer;
-}
-
-#done-icon {
-  position: relative;
-  top: 20%;
-  left: 37%;
-}
-
-.not-ready {
-  color: red;
-  font-weight: 400;
 }

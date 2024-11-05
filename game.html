@@ -12,6 +12,7 @@
   <!-- Added a loading screen -->
   <!-- Upgrade menu design -->
   <!-- utilities script -->
+  <!-- upgrade mechanics(partially) -->
 
   <head>
     <meta charset="UTF-8" />
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="css/accountSystem/accountMenuStyles.css" />
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
     <link rel="stylesheet" href="css/loading.css" />
+    <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -52,7 +54,7 @@
 
     <!-- navigation bar -->
 
-    <div class="navbar" id="nav">
+    <div class="navbar animation-nav-show" id="nav">
       <div class="nav-item tooltip" id="nav-item-buy">
         <span class="material-symbols-outlined">directions_bus</span>
         <span class="tooltiptext">Kup pojazdy</span>
@@ -211,94 +213,99 @@
         <span class="material-symbols-outlined">close</span>
       </div>
       <div id="busguicont">
-        <div id="categs">
-          <div class="categ" id="categ-bus"><br />Autobusy</div>
-          <div class="categ" id="categ-trolley"><br />Trolejbusy</div>
-          <div class="categ" id="categ-tram"><br />Tramwaje</div>
-        </div>
-        <div id="bus-cnt">
-          <div class="bus-item" id="mana20">
-            MAN A20 <br /><br /><br />
-            <b>DARMO</b><br /><br />
-            +1 do $/klik.
-          </div>
-          <div class="bus-item" id="u8">
-            Solaris Urbino 8 <br /><br /><br />
-            500$<br /><br />
-            +1 do $/sek.
-          </div>
-          <div class="bus-item" id="u95">
-            Solaris Urbino 9 <br /><br /><br />
-            4000$<br /><br />
-            +2 do $/sek.
-          </div>
-          <div class="bus-item" id="u105">
-            Solaris Urbino 10.5 <br /><br />
-            6000$<br /><br />
-            +1 do $/klik.
-          </div>
-          <div class="bus-item" id="u12">
-            Solaris Urbino 12 <br /><br /><br />
-            8000$ <br /><br />
-            +2 do $/klik.
-          </div>
-          <div class="bus-item" id="alp86">
-            Solaris Alpino 8.6 <br /><br /><br />
-            15000$<br />+2 do $/klik. i $/sek.
-          </div>
-          <div class="bus-item" id="u18">
-            Solaris Urbino 18 <br /><br /><br />
-            16000$<br /><br />
-            +4 do $/sek.
-          </div>
-          <div class="bus-item" id="u24">
-            Solaris Urbino 24 <br /><br /><br />
-            21000$ <br /><br />
-            +4 do $/klik.
-          </div>
-          <div class="bus-item" id="manlion">
-            MAN Lion's City <br /><br /><br />
-            24000$ <br /><br />
-            +6 do $/klik.
-          </div>
-          <div class="bus-item" id="u12hyd">
-            Solaris Urbino 12 Hydrogen <br /><br />
-            24500$ <br /><br />
-            +7 do $/klik.
-          </div>
-          <div class="bus-item" id="jelczm121m">
-            Jelcz M121M <br /><br /><br />
-            25500$ <br /><br />
-            +6 do $/sek.
-          </div>
-          <div class="bus-item" id="u18hyd">
-            Solaris Urbino 18 Hydrogen <br /><br />
-            27500$ <br /><br />
-            +8 do $/klik.
-          </div>
-          <div class="bus-item" id="manlionlong">
-            MAN Lion's City GXL <br /><br />
-            35000$ <br />
-            +8 do $/klik. i +4 do $/sek.
-          </div>
-          <div class="bus-item" id="vacanza12">
-            Solaris Vacanza 12 <br /><br />
-            40000$ <br /><br />
-            +8 do $/sek.
-          </div>
-          <div class="bus-item" id="vacanza13">
-            Solaris Vacanza 13 <br /><br />
-            58000$ <br /><br />
-            +8 do $/sek. i +10 do $/klik.
-          </div>
-        </div>
+        <h2 class="window-headers">🚌 Pojazdy</h2>
 
-        <div id="trolley-cnt">
-          <h2 class="header2">Trolejbusy będą dostępne w przyszłych aktualizacjach!</h2>
-        </div>
+        <!-- ------------OLD HTML CODE (to be removed, but temporarily has to stay here)--------------- -->
+        <div id="test1" style="display: none">
+          <div id="categs">
+            <div class="categ" id="categ-bus"><br />Autobusy</div>
+            <div class="categ" id="categ-trolley"><br />Trolejbusy</div>
+            <div class="categ" id="categ-tram"><br />Tramwaje</div>
+          </div>
+          <div id="bus-cnt">
+            <div class="bus-item" id="mana20">
+              MAN A20 <br /><br /><br />
+              <b>DARMO</b><br /><br />
+              +1 do $/klik.
+            </div>
+            <div class="bus-item" id="u8">
+              Solaris Urbino 8 <br /><br /><br />
+              500$<br /><br />
+              +1 do $/sek.
+            </div>
+            <div class="bus-item" id="u95">
+              Solaris Urbino 9 <br /><br /><br />
+              4000$<br /><br />
+              +2 do $/sek.
+            </div>
+            <div class="bus-item" id="u105">
+              Solaris Urbino 10.5 <br /><br />
+              6000$<br /><br />
+              +1 do $/klik.
+            </div>
+            <div class="bus-item" id="u12">
+              Solaris Urbino 12 <br /><br /><br />
+              8000$ <br /><br />
+              +2 do $/klik.
+            </div>
+            <div class="bus-item" id="alp86">
+              Solaris Alpino 8.6 <br /><br /><br />
+              15000$<br />+2 do $/klik. i $/sek.
+            </div>
+            <div class="bus-item" id="u18">
+              Solaris Urbino 18 <br /><br /><br />
+              16000$<br /><br />
+              +4 do $/sek.
+            </div>
+            <div class="bus-item" id="u24">
+              Solaris Urbino 24 <br /><br /><br />
+              21000$ <br /><br />
+              +4 do $/klik.
+            </div>
+            <div class="bus-item" id="manlion">
+              MAN Lion's City <br /><br /><br />
+              24000$ <br /><br />
+              +6 do $/klik.
+            </div>
+            <div class="bus-item" id="u12hyd">
+              Solaris Urbino 12 Hydrogen <br /><br />
+              24500$ <br /><br />
+              +7 do $/klik.
+            </div>
+            <div class="bus-item" id="jelczm121m">
+              Jelcz M121M <br /><br /><br />
+              25500$ <br /><br />
+              +6 do $/sek.
+            </div>
+            <div class="bus-item" id="u18hyd">
+              Solaris Urbino 18 Hydrogen <br /><br />
+              27500$ <br /><br />
+              +8 do $/klik.
+            </div>
+            <div class="bus-item" id="manlionlong">
+              MAN Lion's City GXL <br /><br />
+              35000$ <br />
+              +8 do $/klik. i +4 do $/sek.
+            </div>
+            <div class="bus-item" id="vacanza12">
+              Solaris Vacanza 12 <br /><br />
+              40000$ <br /><br />
+              +8 do $/sek.
+            </div>
+            <div class="bus-item" id="vacanza13">
+              Solaris Vacanza 13 <br /><br />
+              58000$ <br /><br />
+              +8 do $/sek. i +10 do $/klik.
+            </div>
+          </div>
 
-        <div id="tram-cnt">
-          <h2 class="header2">Tramwaje będą dostępne w przyszłych aktualizacjach!</h2>
+          <div id="trolley-cnt">
+            <h2 class="header2">Trolejbusy będą dostępne w przyszłych aktualizacjach!</h2>
+          </div>
+
+          <div id="tram-cnt">
+            <h2 class="header2">Tramwaje będą dostępne w przyszłych aktualizacjach!</h2>
+          </div>
         </div>
 
         <!-- bus purchase window (with stuff like quantity etc.) -->
@@ -455,6 +462,7 @@
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
+    <script type="module" src="js/buses.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/data/upgradeData.js"></script>
     <script src="js/data/busData.js"></script>

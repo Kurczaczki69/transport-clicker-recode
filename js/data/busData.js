@@ -11,6 +11,7 @@ export const buses = [
     incomemod: 1,
     price: 500,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu9",
@@ -19,6 +20,7 @@ export const buses = [
     incomemod: 2,
     price: 4000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu105",
@@ -27,6 +29,7 @@ export const buses = [
     incomemod: 0,
     price: 6000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu12",
@@ -35,6 +38,7 @@ export const buses = [
     incomemod: 0,
     price: 8000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "sola86",
@@ -43,6 +47,7 @@ export const buses = [
     incomemod: 2,
     price: 15000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu18",
@@ -51,6 +56,7 @@ export const buses = [
     incomemod: 4,
     price: 16000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu24",
@@ -59,6 +65,7 @@ export const buses = [
     incomemod: 0,
     price: 21000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "manlion",
@@ -67,6 +74,7 @@ export const buses = [
     incomemod: 0,
     price: 24000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu12h",
@@ -75,6 +83,7 @@ export const buses = [
     incomemod: 0,
     price: 24500,
     requiredUpgr: "none",
+    category: "hydrogenbus",
   },
   {
     code: "jelczm121m",
@@ -83,6 +92,7 @@ export const buses = [
     incomemod: 6,
     price: 25500,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "solu18h",
@@ -91,6 +101,7 @@ export const buses = [
     incomemod: 0,
     price: 27500,
     requiredUpgr: "none",
+    category: "hydrogenbus",
   },
   {
     code: "manlioncig",
@@ -99,6 +110,7 @@ export const buses = [
     incomemod: 4,
     price: 35000,
     requiredUpgr: "none",
+    category: "citybus",
   },
   {
     code: "vacanza12",
@@ -107,6 +119,7 @@ export const buses = [
     incomemod: 8,
     price: 40000,
     requiredUpgr: "none",
+    category: "intercitybus",
   },
   {
     code: "vacanza13",
@@ -115,6 +128,7 @@ export const buses = [
     incomemod: 8,
     price: 58000,
     requiredUpgr: "none",
+    category: "intercitybus",
   },
 ];
 
@@ -126,10 +140,11 @@ export const a20 = [
     incomemod: 0,
     clickmod: 1,
     requiredUpgr: "none",
+    category: "citybus",
   },
 ];
 
-// table with maximum quantity of each busS
+// table with maximum quantity of each bus
 // TODO: it can be done better but idk how
 export const busPrices = {
   [buses[0].code]: { price: buses[0].price, maxQuantity: 1000 },

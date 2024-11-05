@@ -369,23 +369,33 @@ async function gameSaver() {
 
 // opening navigation menu
 const navopenBtn = document.getElementById("nav-open-btn");
-navopenBtn.addEventListener("click", showNav, false);
+navopenBtn.addEventListener(
+  "click",
+  function () {
+    const navbar = document.getElementById("nav");
 
-async function showNav() {
-  const navbar = document.getElementById("nav");
+    navbar.style.display = "flex";
+    navbar.style.opacity = "1.0";
+  },
+  false
+);
 
-  navbar.style.display = "flex";
-  navbar.style.transition = "opacity 0.3s";
-  navbar.style.opacity = "1.0";
-}
-
-// closing navigation menu
+// closing navigation menu (for some bizzare reason this works at applying the animation wtf)
 const navItemCloseNav = document.getElementById("nav-item-close-nav");
 navItemCloseNav.addEventListener(
   "click",
   function () {
     const navbar = document.getElementById("nav");
-    navbar.style.display = "none";
+    navbar.classList.remove("animation-nav-show");
+    navbar.classList.add("animation-nav-hide");
+    sleep(275).then(() => {
+      navbar.style.display = "none";
+      navbar.style.opacity = "0.0";
+      navbar.classList.remove("animation-nav-hide");
+      sleep(300).then(() => {
+        navbar.classList.add("animation-nav-show");
+      });
+    });
   },
   false
 );
@@ -399,13 +409,6 @@ busSwitchBtn.addEventListener("click", switchToBus, false);
 tramSwitchBtn.addEventListener("click", switchToTram, false);
 
 function switchToTrolley() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  // bus.style.display = "none";
-  // tram.style.display = "none";
-  // trolley.style.display = "flex";
   window.alert("Trolejbusy będą dostępne w przyszłych aktualizacjach!");
 }
 
@@ -420,13 +423,6 @@ function switchToBus() {
 }
 
 function switchToTram() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  // bus.style.display = "none";
-  // trolley.style.display = "none";
-  // tram.style.display = "flex";
   window.alert("Tramwaje będą dostępne w przyszłych aktualizacjach!");
 }
 
