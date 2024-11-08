@@ -31,21 +31,7 @@ let bghtUpgrs = [];
 const navItemSaveGame = document.getElementById("nav-item-save-game");
 navItemSaveGame.addEventListener("click", saveGame, false);
 
-// TODO: REMOVE THAT BEFORE RELEASE
-function adminTool() {
-  bal = bal + 10000;
-  silentSaveGame();
-}
-
-const skibidiBtn = document.getElementById("skibidi-btn");
-
-skibidiBtn.addEventListener("click", (event) => {
-  adminTool();
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-  // TODO: REMOVE THAT BEFORE RELEASE (only the line saying "adminTool")
-  adminTool();
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   if (loggedInUserId) {
     const docRef = doc(db, "users", loggedInUserId);
@@ -297,18 +283,23 @@ function buyBusRight() {
   menu.style.display = "none";
 }
 
-// bus purcache menu opening script
+// open vehicle menu
 const navItemBuy = document.getElementById("nav-item-buy");
 navItemBuy.addEventListener(
   "click",
   function () {
     const buygui = document.getElementById("buy-bus");
-    buygui.style.display = "flex";
+    if (bghtUpgrs.includes("citybus")) {
+      buygui.style.display = "flex";
+    } else {
+      buygui.style.display = "none";
+      window.alert("Musisz kupić ulepszenie Autobusy Miejskie!");
+    }
   },
   false
 );
 
-// bus purcache menu closing script
+// close vehicle menu
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
 closeBusGuiBtn.addEventListener(
   "click",
@@ -399,32 +390,6 @@ navItemCloseNav.addEventListener(
   },
   false
 );
-
-const trolleySwitchBtn = document.getElementById("categ-trolley");
-const busSwitchBtn = document.getElementById("categ-bus");
-const tramSwitchBtn = document.getElementById("categ-tram");
-
-trolleySwitchBtn.addEventListener("click", switchToTrolley, false);
-busSwitchBtn.addEventListener("click", switchToBus, false);
-tramSwitchBtn.addEventListener("click", switchToTram, false);
-
-function switchToTrolley() {
-  window.alert("Trolejbusy będą dostępne w przyszłych aktualizacjach!");
-}
-
-function switchToBus() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  bus.style.display = "flex";
-  tram.style.display = "none";
-  trolley.style.display = "none";
-}
-
-function switchToTram() {
-  window.alert("Tramwaje będą dostępne w przyszłych aktualizacjach!");
-}
 
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {

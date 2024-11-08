@@ -50,11 +50,11 @@ a {
 }
 
 .animation-nav-show {
-  animation: show-nav 0.3s ease-in-out;
+  animation: show-nav 0.3s ease-out;
 }
 
 .animation-nav-hide {
-  animation: hide-nav 0.3s ease-in-out;
+  animation: hide-nav 0.3s ease-out;
 }
 
 @keyframes show-nav {

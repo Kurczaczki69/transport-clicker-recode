@@ -113,10 +113,6 @@
   align-items: center;
 }
 
-.upgr-menu-vehicle-type-item-header {
-  font-size: 3vh;
-}
-
 .upgr-menu-vehicle-type-item-is-avaible {
   color: red;
 }
@@ -155,6 +151,7 @@
   width: 40%;
   text-align: left;
   padding-left: 2%;
+  font-size: 3vh;
 }
 
 .upgr-menu-vehicle-type-item-price {

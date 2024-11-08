@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
   <!-- ALPHA 0.6.0 ROADMAP -->
-  <!-- 1. Bus subcategories (eg. intercity etc.) -->
+  <!-- 1. Bus subcategories (eg. intercity etc.) DONE -->
   <!-- 2. Upgrades system (in this version only one category of upgrades -
-    the upgrades that unlock vehicle subcategories and categories) -->
+    the upgrades that unlock vehicle subcategories and categories) DONE -->
   <!-- 3. Make a favicon -->
-  <!-- 4. add some more graphics and stuff like that to the game to make it feel more alive -->
+  <!-- 4. some more aesthetics(animations etc.) -->
 
   <!-- THINGS THAT ARE DONE: -->
   <!-- Fixed a bug - scrollbar appears out of nowhere when opening nav menu -->
   <!-- Added a loading screen -->
   <!-- Upgrade menu design -->
   <!-- utilities script -->
-  <!-- upgrade mechanics(partially) -->
+  <!-- upgrade mechanics -->
+  <!-- new vehicle menu -->
+  <!-- new animation when opening and closing nav -->
 
   <head>
     <meta charset="UTF-8" />
@@ -212,136 +214,277 @@
       <div class="closegui" id="close-bus-gui-btn">
         <span class="material-symbols-outlined">close</span>
       </div>
-      <div id="busguicont">
-        <h2 class="window-headers">🚌 Pojazdy</h2>
+      <div id="vhcl-menu-title-wrapper">
+        <h2 id="vhcl-menu-header">🚌 Pojazdy</h2>
+        <div id="vhcl-menu-dropdowns-wrapper">
+          <h4 id="vhcl-menu-category-name">
+            Kategoria:
+            <select name="vhcl-categories" class="vhcl-menu-dropdowns" id="vhcl-menu-category-dropdown">
+              <option value="0">Autobusy</option>
+              <option value="1">Trolejbusy</option>
+              <option value="2">Tramwaje</option>
+            </select>
+          </h4>
+          <h4 id="vhcl-menu-subcategory-name">
+            Podkategoria:
+            <select
+              name="vhcl-subcategories-1"
+              id="vhcl-menu-subcategory-dropdown-1"
+              class="vhcl-menu-dropdowns"
+              style="display: block">
+              <option value="0">Autobusy Miejskie</option>
+              <option value="1">Autobusy Wodorowe</option>
+              <option value="2">Autobusy Międzymiastowe</option>
+            </select>
+            <select
+              name="vhcl-subcategories-2"
+              id="vhcl-menu-subcategory-dropdown-2"
+              class="vhcl-menu-dropdowns"
+              style="display: none">
+              <option value="0">Niedostępne!</option>
+            </select>
+          </h4>
+        </div>
+      </div>
 
-        <!-- ------------OLD HTML CODE (to be removed, but temporarily has to stay here)--------------- -->
-        <div id="test1" style="display: none">
-          <div id="categs">
-            <div class="categ" id="categ-bus"><br />Autobusy</div>
-            <div class="categ" id="categ-trolley"><br />Trolejbusy</div>
-            <div class="categ" id="categ-tram"><br />Tramwaje</div>
+      <div id="vhcl-menu-main-section-wrapper">
+        <!-- CATEGORY WITH BUSES -->
+        <div id="vhcl-menu-bus-category">
+          <div id="vhcl-menu-bus-sub-citybus-category">
+            <table id="vhcl-menu-citybus-table" class="vhcl-menu-tables">
+              <!-- MAN A20 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>MAN A20</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>DARMO</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+1$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="mana20">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 8 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 8</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>500$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+1$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+0$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u8">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 9 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 9</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>4000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+2$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+0$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u95">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 10.5 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 10.5</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>6000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+1$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u105">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 12 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 12</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>8000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+2$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u12">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Alpino 8.6 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Alpino 8.6</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>15000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+2$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+2$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="alp86">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 18 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 18</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>16000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+4$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+0$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u18">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 24 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 24</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>21000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+4$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u24">Kup</button>
+                </th>
+              </tr>
+              <!-- MAN Lion's City -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>MAN Lion's City</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>24000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+6$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="manlion">Kup</button>
+                </th>
+              </tr>
+              <!-- Jelcz M121M -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Jelcz M121M</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>25500$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+6$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+0$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="jelczm121m">Kup</button>
+                </th>
+              </tr>
+              <!-- MAN Lion's City GXL -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>MAN Lion's City GXL</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>35000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+4$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+8$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="manlionlong">Kup</button>
+                </th>
+              </tr>
+            </table>
           </div>
-          <div id="bus-cnt">
-            <div class="bus-item" id="mana20">
-              MAN A20 <br /><br /><br />
-              <b>DARMO</b><br /><br />
-              +1 do $/klik.
-            </div>
-            <div class="bus-item" id="u8">
-              Solaris Urbino 8 <br /><br /><br />
-              500$<br /><br />
-              +1 do $/sek.
-            </div>
-            <div class="bus-item" id="u95">
-              Solaris Urbino 9 <br /><br /><br />
-              4000$<br /><br />
-              +2 do $/sek.
-            </div>
-            <div class="bus-item" id="u105">
-              Solaris Urbino 10.5 <br /><br />
-              6000$<br /><br />
-              +1 do $/klik.
-            </div>
-            <div class="bus-item" id="u12">
-              Solaris Urbino 12 <br /><br /><br />
-              8000$ <br /><br />
-              +2 do $/klik.
-            </div>
-            <div class="bus-item" id="alp86">
-              Solaris Alpino 8.6 <br /><br /><br />
-              15000$<br />+2 do $/klik. i $/sek.
-            </div>
-            <div class="bus-item" id="u18">
-              Solaris Urbino 18 <br /><br /><br />
-              16000$<br /><br />
-              +4 do $/sek.
-            </div>
-            <div class="bus-item" id="u24">
-              Solaris Urbino 24 <br /><br /><br />
-              21000$ <br /><br />
-              +4 do $/klik.
-            </div>
-            <div class="bus-item" id="manlion">
-              MAN Lion's City <br /><br /><br />
-              24000$ <br /><br />
-              +6 do $/klik.
-            </div>
-            <div class="bus-item" id="u12hyd">
-              Solaris Urbino 12 Hydrogen <br /><br />
-              24500$ <br /><br />
-              +7 do $/klik.
-            </div>
-            <div class="bus-item" id="jelczm121m">
-              Jelcz M121M <br /><br /><br />
-              25500$ <br /><br />
-              +6 do $/sek.
-            </div>
-            <div class="bus-item" id="u18hyd">
-              Solaris Urbino 18 Hydrogen <br /><br />
-              27500$ <br /><br />
-              +8 do $/klik.
-            </div>
-            <div class="bus-item" id="manlionlong">
-              MAN Lion's City GXL <br /><br />
-              35000$ <br />
-              +8 do $/klik. i +4 do $/sek.
-            </div>
-            <div class="bus-item" id="vacanza12">
-              Solaris Vacanza 12 <br /><br />
-              40000$ <br /><br />
-              +8 do $/sek.
-            </div>
-            <div class="bus-item" id="vacanza13">
-              Solaris Vacanza 13 <br /><br />
-              58000$ <br /><br />
-              +8 do $/sek. i +10 do $/klik.
-            </div>
+          <!-- HYDROGEN BUSES -->
+          <div id="vhcl-menu-bus-sub-hydrogen-category">
+            <table id="vhcl-menu-hydrogenbus-table" class="vhcl-menu-tables">
+              <!-- Solaris Urbino 12 Hydrogen -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 12 Hydrogen</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>24500$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+7$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u12hyd">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Urbino 18 Hydrogen -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Urbino 18 Hydrogen</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>27500$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+8$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="u18hyd">Kup</button>
+                </th>
+              </tr>
+            </table>
           </div>
-
-          <div id="trolley-cnt">
-            <h2 class="header2">Trolejbusy będą dostępne w przyszłych aktualizacjach!</h2>
-          </div>
-
-          <div id="tram-cnt">
-            <h2 class="header2">Tramwaje będą dostępne w przyszłych aktualizacjach!</h2>
+          <!-- INTERCITY BUSES -->
+          <div id="vhcl-menu-bus-sub-intercity-category">
+            <table id="vhcl-menu-intercitybus-table" class="vhcl-menu-tables">
+              <!-- Solaris Vacanza 12 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Vacanza 12</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>40000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+8$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+0$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="vacanza12">Kup</button>
+                </th>
+              </tr>
+              <!-- Solaris Vacanza 13 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris Vacanza 13</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>58000$</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+8$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+10$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="vacanza13">Kup</button>
+                </th>
+              </tr>
+            </table>
+            <h5 id="more-buses-indicator">Więcej autobusów już niedługo!</h5>
           </div>
         </div>
+        <!-- OTHER CATEGORIES -->
+        <div id="vhcl-menu-other-categories">
+          <h5 id="vhcl-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
+        </div>
+      </div>
 
-        <!-- bus purchase window (with stuff like quantity etc.) -->
+      <!-- bus purchase window (with stuff like quantity etc.) -->
 
-        <div id="buy-menu">
-          <div class="closegui" id="closebuymenu">
-            <span class="material-symbols-outlined"> close </span>
-          </div>
-          <h2 class="header2">Menu kupna</h2>
-          <br />
-          Ile autobusów chcesz kupić?<br />
-          <input type="number" placeholder="Wpisz ilość" id="small-input" min="1" />
-          <br /><br />
-          <h3><b>Wybierz trasę: </b></h3>
-          <select name="routes" id="route-dropdown">
-            <option value="1">Linia 1 10$</option>
-            <option value="2">Linia 2 20$</option>
-            <option value="5">Linia 5 75$</option>
-            <option value="7">Linia 7 100$</option>
-            <option value="8">Linia 8 150$</option>
-            <option value="9">Linia 9 220$</option>
-            <option value="12">Linia 12 350$</option>
-            <option value="14">Linia 14 500$</option>
-            <option value="15">Linia 15 750$</option>
-            <option value="18">Linia 18 1100$</option>
-            <option value="19">Linia 19 2500$</option>
-            <option value="22">Linia 22 4000$</option>
-            <option value="25">Linia 25 10k$</option>
-            <option value="26">Linia 26 20k$</option>
-          </select>
-          <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
-          Boost trasy: <span id="show-line-boost"></span><br /><br />
-          <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
-          <div id="finish-operation-btn">
-            <span class="material-symbols-outlined" id="done-icon"> done </span>
-          </div>
+      <div id="buy-menu">
+        <div class="closegui" id="closebuymenu">
+          <span class="material-symbols-outlined"> close </span>
+        </div>
+        <h2 class="header2">Menu kupna</h2>
+        <br />
+        Ile autobusów chcesz kupić?<br />
+        <input type="number" placeholder="Wpisz ilość" id="small-input" min="1" />
+        <br /><br />
+        <h3><b>Wybierz trasę: </b></h3>
+        <select name="routes" id="route-dropdown">
+          <option value="1">Linia 1 10$</option>
+          <option value="2">Linia 2 20$</option>
+          <option value="5">Linia 5 75$</option>
+          <option value="7">Linia 7 100$</option>
+          <option value="8">Linia 8 150$</option>
+          <option value="9">Linia 9 220$</option>
+          <option value="12">Linia 12 350$</option>
+          <option value="14">Linia 14 500$</option>
+          <option value="15">Linia 15 750$</option>
+          <option value="18">Linia 18 1100$</option>
+          <option value="19">Linia 19 2500$</option>
+          <option value="22">Linia 22 4000$</option>
+          <option value="25">Linia 25 10k$</option>
+          <option value="26">Linia 26 20k$</option>
+        </select>
+        <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
+        Boost trasy: <span id="show-line-boost"></span><br /><br />
+        <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
+        <div id="finish-operation-btn">
+          <span class="material-symbols-outlined" id="done-icon"> done </span>
         </div>
       </div>
     </div>
@@ -448,9 +591,7 @@
         </div>
       </div>
     </section>
-    <!-- TODO: REMOVE THAT BEFORE RELEASE -->
 
-    <button id="skibidi-btn">skibidi super przycisk</button>
     <section id="ver">vALPHA0.6.0DEV by luku123</section>
 
     <script type="module" src="js/scr.js"></script>
@@ -462,7 +603,7 @@
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
-    <script type="module" src="js/buses.js"></script>
+    <script type="module" src="js/busMenu.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/data/upgradeData.js"></script>
     <script src="js/data/busData.js"></script>
