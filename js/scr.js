@@ -1,15 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  getFirestore,
-  getDoc,
-  setDoc,
-  doc,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { sleep, isEmpty, showAlert } from "./utilities.js";
+import { buses, a20, busPrices } from "./data/busData.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
   authDomain: "transport-clicker-f0d1c.firebaseapp.com",
@@ -32,6 +25,7 @@ let income = 0;
 
 let buyTotal = 0;
 let chosenBus = "";
+let bghtUpgrs = [];
 
 const navItemSaveGame = document.getElementById("nav-item-save-game");
 navItemSaveGame.addEventListener("click", saveGame, false);
@@ -57,10 +51,39 @@ document.addEventListener("DOMContentLoaded", () => {
               income: income,
               clickmod: clickmod,
               bghta20: bghta20,
+              bghtUpgrs: bghtUpgrs,
             };
             setDoc(docRef, userDatatoSave)
               .then(() => {
                 console.log("saved data to server");
+                console.log(bghtUpgrs);
+                sleep(700).then(() => {
+                  $("#loader-wrapper").fadeOut("slow");
+                });
+              })
+              .catch((error) => {
+                console.error("error writing document", error);
+              });
+          } else if (userData.bghtUpgrs == null) {
+            console.log("bghtUpgrs is null");
+            const userDatatoSave = {
+              email: userData.email,
+              username: userData.username,
+              balance: userData.balance,
+              income: userData.income,
+              clickmod: userData.clickmod,
+              bghta20: userData.bghta20,
+              bghtUpgrs: bghtUpgrs,
+            };
+            setDoc(docRef, userDatatoSave)
+              .then(() => {
+                console.log("saved bghtUpgrs to server");
+                sleep(700).then(() => {
+                  $("#loader-wrapper").fadeOut("slow");
+                  window.alert(
+                    "Twoje konto zostało zaaktualizowane zgodnie z nową wersją gry. Proszę odświeżyć stronę aby grać"
+                  );
+                });
               })
               .catch((error) => {
                 console.error("error writing document", error);
@@ -70,7 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
             income = userData.income;
             clickmod = userData.clickmod;
             bghta20 = userData.bghta20;
+            bghtUpgrs = userData.bghtUpgrs;
             console.log("data loaded from server");
+            sleep(700).then(() => {
+              $("#loader-wrapper").fadeOut("slow");
+            });
           }
         } else {
           console.log("no document found matching id");
@@ -102,11 +129,12 @@ function saveGame() {
           income: income,
           clickmod: clickmod,
           bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
         };
         setDoc(docRef, userDatatoSave)
           .then(() => {
             console.log("saved data to server");
-            window.alert("Zapisano grę!");
+            showAlert("Zapisano grę!");
           })
           .catch((error) => {
             console.error("error writing document", error);
@@ -119,7 +147,7 @@ function saveGame() {
     });
 }
 
-function silentSaveGame() {
+export function silentSaveGame() {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   getDoc(docRef)
@@ -133,6 +161,7 @@ function silentSaveGame() {
           income: income,
           clickmod: clickmod,
           bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
         };
         setDoc(docRef, userDatatoSave)
           .then(() => {
@@ -149,137 +178,6 @@ function silentSaveGame() {
     });
 }
 
-// JAK DODAĆ AUTOBUS
-// 1. Dodaj do tabeli objektów "buses" z jego: kodem, nazwą, ceną, modyfikatorami, wymaganymi ulepszeniami
-// 2. Dodaj go do tabeli busPrices
-// 3. Stwórz listener na dole skryptu
-
-const buses = [
-  {
-    code: "solu8",
-    name: "Solaris Urbino 8",
-    clickmod: 0,
-    incomemod: 1,
-    price: 500,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu9",
-    name: "Solaris Urbino 9",
-    clickmod: 0,
-    incomemod: 2,
-    price: 4000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu105",
-    name: "Solaris Urbino 10.5",
-    clickmod: 1,
-    incomemod: 0,
-    price: 6000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu12",
-    name: "Solaris Urbino 12",
-    clickmod: 2,
-    incomemod: 0,
-    price: 8000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "sola86",
-    name: "Solaris Alpino 8.6",
-    clickmod: 2,
-    incomemod: 2,
-    price: 15000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu18",
-    name: "Solaris Urbino 18",
-    clickmod: 0,
-    incomemod: 4,
-    price: 16000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu24",
-    name: "Solaris Urbino 24",
-    clickmod: 4,
-    incomemod: 0,
-    price: 21000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "manlion",
-    name: "MAN Lion's City",
-    clickmod: 6,
-    incomemod: 0,
-    price: 24000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu12h",
-    name: "Solaris Urbino 12 Hydrogen",
-    clickmod: 7,
-    incomemod: 0,
-    price: 24500,
-    requiredUpgr: "none",
-  },
-  {
-    code: "jelczm121m",
-    name: "Jelcz M121M",
-    clickmod: 0,
-    incomemod: 6,
-    price: 25500,
-    requiredUpgr: "none",
-  },
-  {
-    code: "solu18h",
-    name: "Solaris Urbino 18 Hydrogen",
-    clickmod: 8,
-    incomemod: 0,
-    price: 27500,
-    requiredUpgr: "none",
-  },
-  {
-    code: "manlioncig",
-    name: "MAN Lion's City GXL",
-    clickmod: 8,
-    incomemod: 4,
-    price: 35000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "vacanza12",
-    name: "Solaris Vacanza 12",
-    clickmod: 0,
-    incomemod: 8,
-    price: 40000,
-    requiredUpgr: "none",
-  },
-  {
-    code: "vacanza13",
-    name: "Solaris Vacanza 13",
-    clickmod: 10,
-    incomemod: 8,
-    price: 58000,
-    requiredUpgr: "none",
-  },
-];
-
-const a20 = [
-  {
-    code: "mana20",
-    name: "MAN A20",
-    price: 0,
-    incomemod: 0,
-    clickmod: 1,
-    requiredUpgr: "none",
-  },
-];
-
 // buying mana20
 const manA20Btn = document.getElementById("mana20");
 manA20Btn.addEventListener("click", buyMana20, false);
@@ -291,13 +189,13 @@ function buyMana20() {
       console.log("kupiono mana20");
       clickmod = clickmod + a20[0].clickmod;
       bghta20 = true;
-      window.alert("Kupiono MAN A20");
+      showAlert("Kupiono MAN A20");
       silentSaveGame();
     } else {
-      window.alert("Już wykorzystałeś swoje kupno darmowego autobusu!");
+      showAlert("Już wykorzystałeś swoje kupno darmowego autobusu!");
     }
   } else if (bal < a20[0].price) {
-    window.alert("Nie stać cię!");
+    showAlert("Nie stać cię!");
   }
 }
 
@@ -341,7 +239,6 @@ function buyBusChecker() {
     if (!hasAlertedEmpty) {
       console.log("from buyBusChecker: improper value input");
       finishBtn.removeEventListener("click", buyBusChecker);
-      //   window.alert("Wprowadź poprawną wartość!"); - unused because works really buggy
       hasAlertedEmpty = true;
       inputEl.value = "";
       updateTotal();
@@ -354,7 +251,7 @@ function buyBusChecker() {
       buyBusRight();
     } else if (bal < buyTotal) {
       console.log("from buyBusChecker: not enough money");
-      window.alert("Nie stać cię!");
+      showAlert("Nie stać cię!");
       inputEl.value = "";
       updateTotal();
       silentSaveGame();
@@ -375,10 +272,8 @@ function buyBusRight() {
   income += parseInt(busProp.incomemod) * parseInt(inputEl.value);
   clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
 
-  console.log(
-    `from buyBusRight: kupiono ${bus.name} w ilości ${parseInt(inputEl.value)}`
-  );
-  window.alert(`Kupiono autobusy ${bus.name}`);
+  console.log(`from buyBusRight: kupiono ${bus.name} w ilości ${parseInt(inputEl.value)}`);
+  showAlert(`Kupiono autobusy ${bus.name}`);
   silentSaveGame();
   inputEl.value = "0";
   updateTotal();
@@ -386,18 +281,23 @@ function buyBusRight() {
   menu.style.display = "none";
 }
 
-// bus purcache menu opening script
+// open vehicle menu
 const navItemBuy = document.getElementById("nav-item-buy");
 navItemBuy.addEventListener(
   "click",
   function () {
     const buygui = document.getElementById("buy-bus");
-    buygui.style.display = "flex";
+    if (bghtUpgrs.includes("citybus")) {
+      buygui.style.display = "flex";
+    } else {
+      buygui.style.display = "none";
+      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
+    }
   },
   false
 );
 
-// bus purcache menu closing script
+// close vehicle menu
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
 closeBusGuiBtn.addEventListener(
   "click",
@@ -418,25 +318,6 @@ function displaybal() {
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
-// table with maximum quantity of each bus
-// TODO: it can be done better but idk how
-const busPrices = {
-  [buses[0].code]: { price: buses[0].price, maxQuantity: 1000 },
-  [buses[1].code]: { price: buses[1].price, maxQuantity: 1000 },
-  [buses[2].code]: { price: buses[2].price, maxQuantity: 1000 },
-  [buses[3].code]: { price: buses[3].price, maxQuantity: 1000 },
-  [buses[4].code]: { price: buses[4].price, maxQuantity: 1000 },
-  [buses[5].code]: { price: buses[5].price, maxQuantity: 1000 },
-  [buses[6].code]: { price: buses[6].price, maxQuantity: 1000 },
-  [buses[7].code]: { price: buses[7].price, maxQuantity: 1000 },
-  [buses[8].code]: { price: buses[8].price, maxQuantity: 1000 },
-  [buses[9].code]: { price: buses[9].price, maxQuantity: 1000 },
-  [buses[10].code]: { price: buses[10].price, maxQuantity: 1000 },
-  [buses[11].code]: { price: buses[11].price, maxQuantity: 1000 },
-  [buses[12].code]: { price: buses[12].price, maxQuantity: 1000 },
-  [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
-};
-
 // updating the total in bus buy window
 function updateTotal() {
   const busData = busPrices[chosenBus];
@@ -455,10 +336,7 @@ function updateTotal() {
 inputEl.addEventListener(
   "input",
   () => {
-    inputEl.value =
-      !!inputEl.value && Math.abs(inputEl.value) >= 0
-        ? Math.abs(inputEl.value)
-        : null;
+    inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
     updateTotal();
   },
   false
@@ -480,66 +358,36 @@ async function gameSaver() {
 
 // opening navigation menu
 const navopenBtn = document.getElementById("nav-open-btn");
-navopenBtn.addEventListener("click", showNav, false);
+navopenBtn.addEventListener(
+  "click",
+  function () {
+    const navbar = document.getElementById("nav");
 
-async function showNav() {
-  const navbar = document.getElementById("nav");
+    navbar.style.display = "flex";
+    navbar.style.opacity = "1.0";
+  },
+  false
+);
 
-  navbar.style.display = "flex";
-  navbar.style.transition = "opacity 0.3s";
-  navbar.style.opacity = "1.0";
-}
-
-// closing navigation menu
+// closing navigation menu (for some bizzare reason this works at applying the animation wtf)
 const navItemCloseNav = document.getElementById("nav-item-close-nav");
 navItemCloseNav.addEventListener(
   "click",
   function () {
     const navbar = document.getElementById("nav");
-    navbar.style.display = "none";
+    navbar.classList.remove("animation-nav-show");
+    navbar.classList.add("animation-nav-hide");
+    sleep(275).then(() => {
+      navbar.style.display = "none";
+      navbar.style.opacity = "0.0";
+      navbar.classList.remove("animation-nav-hide");
+      sleep(300).then(() => {
+        navbar.classList.add("animation-nav-show");
+      });
+    });
   },
   false
 );
-
-const trolleySwitchBtn = document.getElementById("categ-trolley");
-const busSwitchBtn = document.getElementById("categ-bus");
-const tramSwitchBtn = document.getElementById("categ-tram");
-
-trolleySwitchBtn.addEventListener("click", switchToTrolley, false);
-busSwitchBtn.addEventListener("click", switchToBus, false);
-tramSwitchBtn.addEventListener("click", switchToTram, false);
-
-function switchToTrolley() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  // bus.style.display = "none";
-  // tram.style.display = "none";
-  // trolley.style.display = "flex";
-  window.alert("Trolejbusy będą dostępne w przyszłych aktualizacjach!");
-}
-
-function switchToBus() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  bus.style.display = "flex";
-  tram.style.display = "none";
-  trolley.style.display = "none";
-}
-
-function switchToTram() {
-  const bus = document.getElementById("bus-cnt");
-  const trolley = document.getElementById("trolley-cnt");
-  const tram = document.getElementById("tram-cnt");
-
-  // bus.style.display = "none";
-  // trolley.style.display = "none";
-  // tram.style.display = "flex";
-  window.alert("Tramwaje będą dostępne w przyszłych aktualizacjach!");
-}
 
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
@@ -550,48 +398,12 @@ function hideBusCntGUI() {
   busCntGUI.style.display = "none";
 }
 
-// opening upgrade menu
-const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-navItemUpgrMenu.addEventListener(
-  "click",
-  function () {
-    const upgradeGUI = document.getElementById("upgrades");
-    upgradeGUI.style.display = "flex";
-  },
-  false
-);
-
-// closing upgrade menu
-const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
-upgrMenuCloseBtn.addEventListener(
-  "click",
-  function () {
-    const upgradeGUI = document.getElementById("upgrades");
-    upgradeGUI.style.display = "none";
-  },
-  false
-);
-
 const clickspace = document.getElementById("clicker");
 clickspace.addEventListener("click", clicker, false);
 
 function clicker() {
   bal = bal + clickmod;
   displaybal();
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// checking if input is empty
-// NOTE: also checks for strings and 0
-function isEmpty(value) {
-  return (
-    value == null ||
-    (typeof value === "string" && value.trim().length === 0) ||
-    value == 0
-  );
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
@@ -606,6 +418,23 @@ window.addEventListener("beforeunload", function (event) {
   event.preventDefault();
   event.returnValue = "";
 });
+
+// getter and setter for upgrades
+export function getBal() {
+  return bal;
+}
+
+export function setBal(newBal) {
+  bal = newBal;
+}
+
+export function getBghtUpgrs() {
+  return bghtUpgrs;
+}
+
+export function setBghtUpgrs(newBghtUpgrs) {
+  bghtUpgrs = newBghtUpgrs;
+}
 
 // event listeners and definitions for bus purchase menu
 

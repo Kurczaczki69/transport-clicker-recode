@@ -1,38 +1,39 @@
-:root{
-    --bgcolor: rgb(231, 231, 149);
-    --busitemcolor: rgb(225, 207, 207);
-    --border5: solid 5px black;
-    --border2: solid 2px black;
+:root {
+  --bgcolor: rgb(231, 231, 149);
+  --busitemcolor: rgb(225, 207, 207);
+  --border5: solid 5px black;
+  --border2: solid 2px black;
 }
 
-#codes-menu{
-    position: absolute;
-    top: 40%;
-    left: 35%;
-    width: 30%;
-    height: 20%;
-    background-color: white;
-    border: var(--border5);
-    border-radius: 10px;
-    overflow: auto;
-    display: none;
+#codes-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 20%;
+  background-color: white;
+  border: var(--border5);
+  border-radius: 10px;
+  overflow: auto;
+  display: none;
 }
 
-#codeMenuInfoWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 12.5%;
+#code-menu-info-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12.5%;
 }
 
-#codeMenuInfo {
-    text-align: center;
-    font-size: 20px;
+#code-menu-info {
+  text-align: center;
+  font-size: 20px;
 }
 
 #close-codes-gui-btn {
-    position: absolute;
-    top: 10%;
-    right: 3%;
-    cursor: pointer;
+  position: absolute;
+  top: 10%;
+  right: 3%;
+  cursor: pointer;
 }

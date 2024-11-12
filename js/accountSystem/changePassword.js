@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   updatePassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { showMsg } from "../utilities.js";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -91,14 +92,4 @@ confirmBtn.addEventListener("click", (event) => {
 
 function isEmpty(str) {
   return !str.trim().length;
-}
-
-function showMsg(message, divId) {
-  var messageDiv = document.getElementById(divId);
-  messageDiv.style.display = "block";
-  messageDiv.innerHTML = message;
-  messageDiv.style.opacity = 1;
-  setTimeout(function () {
-    messageDiv.style.opacity = 1;
-  }, 5000);
 }

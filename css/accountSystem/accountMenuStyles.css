@@ -28,8 +28,9 @@
 
 #accountbox {
   position: absolute;
-  top: 10%;
-  left: 17%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   width: 70vw;
   height: 500px;
@@ -71,11 +72,7 @@
   border: none;
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
@@ -89,11 +86,7 @@
 
 #delete-account-btn {
   background: rgb(255, 17, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 17, 0, 1) 20%,
-    rgba(232, 110, 3, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 17, 0, 1) 20%, rgba(232, 110, 3, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
 }
 
@@ -149,11 +142,7 @@
   border: none;
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
@@ -167,11 +156,7 @@
 
 #are-you-sure-confirm-btn {
   background: rgb(255, 17, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 17, 0, 1) 20%,
-    rgba(232, 110, 3, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 17, 0, 1) 20%, rgba(232, 110, 3, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
 }
 
@@ -243,11 +228,7 @@
   border: none;
   border-radius: 5px;
   background: rgb(255, 222, 0);
-  background: radial-gradient(
-    circle,
-    rgba(255, 222, 0, 1) 20%,
-    rgba(207, 151, 102, 1) 83%
-  );
+  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);

@@ -1,14 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  getFirestore,
-  setDoc,
-  doc,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { showMsg } from "../utilities.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,16 +17,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-function showMsg(message, divId) {
-  var messageDiv = document.getElementById(divId);
-  messageDiv.style.display = "block";
-  messageDiv.innerHTML = message;
-  messageDiv.style.opacity = 1;
-  setTimeout(function () {
-    messageDiv.style.opacity = 1;
-  }, 5000);
-}
 
 const RegisterBtn = document.querySelector("#register-btn");
 RegisterBtn.addEventListener("click", (event) => {
@@ -66,10 +50,7 @@ RegisterBtn.addEventListener("click", (event) => {
       if (errorCode == "auth/email-already-in-use") {
         showMsg("Istnieje już konto z tym adresem email!", "errorMsgRegister");
       } else if (errorCode == "auth/password-does-not-meet-requirements") {
-        showMsg(
-          "Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę",
-          "errorMsgRegister"
-        );
+        showMsg("Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę", "errorMsgRegister");
         console.log(errorCode);
       } else {
         showMsg("Wystąpił błąd!", "errorMsgRegister");
