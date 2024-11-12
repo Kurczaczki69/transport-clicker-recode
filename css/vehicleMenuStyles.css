@@ -7,8 +7,9 @@
 
 #buy-bus {
   position: absolute;
-  top: 10%;
-  left: 17%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   width: 70vw;
   height: 500px;

@@ -123,7 +123,7 @@ a {
 #vars {
   width: 25%;
   border-right: var(--border5);
-  height: 650px;
+  height: 100vh;
 }
 
 .vars-item {

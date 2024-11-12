@@ -15,6 +15,7 @@
   <!-- upgrade mechanics -->
   <!-- new vehicle menu -->
   <!-- new animation when opening and closing nav -->
+  <!-- new, better alert system -->
 
   <head>
     <meta charset="UTF-8" />
@@ -30,6 +31,7 @@
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
     <link rel="stylesheet" href="css/loading.css" />
     <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
+    <link rel="stylesheet" href="css/alertWindow.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -178,8 +180,8 @@
       <div id="close-codes-gui-btn">
         <span class="material-symbols-outlined">close</span>
       </div>
-      <div id="codeMenuInfoWrapper">
-        <span id="codeMenuInfo"><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span>
+      <div id="code-menu-info-wrapper">
+        <span id="code-menu-info"><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span>
       </div>
     </div>
 
@@ -188,19 +190,6 @@
     <section id="main">
       <section id="vars">
         <div class="vars-item">Pieniądze: <span id="bal-show">brak</span> $</div>
-        <!-- 
-            OLD THINGS FROM LEFT PANEL
-            Now basically unused but i left it there because i may use want to use in the future
-
-            <div class="vars-item">
-                Autobusy: <span id="bus-show">brak</span>
-            </div>
-            <div class="vars-item">
-                Trolejbusy: <span id="trolley-show">brak</span>
-            </div>
-            <div class="vars-item">
-                Tramwaje: <span id="tram-show">brak</span>
-            </div> -->
         <div class="vars-item"><span id="income-show">brak</span> $/sek.</div>
         <div class="vars-item"><span id="click-show">brak</span> $/klik.</div>
       </section>
@@ -592,6 +581,13 @@
       </div>
     </section>
 
+    <section id="alert-window">
+      <div id="alert-window-info-wrapper">
+        <span id="alert-message">wiadomość testowa!</span>
+      </div>
+      <button id="accept-alert-btn">OK</button>
+    </section>
+
     <section id="ver">vALPHA0.6.0DEV by luku123</section>
 
     <script type="module" src="js/scr.js"></script>
@@ -604,8 +600,8 @@
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
     <script type="module" src="js/busMenu.js"></script>
-    <script src="js/utilities.js"></script>
-    <script src="js/data/upgradeData.js"></script>
-    <script src="js/data/busData.js"></script>
+    <script type="module" src="js/utilities.js"></script>
+    <script type="module" src="js/data/upgradeData.js"></script>
+    <script type="module" src="js/data/busData.js"></script>
   </body>
 </html>

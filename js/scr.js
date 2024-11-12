@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { sleep, isEmpty } from "./utilities.js";
+import { sleep, isEmpty, showAlert, showMsg } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
 // Your web app's Firebase configuration
@@ -135,7 +135,7 @@ function saveGame() {
         setDoc(docRef, userDatatoSave)
           .then(() => {
             console.log("saved data to server");
-            window.alert("Zapisano grę!");
+            showAlert("Zapisano grę!");
           })
           .catch((error) => {
             console.error("error writing document", error);
@@ -190,13 +190,13 @@ function buyMana20() {
       console.log("kupiono mana20");
       clickmod = clickmod + a20[0].clickmod;
       bghta20 = true;
-      window.alert("Kupiono MAN A20");
+      showMsg("Kupiono MAN A20");
       silentSaveGame();
     } else {
-      window.alert("Już wykorzystałeś swoje kupno darmowego autobusu!");
+      showAlert("Już wykorzystałeś swoje kupno darmowego autobusu!");
     }
   } else if (bal < a20[0].price) {
-    window.alert("Nie stać cię!");
+    showAlert("Nie stać cię!");
   }
 }
 
@@ -240,7 +240,6 @@ function buyBusChecker() {
     if (!hasAlertedEmpty) {
       console.log("from buyBusChecker: improper value input");
       finishBtn.removeEventListener("click", buyBusChecker);
-      //   window.alert("Wprowadź poprawną wartość!"); - unused because works really buggy
       hasAlertedEmpty = true;
       inputEl.value = "";
       updateTotal();
@@ -253,7 +252,7 @@ function buyBusChecker() {
       buyBusRight();
     } else if (bal < buyTotal) {
       console.log("from buyBusChecker: not enough money");
-      window.alert("Nie stać cię!");
+      showAlert("Nie stać cię!");
       inputEl.value = "";
       updateTotal();
       silentSaveGame();
@@ -275,7 +274,7 @@ function buyBusRight() {
   clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
 
   console.log(`from buyBusRight: kupiono ${bus.name} w ilości ${parseInt(inputEl.value)}`);
-  window.alert(`Kupiono autobusy ${bus.name}`);
+  showAlert(`Kupiono autobusy ${bus.name}`);
   silentSaveGame();
   inputEl.value = "0";
   updateTotal();
@@ -293,7 +292,7 @@ navItemBuy.addEventListener(
       buygui.style.display = "flex";
     } else {
       buygui.style.display = "none";
-      window.alert("Musisz kupić ulepszenie Autobusy Miejskie!");
+      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
     }
   },
   false

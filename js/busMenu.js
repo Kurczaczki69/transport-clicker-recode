@@ -1,5 +1,5 @@
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
-import { showMsg, clearMsg, sleep, isEmpty } from "./utilities.js";
+import { showMsg, clearMsg, sleep, isEmpty, showAlert } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
 // subcategories for buses
@@ -16,7 +16,7 @@ dropdown1.addEventListener("change", () => {
       hydrogenBusSection.style.display = "none";
       intercityBusSection.style.display = "none";
     } else {
-      window.alert("Musisz kupić ulepszenie Autobusy Miejskie!");
+      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   } else if (dropdown1.value === "1") {
@@ -25,7 +25,7 @@ dropdown1.addEventListener("change", () => {
       cityBusSection.style.display = "none";
       intercityBusSection.style.display = "none";
     } else {
-      window.alert("Musisz kupić ulepszenie Autobusy Wodorowe!");
+      showAlert("Musisz kupić ulepszenie Autobusy Wodorowe!");
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   } else if (dropdown1.value === "2") {
@@ -34,7 +34,7 @@ dropdown1.addEventListener("change", () => {
       cityBusSection.style.display = "none";
       hydrogenBusSection.style.display = "none";
     } else {
-      window.alert("Musisz kupić ulepszenie Autobusy Międzymiastowe!");
+      showAlert("Musisz kupić ulepszenie Autobusy Międzymiastowe!");
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   }
