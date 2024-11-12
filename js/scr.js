@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { sleep, isEmpty, showAlert, showMsg } from "./utilities.js";
+import { sleep, isEmpty, showAlert } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
 // Your web app's Firebase configuration
@@ -190,7 +190,7 @@ function buyMana20() {
       console.log("kupiono mana20");
       clickmod = clickmod + a20[0].clickmod;
       bghta20 = true;
-      showMsg("Kupiono MAN A20");
+      showAlert("Kupiono MAN A20");
       silentSaveGame();
     } else {
       showAlert("Już wykorzystałeś swoje kupno darmowego autobusu!");
