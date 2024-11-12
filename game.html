@@ -4,7 +4,7 @@
   <!-- 1. Bus subcategories (eg. intercity etc.) DONE -->
   <!-- 2. Upgrades system (in this version only one category of upgrades -
     the upgrades that unlock vehicle subcategories and categories) DONE -->
-  <!-- 3. Make a favicon -->
+  <!-- 3. Make a favicon DONE -->
   <!-- 4. some more aesthetics(animations etc.) -->
 
   <!-- THINGS THAT ARE DONE: -->
@@ -32,10 +32,8 @@
     <link rel="stylesheet" href="css/loading.css" />
     <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
     <link rel="stylesheet" href="css/alertWindow.css" />
+    <link rel="stylesheet" href="css/icons.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -54,38 +52,38 @@
     </div>
 
     <div class="open-nav" id="nav-open-btn">
-      <span class="material-symbols-outlined">segment</span>
+      <span class="tabler--menu-deep"></span>
     </div>
 
     <!-- navigation bar -->
 
     <div class="navbar animation-nav-show" id="nav">
       <div class="nav-item tooltip" id="nav-item-buy">
-        <span class="material-symbols-outlined">directions_bus</span>
+        <span class="tabler--bus"></span>
         <span class="tooltiptext">Kup pojazdy</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-upgr-menu">
-        <span class="material-symbols-outlined">star</span>
+        <span class="tabler--rocket"></span>
         <span class="tooltiptext">Kup ulepszenia</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-codes-menu">
-        <span class="material-symbols-outlined">code</span>
+        <span class="tabler--code"></span>
         <span class="tooltiptext">Kody</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-save-game">
-        <span class="material-symbols-outlined">save</span>
+        <span class="tabler--brand-onedrive"></span>
         <span class="tooltiptext">Zapisz grę</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-open-changelog">
-        <span class="material-symbols-outlined">list</span>
+        <span class="tabler--exchange"></span>
         <span class="tooltiptext">Lista zmian</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-account-page">
-        <span class="material-symbols-outlined">account_circle</span>
+        <span class="tabler--lock-open"></span>
         <span class="tooltiptext">Konto</span>
       </div>
       <div class="nav-item tooltip" id="nav-item-close-nav">
-        <span class="material-symbols-outlined">close</span>
+        <span class="tabler--x"></span>
         <span class="tooltiptext">Zamknij menu</span>
       </div>
     </div>
@@ -94,7 +92,7 @@
 
     <section id="accountbox">
       <div class="closegui" id="acc-menu-close-btn">
-        <span class="material-symbols-outlined"> close </span>
+        <span class="tabler--x"></span>
       </div>
 
       <div id="accMenuWrapper">
@@ -141,7 +139,7 @@
 
     <div id="changelog">
       <div class="closegui" id="close-changelog-btn">
-        <span class="material-symbols-outlined">close</span>
+        <span class="tabler--x"></span>
       </div>
 
       <h2 id="small-title-changelog"><b>Lista zmian</b></h2>
@@ -179,7 +177,7 @@
 
     <div id="codes-menu">
       <div id="close-codes-gui-btn">
-        <span class="material-symbols-outlined">close</span>
+        <span class="tabler--x"></span>
       </div>
       <div id="code-menu-info-wrapper">
         <span id="code-menu-info"><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span>
@@ -202,7 +200,7 @@
 
     <div id="buy-bus">
       <div class="closegui" id="close-bus-gui-btn">
-        <span class="material-symbols-outlined">close</span>
+        <span class="tabler--x"></span>
       </div>
       <div id="vhcl-menu-title-wrapper">
         <h2 id="vhcl-menu-header">🚌 Pojazdy</h2>
@@ -446,7 +444,7 @@
 
       <div id="buy-menu">
         <div class="closegui" id="closebuymenu">
-          <span class="material-symbols-outlined"> close </span>
+          <span class="tabler--x"></span>
         </div>
         <h2 class="header2">Menu kupna</h2>
         <br />
@@ -483,11 +481,11 @@
 
     <section id="upgrades">
       <div class="closegui" id="upgr-menu-close-btn">
-        <span class="material-symbols-outlined"> close </span>
+        <span class="tabler--x"></span>
       </div>
 
       <div id="upgr-menu-title-wrapper">
-        <h2 id="upgr-menu-header">⚡ Ulepszenia</h2>
+        <h2 id="upgr-menu-header">🚀 Ulepszenia</h2>
         <h4 id="upgr-menu-category-name">
           Kategoria:
           <select name="upgr-categories" id="upgr-menu-category-dropdown">
