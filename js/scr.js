@@ -3,7 +3,6 @@ import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/fireb
 import { sleep, isEmpty, showAlert } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
   authDomain: "transport-clicker-f0d1c.firebaseapp.com",
