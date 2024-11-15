@@ -3,7 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { showMsg } from "../utilities.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
   authDomain: "transport-clicker-f0d1c.firebaseapp.com",
@@ -14,7 +13,6 @@ const firebaseConfig = {
   measurementId: "G-CP6HMGD0N1",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const forgotPassBtnAtPassChange = document.getElementById("dont-remember-pass-link");
