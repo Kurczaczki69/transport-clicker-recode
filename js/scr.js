@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
         console.log("saved data to server");
         console.log(bghtUpgrs);
-        setTimeout(() => {
+        sleep(700).then(() => {
           $("#loader-wrapper").fadeOut("slow");
-        }, 700);
+        });
       } else {
         bal = userData.balance;
         income = userData.income;
@@ -63,9 +63,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         bghta20 = userData.bghta20;
         bghtUpgrs = userData.bghtUpgrs;
         console.log("data loaded from server");
-        setTimeout(() => {
+        sleep(700).then(() => {
           $("#loader-wrapper").fadeOut("slow");
-        }, 700);
+        });
       }
     }
   }
@@ -233,7 +233,7 @@ function updateTotal() {
   }
 
   buyTotal = inputEl.value * price;
-  totalEl.innerHTML = buyTotal;
+  totalEl.innerHTML = abbreviateNumber(buyTotal);
 }
 
 inputEl.addEventListener(
