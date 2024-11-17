@@ -308,13 +308,6 @@ closeBusGuiBtn.addEventListener(
   false
 );
 
-// displaying data from local storage in main game screen
-function displaybal() {
-  document.getElementById("bal-show").innerHTML = abbreviateNumber(bal);
-  document.getElementById("income-show").innerHTML = abbreviateNumber(income);
-  document.getElementById("click-show").innerHTML = abbreviateNumber(clickmod);
-}
-
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
@@ -343,10 +336,17 @@ inputEl.addEventListener(
 );
 
 async function add() {
-  await sleep(1000);
-  bal = bal + income;
+  await sleep(100);
+  bal += income / 10;
   displaybal();
   add();
+}
+
+// displaying player data on main game screen
+function displaybal() {
+  document.getElementById("bal-show").innerHTML = abbreviateNumber(bal);
+  document.getElementById("income-show").innerHTML = abbreviateNumber(income);
+  document.getElementById("click-show").innerHTML = abbreviateNumber(clickmod);
 }
 
 // saving game every 90 seconds to firestore
@@ -354,6 +354,14 @@ async function gameSaver() {
   await sleep(90000);
   silentSaveGame();
   gameSaver();
+}
+
+const clickspace = document.getElementById("clicker");
+clickspace.addEventListener("click", clicker, false);
+
+function clicker() {
+  bal = bal + clickmod;
+  displaybal();
 }
 
 // opening navigation menu
@@ -396,14 +404,6 @@ function hideBusCntGUI() {
   chosenBus = "";
   updateTotal();
   busCntGUI.style.display = "none";
-}
-
-const clickspace = document.getElementById("clicker");
-clickspace.addEventListener("click", clicker, false);
-
-function clicker() {
-  bal = bal + clickmod;
-  displaybal();
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
