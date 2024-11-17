@@ -38,3 +38,15 @@ export function showAlert(message) {
     false
   );
 }
+
+export function abbreviateNumber(num) {
+  // Create a new Intl.NumberFormat object with options
+  const formatter = new Intl.NumberFormat("en", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumSignificantDigits: 4,
+  });
+
+  // Format the number and return the result
+  return formatter.format(num);
+}

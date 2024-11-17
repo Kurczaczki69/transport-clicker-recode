@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { sleep, isEmpty, showAlert } from "./utilities.js";
+import { sleep, isEmpty, showAlert, abbreviateNumber } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
 const firebaseConfig = {
@@ -310,9 +310,9 @@ closeBusGuiBtn.addEventListener(
 
 // displaying data from local storage in main game screen
 function displaybal() {
-  document.getElementById("bal-show").innerHTML = bal;
-  document.getElementById("income-show").innerHTML = income;
-  document.getElementById("click-show").innerHTML = clickmod;
+  document.getElementById("bal-show").innerHTML = abbreviateNumber(bal);
+  document.getElementById("income-show").innerHTML = abbreviateNumber(income);
+  document.getElementById("click-show").innerHTML = abbreviateNumber(clickmod);
 }
 
 const totalEl = document.getElementById("show-full-cost");
