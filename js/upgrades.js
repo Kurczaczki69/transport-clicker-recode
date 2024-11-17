@@ -85,28 +85,15 @@ function confirmUpgrade(upgradetobuy) {
 
 // listeners for different upgrades
 
-const cityBusBtn = document.getElementById("citybus");
-const hydrogenBusBtn = document.getElementById("hydrogenbus");
-const intercityBusBtn = document.getElementById("intercitybus");
-const trolleybusBtn = document.getElementById("trolleybus");
-const tramBtn = document.getElementById("tram");
+const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
 
-cityBusBtn.addEventListener("click", () => {
-  confirmUpgrade("citybus");
-});
-
-hydrogenBusBtn.addEventListener("click", () => {
-  confirmUpgrade("hydrogenbus");
-});
-
-intercityBusBtn.addEventListener("click", () => {
-  confirmUpgrade("intercitybus");
-});
-
-trolleybusBtn.addEventListener("click", () => {
-  confirmUpgrade("trolleybus");
-});
-
-tramBtn.addEventListener("click", () => {
-  confirmUpgrade("tram");
+// Loop over the bus elements and attach an event listener to each one
+upgrEls.forEach((upgrEl) => {
+  upgrEl.addEventListener(
+    "click",
+    () => {
+      confirmUpgrade(upgrEl.id);
+    },
+    false
+  );
 });
