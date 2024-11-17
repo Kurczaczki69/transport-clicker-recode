@@ -1,6 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { showMsg } from "../utilities.js";
 
@@ -37,7 +41,17 @@ RegisterBtn.addEventListener("click", (event) => {
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-          window.location.href = "index.html";
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              showMsg("Wysłano email do weryfikacji konta", "errorMsgRegister");
+            })
+            .catch((error) => {
+              console.log(error);
+              console.log(error.code);
+              showMsg("Wystąpił błąd!", "errorMsgRegister");
+            });
+
+          // window.location.href = "index.html";
         })
         .catch((error) => {
           console.error("error writing document", error);

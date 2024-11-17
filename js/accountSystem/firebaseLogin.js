@@ -24,15 +24,20 @@ LoginBtn.addEventListener("click", (event) => {
   const password = document.getElementById("password-input-login").value;
   const auth = getAuth();
 
+  // TODO: add a button that allows the user to send another email verification(with a cooldown)
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log("login successful");
-      showMsg("Zalogowano pomyślnie!", "errorMsgLogin");
-      const user = userCredential.user;
-      localStorage.setItem("loggedInUserId", user.uid);
-      localStorage.setItem("loggedIn", true);
-      console.log("saved user id: " + user.uid);
-      window.location.href = "game.html";
+      if (auth.currentUser.emailVerified) {
+        console.log("login successful");
+        showMsg("Zalogowano pomyślnie!", "errorMsgLogin");
+        const user = userCredential.user;
+        localStorage.setItem("loggedInUserId", user.uid);
+        localStorage.setItem("loggedIn", true);
+        console.log("saved user id: " + user.uid);
+        window.location.href = "game.html";
+      } else {
+        showMsg("Proszę zweryfikować swój adres email!", "errorMsgLogin");
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -43,10 +48,13 @@ LoginBtn.addEventListener("click", (event) => {
         showMsg("Twoje konto jest zablokowane!", "errorMsgLogin");
       } else if (errorCode === "auth/invalid-email") {
         showMsg("Niepoprawny email!", "errorMsgLogin");
+      } else if (errorCode === "auth/unverified-email") {
+        showMsg("Proszę zweryfikować swój adres email!", "errorMsgLogin");
       } else {
         console.log("login failed");
         showMsg("Wystąpił błąd!", "errorMsgLogin");
-        console.log(errorCode);
+        console.log(error);
+        console.log(error.code);
       }
     });
 });

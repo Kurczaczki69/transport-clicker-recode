@@ -12,7 +12,7 @@ export function showMsg(message, divId) {
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
   messageDiv.style.opacity = 1;
-  sleep(20000).then(() => {
+  sleep(1000 * 20).then(() => {
     messageDiv.style.opacity = 0;
   });
 }

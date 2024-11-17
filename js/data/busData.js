@@ -1,7 +1,6 @@
-// JAK DODAĆ AUTOBUS
-// 1. Dodaj do tabeli objektów "buses" z jego: kodem, nazwą, ceną, modyfikatorami, wymaganymi ulepszeniami
-// 2. Dodaj go do tabeli busPrices
-// 3. Stwórz listener na dole skryptu
+// HOW TO ADD A BUS
+// 1. Add to buses array with all data neccesary
+// 2. Add to busPrices array
 
 export const buses = [
   {
