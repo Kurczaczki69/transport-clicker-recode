@@ -31,6 +31,7 @@ RegisterBtn.addEventListener("click", (event) => {
   const db = getFirestore();
 
   createUserWithEmailAndPassword(auth, email, password)
+    // create user
     .then((userCredential) => {
       const user = userCredential.user;
       const userData = {
@@ -38,8 +39,10 @@ RegisterBtn.addEventListener("click", (event) => {
         username: username,
       };
       showMsg("Konto utworzone pomyślnie!", "errorMsgRegister");
+      // after creating user, save data to db
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
+        // after saving user data to db, send verification email
         .then(() => {
           sendEmailVerification(auth.currentUser)
             .then(() => {
@@ -50,8 +53,6 @@ RegisterBtn.addEventListener("click", (event) => {
               console.log(error.code);
               showMsg("Wystąpił błąd!", "errorMsgRegister");
             });
-
-          // window.location.href = "index.html";
         })
         .catch((error) => {
           console.error("error writing document", error);
@@ -59,6 +60,7 @@ RegisterBtn.addEventListener("click", (event) => {
     })
     .catch((error) => {
       const errorCode = error.code;
+      // handling different error codes
       if (errorCode == "auth/email-already-in-use") {
         showMsg("Istnieje już konto z tym adresem email!", "errorMsgRegister");
       } else if (errorCode == "auth/password-does-not-meet-requirements") {

@@ -1,7 +1,9 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { showMsg } from "../utilities.js";
 
 const firebaseConfig = {
@@ -24,7 +26,6 @@ LoginBtn.addEventListener("click", (event) => {
   const password = document.getElementById("password-input-login").value;
   const auth = getAuth();
 
-  // TODO: add a button that allows the user to send another email verification(with a cooldown)
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       if (auth.currentUser.emailVerified) {
@@ -36,7 +37,22 @@ LoginBtn.addEventListener("click", (event) => {
         console.log("saved user id: " + user.uid);
         window.location.href = "game.html";
       } else {
-        showMsg("Proszę zweryfikować swój adres email!", "errorMsgLogin");
+        showMsg(
+          "Proszę zweryfikować swój adres email!<br> <span id='send-verification-again'>Wyślij nowy link</span>",
+          "errorMsgLogin"
+        );
+        const sendVerificationBtn = document.getElementById("send-verification-again");
+        sendVerificationBtn.addEventListener("click", () => {
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              showMsg("Wysłano email do weryfikacji konta", "errorMsgLogin");
+            })
+            .catch((error) => {
+              console.log(error);
+              console.log(error.code);
+              showMsg("Wystąpił błąd!", "errorMsgLogin");
+            });
+        });
       }
     })
     .catch((error) => {
