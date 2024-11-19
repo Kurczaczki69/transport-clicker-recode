@@ -30,45 +30,56 @@ RegisterBtn.addEventListener("click", (event) => {
   const auth = getAuth();
   const db = getFirestore();
 
-  createUserWithEmailAndPassword(auth, email, password)
-    // create user
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const userData = {
-        email: email,
-        username: username,
-      };
-      showMsg("Konto utworzone pomyślnie!", "errorMsgRegister");
-      // after creating user, save data to db
-      const docRef = doc(db, "users", user.uid);
-      setDoc(docRef, userData)
-        // after saving user data to db, send verification email
-        .then(() => {
-          sendEmailVerification(auth.currentUser)
-            .then(() => {
-              showMsg("Wysłano email do weryfikacji konta", "errorMsgRegister");
-            })
-            .catch((error) => {
-              console.log(error);
-              console.log(error.code);
-              showMsg("Wystąpił błąd!", "errorMsgRegister");
-            });
-        })
-        .catch((error) => {
-          console.error("error writing document", error);
-        });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      // handling different error codes
-      if (errorCode == "auth/email-already-in-use") {
-        showMsg("Istnieje już konto z tym adresem email!", "errorMsgRegister");
-      } else if (errorCode == "auth/password-does-not-meet-requirements") {
-        showMsg("Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę", "errorMsgRegister");
-        console.log(errorCode);
-      } else {
-        showMsg("Wystąpił błąd!", "errorMsgRegister");
-        console.log(errorCode);
-      }
-    });
+  // check if all fields are filled out
+  if (username === "" || email === "" || password === "") {
+    showMsg("Wypełnij wszystkie pola!", "errorMsgRegister");
+    console.error("one or more empty fields");
+  } else {
+    createUserWithEmailAndPassword(auth, email, password)
+      // create user
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userData = {
+          email: email,
+          username: username,
+        };
+        showMsg("Konto utworzone pomyślnie!", "errorMsgRegister");
+        // after creating user, save data to db
+        const docRef = doc(db, "users", user.uid);
+        setDoc(docRef, userData)
+          // after saving user data to db, send verification email
+          .then(() => {
+            sendEmailVerification(auth.currentUser)
+              .then(() => {
+                showMsg("Wysłano email do weryfikacji konta", "errorMsgRegister");
+              })
+              .catch((error) => {
+                console.log(error);
+                console.log(error.code);
+                showMsg("Wystąpił błąd!", "errorMsgRegister");
+              });
+          })
+          .catch((error) => {
+            console.error("error writing document", error);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        // handling different error codes
+        if (errorCode == "auth/email-already-in-use") {
+          showMsg("Istnieje już konto z tym adresem email!", "errorMsgRegister");
+        } else if (errorCode == "auth/password-does-not-meet-requirements") {
+          showMsg(
+            "Hasło musi mieć conajmniej 8 znaków,<br> zawierać dużą i małą literę oraz cyfrę",
+            "errorMsgRegister"
+          );
+          console.log(errorCode);
+        } else if (errorCode == "auth/invalid-email") {
+          showMsg("Niepoprawny email!", "errorMsgRegister");
+        } else {
+          showMsg("Wystąpił błąd!", "errorMsgRegister");
+          console.log(errorCode);
+        }
+      });
+  }
 });

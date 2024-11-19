@@ -66,6 +66,8 @@ LoginBtn.addEventListener("click", (event) => {
         showMsg("Niepoprawny email!", "errorMsgLogin");
       } else if (errorCode === "auth/unverified-email") {
         showMsg("Proszę zweryfikować swój adres email!", "errorMsgLogin");
+      } else if (errorCode === "auth/missing-password") {
+        showMsg("Proszę podać hasło!", "errorMsgLogin");
       } else {
         console.log("login failed");
         showMsg("Wystąpił błąd!", "errorMsgLogin");

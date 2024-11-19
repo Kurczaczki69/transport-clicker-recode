@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { sleep, isEmpty, showAlert, abbreviateNumber } from "./utilities.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
 import { buses, a20, busPrices } from "./data/busData.js";
 
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
+const auth = getAuth();
 
 let clickmod = 1;
 let bghta20 = false;
@@ -63,9 +65,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         bghta20 = userData.bghta20;
         bghtUpgrs = userData.bghtUpgrs;
         console.log("data loaded from server");
-        sleep(700).then(() => {
-          $("#loader-wrapper").fadeOut("slow");
-        });
+        if (auth.currentUser.emailVerified) {
+          console.log("email is verified");
+          sleep(700).then(() => {
+            $("#loader-wrapper").fadeOut("slow");
+          });
+        } else {
+          console.log("email is not verified");
+          window.location.href = "index.html";
+          localStorage.removeItem("loggedInUserId");
+          localStorage.setItem("loggedIn", false);
+          showMsg(
+            "Twój adres email nie jest zweryfikowany więc<br> zostałeś wylogowany/a. Proszę zalogować się ponownie <br>aby móc wysłać link do weryfikacji.",
+            "errorMsgLogin"
+          );
+        }
       }
     }
   }
