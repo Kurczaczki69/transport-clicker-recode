@@ -1,7 +1,6 @@
-// JAK DODAĆ AUTOBUS
-// 1. Dodaj do tabeli objektów "buses" z jego: kodem, nazwą, ceną, modyfikatorami, wymaganymi ulepszeniami
-// 2. Dodaj go do tabeli busPrices
-// 3. Stwórz listener na dole skryptu
+// HOW TO ADD A BUS
+// 1. Add to buses array with all data neccesary
+// 2. Add to busPrices array
 
 export const buses = [
   {
@@ -86,6 +85,24 @@ export const buses = [
     category: "hydrogenbus",
   },
   {
+    code: "toyotafc",
+    name: "Toyota FC Bus",
+    clickmod: 8,
+    incomemod: 10,
+    price: 60000,
+    requiredUpgr: "none",
+    category: "hydrogenbus",
+  },
+  {
+    code: "toyotasora",
+    name: "Toyota Sora",
+    clickmod: 12,
+    incomemod: 10,
+    price: 95000,
+    requiredUpgr: "none",
+    category: "hydrogenbus",
+  },
+  {
     code: "jelczm121m",
     name: "Jelcz M121M",
     clickmod: 0,
@@ -161,4 +178,6 @@ export const busPrices = {
   [buses[11].code]: { price: buses[11].price, maxQuantity: 1000 },
   [buses[12].code]: { price: buses[12].price, maxQuantity: 1000 },
   [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
+  [buses[14].code]: { price: buses[14].price, maxQuantity: 1000 },
+  [buses[15].code]: { price: buses[15].price, maxQuantity: 1000 },
 };

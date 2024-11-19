@@ -12,7 +12,7 @@ export function showMsg(message, divId) {
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
   messageDiv.style.opacity = 1;
-  sleep(20000).then(() => {
+  sleep(1000 * 20).then(() => {
     messageDiv.style.opacity = 0;
   });
 }
@@ -37,4 +37,16 @@ export function showAlert(message) {
     },
     false
   );
+}
+
+export function abbreviateNumber(num) {
+  // Create a new Intl.NumberFormat object with options
+  const formatter = new Intl.NumberFormat("en", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumSignificantDigits: 4,
+  });
+
+  // Format the number and return the result
+  return formatter.format(num);
 }
