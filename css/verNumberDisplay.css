@@ -3,4 +3,5 @@
   bottom: 10px;
   right: 10px;
   color: rgb(99, 96, 96);
+  user-select: none;
 }

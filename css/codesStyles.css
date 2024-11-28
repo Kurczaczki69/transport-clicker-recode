@@ -17,6 +17,7 @@
   border-radius: 10px;
   overflow: auto;
   display: none;
+  z-index: 1000;
 }
 
 #code-menu-info-wrapper {

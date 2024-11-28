@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.6.2 by luku123 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.7.0DEV by luku123 -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -175,12 +175,15 @@
 
     <section id="main">
       <section id="vars">
-        <div class="vars-item"><span id="bal-show">brak</span> $</div>
-        <div class="vars-item"><span id="income-show">brak</span> $/sek.</div>
-        <div class="vars-item"><span id="click-show">brak</span> $/klik.</div>
+        <div id="vars-wrapper">
+          <div class="vars-item" id="income"><span id="income-show">błąd</span> $/sek.</div>
+          <div class="vars-item" id="balance"><span id="bal-show">błąd</span> $</div>
+          <div class="vars-item" id="clicks"><span id="click-show">błąd</span> $/klik.</div>
+        </div>
       </section>
-      <p id="here-click">Klikaj tu 🡻</p>
-      <section id="clicker"></section>
+      <section id="main-screen">
+        <section id="clicker"><span id="clicker-text">Klikaj tutaj</span></section>
+      </section>
     </section>
 
     <!-- bus purchase menu -->
@@ -598,7 +601,7 @@
       <button id="accept-alert-btn">OK</button>
     </section>
 
-    <section id="ver">vALPHA0.6.2 by luku123</section>
+    <section id="ver">vALPHA0.7.0DEV by luku123</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>

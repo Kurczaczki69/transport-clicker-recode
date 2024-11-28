@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --bgcolor: rgb(231, 231, 149);
@@ -11,8 +11,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bgcolor);
-  font-family: "Lato", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   overflow-y: hidden;
+  user-select: none;
 }
 
 a {
@@ -121,44 +122,68 @@ a {
 }
 
 #vars {
-  width: 25%;
-  border-right: var(--border5);
-  height: 100vh;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-screen {
+  width: 100%;
+  height: 90%;
+}
+
+#vars-wrapper {
+  width: 100%;
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  background-color: white;
+  border-bottom: var(--border2);
 }
 
 .vars-item {
-  font-size: 2.25vw;
-  background-color: white;
+  font-size: 2rem;
   padding: 10px;
   padding-top: 5px;
-  border: solid 2px black;
+  border-right: var(--border2);
   width: 85%;
   height: 7.5%;
-  margin-top: 40px;
-  border-radius: 10px;
-  margin-left: 10px;
   text-align: center;
 }
 
+#clicks {
+  border-right: none;
+}
+
 #main {
-  display: flex;
-  flex-direction: row;
+  display: block;
 }
 
 #clicker {
   background-color: white;
   border: var(--border5);
-  width: 25%;
-  height: 400px;
-  margin-top: 120px;
-  margin-left: 50px;
-  border-radius: 1000px;
+  width: 65vw;
+  height: 65vh;
+  border-radius: 10px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#here-click {
+#clicker-text {
   position: absolute;
-  top: -2%;
-  left: 34.5%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 3vw;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: rgb(152, 150, 150);
 }
