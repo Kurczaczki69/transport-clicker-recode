@@ -19,6 +19,7 @@
   border-radius: 10px;
   overflow: auto;
   display: none;
+  z-index: 1000;
 }
 
 .changelog-item {
