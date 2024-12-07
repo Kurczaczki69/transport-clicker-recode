@@ -17,6 +17,7 @@
   border-radius: 20px;
   display: none;
   flex-direction: column;
+  z-index: 100;
 }
 
 #buy-menu {

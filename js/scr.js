@@ -288,38 +288,30 @@ function clicker() {
   displaybal();
 }
 
-// opening navigation menu
-const navopenBtn = document.getElementById("nav-open-btn");
-navopenBtn.addEventListener(
-  "click",
-  function () {
-    const navbar = document.getElementById("nav");
+// // opening navigation menu
+// const navopenBtn = document.getElementById("nav-open-btn");
+// navopenBtn.addEventListener(
+//   "click",
+//   function () {
+//     const navbar = document.getElementById("nav");
 
-    navbar.style.display = "flex";
-    navbar.style.opacity = "1.0";
-  },
-  false
-);
+//     navbar.style.display = "flex";
+//     navbar.style.opacity = "1.0";
+//   },
+//   false
+// );
 
-// closing navigation menu (for some bizzare reason this works at applying the animation wtf)
-const navItemCloseNav = document.getElementById("nav-item-close-nav");
-navItemCloseNav.addEventListener(
-  "click",
-  function () {
-    const navbar = document.getElementById("nav");
-    navbar.classList.remove("animation-nav-show");
-    navbar.classList.add("animation-nav-hide");
-    sleep(275).then(() => {
-      navbar.style.display = "none";
-      navbar.style.opacity = "0.0";
-      navbar.classList.remove("animation-nav-hide");
-      sleep(300).then(() => {
-        navbar.classList.add("animation-nav-show");
-      });
-    });
-  },
-  false
-);
+// // closing navigation menu
+// const navItemCloseNav = document.getElementById("nav-item-close-nav");
+// navItemCloseNav.addEventListener(
+//   "click",
+//   function () {
+//     const navbar = document.getElementById("nav");
+//     navbar.style.display = "none";
+//     navbar.style.opacity = "0.0";
+//   },
+//   false
+// );
 
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
