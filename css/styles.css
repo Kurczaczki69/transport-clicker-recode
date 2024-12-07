@@ -1,20 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-:root {
-  --bgcolor: rgb(231, 231, 149);
-  --busitemcolor: rgb(225, 207, 207);
-  --border5: solid 5px black;
-  --border2: solid 2px black;
-}
-
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bgcolor);
+  background: rgb(58, 145, 136);
+  background: radial-gradient(circle, rgba(58, 145, 136, 1) 45%, rgba(6, 41, 37, 1) 76%);
   font-family: "Noto Sans", sans-serif;
   overflow-y: hidden;
   user-select: none;
   scroll-behavior: smooth;
+  color: var(--colorscheme4);
 }
 
 a {
@@ -37,7 +32,7 @@ a {
   left: 50%;
   transform: translate(-50%, 0);
 
-  background-color: white;
+  background-color: var(--colorscheme2);
   border-bottom: var(--border2);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -99,7 +94,7 @@ a {
   z-index: 100;
 
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--colorscheme2);
   border-bottom: var(--border2);
 }
 
@@ -122,7 +117,7 @@ a {
 }
 
 #clicker {
-  background-color: white;
+  background-color: var(--colorscheme2);
   border: var(--border5);
   width: 65vw;
   height: 65vh;
@@ -142,5 +137,5 @@ a {
   text-align: center;
   font-size: 2rem;
   font-weight: bolder;
-  color: rgb(152, 150, 150);
+  color: var(--colorscheme3);
 }

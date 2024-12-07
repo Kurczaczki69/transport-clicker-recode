@@ -288,31 +288,6 @@ function clicker() {
   displaybal();
 }
 
-// // opening navigation menu
-// const navopenBtn = document.getElementById("nav-open-btn");
-// navopenBtn.addEventListener(
-//   "click",
-//   function () {
-//     const navbar = document.getElementById("nav");
-
-//     navbar.style.display = "flex";
-//     navbar.style.opacity = "1.0";
-//   },
-//   false
-// );
-
-// // closing navigation menu
-// const navItemCloseNav = document.getElementById("nav-item-close-nav");
-// navItemCloseNav.addEventListener(
-//   "click",
-//   function () {
-//     const navbar = document.getElementById("nav");
-//     navbar.style.display = "none";
-//     navbar.style.opacity = "0.0";
-//   },
-//   false
-// );
-
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
   const busCntGUI = document.getElementById("buy-menu");
