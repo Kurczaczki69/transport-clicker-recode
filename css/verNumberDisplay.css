@@ -1,7 +1,12 @@
-#ver {
+#credits-btn {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0.5vh;
+  right: 0.5vh;
   color: var(--colorscheme4);
   user-select: none;
+  cursor: pointer;
+}
+
+#credits-btn:hover {
+  color: var(--linkcolor);
 }

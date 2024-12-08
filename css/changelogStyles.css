@@ -59,6 +59,11 @@
   height: 10%;
 }
 
+#version-dropdown:focus {
+  outline: none;
+  border: var(--border2);
+}
+
 #close-changelog-btn {
   position: absolute;
   top: 6%;

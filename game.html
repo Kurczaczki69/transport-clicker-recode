@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
     <link rel="stylesheet" href="css/alertWindow.css" />
     <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/creditsMenuStyles.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
@@ -627,12 +628,26 @@
       <button id="accept-alert-btn">OK</button>
     </section>
 
-    <section id="ver">vALPHA0.7.0DEV by luku123</section>
+    <section id="credits-window">
+      <div class="closegui" id="close-credits-window-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="credits-menu-section-left">
+        <div class="credits-menu-section-left-item"><span class="tabler--users"></span> Współautorzy</div>
+        <div class="credits-menu-section-left-item"><span class="tabler--language"></span> Tłumacze</div>
+        <div class="credits-menu-section-left-item"><span class="tabler--brand-github"></span> GitHub</div>
+        <div class="credits-menu-section-left-item"><span class="tabler--brand-discord"></span> Discord</div>
+      </div>
+    </section>
+
+    <section id="credits-btn">O grze [vALPHA0.7.0]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
     <script src="js/codes.js"></script>
-    <script src="js/accountSystem/accountWindow.js"></script>
+    <script type="module" src="js/creditsMenu.js"></script>
+    <script type="module" src="js/accountSystem/accountWindow.js"></script>
     <script type="module" src="js/upgrades.js"></script>
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
