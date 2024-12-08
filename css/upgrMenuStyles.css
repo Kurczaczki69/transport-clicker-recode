@@ -89,6 +89,11 @@
   padding: 5px;
 }
 
+#upgr-menu-category-dropdown:focus {
+  outline: none;
+  border: var(--border2);
+}
+
 #upgr-menu-main-section-wrapper {
   overflow: auto;
   display: flex;

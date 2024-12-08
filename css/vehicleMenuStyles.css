@@ -42,8 +42,12 @@
 
 #small-input::placeholder {
   color: var(--colorscheme2);
-  font-weight: 200;
   font-family: "Lato", sans-serif;
+}
+
+#small-input:focus {
+  outline: none;
+  border: var(--border2);
 }
 
 #route-dropdown {
@@ -56,6 +60,11 @@
   border: var(--border2);
   color: var(--colorscheme2);
   font-weight: 200;
+}
+
+#route-dropdown:focus {
+  outline: none;
+  border: var(--border2);
 }
 
 option {
@@ -140,6 +149,11 @@ option {
 
   margin-left: 1.5vh;
   padding: 5px;
+}
+
+.vhcl-menu-dropdowns:focus {
+  outline: none;
+  border: var(--border2);
 }
 
 #vhcl-menu-not-ready-indicator {

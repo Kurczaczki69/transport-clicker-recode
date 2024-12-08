@@ -165,6 +165,11 @@
   color: var(--colorscheme4);
 }
 
+.inputs:focus {
+  outline: none;
+  border: var(--border2);
+}
+
 #input-msg {
   font-size: 2vh;
   color: red;

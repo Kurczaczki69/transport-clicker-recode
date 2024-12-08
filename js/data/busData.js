@@ -1,6 +1,7 @@
 // HOW TO ADD A BUS
 // 1. Add to buses array with all data neccesary
 // 2. Add to busPrices array
+// 3. Add to html
 
 export const buses = [
   {
@@ -147,6 +148,15 @@ export const buses = [
     requiredUpgr: "none",
     category: "intercitybus",
   },
+  {
+    code: "solint12",
+    name: "Solaris InterUrbino 12",
+    clickmod: 17,
+    incomemod: 20,
+    price: 120000,
+    requiredUpgr: "none",
+    category: "intercitybus",
+  },
 ];
 
 export const a20 = [
@@ -180,4 +190,5 @@ export const busPrices = {
   [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
   [buses[14].code]: { price: buses[14].price, maxQuantity: 1000 },
   [buses[15].code]: { price: buses[15].price, maxQuantity: 1000 },
+  [buses[16].code]: { price: buses[16].price, maxQuantity: 1000 },
 };

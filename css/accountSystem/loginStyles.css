@@ -76,6 +76,11 @@ body {
   color: var(--colorscheme4);
 }
 
+.form-input:focus {
+  outline: none;
+  border: var(--border2);
+}
+
 .submit-form-btn {
   cursor: pointer;
   width: 40%;
