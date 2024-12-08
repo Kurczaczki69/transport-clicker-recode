@@ -32,8 +32,8 @@
   height: 5%;
   border: var(--border2);
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   padding: 5px;
   color: var(--colorscheme2);
@@ -50,8 +50,8 @@
   font-family: "Lato", sans-serif;
   background-color: rgb(88, 84, 84);
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   border: var(--border2);
   color: var(--colorscheme2);
@@ -60,20 +60,22 @@
 
 option {
   font-family: "Lato", sans-serif;
-  color: rgb(235, 217, 217);
-  background-color: rgb(97, 93, 93);
+  color: var(--colorscheme4);
+  background-color: var(--colorscheme3);
 }
 
 #finish-operation-btn {
   border: var(--border5);
   border-radius: 10px;
-  background-color: var(--busitemcolor);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   width: 25%;
   height: 10%;
   position: absolute;
   top: 85%;
   left: 70%;
   transition: background-color 0.3s, transform 0.3s;
+  color: black;
 }
 
 #finish-operation-btn:hover {
@@ -129,8 +131,8 @@ option {
   font-family: "Lato", sans-serif;
   background-color: rgb(88, 84, 84);
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   border: var(--border2);
   color: var(--colorscheme2);
@@ -183,8 +185,8 @@ option {
   padding: 5%;
   border: none;
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
@@ -203,8 +205,8 @@ option {
   padding: 5%;
   border: none;
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: rgb(184, 225, 221);
+  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
