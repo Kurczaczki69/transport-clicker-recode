@@ -24,10 +24,10 @@
 /* Changelog elements */
 
 #small-title-changelog {
-  font-size: 27px;
+  font-size: 1.75rem;
   position: absolute;
   top: 1%;
-  left: 10%;
+  left: 9%;
 }
 
 #changelog-left-nav {
