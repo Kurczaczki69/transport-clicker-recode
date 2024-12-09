@@ -31,8 +31,8 @@
       :root {
         --bgcolor: rgb(231, 231, 149);
         --busitemcolor: rgb(225, 207, 207);
-        --border5: solid 1px var(--colorscheme4);
-        --border2: solid 0.5px var(--colorscheme4);
+        --border5: solid 1.5px var(--colorscheme4);
+        --border2: solid 1px var(--colorscheme4);
         --linkcolor: var(--colorscheme3);
 
         --colorscheme1: #062925;
@@ -633,11 +633,46 @@
         <span class="tabler--x"></span>
       </div>
 
-      <div id="credits-menu-section-left">
-        <div class="credits-menu-section-left-item"><span class="tabler--users"></span> Współautorzy</div>
-        <div class="credits-menu-section-left-item"><span class="tabler--language"></span> Tłumacze</div>
-        <div class="credits-menu-section-left-item"><span class="tabler--brand-github"></span> GitHub</div>
-        <div class="credits-menu-section-left-item"><span class="tabler--brand-discord"></span> Discord</div>
+      <div id="credits-menu-wrapper">
+        <div id="credits-menu-section-left">
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.7.0</div>
+          <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
+            <div class="link-wrapper"><span class="tabler--users"></span> Współautorzy</div>
+          </div>
+          <div class="credits-menu-section-left-item" id="credits-menu-translators-btn">
+            <div class="link-wrapper"><span class="tabler--language"></span> Tłumacze</div>
+          </div>
+          <div class="credits-menu-section-left-item">
+            <a href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
+              ><div class="link-wrapper"><span class="tabler--brand-github"></span> GitHub</div></a
+            >
+          </div>
+          <div class="credits-menu-section-left-item">
+            <a href="https://discord.gg/VSKb37tg33" target="_blank"
+              ><div class="link-wrapper"><span class="tabler--brand-discord"></span> Discord</div></a
+            >
+          </div>
+        </div>
+
+        <div id="credits-menu-section-right">
+          <div id="credits-menu-authors-section">
+            <h2 id="credits-menu-authors-section-title">Współautorzy</h2>
+
+            <div class="credits-menu-contributor-item">
+              luku123 <br />
+              <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
+            </div>
+          </div>
+
+          <div id="credits-menu-translators-section">
+            <h2 id="credits-menu-translators-section-title">Tłumacze</h2>
+
+            <div class="credits-menu-contributor-item">
+              luku123 <br />
+              <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
