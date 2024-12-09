@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.6.2 by luku123 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.7.0 -->
+  <!-- CONTRIBUTORS LIST -->
+  <!--
+  - luku123
+    currently thats it :) -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,10 +21,26 @@
     <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
     <link rel="stylesheet" href="css/alertWindow.css" />
     <link rel="stylesheet" href="css/icons.css" />
+    <link rel="stylesheet" href="css/creditsMenuStyles.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+      :root {
+        --bgcolor: rgb(231, 231, 149);
+        --busitemcolor: rgb(225, 207, 207);
+        --border5: solid 1.5px var(--colorscheme4);
+        --border2: solid 1px var(--colorscheme4);
+        --linkcolor: var(--colorscheme3);
+
+        --colorscheme1: #062925;
+        --colorscheme2: #044a42;
+        --colorscheme3: #3a9188;
+        --colorscheme4: #b8e1dd;
+      }
+    </style>
   </head>
   <body>
     <div id="loader-wrapper">
@@ -32,43 +52,6 @@
           <span></span>
           <h5 id="loading-text">Ładowanie...</h5>
         </div>
-      </div>
-    </div>
-
-    <div class="open-nav" id="nav-open-btn">
-      <span class="tabler--menu-deep"></span>
-    </div>
-
-    <!-- navigation bar -->
-
-    <div class="navbar animation-nav-show" id="nav">
-      <div class="nav-item tooltip" id="nav-item-buy">
-        <span class="tabler--bus"></span>
-        <span class="tooltiptext">Kup pojazdy</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-upgr-menu">
-        <span class="tabler--rocket"></span>
-        <span class="tooltiptext">Kup ulepszenia</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-codes-menu">
-        <span class="tabler--code"></span>
-        <span class="tooltiptext">Kody</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-save-game">
-        <span class="tabler--brand-onedrive"></span>
-        <span class="tooltiptext">Zapisz grę</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-open-changelog">
-        <span class="tabler--exchange"></span>
-        <span class="tooltiptext">Lista zmian</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-account-page">
-        <span class="tabler--lock-open"></span>
-        <span class="tooltiptext">Konto</span>
-      </div>
-      <div class="nav-item tooltip" id="nav-item-close-nav">
-        <span class="tabler--x"></span>
-        <span class="tooltiptext">Zamknij menu</span>
       </div>
     </div>
 
@@ -130,6 +113,7 @@
 
       <div id="changelog-left-nav">
         <select name="versions" id="version-dropdown">
+          <option value="10">ALPHA 0.7.0</option>
           <option value="9">ALPHA 0.6.2</option>
           <option value="8">ALPHA 0.6.1</option>
           <option value="7">ALPHA 0.6.0</option>
@@ -144,18 +128,14 @@
       </div>
 
       <div id="content-container-changelog">
-        <h3>Wersja ALPHA 0.6.2</h3>
-        <h4>19/11/2024</h4>
+        <h3>Wersja ALPHA 0.7.0</h3>
+        <h4>09/12/2024</h4>
         <br />
 
-        - Duże liczby są od teraz skrócone <br />
-        - Ilość pieniędzy zmienia się teraz 10 razy na sekundę <br />
-        - Dodano weryfikację adresów email <br />
-        - Dodano dwa nowe autobusy w kategorii Autobusy Wodorowe: <br />
-        |- Toyota FC Bus <br />
-        |- Toyota Sora <br />
-        - Kod gry został bardzo zoptymalizowany i poprawiony, więc gra się szybciej ładuje i wszystko działa sprawniej
-        <br />
+        - Gra zyskała całkowicie nowy wygląd <br />
+        - Dodano okno z informacjami o grze (można je otworzyć klikając w tekst w prawym dolnym rogu gry) <br />
+        - Nowy autobus: Solaris InterUrbino 12 <br />
+        - Kod gry został zoptymalizowany <br />
         - Poprawki błędów <br />
       </div>
     </div>
@@ -175,12 +155,47 @@
 
     <section id="main">
       <section id="vars">
-        <div class="vars-item"><span id="bal-show">brak</span> $</div>
-        <div class="vars-item"><span id="income-show">brak</span> $/sek.</div>
-        <div class="vars-item"><span id="click-show">brak</span> $/klik.</div>
+        <div id="vars-wrapper">
+          <div class="vars-item" id="income"><span id="income-show">błąd</span> $/sek.</div>
+          <div class="vars-item" id="balance"><span id="bal-show">błąd</span> $</div>
+          <div class="vars-item" id="clicks"><span id="click-show">błąd</span> $/klik.</div>
+        </div>
+        <!-- <div class="open-nav" id="nav-open-btn">
+          <span class="tabler--menu-deep" id="nav-open-btn-icon"></span>
+        </div> -->
+
+        <!-- navigation bar -->
+
+        <div class="navbar animation-nav-show" id="nav">
+          <div class="nav-item" id="nav-item-buy">
+            <span class="tabler--bus"></span>
+            <span class="tooltip">Kup pojazdy</span>
+          </div>
+          <div class="nav-item" id="nav-item-upgr-menu">
+            <span class="tabler--rocket"></span>
+            <span class="tooltip">Kup ulepszenia</span>
+          </div>
+          <div class="nav-item" id="nav-item-codes-menu">
+            <span class="tabler--code"></span>
+            <span class="tooltip">Kody</span>
+          </div>
+          <div class="nav-item" id="nav-item-save-game">
+            <span class="tabler--brand-onedrive"></span>
+            <span class="tooltip">Zapisz grę</span>
+          </div>
+          <div class="nav-item" id="nav-item-open-changelog">
+            <span class="tabler--exchange"></span>
+            <span class="tooltip">Lista zmian</span>
+          </div>
+          <div class="nav-item" id="nav-item-account-page">
+            <span class="tabler--lock-open"></span>
+            <span class="tooltip">Konto</span>
+          </div>
+        </div>
       </section>
-      <p id="here-click">Klikaj tu 🡻</p>
-      <section id="clicker"></section>
+      <section id="main-screen">
+        <section id="clicker"><span id="clicker-text">Klikaj tutaj</span></section>
+      </section>
     </section>
 
     <!-- bus purchase menu -->
@@ -441,6 +456,18 @@
                   <button class="vhcl-menu-btn" id="vacanza13">Kup</button>
                 </th>
               </tr>
+              <!-- Solaris InterUrbino 12 -->
+              <tr>
+                <th class="vhcl-menu-name"><h4>Solaris InterUrbino 12</h4></th>
+                <th class="vhcl-menu-price">
+                  <span id="vhcl-menu-price-item"><b>120K $</b></span>
+                </th>
+                <th class="vhcl-menu-citybus-income-boost">+20$/sek.</th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+17$/klik.</th>
+                <th class="vhcl-menu-btn-wrapper">
+                  <button class="vhcl-menu-btn" id="solint12">Kup</button>
+                </th>
+              </tr>
             </table>
             <h5 id="more-buses-indicator">Więcej autobusów już niedługo!</h5>
           </div>
@@ -480,7 +507,7 @@
           <option value="26">Linia 26 20k$</option>
         </select>
         <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
-        Boost trasy: <span id="show-line-boost"></span><br /><br />
+        Boost trasy: <span id="show-line-boost"></span>
         <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
         <div id="finish-operation-btn">
           <span class="tabler--check" id="done-icon"> done </span>
@@ -598,12 +625,61 @@
       <button id="accept-alert-btn">OK</button>
     </section>
 
-    <section id="ver">vALPHA0.6.2 by luku123</section>
+    <section id="credits-window">
+      <div class="closegui" id="close-credits-window-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="credits-menu-wrapper">
+        <div id="credits-menu-section-left">
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.7.0</div>
+          <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
+            <div class="link-wrapper"><span class="tabler--users"></span> Autorzy</div>
+          </div>
+          <div class="credits-menu-section-left-item" id="credits-menu-translators-btn">
+            <div class="link-wrapper"><span class="tabler--language"></span> Tłumacze</div>
+          </div>
+          <div class="credits-menu-section-left-item">
+            <a href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
+              ><div class="link-wrapper"><span class="tabler--brand-github"></span> GitHub</div></a
+            >
+          </div>
+          <div class="credits-menu-section-left-item">
+            <a href="https://discord.gg/VSKb37tg33" target="_blank"
+              ><div class="link-wrapper"><span class="tabler--brand-discord"></span> Discord</div></a
+            >
+          </div>
+        </div>
+
+        <div id="credits-menu-section-right">
+          <div id="credits-menu-authors-section">
+            <h2 id="credits-menu-authors-section-title">Autorzy</h2>
+
+            <div class="credits-menu-contributor-item">
+              luku123 <br />
+              <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
+            </div>
+          </div>
+
+          <div id="credits-menu-translators-section">
+            <h2 id="credits-menu-translators-section-title">Tłumacze</h2>
+
+            <div class="credits-menu-contributor-item">
+              luku123 <br />
+              <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="credits-btn">O grze [vALPHA0.7.0]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
     <script src="js/codes.js"></script>
-    <script src="js/accountSystem/accountWindow.js"></script>
+    <script type="module" src="js/creditsMenu.js"></script>
+    <script type="module" src="js/accountSystem/accountWindow.js"></script>
     <script type="module" src="js/upgrades.js"></script>
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>

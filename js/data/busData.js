@@ -1,6 +1,7 @@
 // HOW TO ADD A BUS
 // 1. Add to buses array with all data neccesary
 // 2. Add to busPrices array
+// 3. Add to html
 
 export const buses = [
   {
@@ -11,6 +12,7 @@ export const buses = [
     price: 500,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu9",
@@ -20,6 +22,7 @@ export const buses = [
     price: 4000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu105",
@@ -29,6 +32,7 @@ export const buses = [
     price: 6000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu12",
@@ -38,6 +42,7 @@ export const buses = [
     price: 8000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "sola86",
@@ -47,6 +52,7 @@ export const buses = [
     price: 15000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu18",
@@ -56,6 +62,7 @@ export const buses = [
     price: 16000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu24",
@@ -65,6 +72,7 @@ export const buses = [
     price: 21000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "manlion",
@@ -74,6 +82,7 @@ export const buses = [
     price: 24000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu12h",
@@ -83,6 +92,7 @@ export const buses = [
     price: 24500,
     requiredUpgr: "none",
     category: "hydrogenbus",
+    maxQuantity: 1000,
   },
   {
     code: "toyotafc",
@@ -92,6 +102,7 @@ export const buses = [
     price: 60000,
     requiredUpgr: "none",
     category: "hydrogenbus",
+    maxQuantity: 1000,
   },
   {
     code: "toyotasora",
@@ -101,6 +112,7 @@ export const buses = [
     price: 95000,
     requiredUpgr: "none",
     category: "hydrogenbus",
+    maxQuantity: 1000,
   },
   {
     code: "jelczm121m",
@@ -110,6 +122,7 @@ export const buses = [
     price: 25500,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "solu18h",
@@ -119,6 +132,7 @@ export const buses = [
     price: 27500,
     requiredUpgr: "none",
     category: "hydrogenbus",
+    maxQuantity: 1000,
   },
   {
     code: "manlioncig",
@@ -128,6 +142,7 @@ export const buses = [
     price: 35000,
     requiredUpgr: "none",
     category: "citybus",
+    maxQuantity: 1000,
   },
   {
     code: "vacanza12",
@@ -137,6 +152,7 @@ export const buses = [
     price: 40000,
     requiredUpgr: "none",
     category: "intercitybus",
+    maxQuantity: 1000,
   },
   {
     code: "vacanza13",
@@ -146,6 +162,17 @@ export const buses = [
     price: 58000,
     requiredUpgr: "none",
     category: "intercitybus",
+    maxQuantity: 1000,
+  },
+  {
+    code: "solint12",
+    name: "Solaris InterUrbino 12",
+    clickmod: 17,
+    incomemod: 20,
+    price: 120000,
+    requiredUpgr: "none",
+    category: "intercitybus",
+    maxQuantity: 1000,
   },
 ];
 
@@ -160,24 +187,3 @@ export const a20 = [
     category: "citybus",
   },
 ];
-
-// table with maximum quantity of each bus
-// TODO: it can be done better but idk how
-export const busPrices = {
-  [buses[0].code]: { price: buses[0].price, maxQuantity: 1000 },
-  [buses[1].code]: { price: buses[1].price, maxQuantity: 1000 },
-  [buses[2].code]: { price: buses[2].price, maxQuantity: 1000 },
-  [buses[3].code]: { price: buses[3].price, maxQuantity: 1000 },
-  [buses[4].code]: { price: buses[4].price, maxQuantity: 1000 },
-  [buses[5].code]: { price: buses[5].price, maxQuantity: 1000 },
-  [buses[6].code]: { price: buses[6].price, maxQuantity: 1000 },
-  [buses[7].code]: { price: buses[7].price, maxQuantity: 1000 },
-  [buses[8].code]: { price: buses[8].price, maxQuantity: 1000 },
-  [buses[9].code]: { price: buses[9].price, maxQuantity: 1000 },
-  [buses[10].code]: { price: buses[10].price, maxQuantity: 1000 },
-  [buses[11].code]: { price: buses[11].price, maxQuantity: 1000 },
-  [buses[12].code]: { price: buses[12].price, maxQuantity: 1000 },
-  [buses[13].code]: { price: buses[13].price, maxQuantity: 1000 },
-  [buses[14].code]: { price: buses[14].price, maxQuantity: 1000 },
-  [buses[15].code]: { price: buses[15].price, maxQuantity: 1000 },
-};

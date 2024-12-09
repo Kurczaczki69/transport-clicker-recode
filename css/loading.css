@@ -1,10 +1,3 @@
-:root {
-  --bgcolor: rgb(231, 231, 149);
-  --busitemcolor: rgb(225, 207, 207);
-  --border5: solid 5px black;
-  --border2: solid 2px black;
-}
-
 #square5 {
   display: block;
   position: absolute;
@@ -89,7 +82,7 @@
 
 #loading-text {
   text-align: center;
-  margin-left: -40%;
+  margin-left: -50%;
   font-size: 1rem;
 }
 
@@ -101,9 +94,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
-  background-color: var(--bgcolor);
+  z-index: 1200;
+  background: var(--colorscheme3);
+  background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }

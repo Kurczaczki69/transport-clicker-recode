@@ -1,18 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-
-:root {
-  --bgcolor: rgb(231, 231, 149);
-  --busitemcolor: rgb(225, 207, 207);
-  --border5: solid 5px black;
-  --border2: solid 2px black;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bgcolor);
-  font-family: "Lato", sans-serif;
+  background: var(--colorscheme3);
+  background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
+  font-family: "Noto Sans", sans-serif;
   overflow-y: hidden;
+  user-select: none;
+  scroll-behavior: smooth;
+  color: var(--colorscheme4);
 }
 
 a {
@@ -20,76 +17,31 @@ a {
   text-decoration: none;
 }
 
-.open-nav {
-  position: absolute;
-  top: 47%;
-  box-shadow: 0 10px 24px 0px rgba(226, 137, 137, 0.884);
-  padding: 10px;
-  background-color: rgba(249, 227, 79, 0.662);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.open-nav:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
-
 .navbar {
-  width: 50px;
-  height: 100%;
-  border-bottom: var(--border2);
-  display: none;
+  width: 18%;
+  height: 7vh;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  position: absolute;
+  flex-direction: row;
   padding: 0;
-  opacity: 0;
-  margin-left: 25px;
-}
+  z-index: 25;
 
-.animation-nav-show {
-  animation: show-nav 0.3s ease-out;
-}
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, 0);
 
-.animation-nav-hide {
-  animation: hide-nav 0.3s ease-out;
-}
-
-@keyframes show-nav {
-  0% {
-    display: flex;
-    margin-left: -100px;
-  }
-  100% {
-    margin-left: 25px;
-  }
-}
-
-@keyframes hide-nav {
-  0% {
-    margin-left: 25px;
-  }
-  100% {
-    margin-left: -100px;
-  }
+  background-color: var(--colorscheme2);
+  border-bottom: var(--border2);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .nav-item {
-  margin-left: 50px;
-  border-left: var(--border2);
-  border-right: var(--border2);
-  padding: 15px;
+  padding-left: 0.5vh;
+  padding-right: 0.5vh;
   cursor: pointer;
-  transition: transform 0.3s, background-color 0.3s;
-  background-color: rgba(238, 149, 125, 0.658);
-}
-
-.nav-item:hover {
-  transform: scale(1.01);
-  background-color: wheat;
-  transition: transform 0.3s, background-color 0.3s;
 }
 
 .closegui {
@@ -121,44 +73,70 @@ a {
 }
 
 #vars {
-  width: 25%;
-  border-right: var(--border5);
-  height: 100vh;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-screen {
+  width: 100%;
+  height: 90%;
+}
+
+#vars-wrapper {
+  width: 100%;
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--colorscheme2);
+  border-bottom: var(--border2);
 }
 
 .vars-item {
-  font-size: 2.25vw;
-  background-color: white;
+  font-size: 2rem;
   padding: 10px;
   padding-top: 5px;
-  border: solid 2px black;
+  border-right: var(--border2);
   width: 85%;
   height: 7.5%;
-  margin-top: 40px;
-  border-radius: 10px;
-  margin-left: 10px;
   text-align: center;
+}
+
+#clicks {
+  border-right: none;
 }
 
 #main {
-  display: flex;
-  flex-direction: row;
+  display: block;
 }
 
 #clicker {
-  background-color: white;
+  background-color: var(--colorscheme2);
   border: var(--border5);
-  width: 25%;
-  height: 400px;
-  margin-top: 120px;
-  margin-left: 50px;
-  border-radius: 1000px;
+  width: 65vw;
+  height: 65vh;
+  border-radius: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#here-click {
+#clicker-text {
   position: absolute;
-  top: -2%;
-  left: 34.5%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 3vw;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: var(--colorscheme3);
 }

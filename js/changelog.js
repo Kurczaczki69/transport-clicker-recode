@@ -21,26 +21,19 @@ const contents = [
   "<h3>Wersja ALPHA 0.6.0</h3> <h4>12/11/2024</h4> <br /> - Dodano system ulepszeń <br /> - Nowy wygląd menu kupna pojazdów <br /> - Autobusy są od teraz podzielone na trzy podkategorie <br /> - Dodano ekran ładowania <br /> - Nowy system wyświetlania wiadomości dla użytkownika <br /> - Przy otwieraniu i zamykaniu menu nawigacji jest teraz nowa animacja <br /> - Wiele poprawek wyglądu gry, m. in. nowe ikony <br /> - Wiele poprawek błędów <br /> - Wiele małych zmian <br /> - Optymalizacja kodu gry <br />",
   "<h3>Wersja ALPHA 0.6.1</h3> <h4>13/11/2024</h4> <br /> - Dodano brakującą ikonę <br />",
   "<h3>Wersja ALPHA 0.6.2</h3> <h4>19/11/2024</h4> <br /> - Duże liczby są od teraz skrócone <br /> - Ilość pieniędzy zmienia się teraz 10 razy na sekundę <br /> - Dodano weryfikację adresów email <br /> - Dodano dwa nowe autobusy w kategorii Autobusy Wodorowe: <br /> |- Toyota FC Bus <br /> |- Toyota Sora <br /> - Kod gry został bardzo zoptymalizowany i poprawiony, więc gra się szybciej ładuje i wszystko działa sprawniej <br /> - Poprawki błędów <br />",
+  "<h3>Wersja ALPHA 0.7.0</h3> <h4>09/12/2024</h4> <br /> - Gra zyskała całkowicie nowy wygląd <br /> - Dodano okno z informacjami o grze (można je otworzyć klikając w tekst w prawym dolnym rogu gry) <br /> - Nowy autobus: Solaris InterUrbino 12 <br /> - Kod gry został zoptymalizowany <br /> - Poprawki błędów <br />",
 ];
 
 // opening changelog menu
 const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
-navItemOpenChangeLog.addEventListener(
-  "click",
-  function () {
-    const changelogmenu = document.getElementById("changelog");
-    changelogmenu.style.display = "block";
-  },
-  false
-);
+navItemOpenChangeLog.addEventListener("click", () => {
+  const changelogmenu = document.getElementById("changelog");
+  changelogmenu.style.display = "block";
+});
 
 // closing changelog menu
 const closeChangeLogBtn = document.getElementById("close-changelog-btn");
-closeChangeLogBtn.addEventListener(
-  "click",
-  function () {
-    const changelogmenu = document.getElementById("changelog");
-    changelogmenu.style.display = "none";
-  },
-  false
-);
+closeChangeLogBtn.addEventListener("click", () => {
+  const changelogmenu = document.getElementById("changelog");
+  changelogmenu.style.display = "none";
+});

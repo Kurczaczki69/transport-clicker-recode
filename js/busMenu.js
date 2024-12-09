@@ -1,6 +1,5 @@
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
-import { showMsg, clearMsg, sleep, isEmpty, showAlert } from "./utilities.js";
-import { buses, a20, busPrices } from "./data/busData.js";
+import { getBghtUpgrs } from "./scr.js";
+import { showAlert } from "./utilities.js";
 
 // subcategories for buses
 const dropdown1 = document.getElementById("vhcl-menu-subcategory-dropdown-1");

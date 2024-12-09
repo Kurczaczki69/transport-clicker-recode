@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { buses, a20, busPrices } from "./data/busData.js";
+import { buses, a20 } from "./data/busData.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -237,7 +237,7 @@ const inputEl = document.getElementById("small-input");
 
 // updating the total in bus buy window
 function updateTotal() {
-  const busData = busPrices[chosenBus];
+  const busData = buses.find((bus) => bus.code === chosenBus);
   const price = busData ? busData.price : 0;
   const maxQuantity = busData ? busData.maxQuantity : Infinity;
 
@@ -288,39 +288,6 @@ function clicker() {
   displaybal();
 }
 
-// opening navigation menu
-const navopenBtn = document.getElementById("nav-open-btn");
-navopenBtn.addEventListener(
-  "click",
-  function () {
-    const navbar = document.getElementById("nav");
-
-    navbar.style.display = "flex";
-    navbar.style.opacity = "1.0";
-  },
-  false
-);
-
-// closing navigation menu (for some bizzare reason this works at applying the animation wtf)
-const navItemCloseNav = document.getElementById("nav-item-close-nav");
-navItemCloseNav.addEventListener(
-  "click",
-  function () {
-    const navbar = document.getElementById("nav");
-    navbar.classList.remove("animation-nav-show");
-    navbar.classList.add("animation-nav-hide");
-    sleep(275).then(() => {
-      navbar.style.display = "none";
-      navbar.style.opacity = "0.0";
-      navbar.classList.remove("animation-nav-hide");
-      sleep(300).then(() => {
-        navbar.classList.add("animation-nav-show");
-      });
-    });
-  },
-  false
-);
-
 // hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
 function hideBusCntGUI() {
   const busCntGUI = document.getElementById("buy-menu");
@@ -359,8 +326,6 @@ export function getBghtUpgrs() {
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
 }
-
-// attach event listeners to all bus elements
 
 // Get all bus elements
 const busEls = document.querySelectorAll(".vhcl-menu-btn");

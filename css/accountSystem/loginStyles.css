@@ -1,28 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-
-:root {
-  --bgcolor: rgb(231, 231, 149);
-  --busitemcolor: rgb(225, 207, 207);
-  --linkcolor: rgb(239, 228, 10);
-  --border5: solid 5px black;
-  --border2: solid 2px black;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bgcolor);
-  font-family: "Lato", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
+  background: rgb(58, 145, 136);
+  background: radial-gradient(circle, rgba(58, 145, 136, 1) 45%, rgba(6, 41, 37, 1) 76%);
+  overflow-y: hidden;
+  user-select: none;
+  scroll-behavior: smooth;
+  color: white;
 }
 
 #login-box {
   border: var(--border5);
   margin-top: 2%;
-  background-color: white;
+  background-color: var(--colorscheme2);
   border-radius: 10px;
   width: 75vh;
   height: 90vh;
@@ -68,9 +66,19 @@ body {
 .form-input {
   width: 75%;
   padding: 2.5%;
-  border: 1px solid rgb(0, 0, 0);
+  border: var(--border2);
   border-radius: 5px;
   margin-top: 10px;
+  background-color: var(--colorscheme3);
+}
+
+.form-input::placeholder {
+  color: var(--colorscheme4);
+}
+
+.form-input:focus {
+  outline: none;
+  border: var(--border2);
 }
 
 .submit-form-btn {
@@ -79,8 +87,8 @@ body {
   padding: 2.5%;
   border: none;
   border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(255, 222, 0, 1) 20%, rgba(207, 151, 102, 1) 83%);
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
