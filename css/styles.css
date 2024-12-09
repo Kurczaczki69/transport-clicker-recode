@@ -3,8 +3,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: rgb(58, 145, 136);
-  background: radial-gradient(circle, rgba(58, 145, 136, 1) 45%, rgba(6, 41, 37, 1) 76%);
+  background: var(--colorscheme3);
+  background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   font-family: "Noto Sans", sans-serif;
   overflow-y: hidden;
   user-select: none;

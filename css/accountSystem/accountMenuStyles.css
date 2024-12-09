@@ -63,8 +63,8 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background: rgb(184, 225, 221);
-  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
@@ -133,8 +133,8 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background: rgb(184, 225, 221);
-  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
@@ -229,8 +229,8 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background: rgb(184, 225, 221);
-  background: radial-gradient(circle, rgba(184, 225, 221, 1) 38%, rgba(58, 145, 136, 1) 100%);
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   font-weight: 750;
   transform: scale(1);
