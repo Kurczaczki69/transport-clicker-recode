@@ -7,7 +7,7 @@ Game link: https://kurczaczki69.github.io/transport-clicker-recode/
 
 the code is horrible, please dont look at it now 😭😭
 
-If someone wants to contribute just `git clone https://github.com/Kurczaczki69/transport-clicker-recode` and that's it, you don't need any additional setup, it's just vanilla js, html and css. Then make a pull request and _maybe_ I'll accept it 
+If someone wants to contribute just `git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev` and that's it, you don't need any additional setup, it's just vanilla js, html and css. Then make a pull request and _maybe_ I'll accept it 
 
 ## PLANNED FEATURES
 
