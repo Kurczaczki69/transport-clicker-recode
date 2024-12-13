@@ -3,6 +3,7 @@ import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/fireb
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
 import { buses, a20 } from "./data/busData.js";
+import { getCodes } from "./codes.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -67,9 +68,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("data loaded from server");
         if (auth.currentUser.emailVerified) {
           console.log("email is verified");
-          sleep(700).then(() => {
-            $("#loader-wrapper").fadeOut("slow");
-          });
+          getCodes()
+            .then(() => {
+              console.log("codes loaded from server");
+              sleep(700).then(() => {
+                $("#loader-wrapper").fadeOut("slow");
+              });
+            })
+            .catch((error) => {
+              console.error("error getting codes:", error);
+            });
         } else {
           console.log("email is not verified");
           window.location.href = "index.html";

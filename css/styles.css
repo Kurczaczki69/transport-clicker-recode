@@ -13,8 +13,9 @@ body {
 }
 
 a {
-  color: black;
+  color: var(--linkcolor);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar {
@@ -51,25 +52,21 @@ a {
   cursor: pointer;
 }
 
-.bus-item {
-  background-color: var(--busitemcolor);
-  border: var(--border5);
-  width: 100px;
-  height: 200px;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-top: 40px;
-  margin-left: 50px;
-  text-align: center;
-  padding-top: 50px;
-  transition: background-color 0.3s, transform 0.3s;
+.btns {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
 }
 
-.bus-item:hover {
+.btns:hover {
   transform: scale(1.05);
-  background-color: wheat;
-  transition: background-color 0.3s, transform 0.3s;
-  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 #vars {

@@ -10,6 +10,7 @@
     - dynamic pricing
     - codes system
     - timed uprades
+    - fix issues with resizing the window(elements changing their postion etc.)
     - maybe some other stuff later on too -->
   <head>
     <meta charset="UTF-8" />
@@ -152,8 +153,13 @@
       <div id="close-codes-gui-btn">
         <span class="tabler--x"></span>
       </div>
-      <div id="code-menu-info-wrapper">
-        <span id="code-menu-info"><b>Kody będą dostępne w przyszłych aktualizacjach!</b></span>
+      <div id="code-menu-wrapper">
+        <h2 id="code-menu-title">💻 Kody</h2>
+        <form id="code-menu-form" action="javascript:void(0)">
+          <div id="code-menu-msgbox"></div>
+          <input type="text" id="code-menu-input" placeholder="Podaj Kod" class="inputs" />
+          <button id="code-menu-confirm-btn" class="btns">OK</button>
+        </form>
       </div>
     </div>
 
@@ -166,9 +172,6 @@
           <div class="vars-item" id="balance"><span id="bal-show">błąd</span> $</div>
           <div class="vars-item" id="clicks"><span id="click-show">błąd</span> $/klik.</div>
         </div>
-        <!-- <div class="open-nav" id="nav-open-btn">
-          <span class="tabler--menu-deep" id="nav-open-btn-icon"></span>
-        </div> -->
 
         <!-- navigation bar -->
 
@@ -683,7 +686,7 @@
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
-    <script src="js/codes.js"></script>
+    <script type="module" src="js/codes.js"></script>
     <script type="module" src="js/creditsMenu.js"></script>
     <script type="module" src="js/accountSystem/accountWindow.js"></script>
     <script type="module" src="js/upgrades.js"></script>
