@@ -1,4 +1,4 @@
-// table containing all upgrades
+// array containing all upgrades
 export const upgrades = [
   {
     category: "vehicleType",

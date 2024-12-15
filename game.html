@@ -538,71 +538,155 @@
             <option value="1">Ulepszenia czasowe</option>
             <option value="2">Ulepszenia klikania</option>
             <option value="3">Ulepszenia zarobków</option>
-            <option value="4">Trasy</option>
+            <option value="4">Inne ulepszenia</option>
+            <option value="5">Trasy</option>
           </select>
         </h4>
       </div>
 
       <div id="upgr-menu-main-section-wrapper">
         <div id="upgr-menu-vehicle-type-category">
-          <table id="upgr-menu-vehicle-type-table">
+          <table id="upgr-menu-vehicle-type-table" class="upgrs-tables">
             <!-- city buses -->
             <tr>
-              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Miejskie</h4></th>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4>Autobusy Miejskie</h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr1-desc" class="upgrDesc"></span>
+                </div>
+              </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>DARMO</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn" id="citybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="citybus">Kup</button>
               </th>
             </tr>
             <!-- Hydrogen buses -->
             <tr>
-              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Wodorowe</h4></th>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4>Autobusy Wodorowe</h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr2-desc" class="upgrDesc"></span>
+                </div>
+              </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>25K $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn" id="hydrogenbus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="hydrogenbus">Kup</button>
               </th>
             </tr>
             <!-- intercity buses -->
             <tr>
-              <th class="upgr-menu-vehicle-type-item-header"><h4>Autobusy Międzymiastowe</h4></th>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4>Autobusy Międzymiastowe</h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr3-desc" class="upgrDesc"></span>
+                </div>
+              </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>50K $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn" id="intercitybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="intercitybus">Kup</button>
               </th>
             </tr>
             <!-- trolleybuses -->
             <tr>
-              <th class="upgr-menu-vehicle-type-item-header"><h4>Trolejbusy</h4></th>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4>Trolejbusy</h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr4-desc" class="upgrDesc"></span>
+                </div>
+              </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>250K $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn" id="trolleybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="trolleybus">Kup</button>
               </th>
             </tr>
             <!-- trams -->
             <tr>
-              <th class="upgr-menu-vehicle-type-item-header"><h4>Tramwaje</h4></th>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4>Tramwaje</h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr5-desc" class="upgrDesc"></span>
+                </div>
+              </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"><b>500K $</b></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn" id="tram">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="tram">Kup</button>
               </th>
             </tr>
           </table>
           <!-- other categories -->
+        </div>
+        <div id="upgr-menu-timed-upgrades-category" style="display: none">
+          <table id="upgr-menu-vehicle-type-table" class="upgrs-tables">
+            <!-- gold fuel - 10min -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="timed-upgr1" class="timedupgrName"></span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="timed-upgr1-desc" class="timedupgrDesc"></span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span class="timedupgrPrice"></span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel10min">Kup</button>
+              </th>
+            </tr>
+            <!-- gold fuel - 30min -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="timed-upgr2" class="timedupgrName"></span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="timed-upgr2-desc" class="timedupgrDesc"></span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span class="timedupgrPrice"></span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel30min">Kup</button>
+              </th>
+            </tr>
+            <!-- gold fuel - 1h -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="timed-upgr3" class="timedupgrName"></span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="timed-upgr3-desc" class="timedupgrDesc"></span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span class="timedupgrPrice"></span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel1h">Kup</button>
+              </th>
+            </tr>
+          </table>
         </div>
         <div id="upgr-menu-other-categories">
           <h5 id="upgr-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
@@ -687,7 +771,10 @@
     <script type="module" src="js/codes.js"></script>
     <script type="module" src="js/creditsMenu.js"></script>
     <script type="module" src="js/accountSystem/accountWindow.js"></script>
-    <script type="module" src="js/upgrades.js"></script>
+    <script type="module" src="js/upgradeSystem/upgrades.js"></script>
+    <script type="module" src="js/data/timedUpgradeData.js"></script>
+    <script type="module" src="js/upgradeSystem/timedUpgrades.js"></script>
+    <script type="module" src="js/upgradeSystem/insertDataIntoHtml.js"></script>
     <script type="module" src="js/accountSystem/infoDisplay.js"></script>
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>

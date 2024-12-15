@@ -1,9 +1,12 @@
-import { upgrades } from "./data/upgradeData.js";
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
-import { showMsg, clearMsg } from "./utilities.js";
+import { upgrades } from "../data/upgradeData.js";
+import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
+import { showMsg, clearMsg } from "../utilities.js";
+
+// REGULAR UPGRADES ONLY
 
 const notReadySection = document.getElementById("upgr-menu-other-categories");
 const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
+const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
 const dropdown = document.getElementById("upgr-menu-category-dropdown");
 
 // upgrade menu category dropdown
@@ -11,9 +14,15 @@ dropdown.addEventListener("change", () => {
   if (dropdown.value === "0") {
     notReadySection.style.display = "none";
     vehicleTypeSection.style.display = "block";
+    timedUpgrSection.style.display = "none";
+  } else if (dropdown.value === "1") {
+    timedUpgrSection.style.display = "block";
+    vehicleTypeSection.style.display = "none";
+    notReadySection.style.display = "none";
   } else {
     notReadySection.style.display = "block";
     vehicleTypeSection.style.display = "none";
+    timedUpgrSection.style.display = "none";
   }
 });
 
