@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { buses, a20 } from "./data/busData.js";
+import { vhcls, a20 } from "./data/busData.js";
 import { getCodes } from "./codes.js";
 
 const firebaseConfig = {
@@ -196,7 +196,7 @@ function resetBuyMenu() {
 
 function buyBusRight() {
   console.log("executing buyBusRight");
-  let bus = buses.find((bus) => bus.code === chosenBus);
+  let bus = vhcls.find((bus) => bus.code === chosenBus);
   console.log(`from buyBusRight: ${chosenBus}`);
   const busProp = bus;
 
@@ -245,7 +245,7 @@ const inputEl = document.getElementById("small-input");
 
 // updating the total in bus buy window
 function updateTotal() {
-  const busData = buses.find((bus) => bus.code === chosenBus);
+  const busData = vhcls.find((bus) => bus.code === chosenBus);
   const price = busData ? busData.price : 0;
   const maxQuantity = busData ? busData.maxQuantity : Infinity;
 

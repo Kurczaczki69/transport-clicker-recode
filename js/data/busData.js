@@ -1,9 +1,8 @@
-// HOW TO ADD A BUS
+// HOW TO ADD A VEHICLE
 // 1. Add to buses array with all data neccesary
-// 2. Add to busPrices array
-// 3. Add to html
+// 2. Add to html
 
-export const buses = [
+export const vhcls = [
   {
     code: "solu8",
     name: "Solaris Urbino 8",
@@ -85,11 +84,41 @@ export const buses = [
     maxQuantity: 1000,
   },
   {
+    code: "jelczm121m",
+    name: "Jelcz M121M",
+    clickmod: 0,
+    incomemod: 6,
+    price: 25500,
+    requiredUpgr: "none",
+    category: "citybus",
+    maxQuantity: 1000,
+  },
+  {
+    code: "manlioncig",
+    name: "MAN Lion's City GXL",
+    clickmod: 8,
+    incomemod: 4,
+    price: 35000,
+    requiredUpgr: "none",
+    category: "citybus",
+    maxQuantity: 1000,
+  },
+  {
     code: "solu12h",
     name: "Solaris Urbino 12 Hydrogen",
     clickmod: 7,
     incomemod: 0,
     price: 24500,
+    requiredUpgr: "none",
+    category: "hydrogenbus",
+    maxQuantity: 1000,
+  },
+  {
+    code: "solu18h",
+    name: "Solaris Urbino 18 Hydrogen",
+    clickmod: 8,
+    incomemod: 0,
+    price: 27500,
     requiredUpgr: "none",
     category: "hydrogenbus",
     maxQuantity: 1000,
@@ -112,36 +141,6 @@ export const buses = [
     price: 95000,
     requiredUpgr: "none",
     category: "hydrogenbus",
-    maxQuantity: 1000,
-  },
-  {
-    code: "jelczm121m",
-    name: "Jelcz M121M",
-    clickmod: 0,
-    incomemod: 6,
-    price: 25500,
-    requiredUpgr: "none",
-    category: "citybus",
-    maxQuantity: 1000,
-  },
-  {
-    code: "solu18h",
-    name: "Solaris Urbino 18 Hydrogen",
-    clickmod: 8,
-    incomemod: 0,
-    price: 27500,
-    requiredUpgr: "none",
-    category: "hydrogenbus",
-    maxQuantity: 1000,
-  },
-  {
-    code: "manlioncig",
-    name: "MAN Lion's City GXL",
-    clickmod: 8,
-    incomemod: 4,
-    price: 35000,
-    requiredUpgr: "none",
-    category: "citybus",
     maxQuantity: 1000,
   },
   {
