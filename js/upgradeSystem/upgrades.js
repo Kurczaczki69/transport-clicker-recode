@@ -31,22 +31,14 @@ const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
 const upgradeGUI = document.getElementById("upgrades");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
-navItemUpgrMenu.addEventListener(
-  "click",
-  function () {
-    upgradeGUI.style.display = "flex";
-  },
-  false
-);
+navItemUpgrMenu.addEventListener("click", () => {
+  upgradeGUI.style.display = "flex";
+});
 
 // closing upgrade menu
-upgrMenuCloseBtn.addEventListener(
-  "click",
-  function () {
-    upgradeGUI.style.display = "none";
-  },
-  false
-);
+upgrMenuCloseBtn.addEventListener("click", () => {
+  upgradeGUI.style.display = "none";
+});
 
 // buy upgrade after confirming it
 function buyUpgrade(upgrade) {
@@ -92,17 +84,11 @@ function confirmUpgrade(upgradetobuy) {
   });
 }
 
-// listeners for different upgrades
-
 const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
 
 // Loop over the bus elements and attach an event listener to each one
 upgrEls.forEach((upgrEl) => {
-  upgrEl.addEventListener(
-    "click",
-    () => {
-      confirmUpgrade(upgrEl.id);
-    },
-    false
-  );
+  upgrEl.addEventListener("click", () => {
+    confirmUpgrade(upgrEl.id);
+  });
 });

@@ -29,14 +29,10 @@ export function showAlert(message) {
   alertSpan.innerText = message;
   alertWindow.style.display = "flex";
 
-  alertCloseBtn.addEventListener(
-    "click",
-    () => {
-      alertWindow.style.display = "none";
-      alertSpan.innerText = "";
-    },
-    false
-  );
+  alertCloseBtn.addEventListener("click", () => {
+    alertWindow.style.display = "none";
+    alertSpan.innerText = "";
+  });
 }
 
 export function abbreviateNumber(num) {

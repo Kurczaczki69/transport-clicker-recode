@@ -31,7 +31,7 @@ let chosenBus = "";
 let bghtUpgrs = [];
 
 const navItemSaveGame = document.getElementById("nav-item-save-game");
-navItemSaveGame.addEventListener("click", saveGame, false);
+navItemSaveGame.addEventListener("click", saveGame);
 
 document.addEventListener("DOMContentLoaded", async () => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
@@ -136,7 +136,7 @@ export function silentSaveGame() {
 
 // buying mana20
 const manA20Btn = document.getElementById("mana20");
-manA20Btn.addEventListener("click", buyMana20, false);
+manA20Btn.addEventListener("click", buyMana20);
 
 function buyMana20() {
   if (bal >= a20[0].price) {
@@ -215,30 +215,22 @@ function buyBusRight() {
 
 // open vehicle menu
 const navItemBuy = document.getElementById("nav-item-buy");
-navItemBuy.addEventListener(
-  "click",
-  function () {
-    const buygui = document.getElementById("buy-bus");
-    if (bghtUpgrs.includes("citybus")) {
-      buygui.style.display = "flex";
-    } else {
-      buygui.style.display = "none";
-      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
-    }
-  },
-  false
-);
+navItemBuy.addEventListener("click", () => {
+  const buygui = document.getElementById("buy-bus");
+  if (bghtUpgrs.includes("citybus")) {
+    buygui.style.display = "flex";
+  } else {
+    buygui.style.display = "none";
+    showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
+  }
+});
 
 // close vehicle menu
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
-closeBusGuiBtn.addEventListener(
-  "click",
-  function () {
-    const buygui = document.getElementById("buy-bus");
-    buygui.style.display = "none";
-  },
-  false
-);
+closeBusGuiBtn.addEventListener("click", () => {
+  const buygui = document.getElementById("buy-bus");
+  buygui.style.display = "none";
+});
 
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
@@ -258,14 +250,10 @@ function updateTotal() {
   totalEl.innerHTML = abbreviateNumber(buyTotal);
 }
 
-inputEl.addEventListener(
-  "input",
-  () => {
-    inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
-    updateTotal();
-  },
-  false
-);
+inputEl.addEventListener("input", () => {
+  inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
+  updateTotal();
+});
 
 async function add() {
   await sleep(100);
@@ -283,13 +271,13 @@ function displaybal() {
 
 // saving game every 90 seconds to firestore
 async function gameSaver() {
-  await sleep(90000);
+  await sleep(90 * 1000);
   silentSaveGame();
   gameSaver();
 }
 
 const clickspace = document.getElementById("clicker");
-clickspace.addEventListener("click", clicker, false);
+clickspace.addEventListener("click", clicker);
 
 function clicker() {
   bal += clickmod;
@@ -306,10 +294,10 @@ function hideBusCntGUI() {
 }
 
 const busCntGUIBtn = document.getElementById("closebuymenu");
-busCntGUIBtn.addEventListener("click", hideBusCntGUI, false);
-window.addEventListener("load", add, false);
-window.addEventListener("load", gameSaver, false);
-window.addEventListener("load", displaybal, false);
+busCntGUIBtn.addEventListener("click", hideBusCntGUI);
+window.addEventListener("load", add);
+window.addEventListener("load", gameSaver);
+window.addEventListener("load", displaybal);
 updateTotal();
 
 // warn the user about saving the game before closing
@@ -340,11 +328,7 @@ const busEls = document.querySelectorAll(".vhcl-menu-btn");
 
 // Loop over the bus elements and attach an event listener to each one
 busEls.forEach((busEl) => {
-  busEl.addEventListener(
-    "click",
-    () => {
-      buyBus(busEl.id);
-    },
-    false
-  );
+  busEl.addEventListener("click", () => {
+    buyBus(busEl.id);
+  });
 });
