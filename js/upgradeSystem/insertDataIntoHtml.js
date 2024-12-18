@@ -15,11 +15,11 @@ const vhclNames = document.querySelectorAll(".vhclName");
 const vhclPrices = document.querySelectorAll(".vhclPrice");
 const vhclIncomeBoosts = document.querySelectorAll(".vhclIncomeBoost");
 const vhclClickMods = document.querySelectorAll(".vhclClickMod");
-let index = 0;
+let index;
 
 export function updateHtmlData() {
   const maxLen = Math.max(timedUpgrades.length, upgrades.length, vhcls.length);
-  for (let index = 0; index < maxLen; index++) {
+  for (index = 0; index < maxLen; index++) {
     if (index < timedUpgrades.length) {
       if (timedUpgrNames[index] && timedUpgrDescs[index] && timedupgrPrices[index]) {
         timedUpgrNames[index].innerHTML = timedUpgrades[index].name;
