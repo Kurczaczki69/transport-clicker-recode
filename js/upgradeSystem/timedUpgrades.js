@@ -1,5 +1,5 @@
 import { timedUpgrades } from "../data/timedUpgradeData.js";
-import { getBal } from "../scr.js";
+import { getBal, setBal } from "../scr.js";
 import { showMsg, clearMsg, formatTime } from "../utilities.js";
 
 let activeTimedUpgrades = [];
@@ -17,6 +17,7 @@ function buyTimedUpgrade(upgrId) {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       activeTimedUpgrades.push(upgradeToBuy);
       bal -= upgradeToBuy.price;
+      setBal(bal);
       showMsg("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.time) + "!", "msg-confirm-upgrade");
       // TODO: add functionality to display active timed upgrades in UI
     } else {
