@@ -21,7 +21,7 @@ function buyTimedUpgrade(upgrId) {
       showMsg("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.time) + "!", "msg-confirm-upgrade");
       // TODO: add functionality to display active timed upgrades in UI
     } else {
-      showMsg("Możesz mieć tylko" + activeTimedUpgradeLimit + " aktywnych ulepszeń!", "msg-confirm-upgrade");
+      showMsg("Możesz mieć tylko " + activeTimedUpgradeLimit + " aktywnych ulepszeń!", "msg-confirm-upgrade");
     }
   }
 }
