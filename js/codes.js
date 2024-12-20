@@ -65,7 +65,8 @@ async function applyCodeBoosts(code) {
     console.log("code already used");
     showMsg("Już użyłeś tego kodu!", "code-menu-msgbox");
   } else {
-    if (Date.now() > code.expireDate) {
+    const expireDate = new Date(code.expireDate.seconds * 1000);
+    if (Date.now() > expireDate.getTime()) {
       console.log("code expired");
       showMsg("Ten kod wygasł!", "code-menu-msgbox");
     } else {
