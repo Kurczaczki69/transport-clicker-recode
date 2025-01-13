@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/alertWindow.css" />
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/creditsMenuStyles.css" />
+    <link rel="stylesheet" href="css/notifDisplay.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
@@ -200,6 +201,10 @@
           </div>
         </div>
       </section>
+      <section id="notif-display">
+        <div id="notif-wrapper"></div>
+      </div>
+      </section>
       <section id="main-screen">
         <section id="clicker"><span id="clicker-text">Klikaj tutaj</span></section>
       </section>
@@ -207,7 +212,7 @@
 
     <!-- bus purchase menu -->
 
-    <div id="buy-bus">
+    <div id="buy-vehicle">
       <div class="closegui" id="close-bus-gui-btn">
         <span class="tabler--x"></span>
       </div>
@@ -711,15 +716,15 @@
             <!-- gold fuel - 10min -->
             <tr>
               <th class="upgr-menu-vehicle-type-item-header">
-                <h4><span id="timed-upgr1" class="timedupgrName"></span></h4>
+                <h4><span id="timed-upgr1" class="timedUpgrName"></span></h4>
                 <div class="upgrDesc-wrapper">
-                  <span id="timed-upgr1-desc" class="timedupgrDesc"></span>
+                  <span id="timed-upgr1-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
-                  ><b><span class="timedupgrPrice"></span></b
+                  ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
@@ -729,15 +734,15 @@
             <!-- gold fuel - 30min -->
             <tr>
               <th class="upgr-menu-vehicle-type-item-header">
-                <h4><span id="timed-upgr2" class="timedupgrName"></span></h4>
+                <h4><span id="timed-upgr2" class="timedUpgrName"></span></h4>
                 <div class="upgrDesc-wrapper">
-                  <span id="timed-upgr2-desc" class="timedupgrDesc"></span>
+                  <span id="timed-upgr2-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
-                  ><b><span class="timedupgrPrice"></span></b
+                  ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
@@ -747,15 +752,15 @@
             <!-- gold fuel - 1h -->
             <tr>
               <th class="upgr-menu-vehicle-type-item-header">
-                <h4><span id="timed-upgr3" class="timedupgrName"></span></h4>
+                <h4><span id="timed-upgr3" class="timedUpgrName"></span></h4>
                 <div class="upgrDesc-wrapper">
-                  <span id="timed-upgr3-desc" class="timedupgrDesc"></span>
+                  <span id="timed-upgr3-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
-                  ><b><span class="timedupgrPrice"></span></b
+                  ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
@@ -859,5 +864,6 @@
     <script type="module" src="js/utilities.js"></script>
     <script type="module" src="js/data/upgradeData.js"></script>
     <script type="module" src="js/data/busData.js"></script>
+    <script type="module" src="js/notifs.js"></script>
   </body>
 </html>

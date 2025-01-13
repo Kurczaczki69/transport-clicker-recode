@@ -1,0 +1,50 @@
+#notif-display {
+  position: absolute;
+  top: 10%;
+  right: 2.5%;
+  background-color: var(--colorscheme2);
+  width: 13%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 750;
+
+  border-bottom: var(--border2);
+  border-top: var(--border2);
+  border-radius: 10px;
+}
+
+.notif {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  width: 100%;
+  height: auto;
+  padding-bottom: 0.8vh;
+  position: relative;
+}
+
+.notif:not(:last-child) {
+  border-bottom: var(--border2);
+}
+
+.notif-text {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.8vh 0.5vw;
+}
+
+.notif-small-text {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-left: 0.5vw;
+}
+
+.notif-close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 53%;
+  right: 5%;
+  transform: translateY(-50%);
+}

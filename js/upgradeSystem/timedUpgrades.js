@@ -1,6 +1,7 @@
 import { timedUpgrades } from "../data/timedUpgradeData.js";
 import { getBal, setBal } from "../scr.js";
 import { showMsg, clearMsg, formatTime } from "../utilities.js";
+import { showNotif } from "../notifs.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
@@ -15,12 +16,14 @@ function buyTimedUpgrade(upgrId) {
     showMsg("Nie stać cię!", "msg-confirm-upgrade");
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
-      activeTimedUpgrades.push(upgradeToBuy);
+      activeTimedUpgrades.push(upgradeToBuy.id);
       bal -= upgradeToBuy.price;
+      console.log(activeTimedUpgrades);
       setBal(bal);
       showMsg("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.time) + "!", "msg-confirm-upgrade");
-      // TODO: add functionality to display active timed upgrades in UI
+      showNotif(upgradeToBuy.name, "Pozostały czas: " + formatTime(upgradeToBuy.time), "notif-timed-upgr");
     } else {
+      console.log(activeTimedUpgrades);
       showMsg("Możesz mieć tylko " + activeTimedUpgradeLimit + " aktywnych ulepszeń!", "msg-confirm-upgrade");
     }
   }
@@ -36,9 +39,13 @@ function confirmTimedUpgrade(upgradetobuy) {
   clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
 
-  confirmBtn.addEventListener("click", () => {
-    buyTimedUpgrade(upgradetobuy);
-  });
+  confirmBtn.addEventListener(
+    "click",
+    () => {
+      buyTimedUpgrade(upgradetobuy);
+    },
+    { once: true }
+  );
 
   cancelBtn.addEventListener("click", () => {
     confirmationDialog.style.display = "none";
@@ -50,3 +57,11 @@ timedUpgrEls.forEach((timedUpgrEl) => {
     confirmTimedUpgrade(timedUpgrEl.id);
   });
 });
+
+export function getActiveTimedUpgrades() {
+  return activeTimedUpgrades;
+}
+
+export function setActiveTimedUpgrades(upgrades) {
+  activeTimedUpgrades = upgrades;
+}

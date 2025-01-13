@@ -216,7 +216,7 @@ function buyBusRight() {
 // open vehicle menu
 const navItemBuy = document.getElementById("nav-item-buy");
 navItemBuy.addEventListener("click", () => {
-  const buygui = document.getElementById("buy-bus");
+  const buygui = document.getElementById("buy-vehicle");
   if (bghtUpgrs.includes("citybus")) {
     buygui.style.display = "flex";
   } else {
@@ -228,7 +228,7 @@ navItemBuy.addEventListener("click", () => {
 // close vehicle menu
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
 closeBusGuiBtn.addEventListener("click", () => {
-  const buygui = document.getElementById("buy-bus");
+  const buygui = document.getElementById("buy-vehicle");
   buygui.style.display = "none";
 });
 

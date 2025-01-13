@@ -3,9 +3,9 @@ import { upgrades } from "../data/upgradeData.js";
 import { abbreviateNumber } from "../utilities.js";
 import { vhcls } from "../data/busData.js";
 
-const timedUpgrNames = document.querySelectorAll(".timedupgrName");
-const timedUpgrDescs = document.querySelectorAll(".timedupgrDesc");
-const timedupgrPrices = document.querySelectorAll(".timedupgrPrice");
+const timedUpgrNames = document.querySelectorAll(".timedUpgrName");
+const timedUpgrDescs = document.querySelectorAll(".timedUpgrDesc");
+const timedupgrPrices = document.querySelectorAll(".timedUpgrPrice");
 
 const upgrNames = document.querySelectorAll(".upgrName");
 const upgrDescs = document.querySelectorAll(".upgrDesc");

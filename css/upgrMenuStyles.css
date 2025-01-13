@@ -10,7 +10,7 @@
   border-radius: 20px;
   display: none;
   flex-direction: column;
-  z-index: 100;
+  z-index: 800;
 }
 
 .upgrade-item {
@@ -168,7 +168,7 @@
   width: 20%;
 }
 
-.timedupgrDesc {
+.timedUpgrDesc {
   margin-top: -100%;
   font-size: 0.9rem;
   font-weight: 400;
