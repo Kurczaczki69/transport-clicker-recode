@@ -1,6 +1,6 @@
 # WORK IN PROGRESS, WILL UPDATE README LATER
 
-Polish game about clicking on a rectangle and buying buses.
+Polish game about clicking on a ~~circle~~ square and buying vehicles and upgrades.
 English language support will be added to the game.
 
 Game link: https://kurczaczki69.github.io/transport-clicker-recode/
