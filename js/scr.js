@@ -274,7 +274,6 @@ async function add() {
 
   await sleep(100);
   bal += (income / 10) * totalBoost;
-  console.log((income / 10) * totalBoost, totalBoost);
   displaybal();
   add();
 }

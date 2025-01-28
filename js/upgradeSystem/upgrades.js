@@ -1,6 +1,6 @@
 import { upgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
-import { showMsg, clearMsg } from "../utilities.js";
+import { clearMsg, showAlert } from "../utilities.js";
 
 // REGULAR UPGRADES ONLY
 
@@ -43,24 +43,29 @@ upgrMenuCloseBtn.addEventListener("click", () => {
 // buy upgrade after confirming it
 function buyUpgrade(upgrade) {
   const upgradeToBuy = upgrades.find((u) => u.id === upgrade);
+  const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   let bghtUpgrs = getBghtUpgrs();
   if (upgradeToBuy.isAvailable) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
-        showMsg("Nie stać cię!", "msg-confirm-upgrade");
+        confirmationDialog.style.display = "none";
+        showAlert("Nie stać cię!");
       } else {
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
-        showMsg("Kupiono ulepszenie!", "msg-confirm-upgrade");
+        confirmationDialog.style.display = "none";
+        showAlert("Kupiono ulepszenie!");
         silentSaveGame();
       }
     } else {
-      showMsg("Już kupiłeś to ulepszenie!", "msg-confirm-upgrade");
+      confirmationDialog.style.display = "none";
+      showAlert("Już kupiłeś to ulepszenie!");
     }
   } else {
-    showMsg("To ulepszenie będzie dostępne w następnych aktualizacjach!", "msg-confirm-upgrade");
+    confirmationDialog.style.display = "none";
+    showAlert("To ulepszenie będzie dostępne w następnych aktualizacjach!");
   }
 }
 

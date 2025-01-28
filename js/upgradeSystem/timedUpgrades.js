@@ -1,6 +1,6 @@
 import { timedUpgrades } from "../data/timedUpgradeData.js";
 import { getBal, setBal } from "../scr.js";
-import { showMsg, clearMsg, formatTime } from "../utilities.js";
+import { clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 
 let activeTimedUpgrades = [];
@@ -11,25 +11,31 @@ const timedUpgrEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn")
 
 function buyTimedUpgrade(upgrId) {
   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgrId);
+  const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   if (bal < upgradeToBuy.price) {
-    showMsg("Nie stać cię!", "msg-confirm-upgrade");
+    confirmationDialog.style.display = "none";
+    showAlert("Nie stać cię!");
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       let activeUpgrs = getActiveTimedUpgrades();
       activeUpgrs.push(upgradeToBuy.id);
       setActiveTimedUpgrades(activeUpgrs);
       bal -= upgradeToBuy.price;
-      console.log(activeTimedUpgrades);
       setBal(bal);
-      showMsg("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.duration) + "!", "msg-confirm-upgrade");
+      confirmationDialog.style.display = "none";
+      showAlert("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.duration) + "!");
       showNotif(upgradeToBuy.name, "Pozostały czas: " + formatTime(upgradeToBuy.duration), "notif-timed-upgr");
       const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
       notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
       runUpgrade(upgradeToBuy);
     } else {
-      console.log(activeTimedUpgrades);
-      showMsg("Możesz mieć tylko " + activeTimedUpgradeLimit + " aktywnych ulepszeń!", "msg-confirm-upgrade");
+      confirmationDialog.style.display = "none";
+      if (activeTimedUpgradeLimit === 1) {
+        showAlert("Możesz mieć tylko jedno aktywne ulepszenie!");
+      } else if (activeTimedUpgradeLimit > 1) {
+        showAlert("Możesz mieć tylko " + activeTimedUpgradeLimit + " aktywnych ulepszeń!");
+      }
     }
   }
 }
