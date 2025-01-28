@@ -9,6 +9,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { showMsg, clearMsg } from "./utilities.js";
 import { getBal, setBal, silentSaveGame } from "./scr.js";
+import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -73,10 +74,10 @@ async function applyCodeBoosts(code) {
       console.log("code expired");
       showMsg("Ten kod wygasł!", "code-menu-msgbox");
     } else {
-      // TODO: add functionality for adding timed upgrades via codes
       let bal = getBal();
       bal = bal + code.moneyReward;
       setBal(bal);
+      grantUpgrade(code.boostReward);
       usedCodes.push(code.code);
       await setUsedCodes(usedCodes);
       console.log("code used");

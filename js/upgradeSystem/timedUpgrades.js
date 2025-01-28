@@ -105,6 +105,22 @@ export function removeUpgrade(upgr, upgrade) {
   }
 }
 
+export function grantUpgrade(upgrId) {
+  const upgradeToGrant = timedUpgrades.find((u) => u.id === upgrId);
+  if (!upgradeToGrant) {
+    console.log(`Upgrade with ID ${upgrId} does not exist.`);
+    return;
+  }
+  let activeUpgrs = getActiveTimedUpgrades();
+  activeUpgrs.push(upgradeToGrant.id);
+  setActiveTimedUpgrades(activeUpgrs);
+
+  showNotif(upgradeToGrant.name, "Pozostały czas: " + formatTime(upgradeToGrant.duration), "notif-timed-upgr");
+  const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
+  notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
+  runUpgrade(upgradeToGrant);
+}
+
 function updateTimerDisplay(upgrade, remainingTime) {
   const timerEl = document.querySelector(`#notif-small-text${upgrade.id}`);
   if (timerEl) {
