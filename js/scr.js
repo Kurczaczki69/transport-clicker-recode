@@ -169,6 +169,16 @@ function buyBus(busCode) {
   finishBtn.addEventListener("click", buyBusChecker, { once: true });
 }
 
+// closing the buy menu
+const busCntGUIBtn = document.getElementById("closebuymenu");
+busCntGUIBtn.addEventListener("click", () => {
+  const busCntGUI = document.getElementById("buy-menu");
+  inputEl.value = "";
+  chosenBus = "";
+  updateTotal();
+  busCntGUI.style.display = "none";
+});
+
 function buyBusChecker() {
   console.log("executing buyBusChecker");
 
@@ -219,7 +229,9 @@ function buyBusRight() {
 const navItemBuy = document.getElementById("nav-item-buy");
 navItemBuy.addEventListener("click", () => {
   const buygui = document.getElementById("buy-vehicle");
+  const tint = document.querySelector("#window-tint");
   if (bghtUpgrs.includes("citybus")) {
+    tint.style.display = "block";
     buygui.style.display = "flex";
   } else {
     buygui.style.display = "none";
@@ -231,6 +243,8 @@ navItemBuy.addEventListener("click", () => {
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
 closeBusGuiBtn.addEventListener("click", () => {
   const buygui = document.getElementById("buy-vehicle");
+  const tint = document.querySelector("#window-tint");
+  tint.style.display = "none";
   buygui.style.display = "none";
 });
 
@@ -342,16 +356,6 @@ export function getBghtUpgrs() {
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
 }
-
-// closing the buy menu
-const busCntGUIBtn = document.getElementById("closebuymenu");
-busCntGUIBtn.addEventListener("click", () => {
-  const busCntGUI = document.getElementById("buy-menu");
-  inputEl.value = "";
-  chosenBus = "";
-  updateTotal();
-  busCntGUI.style.display = "none";
-});
 
 // Get all bus elements
 const busEls = document.querySelectorAll(".vhcl-menu-btn");

@@ -24,16 +24,19 @@ const contents = [
   "<h3>Wersja ALPHA 0.7.0</h3> <h4>09/12/2024</h4> <br /> - Gra zyskała całkowicie nowy wygląd <br /> - Dodano okno z informacjami o grze (można je otworzyć klikając w tekst w prawym dolnym rogu gry) <br /> - Nowy autobus: Solaris InterUrbino 12 <br /> - Kod gry został zoptymalizowany <br /> - Poprawki błędów <br />",
 ];
 
+const tint = document.querySelector("#window-tint");
+const changelogmenu = document.getElementById("changelog");
+
 // opening changelog menu
 const navItemOpenChangeLog = document.getElementById("nav-item-open-changelog");
 navItemOpenChangeLog.addEventListener("click", () => {
-  const changelogmenu = document.getElementById("changelog");
+  tint.style.display = "block";
   changelogmenu.style.display = "block";
 });
 
 // closing changelog menu
 const closeChangeLogBtn = document.getElementById("close-changelog-btn");
 closeChangeLogBtn.addEventListener("click", () => {
-  const changelogmenu = document.getElementById("changelog");
+  tint.style.display = "none";
   changelogmenu.style.display = "none";
 });

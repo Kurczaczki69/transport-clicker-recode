@@ -18,6 +18,16 @@ a {
   cursor: pointer;
 }
 
+.tints {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(21, 20, 20, 0.605);
+  display: none;
+}
+
 .navbar {
   width: 18%;
   height: 7vh;

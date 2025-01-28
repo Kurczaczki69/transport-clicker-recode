@@ -30,10 +30,14 @@ export function showAlert(message) {
   const alertSpan = document.getElementById("alert-message");
   const alertWindow = document.getElementById("alert-window");
   const alertCloseBtn = document.getElementById("accept-alert-btn");
+  const tint = document.querySelector("#alert-tint");
+
+  tint.style.display = "block";
   alertSpan.innerText = message;
   alertWindow.style.display = "flex";
 
   alertCloseBtn.addEventListener("click", () => {
+    tint.style.display = "none";
     alertWindow.style.display = "none";
     alertSpan.innerText = "";
   });

@@ -29,14 +29,17 @@ dropdown.addEventListener("change", () => {
 // opening upgrade menu
 const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
 const upgradeGUI = document.getElementById("upgrades");
+const tint = document.querySelector("#window-tint");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
 navItemUpgrMenu.addEventListener("click", () => {
+  tint.style.display = "block";
   upgradeGUI.style.display = "flex";
 });
 
 // closing upgrade menu
 upgrMenuCloseBtn.addEventListener("click", () => {
+  tint.style.display = "none";
   upgradeGUI.style.display = "none";
 });
 

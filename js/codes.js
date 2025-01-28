@@ -28,17 +28,20 @@ const db = getFirestore();
 // elements
 
 const codesMenu = document.getElementById("codes-menu");
+const tint = document.querySelector("#window-tint");
 const closeGuiBtn = document.getElementById("close-codes-gui-btn");
 const openGuiBtn = document.getElementById("nav-item-codes-menu");
 
 // listeners
 
 openGuiBtn.addEventListener("click", () => {
+  tint.style.display = "block";
   codesMenu.style.display = "block";
   clearMsg("code-menu-msgbox");
 });
 
 closeGuiBtn.addEventListener("click", () => {
+  tint.style.display = "none";
   codesMenu.style.display = "none";
   clearMsg("code-menu-msgbox");
 });
