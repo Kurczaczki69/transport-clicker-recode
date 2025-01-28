@@ -278,6 +278,29 @@ async function add() {
   add();
 }
 
+const clickspace = document.getElementById("clicker");
+clickspace.addEventListener("click", clicker);
+
+function getTotalClickBoost(timedUpgrs) {
+  let totalBoost = 1;
+  timedUpgrs.forEach((upgrade) => {
+    let upgr = timedUpgrades.find((u) => u.id === upgrade);
+    if (upgr && upgr.hasOwnProperty("clickboost")) {
+      totalBoost += upgr.clickboost;
+    }
+  });
+  return totalBoost;
+}
+
+function clicker() {
+  const timedUpgrs = getActiveTimedUpgrades();
+  const totalBoost = getTotalClickBoost(timedUpgrs);
+
+  console.log(clickmod * totalBoost, totalBoost);
+  bal += clickmod * totalBoost;
+  displaybal();
+}
+
 // displaying player data on main game screen
 function displaybal() {
   document.getElementById("bal-show").innerHTML = abbreviateNumber(bal);
@@ -290,14 +313,6 @@ async function gameSaver() {
   await sleep(90 * 1000);
   silentSaveGame();
   gameSaver();
-}
-
-const clickspace = document.getElementById("clicker");
-clickspace.addEventListener("click", clicker);
-
-function clicker() {
-  bal += clickmod;
-  displaybal();
 }
 
 window.addEventListener("load", add);
