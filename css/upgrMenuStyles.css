@@ -10,7 +10,7 @@
   border-radius: 20px;
   display: none;
   flex-direction: column;
-  z-index: 100;
+  z-index: 800;
 }
 
 .upgrade-item {
@@ -119,17 +119,8 @@
 
 .upgr-menu-vehicle-type-item-btn {
   margin-right: 5%;
-  cursor: pointer;
-  width: 15vh;
+  width: 6.824vw;
   padding: 5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
 }
 
 .upgr-menu-vehicle-type-item-btn:hover {
@@ -137,12 +128,18 @@
   transition: transform 0.3s;
 }
 
-#upgr-menu-vehicle-type-table {
+.upgr-menu-timed-upgr-item-btn {
+  margin-right: 5%;
+  width: 6.824vw;
+  padding: 5%;
+}
+
+.upgrs-tables {
   width: 100%;
   border-collapse: collapse;
 }
 
-#upgr-menu-vehicle-type-table th {
+.upgrs-tables th {
   border-top: var(--border2);
   border-bottom: var(--border2);
 }
@@ -151,7 +148,12 @@
   width: 40%;
   text-align: left;
   padding-left: 2%;
-  font-size: 3vh;
+  font-size: 1.2rem;
+  line-height: 100%;
+}
+
+.upgr-menu-vehicle-type-item-header h4 {
+  margin-bottom: 0;
 }
 
 .upgr-menu-vehicle-type-item-price {
@@ -164,6 +166,22 @@
 
 .upgr-menu-vehicle-type-item-btn-wrapper {
   width: 20%;
+}
+
+.timedUpgrDesc {
+  margin-top: -100%;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.upgrDesc {
+  margin-top: -100%;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.upgrDesc-wrapper {
+  margin-bottom: 1.33em;
 }
 
 #confirm-upgrade-dialog {

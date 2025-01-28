@@ -2,7 +2,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { buses, a20 } from "./data/busData.js";
+import { vhcls, a20 } from "./data/busData.js";
+import { getCodes } from "./codes.js";
+import { timedUpgrades } from "./data/timedUpgradeData.js";
+import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -30,7 +33,7 @@ let chosenBus = "";
 let bghtUpgrs = [];
 
 const navItemSaveGame = document.getElementById("nav-item-save-game");
-navItemSaveGame.addEventListener("click", saveGame, false);
+navItemSaveGame.addEventListener("click", saveGame);
 
 document.addEventListener("DOMContentLoaded", async () => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
@@ -67,9 +70,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("data loaded from server");
         if (auth.currentUser.emailVerified) {
           console.log("email is verified");
-          sleep(700).then(() => {
-            $("#loader-wrapper").fadeOut("slow");
-          });
+          getCodes()
+            .then(() => {
+              console.log("codes loaded from server");
+              sleep(700).then(() => {
+                $("#loader-wrapper").fadeOut("slow");
+              });
+            })
+            .catch((error) => {
+              console.error("error getting codes:", error);
+            });
         } else {
           console.log("email is not verified");
           window.location.href = "index.html";
@@ -128,7 +138,7 @@ export function silentSaveGame() {
 
 // buying mana20
 const manA20Btn = document.getElementById("mana20");
-manA20Btn.addEventListener("click", buyMana20, false);
+manA20Btn.addEventListener("click", buyMana20);
 
 function buyMana20() {
   if (bal >= a20[0].price) {
@@ -159,6 +169,16 @@ function buyBus(busCode) {
   finishBtn.addEventListener("click", buyBusChecker, { once: true });
 }
 
+// closing the buy menu
+const busCntGUIBtn = document.getElementById("closebuymenu");
+busCntGUIBtn.addEventListener("click", () => {
+  const busCntGUI = document.getElementById("buy-menu");
+  inputEl.value = "";
+  chosenBus = "";
+  updateTotal();
+  busCntGUI.style.display = "none";
+});
+
 function buyBusChecker() {
   console.log("executing buyBusChecker");
 
@@ -188,7 +208,7 @@ function resetBuyMenu() {
 
 function buyBusRight() {
   console.log("executing buyBusRight");
-  let bus = buses.find((bus) => bus.code === chosenBus);
+  let bus = vhcls.find((bus) => bus.code === chosenBus);
   console.log(`from buyBusRight: ${chosenBus}`);
   const busProp = bus;
 
@@ -207,37 +227,33 @@ function buyBusRight() {
 
 // open vehicle menu
 const navItemBuy = document.getElementById("nav-item-buy");
-navItemBuy.addEventListener(
-  "click",
-  function () {
-    const buygui = document.getElementById("buy-bus");
-    if (bghtUpgrs.includes("citybus")) {
-      buygui.style.display = "flex";
-    } else {
-      buygui.style.display = "none";
-      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
-    }
-  },
-  false
-);
+navItemBuy.addEventListener("click", () => {
+  const buygui = document.getElementById("buy-vehicle");
+  const tint = document.querySelector("#window-tint");
+  if (bghtUpgrs.includes("citybus")) {
+    tint.style.display = "block";
+    buygui.style.display = "flex";
+  } else {
+    buygui.style.display = "none";
+    showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
+  }
+});
 
 // close vehicle menu
 const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
-closeBusGuiBtn.addEventListener(
-  "click",
-  function () {
-    const buygui = document.getElementById("buy-bus");
-    buygui.style.display = "none";
-  },
-  false
-);
+closeBusGuiBtn.addEventListener("click", () => {
+  const buygui = document.getElementById("buy-vehicle");
+  const tint = document.querySelector("#window-tint");
+  tint.style.display = "none";
+  buygui.style.display = "none";
+});
 
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
 // updating the total in bus buy window
 function updateTotal() {
-  const busData = buses.find((bus) => bus.code === chosenBus);
+  const busData = vhcls.find((bus) => bus.code === chosenBus);
   const price = busData ? busData.price : 0;
   const maxQuantity = busData ? busData.maxQuantity : Infinity;
 
@@ -250,20 +266,53 @@ function updateTotal() {
   totalEl.innerHTML = abbreviateNumber(buyTotal);
 }
 
-inputEl.addEventListener(
-  "input",
-  () => {
-    inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
-    updateTotal();
-  },
-  false
-);
+inputEl.addEventListener("input", () => {
+  inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
+  updateTotal();
+});
+
+function getTotalIncomeBoost(timedUpgrs) {
+  let totalBoost = 1;
+  timedUpgrs.forEach((upgrade) => {
+    let upgr = timedUpgrades.find((u) => u.id === upgrade);
+    if (upgr && upgr.hasOwnProperty("incomeboost")) {
+      totalBoost += upgr.incomeboost;
+    }
+  });
+  return totalBoost;
+}
 
 async function add() {
+  const timedUpgrs = getActiveTimedUpgrades();
+  const totalBoost = getTotalIncomeBoost(timedUpgrs);
+
   await sleep(100);
-  bal += income / 10;
+  bal += (income / 10) * totalBoost;
   displaybal();
   add();
+}
+
+const clickspace = document.getElementById("clicker");
+clickspace.addEventListener("click", clicker);
+
+function getTotalClickBoost(timedUpgrs) {
+  let totalBoost = 1;
+  timedUpgrs.forEach((upgrade) => {
+    let upgr = timedUpgrades.find((u) => u.id === upgrade);
+    if (upgr && upgr.hasOwnProperty("clickboost")) {
+      totalBoost += upgr.clickboost;
+    }
+  });
+  return totalBoost;
+}
+
+function clicker() {
+  const timedUpgrs = getActiveTimedUpgrades();
+  const totalBoost = getTotalClickBoost(timedUpgrs);
+
+  console.log(clickmod * totalBoost, totalBoost);
+  bal += clickmod * totalBoost;
+  displaybal();
 }
 
 // displaying player data on main game screen
@@ -275,33 +324,14 @@ function displaybal() {
 
 // saving game every 90 seconds to firestore
 async function gameSaver() {
-  await sleep(90000);
+  await sleep(90 * 1000);
   silentSaveGame();
   gameSaver();
 }
 
-const clickspace = document.getElementById("clicker");
-clickspace.addEventListener("click", clicker, false);
-
-function clicker() {
-  bal += clickmod;
-  displaybal();
-}
-
-// hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
-function hideBusCntGUI() {
-  const busCntGUI = document.getElementById("buy-menu");
-  inputEl.value = "";
-  chosenBus = "";
-  updateTotal();
-  busCntGUI.style.display = "none";
-}
-
-const busCntGUIBtn = document.getElementById("closebuymenu");
-busCntGUIBtn.addEventListener("click", hideBusCntGUI, false);
-window.addEventListener("load", add, false);
-window.addEventListener("load", gameSaver, false);
-window.addEventListener("load", displaybal, false);
+window.addEventListener("load", add);
+window.addEventListener("load", gameSaver);
+window.addEventListener("load", displaybal);
 updateTotal();
 
 // warn the user about saving the game before closing
@@ -310,7 +340,7 @@ window.addEventListener("beforeunload", function (event) {
   event.returnValue = "";
 });
 
-// getter and setter for upgrades
+// getter and setter functions for upgrades
 export function getBal() {
   return bal;
 }
@@ -332,11 +362,7 @@ const busEls = document.querySelectorAll(".vhcl-menu-btn");
 
 // Loop over the bus elements and attach an event listener to each one
 busEls.forEach((busEl) => {
-  busEl.addEventListener(
-    "click",
-    () => {
-      buyBus(busEl.id);
-    },
-    false
-  );
+  busEl.addEventListener("click", () => {
+    buyBus(busEl.id);
+  });
 });

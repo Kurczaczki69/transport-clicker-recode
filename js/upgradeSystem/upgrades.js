@@ -1,9 +1,12 @@
-import { upgrades } from "./data/upgradeData.js";
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "./scr.js";
-import { showMsg, clearMsg } from "./utilities.js";
+import { upgrades } from "../data/upgradeData.js";
+import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
+import { clearMsg, showAlert } from "../utilities.js";
+
+// REGULAR UPGRADES ONLY
 
 const notReadySection = document.getElementById("upgr-menu-other-categories");
 const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
+const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
 const dropdown = document.getElementById("upgr-menu-category-dropdown");
 
 // upgrade menu category dropdown
@@ -11,55 +14,61 @@ dropdown.addEventListener("change", () => {
   if (dropdown.value === "0") {
     notReadySection.style.display = "none";
     vehicleTypeSection.style.display = "block";
+    timedUpgrSection.style.display = "none";
+  } else if (dropdown.value === "1") {
+    timedUpgrSection.style.display = "block";
+    vehicleTypeSection.style.display = "none";
+    notReadySection.style.display = "none";
   } else {
     notReadySection.style.display = "block";
     vehicleTypeSection.style.display = "none";
+    timedUpgrSection.style.display = "none";
   }
 });
 
 // opening upgrade menu
 const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
 const upgradeGUI = document.getElementById("upgrades");
+const tint = document.querySelector("#window-tint");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
-navItemUpgrMenu.addEventListener(
-  "click",
-  function () {
-    upgradeGUI.style.display = "flex";
-  },
-  false
-);
+navItemUpgrMenu.addEventListener("click", () => {
+  tint.style.display = "block";
+  upgradeGUI.style.display = "flex";
+});
 
 // closing upgrade menu
-upgrMenuCloseBtn.addEventListener(
-  "click",
-  function () {
-    upgradeGUI.style.display = "none";
-  },
-  false
-);
+upgrMenuCloseBtn.addEventListener("click", () => {
+  tint.style.display = "none";
+  upgradeGUI.style.display = "none";
+});
 
 // buy upgrade after confirming it
 function buyUpgrade(upgrade) {
   const upgradeToBuy = upgrades.find((u) => u.id === upgrade);
+  const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   let bghtUpgrs = getBghtUpgrs();
   if (upgradeToBuy.isAvailable) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
-        showMsg("Nie stać cię!", "msg-confirm-upgrade");
+        confirmationDialog.style.display = "none";
+        showAlert("Nie stać cię!");
       } else {
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
-        showMsg("Kupiono ulepszenie!", "msg-confirm-upgrade");
+        confirmationDialog.style.display = "none";
+        showAlert("Kupiono ulepszenie!");
         silentSaveGame();
       }
     } else {
-      showMsg("Już kupiłeś to ulepszenie!", "msg-confirm-upgrade");
+      confirmationDialog.style.display = "none";
+      showAlert("Już kupiłeś to ulepszenie!");
     }
   } else {
-    showMsg("To ulepszenie będzie dostępne w następnych aktualizacjach!", "msg-confirm-upgrade");
+    confirmationDialog.style.display = "none";
+    showAlert("To ulepszenie będzie dostępne w następnych aktualizacjach!");
   }
 }
 
@@ -83,17 +92,11 @@ function confirmUpgrade(upgradetobuy) {
   });
 }
 
-// listeners for different upgrades
-
 const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
 
 // Loop over the bus elements and attach an event listener to each one
 upgrEls.forEach((upgrEl) => {
-  upgrEl.addEventListener(
-    "click",
-    () => {
-      confirmUpgrade(upgrEl.id);
-    },
-    false
-  );
+  upgrEl.addEventListener("click", () => {
+    confirmUpgrade(upgrEl.id);
+  });
 });

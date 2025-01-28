@@ -1,9 +1,10 @@
-// table containing all upgrades
+// array containing all upgrades
 export const upgrades = [
   {
     category: "vehicleType",
     id: "citybus",
     name: "Autobusy Miejskie",
+    desc: "Odblokowuje autobusy w menu pojazdów",
     price: 0,
     isAvailable: true,
     unlockcategory: "citybus",
@@ -14,6 +15,7 @@ export const upgrades = [
     category: "vehicleType",
     id: "hydrogenbus",
     name: "Autobusy Wodorowe",
+    desc: "Odblokowuje autobusy wodorowe w menu pojazdów",
     price: 25000,
     isAvailable: true,
     unlockcategory: "hydrogenbus",
@@ -24,6 +26,7 @@ export const upgrades = [
     category: "vehicleType",
     id: "intercitybus",
     name: "Autobusy Międzymiastowe",
+    desc: "Odblokowuje autobusy międzymiastowe w menu pojazdów",
     price: 50000,
     isAvailable: true,
     unlockcategory: "intercitybus",
@@ -34,6 +37,7 @@ export const upgrades = [
     category: "vehicleType",
     id: "trolleybus",
     name: "Trolejbusy",
+    desc: "Odblokowuje trolejbusy w menu pojazdów",
     price: 250000,
     isAvailable: false,
     unlockcategory: "trolleybus",
@@ -44,6 +48,7 @@ export const upgrades = [
     category: "vehicleType",
     id: "tram",
     name: "Tramwaje",
+    desc: "Odblokowuje tramwaje w menu pojazdów",
     price: 500000,
     isAvailable: false,
     unlockcategory: "tram",
@@ -60,23 +65,13 @@ export const upgradeCategories = [
     isAvailable: true,
   },
   {
-    id: "clickUpgrade",
-    name: "Ulepszenia klikania",
-    isAvailable: false,
-  },
-  {
-    id: "incomeUpgrade",
-    name: "Ulepszenia zarobków",
-    isAvailable: false,
-  },
-  {
-    id: "routeUpgrade",
-    name: "Trasy",
-    isAvailable: false,
-  },
-  {
-    id: "timeUpgrade",
+    id: "timedUpgrades",
     name: "Ulepszenia czasowe",
+    isAvailable: true,
+  },
+  {
+    id: "routeUpgrades",
+    name: "Trasy",
     isAvailable: false,
   },
 ];

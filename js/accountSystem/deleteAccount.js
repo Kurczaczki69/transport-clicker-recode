@@ -24,22 +24,15 @@ const analytics = getAnalytics(app);
 // showing the window and hiding it
 const accDelBtn = document.getElementById("delete-account-btn");
 const cancelBtn = document.getElementById("are-you-sure-cancel-btn");
-accDelBtn.addEventListener(
-  "click",
-  function () {
-    document.getElementById("areYouSureWrapper").style.display = "block";
-    document.getElementById("changePassWrapper").style.display = "none";
-  },
-  false
-);
 
-cancelBtn.addEventListener(
-  "click",
-  function () {
-    document.getElementById("areYouSureWrapper").style.display = "none";
-  },
-  false
-);
+accDelBtn.addEventListener("click", () => {
+  document.getElementById("areYouSureWrapper").style.display = "block";
+  document.getElementById("changePassWrapper").style.display = "none";
+});
+
+cancelBtn.addEventListener("click", () => {
+  document.getElementById("areYouSureWrapper").style.display = "none";
+});
 
 const confirmBtn = document.getElementById("are-you-sure-confirm-btn");
 

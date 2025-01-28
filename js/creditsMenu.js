@@ -1,12 +1,15 @@
 const creditsWindow = document.getElementById("credits-window");
+const tint = document.querySelector("#window-tint");
 const creditsBtn = document.getElementById("credits-btn");
 const closeCreditsBtn = document.getElementById("close-credits-window-btn");
 
 creditsBtn.addEventListener("click", () => {
+  tint.style.display = "block";
   creditsWindow.style.display = "block";
 });
 
 closeCreditsBtn.addEventListener("click", () => {
+  tint.style.display = "none";
   creditsWindow.style.display = "none";
 });
 

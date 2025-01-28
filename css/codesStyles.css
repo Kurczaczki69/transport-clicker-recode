@@ -13,7 +13,7 @@
   z-index: 1000;
 }
 
-#code-menu-info-wrapper {
+#code-menu-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,4 +30,39 @@
   top: 10%;
   right: 3%;
   cursor: pointer;
+}
+
+#code-menu-title {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#code-menu-msgbox {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 95%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: red;
+}
+
+#code-menu-input {
+  position: absolute;
+  top: 55%;
+  left: 40%;
+  width: 60%;
+  color: var(--colorscheme4);
+  transform: translate(-50%, -50%);
+}
+
+#code-menu-confirm-btn {
+  position: absolute;
+  top: 52%;
+  left: 75%;
+  width: 20%;
+  height: 30%;
 }

@@ -37,14 +37,14 @@
   text-align: left;
   position: absolute;
   left: 5%;
-  font-size: 35px;
+  font-size: 2.5rem;
 }
 
 #email-wrap {
   position: absolute;
   top: 20%;
   left: 5%;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 #acc-btn-wrapper {
@@ -159,6 +159,7 @@
   margin-top: 2.5vh;
   border: var(--border2);
   background-color: var(--colorscheme3);
+  color: var(--colorscheme4);
 }
 
 .inputs::placeholder {
