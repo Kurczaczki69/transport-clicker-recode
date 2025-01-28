@@ -4,6 +4,8 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-aut
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
 import { vhcls, a20 } from "./data/busData.js";
 import { getCodes } from "./codes.js";
+import { timedUpgrades } from "./data/timedUpgradeData.js";
+import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -255,9 +257,24 @@ inputEl.addEventListener("input", () => {
   updateTotal();
 });
 
+function getTotalIncomeBoost(timedUpgrs) {
+  let totalBoost = 1;
+  timedUpgrs.forEach((upgrade) => {
+    let upgr = timedUpgrades.find((u) => u.id === upgrade);
+    if (upgr && upgr.hasOwnProperty("incomeboost")) {
+      totalBoost += upgr.incomeboost;
+    }
+  });
+  return totalBoost;
+}
+
 async function add() {
+  const timedUpgrs = getActiveTimedUpgrades();
+  const totalBoost = getTotalIncomeBoost(timedUpgrs);
+
   await sleep(100);
-  bal += income / 10;
+  bal += (income / 10) * totalBoost;
+  console.log((income / 10) * totalBoost, totalBoost);
   displaybal();
   add();
 }
@@ -284,17 +301,6 @@ function clicker() {
   displaybal();
 }
 
-// hiding the gui with bus quantity(when clicking on a bus to buy it) etc.
-function hideBusCntGUI() {
-  const busCntGUI = document.getElementById("buy-menu");
-  inputEl.value = "";
-  chosenBus = "";
-  updateTotal();
-  busCntGUI.style.display = "none";
-}
-
-const busCntGUIBtn = document.getElementById("closebuymenu");
-busCntGUIBtn.addEventListener("click", hideBusCntGUI);
 window.addEventListener("load", add);
 window.addEventListener("load", gameSaver);
 window.addEventListener("load", displaybal);
@@ -306,7 +312,7 @@ window.addEventListener("beforeunload", function (event) {
   event.returnValue = "";
 });
 
-// getter and setter for upgrades
+// getter and setter functions for upgrades
 export function getBal() {
   return bal;
 }
@@ -322,6 +328,16 @@ export function getBghtUpgrs() {
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
 }
+
+// closing the buy menu
+const busCntGUIBtn = document.getElementById("closebuymenu");
+busCntGUIBtn.addEventListener("click", () => {
+  const busCntGUI = document.getElementById("buy-menu");
+  inputEl.value = "";
+  chosenBus = "";
+  updateTotal();
+  busCntGUI.style.display = "none";
+});
 
 // Get all bus elements
 const busEls = document.querySelectorAll(".vhcl-menu-btn");

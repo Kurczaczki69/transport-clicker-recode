@@ -58,13 +58,13 @@ export function formatTime(ms) {
   const days = Math.floor(ms / (1000 * 60 * 60 * 24));
 
   const formattedTime = [
-    days > 0 ? `${days}d` : "",
-    hours > 0 ? `${hours}g` : "",
-    minutes > 0 ? `${minutes}min` : "",
-    seconds > 0 ? `${seconds}sek` : "",
+    days > 0 ? `${days} d.` : "",
+    hours > 0 ? `${hours} godz` : "",
+    minutes > 0 ? `${minutes} min` : "",
+    seconds > 0 ? `${seconds} s` : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  return formattedTime || "0s";
+  return formattedTime || "0 s";
 }
