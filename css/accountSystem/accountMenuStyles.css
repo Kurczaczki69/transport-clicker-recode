@@ -159,6 +159,7 @@
   margin-top: 2.5vh;
   border: var(--border2);
   background-color: var(--colorscheme3);
+  color: var(--colorscheme4);
 }
 
 .inputs::placeholder {

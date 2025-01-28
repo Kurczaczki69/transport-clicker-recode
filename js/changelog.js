@@ -22,6 +22,7 @@ const contents = [
   "<h3>Wersja ALPHA 0.6.1</h3> <h4>13/11/2024</h4> <br /> - Dodano brakującą ikonę <br />",
   "<h3>Wersja ALPHA 0.6.2</h3> <h4>19/11/2024</h4> <br /> - Duże liczby są od teraz skrócone <br /> - Ilość pieniędzy zmienia się teraz 10 razy na sekundę <br /> - Dodano weryfikację adresów email <br /> - Dodano dwa nowe autobusy w kategorii Autobusy Wodorowe: <br /> |- Toyota FC Bus <br /> |- Toyota Sora <br /> - Kod gry został bardzo zoptymalizowany i poprawiony, więc gra się szybciej ładuje i wszystko działa sprawniej <br /> - Poprawki błędów <br />",
   "<h3>Wersja ALPHA 0.7.0</h3> <h4>09/12/2024</h4> <br /> - Gra zyskała całkowicie nowy wygląd <br /> - Dodano okno z informacjami o grze (można je otworzyć klikając w tekst w prawym dolnym rogu gry) <br /> - Nowy autobus: Solaris InterUrbino 12 <br /> - Kod gry został zoptymalizowany <br /> - Poprawki błędów <br />",
+  "<h3>Wersja ALPHA 0.8.0</h3> <h4>28/01/2025</h4> <br /> - Dodano system ulepszeń czasowych <br> - Dodano system kodów(Odbierz sobie kod ALPHA01)<br> - Od teraz za oknami jest czarne przyciemnienie<br> - Gdy kupisz ulepszenie wyświetla się teraz okienko z wiadomością<br> - Zmiany wizualne <br> - Poprawki kodu <br> - Optymalizacja kodu gry <br>",
 ];
 
 const tint = document.querySelector("#window-tint");

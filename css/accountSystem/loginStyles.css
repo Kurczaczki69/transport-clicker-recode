@@ -70,6 +70,7 @@ body {
   border-radius: 5px;
   margin-top: 10px;
   background-color: var(--colorscheme3);
+  color: var(--colorscheme4);
 }
 
 .form-input::placeholder {
