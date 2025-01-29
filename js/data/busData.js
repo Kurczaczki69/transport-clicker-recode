@@ -11,7 +11,7 @@ export const vhcls = [
     price: 500,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu9",
@@ -21,7 +21,7 @@ export const vhcls = [
     price: 4000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu105",
@@ -31,7 +31,7 @@ export const vhcls = [
     price: 6000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu12",
@@ -41,7 +41,7 @@ export const vhcls = [
     price: 8000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "sola86",
@@ -51,7 +51,7 @@ export const vhcls = [
     price: 15000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu18",
@@ -61,7 +61,7 @@ export const vhcls = [
     price: 16000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu24",
@@ -71,7 +71,7 @@ export const vhcls = [
     price: 21000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "manlion",
@@ -81,7 +81,7 @@ export const vhcls = [
     price: 24000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "jelczm121m",
@@ -91,7 +91,7 @@ export const vhcls = [
     price: 25500,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "manlioncig",
@@ -101,7 +101,7 @@ export const vhcls = [
     price: 35000,
     requiredUpgr: "none",
     category: "citybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu12h",
@@ -111,7 +111,7 @@ export const vhcls = [
     price: 24500,
     requiredUpgr: "none",
     category: "hydrogenbus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solu18h",
@@ -121,7 +121,7 @@ export const vhcls = [
     price: 27500,
     requiredUpgr: "none",
     category: "hydrogenbus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "toyotafc",
@@ -131,7 +131,7 @@ export const vhcls = [
     price: 60000,
     requiredUpgr: "none",
     category: "hydrogenbus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "toyotasora",
@@ -141,7 +141,7 @@ export const vhcls = [
     price: 95000,
     requiredUpgr: "none",
     category: "hydrogenbus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "vacanza12",
@@ -151,7 +151,7 @@ export const vhcls = [
     price: 40000,
     requiredUpgr: "none",
     category: "intercitybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "vacanza13",
@@ -161,7 +161,7 @@ export const vhcls = [
     price: 58000,
     requiredUpgr: "none",
     category: "intercitybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
   {
     code: "solint12",
@@ -171,7 +171,7 @@ export const vhcls = [
     price: 120000,
     requiredUpgr: "none",
     category: "intercitybus",
-    maxQuantity: 1000,
+    maxQuantity: 100000,
   },
 ];
 

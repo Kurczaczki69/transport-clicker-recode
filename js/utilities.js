@@ -45,7 +45,7 @@ export function showAlert(message) {
 
 // abbreviates number to human readable format
 export function abbreviateNumber(num) {
-  const formatter = new Intl.NumberFormat("en", {
+  const formatter = new Intl.NumberFormat("pl", {
     notation: "compact",
     compactDisplay: "short",
     maximumSignificantDigits: 4,
@@ -62,7 +62,7 @@ export function formatTime(ms) {
   const days = Math.floor(ms / (1000 * 60 * 60 * 24));
 
   const formattedTime = [
-    days > 0 ? `${days} d.` : "",
+    days > 0 ? `${days} d` : "",
     hours > 0 ? `${hours} godz` : "",
     minutes > 0 ? `${minutes} min` : "",
     seconds > 0 ? `${seconds} s` : "",

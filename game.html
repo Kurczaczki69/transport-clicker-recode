@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.8.0 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.8.1 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -116,6 +116,7 @@
 
       <div id="changelog-left-nav">
         <select name="versions" id="version-dropdown">
+          <option value="12">ALPHA 0.8.1</option>
           <option value="11">ALPHA 0.8.0</option>
           <option value="10">ALPHA 0.7.0</option>
           <option value="9">ALPHA 0.6.2</option>
@@ -132,17 +133,14 @@
       </div>
 
       <div id="content-container-changelog">
-        <h3>Wersja ALPHA 0.8.0</h3>
-        <h4>28/01/2025</h4>
+        <h3>Wersja ALPHA 0.8.1</h3>
+        <h4>29/01/2025</h4>
         <br />
 
-        - Dodano system ulepszeń czasowych <br>
-        - Dodano system kodów(Odbierz sobie kod ALPHA01)<br>
-        - Od teraz za oknami jest czarne przyciemnienie<br>
-        - Gdy kupisz ulepszenie wyświetla się teraz okienko z wiadomością<br>
-        - Zmiany wizualne <br>
-        - Poprawki kodu <br>
-        - Optymalizacja kodu gry <br>
+        - Zmienione ceny ulepszeń <br>
+        - Maksymalna ilość pojazdów które można kupić na raz została zwiększona do 100000 <br>
+        - Zmieniony format numerów na polski <br>
+        - Kilka mniejszych zmian w kodzie <br>
       </div>
     </div>
 
@@ -690,7 +688,7 @@
                 <button class="upgr-menu-vehicle-type-item-btn btns" id="trolleybus">Kup</button>
               </th>
             </tr>
-            <!-- trams -->
+            <!-- long trolleybuses -->
             <tr>
               <th class="upgr-menu-vehicle-type-item-header">
                 <h4><span id="upgr5" class="upgrName"></span></h4>
@@ -702,6 +700,24 @@
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr5-price" class="upgrPrice"></span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="longtrolleybus">Kup</button>
+              </th>
+            </tr>
+            <!-- trams -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="upgr6" class="upgrName"></span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr6-desc" class="upgrDesc"></span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span id="upgr6-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
@@ -840,7 +856,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.0</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.1</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper"><span class="tabler--users"></span> Autorzy</div>
           </div>
@@ -864,7 +880,7 @@
             <h2 id="credits-menu-authors-section-title">Autorzy</h2>
 
             <div class="credits-menu-contributor-item">
-              luku123 <br />
+              luku <br />
               <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
             </div>
           </div>
@@ -873,7 +889,7 @@
             <h2 id="credits-menu-translators-section-title">Tłumacze</h2>
 
             <div class="credits-menu-contributor-item">
-              luku123 <br />
+              luku <br />
               <span class="credits-menu-contributor-github">(GitHub: @Kurczaczki69)</span>
             </div>
           </div>
@@ -881,7 +897,7 @@
       </div>
     </section>
 
-    <section id="credits-btn">O grze [vALPHA0.8.0]</section>
+    <section id="credits-btn">O grze [vALPHA0.8.1]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>

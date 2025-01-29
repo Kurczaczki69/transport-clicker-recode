@@ -16,7 +16,7 @@ export const upgrades = [
     id: "hydrogenbus",
     name: "Autobusy Wodorowe",
     desc: "Odblokowuje autobusy wodorowe w menu pojazdów",
-    price: 25000,
+    price: 50000,
     isAvailable: true,
     unlockcategory: "hydrogenbus",
     incomeboost: 0,
@@ -27,7 +27,7 @@ export const upgrades = [
     id: "intercitybus",
     name: "Autobusy Międzymiastowe",
     desc: "Odblokowuje autobusy międzymiastowe w menu pojazdów",
-    price: 50000,
+    price: 125000,
     isAvailable: true,
     unlockcategory: "intercitybus",
     incomeboost: 0,
@@ -38,9 +38,20 @@ export const upgrades = [
     id: "trolleybus",
     name: "Trolejbusy",
     desc: "Odblokowuje trolejbusy w menu pojazdów",
-    price: 250000,
+    price: 275000,
     isAvailable: false,
     unlockcategory: "trolleybus",
+    incomeboost: 0,
+    clickboost: 0,
+  },
+  {
+    category: "vehicleType",
+    id: "trolleybus",
+    name: "Trolejbusy(długie)",
+    desc: "Odblokowuje długie trolejbusy w menu pojazdów",
+    price: 350000,
+    isAvailable: false,
+    unlockcategory: "longtrolleybus",
     incomeboost: 0,
     clickboost: 0,
   },
@@ -49,7 +60,7 @@ export const upgrades = [
     id: "tram",
     name: "Tramwaje",
     desc: "Odblokowuje tramwaje w menu pojazdów",
-    price: 500000,
+    price: 600000,
     isAvailable: false,
     unlockcategory: "tram",
     incomeboost: 0,
@@ -57,7 +68,7 @@ export const upgrades = [
   },
 ];
 
-// table containg all upgrade categories
+// array containg all upgrade categories
 export const upgradeCategories = [
   {
     id: "vehicleType",
