@@ -47,17 +47,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         userData.clickmod == null ||
         userData.bghta20 == null
       ) {
-        await setDoc(doc(db, "users", loggedInUserId), {
-          email: userData.email,
-          username: userData.username,
-          balance: bal,
-          income: income,
-          clickmod: clickmod,
-          bghta20: bghta20,
-          bghtUpgrs: bghtUpgrs,
-        });
+        await setDoc(
+          doc(db, "users", loggedInUserId),
+          {
+            email: userData.email,
+            username: userData.username,
+            balance: bal,
+            income: income,
+            clickmod: clickmod,
+            bghta20: bghta20,
+            bghtUpgrs: bghtUpgrs,
+          },
+          { merge: true }
+        );
         console.log("saved data to server");
-        console.log(bghtUpgrs);
         sleep(700).then(() => {
           $("#loader-wrapper").fadeOut("slow");
         });
@@ -138,13 +141,12 @@ export function silentSaveGame() {
 
 // buying mana20
 const manA20Btn = document.getElementById("mana20");
-manA20Btn.addEventListener("click", buyMana20);
+manA20Btn.addEventListener("click", buyManA20);
 
-function buyMana20() {
+function buyManA20() {
   if (bal >= a20[0].price) {
     if (bghta20 == false) {
       bal = bal - a20[0].price;
-      console.log("bought a20");
       clickmod = clickmod + a20[0].clickmod;
       bghta20 = true;
       showAlert("Kupiono MAN A20");
@@ -180,10 +182,7 @@ busCntGUIBtn.addEventListener("click", () => {
 });
 
 function buyBusChecker() {
-  console.log("executing buyBusChecker");
-
   if (isEmpty(inputEl.value)) {
-    console.log("from buyBusChecker: improper value input");
     showAlert("Wprowadź prawidłową ilość!");
     resetBuyMenu();
     return;
@@ -192,7 +191,6 @@ function buyBusChecker() {
   if (bal >= buyTotal) {
     buyBusRight();
   } else {
-    console.log("from buyBusChecker: not enough money");
     showAlert("Nie stać cię!");
     resetBuyMenu();
   }
@@ -207,16 +205,13 @@ function resetBuyMenu() {
 }
 
 function buyBusRight() {
-  console.log("executing buyBusRight");
   let bus = vhcls.find((bus) => bus.code === chosenBus);
-  console.log(`from buyBusRight: ${chosenBus}`);
   const busProp = bus;
 
   bal -= buyTotal;
   income += parseInt(busProp.incomemod) * parseInt(inputEl.value);
   clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
 
-  console.log(`from buyBusRight: bought ${bus.name} x${parseInt(inputEl.value)}`);
   showAlert(`Kupiono autobusy ${bus.name}`);
   silentSaveGame();
   inputEl.value = "0";
@@ -257,7 +252,6 @@ function updateTotal() {
   const price = busData ? busData.price : 0;
   const maxQuantity = busData ? busData.maxQuantity : Infinity;
 
-  // Handle maximum quantity if needed
   if (inputEl.value > maxQuantity) {
     inputEl.value = maxQuantity;
   }
@@ -317,9 +311,9 @@ function clicker() {
 
 // displaying player data on main game screen
 function displaybal() {
-  document.getElementById("bal-show").innerHTML = abbreviateNumber(bal);
-  document.getElementById("income-show").innerHTML = abbreviateNumber(income);
-  document.getElementById("click-show").innerHTML = abbreviateNumber(clickmod);
+  document.querySelector("#bal-show").innerHTML = abbreviateNumber(bal);
+  document.querySelector("#income-show").innerHTML = abbreviateNumber(income);
+  document.querySelector("#click-show").innerHTML = abbreviateNumber(clickmod);
 }
 
 // saving game every 90 seconds to firestore
