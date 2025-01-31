@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.8.1 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.8.2DEV -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -28,6 +28,7 @@
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/banana-i18n/banana-i18n.js"></script>
 
     <style>
       :root {
@@ -72,6 +73,11 @@
           <button id="change-pass-btn" class="btns-acc-window">Zmień hasło</button>
           <button id="logout-btn" class="btns-acc-window">Wyloguj się</button>
           <button id="delete-account-btn" class="btns-acc-window">Usuń konto</button>
+          <p id="lang-title-wrap">Język:</p>
+          <select name="langs" id="lang-dropdown">
+            <option value="pl">Polski</option>
+            <option value="en">English</option>
+          </select>
         </div>
       </div>
 
@@ -856,7 +862,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.1</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.2DEV</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper"><span class="tabler--users"></span> Autorzy</div>
           </div>
@@ -877,7 +883,7 @@
 
         <div id="credits-menu-section-right">
           <div id="credits-menu-authors-section">
-            <h2 id="credits-menu-authors-section-title">Autorzy</h2>
+            <h2 id="credits-menu-authors-section-title" data-lang="credits-authors"></h2>
 
             <div class="credits-menu-contributor-item">
               luku <br />
@@ -886,7 +892,7 @@
           </div>
 
           <div id="credits-menu-translators-section">
-            <h2 id="credits-menu-translators-section-title">Tłumacze</h2>
+            <h2 id="credits-menu-translators-section-title" data-lang="credits-translators"></h2>
 
             <div class="credits-menu-contributor-item">
               luku <br />
@@ -897,7 +903,7 @@
       </div>
     </section>
 
-    <section id="credits-btn">O grze [vALPHA0.8.1]</section>
+    <section id="credits-btn">O grze [vALPHA0.8.2DEV]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script src="js/changelog.js"></script>
@@ -912,6 +918,7 @@
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
+    <script type="module" src="js/langs.js"></script>
     <script type="module" src="js/busMenu.js"></script>
     <script type="module" src="js/utilities.js"></script>
     <script type="module" src="js/data/upgradeData.js"></script>

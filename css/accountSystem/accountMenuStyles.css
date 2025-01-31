@@ -152,6 +152,38 @@
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
 }
 
+#lang-dropdown {
+  font-family: "Lato", sans-serif;
+  background-color: rgb(88, 84, 84);
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  border: var(--border2);
+  color: var(--colorscheme2);
+  font-weight: 200;
+  font-size: 1rem;
+  text-align: center;
+
+  width: 325%;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-bottom: 15%;
+  margin-top: 50%;
+}
+
+#lang-dropdown:focus {
+  outline: none;
+  border: var(--border2);
+}
+
+#lang-title-wrap {
+  position: absolute;
+  top: 55%;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 .inputs {
   width: 60%;
   padding: 2.5%;

@@ -47,19 +47,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         userData.clickmod == null ||
         userData.bghta20 == null
       ) {
-        await setDoc(
-          doc(db, "users", loggedInUserId),
-          {
-            email: userData.email,
-            username: userData.username,
-            balance: bal,
-            income: income,
-            clickmod: clickmod,
-            bghta20: bghta20,
-            bghtUpgrs: bghtUpgrs,
-          },
-          { merge: true }
-        );
+        await setDoc(doc(db, "users", loggedInUserId), {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
+        });
         console.log("saved data to server");
         sleep(700).then(() => {
           $("#loader-wrapper").fadeOut("slow");
@@ -304,7 +300,6 @@ function clicker() {
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
-  console.log(clickmod * totalBoost, totalBoost);
   bal += clickmod * totalBoost;
   displaybal();
 }
