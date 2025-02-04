@@ -1,4 +1,4 @@
-import Banana from "../node_modules/banana-i18n/dist/esm/banana-i18n.js";
+import Banana from "transport-clicker-recode/node_modules/banana-i18n/dist/esm/banana-i18n.js";
 import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
