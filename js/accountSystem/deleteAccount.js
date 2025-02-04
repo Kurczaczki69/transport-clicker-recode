@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 import {
@@ -7,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { showMsg } from "../utilities.js";
+import { banana } from "../langs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -50,24 +50,24 @@ confirmBtn.addEventListener("click", (event) => {
         .then(() => {
           localStorage.setItem("loggedIn", false);
           localStorage.removeItem("loggedInUserId");
-          window.alert("Usunięto konto pomyślnie!");
+          window.alert(banana.i18n("delete-acc-success"));
           window.location.href = "index.html";
           console.log("account deleted succesfully");
         })
         .catch((error) => {
-          showMsg("Wystąpił błąd!", "input-msg");
+          showMsg(banana.i18n("error-occured"), "input-msg");
           console.error("deletion unsuccesful - error:", error);
         });
     })
     .catch((error) => {
       const errorCode = error.code;
       if (errorCode === "auth/invalid-credential") {
-        showMsg("Niepoprawne hasło!", "input-msg");
+        showMsg(banana.i18n("wrong-password"), "input-msg");
         console.error("deletion unsuccesful - wrong password");
       } else if (errorCode === "auth/requires-recent-login") {
-        showMsg("Proszę kliknąć w przycisk ponownie!");
+        showMsg(banana.i18n("delete-account-requires-recent-login"), "input-msg");
       } else {
-        showMsg("Wystąpił błąd!", "input-msg");
+        showMsg(banana.i18n("error-occured"), "input-msg");
         console.error("deletion unsuccesful - error:", error);
         console.log(errorCode);
       }

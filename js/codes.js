@@ -10,6 +10,7 @@ import {
 import { showMsg, clearMsg } from "./utilities.js";
 import { getBal, setBal, silentSaveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
+import { banana } from "./langs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -58,7 +59,7 @@ function useCode(code) {
     applyCodeBoosts(codeData);
   } else {
     console.log("invalid code");
-    showMsg("Nieprawidłowy kod!", "code-menu-msgbox");
+    showMsg(banana.i18n("codes-invalid-code"), "code-menu-msgbox");
   }
 }
 
@@ -67,12 +68,12 @@ async function applyCodeBoosts(code) {
   let codeData = usedCodes.includes(code.code);
   if (codeData) {
     console.log("code already used");
-    showMsg("Już użyłeś tego kodu!", "code-menu-msgbox");
+    showMsg(banana.i18n("codes-code-already-used"), "code-menu-msgbox");
   } else {
     const expireDate = new Date(code.expireDate.seconds * 1000);
     if (Date.now() > expireDate.getTime()) {
       console.log("code expired");
-      showMsg("Ten kod wygasł!", "code-menu-msgbox");
+      showMsg(banana.i18n("codes-code-expired"), "code-menu-msgbox");
     } else {
       let bal = getBal();
       bal = bal + code.moneyReward;
@@ -81,7 +82,7 @@ async function applyCodeBoosts(code) {
       usedCodes.push(code.code);
       await setUsedCodes(usedCodes);
       console.log("code used");
-      showMsg("Wykorzystano kod!", "code-menu-msgbox");
+      showMsg(banana.i18n("codes-success"), "code-menu-msgbox");
     }
   }
 }

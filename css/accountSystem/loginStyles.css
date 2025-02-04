@@ -130,3 +130,28 @@ body {
   text-decoration: underline;
   text-align: center;
 }
+
+#lang-dropdown {
+  width: 25%;
+  padding: 0.5%;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 300;
+  color: var(--colorscheme2);
+  margin-top: 0.5%;
+  margin-bottom: -1%;
+}
+
+#lang-dropdown:focus {
+  outline: none;
+  border: none;
+}
+
+option {
+  font-family: "Lato", sans-serif;
+  color: var(--colorscheme4);
+  background-color: var(--colorscheme3);
+}

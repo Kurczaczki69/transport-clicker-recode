@@ -1,8 +1,9 @@
-import { upgrades } from "../data/upgradeData.js";
+import { getUpgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
-import { clearMsg, showAlert } from "../utilities.js";
+import { showAlert } from "../utilities.js";
+import { banana } from "../langs.js";
 
-// REGULAR UPGRADES ONLY
+// REGULAR UPGRADES ONLY (so no timed upgrades)
 
 const notReadySection = document.getElementById("upgr-menu-other-categories");
 const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
@@ -45,6 +46,7 @@ upgrMenuCloseBtn.addEventListener("click", () => {
 
 // buy upgrade after confirming it
 function buyUpgrade(upgrade) {
+  const upgrades = getUpgrades();
   const upgradeToBuy = upgrades.find((u) => u.id === upgrade);
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
@@ -53,34 +55,34 @@ function buyUpgrade(upgrade) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
         confirmationDialog.style.display = "none";
-        showAlert("Nie stać cię!");
+        showAlert(banana.i18n("cant-afford"));
       } else {
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
         confirmationDialog.style.display = "none";
-        showAlert("Kupiono ulepszenie!");
+        showAlert(banana.i18n("upgrade-success"));
         silentSaveGame();
       }
     } else {
       confirmationDialog.style.display = "none";
-      showAlert("Już kupiłeś to ulepszenie!");
+      showAlert(banana.i18n("upgrade-already-bought"));
     }
   } else {
     confirmationDialog.style.display = "none";
-    showAlert("To ulepszenie będzie dostępne w następnych aktualizacjach!");
+    showAlert(banana.i18n("upgrade-not-available"));
   }
 }
 
 // confirm if the user wants to buy the upgrade
 function confirmUpgrade(upgradetobuy) {
+  const upgrades = getUpgrades();
   const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   const confirmBtn = document.querySelector("#confirm-upgr-btn");
   const cancelBtn = document.querySelector("#cancel-upgr-btn");
   const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
   upgradeName.textContent = upgradeToBuy.name;
-  clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
 
   confirmBtn.addEventListener("click", () => {

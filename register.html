@@ -23,26 +23,46 @@
       }
     </style>
   </head>
-  <body>
+  <body data-page="register">
+    <select name="langs" id="lang-dropdown">
+      <option value="pl">Polski</option>
+      <option value="en">English</option>
+    </select>
+
     <div id="login-box">
-      <h2 id="login-box-title">Transport Clicker<br />Rejestracja</h2>
+      <h2 id="login-box-title">Transport Clicker<br /><span data-lang="login-page-subtitle2"></span></h2>
       <h4 id="login-box-register-link">
-        Masz już konto?
-        <a href="index.html" id="register-link">Zaloguj się</a>
+        <span data-lang="login-page-login-text"></span>
+        <a href="index.html" id="register-link" data-lang="login-page-login"></a>
       </h4>
 
       <form id="login-form">
         <div id="errorMsgRegister" class="msgDiv"></div>
-        <input type="text" id="username-input reg-name" class="form-input" placeholder="Nazwa Użytkownika" />
-        <input type="email" id="email-input reg-email" class="form-input" placeholder="E-mail" />
+        <input
+          type="text"
+          id="username-input reg-name"
+          class="form-input"
+          placeholder=""
+          data-lang-placeholder="username" />
+        <input
+          type="email"
+          id="email-input reg-email"
+          class="form-input"
+          placeholder=""
+          data-lang-placeholder="email" />
         <br />
-        <input type="password" id="password-input reg-pass" class="form-input" placeholder="Hasło" />
+        <input
+          type="password"
+          id="password-input reg-pass"
+          class="form-input"
+          placeholder=""
+          data-lang-placeholder="password" />
         <br />
-        <button id="register-btn" class="submit-form-btn">Zarejestruj się</button>
+        <button id="register-btn" class="submit-form-btn" data-lang="login-page-register"></button>
       </form>
     </div>
 
-    <section id="credits-btn">vALPHA0.8.1</section>
+    <section id="credits-btn">vALPHA0.8.2DEV</section>
 
     <script type="module" src="js/accountSystem/firebaseAuth.js"></script>
   </body>

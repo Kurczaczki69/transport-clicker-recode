@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { banana } from "../langs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -36,8 +37,12 @@ onAuthStateChanged(auth, (user) => {
       });
   } else {
     const accWindow = document.getElementById("accountbox");
-    accWindow.innerHTML =
-      "<h2 id='accWelcome'>Nie jesteś zalogowany!</h2><br><div id='acc-btn-wrapper'><a href='index.html'><button id='gotologin-btn' class='btns-acc-window'>Zaloguj się</button></a></div>";
+    accWindow.innerHTML = banana.i18n(
+      "acc-not-logged-in",
+      "<h2 id='accWelcome'>",
+      "</h2><br><div id='acc-btn-wrapper'><a href='index.html'><button id='gotologin-btn' class='btns-acc-window'>",
+      "</button></a></div>"
+    );
     console.log("User Id not found in local storage");
     window.location.href = "index.html";
   }

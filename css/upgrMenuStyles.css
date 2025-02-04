@@ -75,15 +75,13 @@
 }
 
 #upgr-menu-category-dropdown {
-  font-family: "Lato", sans-serif;
-  background-color: rgb(88, 84, 84);
+  border: none;
   border-radius: 5px;
   background: var(--colorscheme4);
   background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  border: var(--border2);
+  font-weight: 300;
   color: var(--colorscheme2);
-  font-weight: 200;
 
   margin-left: 1.5vh;
   padding: 5px;
@@ -91,7 +89,7 @@
 
 #upgr-menu-category-dropdown:focus {
   outline: none;
-  border: var(--border2);
+  border: none;
 }
 
 #upgr-menu-main-section-wrapper {

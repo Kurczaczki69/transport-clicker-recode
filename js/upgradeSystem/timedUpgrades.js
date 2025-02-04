@@ -1,7 +1,8 @@
-import { timedUpgrades } from "../data/timedUpgradeData.js";
+import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getBal, setBal } from "../scr.js";
 import { clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
+import { banana } from "../langs.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
@@ -10,12 +11,13 @@ const activeTimedUpgradeLimit = 2;
 const timedUpgrEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn");
 
 function buyTimedUpgrade(upgrId) {
+  let timedUpgrades = getTimedUpgrades();
   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgrId);
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   if (bal < upgradeToBuy.price) {
     confirmationDialog.style.display = "none";
-    showAlert("Nie stać cię!");
+    showAlert(banana.i18n("cant-afford"));
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       let activeUpgrs = getActiveTimedUpgrades();
@@ -24,23 +26,24 @@ function buyTimedUpgrade(upgrId) {
       bal -= upgradeToBuy.price;
       setBal(bal);
       confirmationDialog.style.display = "none";
-      showAlert("Ulepszenie aktywowane na " + formatTime(upgradeToBuy.duration) + "!");
-      showNotif(upgradeToBuy.name, "Pozostały czas: " + formatTime(upgradeToBuy.duration), "notif-timed-upgr");
+      showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
+      showNotif(
+        upgradeToBuy.name,
+        banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
+        "notif-timed-upgr"
+      );
       const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
       notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
       runUpgrade(upgradeToBuy);
     } else {
       confirmationDialog.style.display = "none";
-      if (activeTimedUpgradeLimit === 1) {
-        showAlert("Możesz mieć tylko jedno aktywne ulepszenie!");
-      } else if (activeTimedUpgradeLimit > 1) {
-        showAlert("Możesz mieć tylko " + activeTimedUpgradeLimit + " aktywnych ulepszeń!");
-      }
+      showAlert(banana.i18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
     }
   }
 }
 
 function confirmTimedUpgrade(upgradetobuy) {
+  let timedUpgrades = getTimedUpgrades();
   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgradetobuy);
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   const confirmBtn = document.querySelector("#confirm-upgr-btn");
@@ -83,6 +86,7 @@ export function setActiveTimedUpgrades(upgrades) {
 }
 
 export async function runUpgrade(upgr) {
+  let timedUpgrades = getTimedUpgrades();
   const upgrade = timedUpgrades.find((u) => u.id === upgr.id);
   let remainingTime = upgrade.duration;
   updateTimerDisplay(upgrade, remainingTime);
@@ -106,6 +110,7 @@ export function removeUpgrade(upgr, upgrade) {
 }
 
 export function grantUpgrade(upgrId) {
+  let timedUpgrades = getTimedUpgrades();
   const upgradeToGrant = timedUpgrades.find((u) => u.id === upgrId);
   if (!upgradeToGrant) {
     console.log(`Upgrade with ID ${upgrId} does not exist.`);
@@ -115,7 +120,7 @@ export function grantUpgrade(upgrId) {
   activeUpgrs.push(upgradeToGrant.id);
   setActiveTimedUpgrades(activeUpgrs);
 
-  showNotif(upgradeToGrant.name, "Pozostały czas: " + formatTime(upgradeToGrant.duration), "notif-timed-upgr");
+  showNotif(upgradeToBuy.name, banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)), "notif-timed-upgr");
   const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
   notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
   runUpgrade(upgradeToGrant);

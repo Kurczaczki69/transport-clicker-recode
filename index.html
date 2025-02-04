@@ -24,27 +24,37 @@
     </style>
   </head>
 
-  <body>
+  <body data-page="login">
+    <select name="langs" id="lang-dropdown">
+      <option value="pl">Polski</option>
+      <option value="en">English</option>
+    </select>
+
     <div id="login-box">
-      <h2 id="login-box-title">Transport Clicker<br />Logowanie</h2>
+      <h2 id="login-box-title">Transport Clicker<br /><span data-lang="login-page-subtitle"></span></h2>
       <h4 id="login-box-register-link">
-        Nie masz konta?
-        <a href="register.html" id="register-link">Zarejestruj się</a>
+        <span data-lang="login-page-register-text"></span>
+        <a href="register.html" id="register-link" data-lang="login-page-register"></a>
         <br />
-        <label id="forgot-pass-link">Nie pamiętasz hasła?</label>
+        <label id="forgot-pass-link" data-lang="dont-remember-pass-link"></label>
       </h4>
 
       <form id="login-form">
         <div id="errorMsgLogin" class="msgDiv" style="display: none"></div>
-        <input type="email" id="email-input-login" class="form-input" placeholder="E-mail" />
+        <input type="email" id="email-input-login" class="form-input" placeholder="" data-lang-placeholder="email" />
         <br />
-        <input type="password" id="password-input-login" class="form-input" placeholder="Hasło" />
+        <input
+          type="password"
+          id="password-input-login"
+          class="form-input"
+          placeholder=""
+          data-lang-placeholder="password" />
         <br />
-        <button id="login-btn" class="submit-form-btn">Zaloguj się</button>
+        <button id="login-btn" class="submit-form-btn" data-lang="login-page-login"></button>
       </form>
     </div>
 
-    <section id="credits-btn">vALPHA0.8.1</section>
+    <section id="credits-btn">vALPHA0.8.2DEV</section>
 
     <script type="module" src="js/accountSystem/firebaseLogin.js"></script>
     <script type="module" src="js/accountSystem/redirectIfLoggedIn.js"></script>

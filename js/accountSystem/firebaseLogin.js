@@ -5,6 +5,7 @@ import {
   sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { showMsg } from "../utilities.js";
+import { banana } from "../langs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -18,8 +19,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const LoginBtn = document.querySelector("#login-btn");
-LoginBtn.addEventListener("click", (event) => {
+const loginBtn = document.querySelector("#login-btn");
+loginBtn.addEventListener("click", (event) => {
   console.log("btn clicked");
   event.preventDefault();
   const email = document.getElementById("email-input-login").value;
@@ -30,7 +31,7 @@ LoginBtn.addEventListener("click", (event) => {
     .then((userCredential) => {
       if (auth.currentUser.emailVerified) {
         console.log("login successful");
-        showMsg("Zalogowano pomyślnie!", "errorMsgLogin");
+        showMsg(banana.i18n("auth-login-success"), "errorMsgLogin");
         const user = userCredential.user;
         localStorage.setItem("loggedInUserId", user.uid);
         localStorage.setItem("loggedIn", true);
@@ -38,19 +39,19 @@ LoginBtn.addEventListener("click", (event) => {
         window.location.href = "game.html";
       } else {
         showMsg(
-          "Proszę zweryfikować swój adres email!<br> <span id='send-verification-again'>Wyślij nowy link</span>",
+          banana.i18n("auth-login-verify-email", "<br>", "<span id='send-verification-again'>", "</span>"),
           "errorMsgLogin"
         );
         const sendVerificationBtn = document.getElementById("send-verification-again");
         sendVerificationBtn.addEventListener("click", () => {
           sendEmailVerification(auth.currentUser)
             .then(() => {
-              showMsg("Wysłano email do weryfikacji konta", "errorMsgLogin");
+              showMsg(banana.i18n("auth-verification-email-sent"), "errorMsgLogin");
             })
             .catch((error) => {
               console.log(error);
               console.log(error.code);
-              showMsg("Wystąpił błąd!", "errorMsgLogin");
+              showMsg(banana.i18n("error-occured"), "errorMsgLogin");
             });
         });
       }
@@ -59,18 +60,21 @@ LoginBtn.addEventListener("click", (event) => {
       const errorCode = error.code;
       if (errorCode === "auth/invalid-credential") {
         console.log("invalid credential");
-        showMsg("Niepoprawny email lub hasło", "errorMsgLogin");
+        showMsg(banana.i18n("auth-login-invalid-credentials"), "errorMsgLogin");
       } else if (errorCode === "auth/user-disabled") {
-        showMsg("Twoje konto jest zablokowane!", "errorMsgLogin");
+        showMsg(banana.i18n("auth-login-account-banned"), "errorMsgLogin");
       } else if (errorCode === "auth/invalid-email") {
-        showMsg("Niepoprawny email!", "errorMsgLogin");
+        showMsg(banana.i18n("auth-invalid-email"), "errorMsgLogin");
       } else if (errorCode === "auth/unverified-email") {
-        showMsg("Proszę zweryfikować swój adres email!", "errorMsgLogin");
+        showMsg(
+          banana.i18n("auth-login-verify-email", "<br>", "<span id='send-verification-again'>", "</span>"),
+          "errorMsgLogin"
+        );
       } else if (errorCode === "auth/missing-password") {
-        showMsg("Proszę podać hasło!", "errorMsgLogin");
+        showMsg(banana.i18n("auth-login-missing-password"), "errorMsgLogin");
       } else {
         console.log("login failed");
-        showMsg("Wystąpił błąd!", "errorMsgLogin");
+        showMsg(banana.i18n("error-occured"), "errorMsgLogin");
         console.log(error);
         console.log(error.code);
       }
