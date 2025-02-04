@@ -81,9 +81,7 @@
 }
 
 #loading-text {
-  text-align: center;
-  margin-left: -50%;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 /* WRAPPER SECTION */
@@ -94,11 +92,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1200;
+  z-index: 12000;
   background: var(--colorscheme3);
   background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+#loading-text-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

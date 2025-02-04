@@ -4,8 +4,9 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-aut
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
 import { vhcls, a20 } from "./data/busData.js";
 import { getCodes } from "./codes.js";
-import { timedUpgrades } from "./data/timedUpgradeData.js";
+import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
+import { banana } from "./langs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -47,19 +48,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         userData.clickmod == null ||
         userData.bghta20 == null
       ) {
-        await setDoc(
-          doc(db, "users", loggedInUserId),
-          {
-            email: userData.email,
-            username: userData.username,
-            balance: bal,
-            income: income,
-            clickmod: clickmod,
-            bghta20: bghta20,
-            bghtUpgrs: bghtUpgrs,
-          },
-          { merge: true }
-        );
+        await setDoc(doc(db, "users", loggedInUserId), {
+          email: userData.email,
+          username: userData.username,
+          balance: bal,
+          income: income,
+          clickmod: clickmod,
+          bghta20: bghta20,
+          bghtUpgrs: bghtUpgrs,
+        });
         console.log("saved data to server");
         sleep(700).then(() => {
           $("#loader-wrapper").fadeOut("slow");
@@ -88,10 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           window.location.href = "index.html";
           localStorage.removeItem("loggedInUserId");
           localStorage.setItem("loggedIn", false);
-          showMsg(
-            "Twój adres email nie jest zweryfikowany więc<br> zostałeś wylogowany/a. Proszę zalogować się ponownie <br>aby móc wysłać link do weryfikacji.",
-            "errorMsgLogin"
-          );
+          showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
         }
       }
     }
@@ -111,7 +105,7 @@ function saveGame() {
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
       console.log("saved data to server");
-      showAlert("Zapisano grę!");
+      showAlert(banana.i18n("alert-game-saved"));
     })
     .catch((error) => {
       console.error("error writing document", error);
@@ -149,13 +143,13 @@ function buyManA20() {
       bal = bal - a20[0].price;
       clickmod = clickmod + a20[0].clickmod;
       bghta20 = true;
-      showAlert("Kupiono MAN A20");
+      showAlert(banana.i18n("vhcl-bought-a20"));
       silentSaveGame();
     } else {
-      showAlert("Już wykorzystałeś swoje kupno darmowego autobusu!");
+      showAlert(banana.i18n("vhcl-already-used-a20"));
     }
   } else if (bal < a20[0].price) {
-    showAlert("Nie stać cię!");
+    showAlert(banana.i18n("cant-afford"));
   }
 }
 
@@ -183,7 +177,7 @@ busCntGUIBtn.addEventListener("click", () => {
 
 function buyBusChecker() {
   if (isEmpty(inputEl.value)) {
-    showAlert("Wprowadź prawidłową ilość!");
+    showAlert(banana.i18n("vhcl-invalid-quantity"));
     resetBuyMenu();
     return;
   }
@@ -191,7 +185,7 @@ function buyBusChecker() {
   if (bal >= buyTotal) {
     buyBusRight();
   } else {
-    showAlert("Nie stać cię!");
+    showAlert(banana.i18n("cant-afford"));
     resetBuyMenu();
   }
 }
@@ -212,7 +206,7 @@ function buyBusRight() {
   income += parseInt(busProp.incomemod) * parseInt(inputEl.value);
   clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
 
-  showAlert(`Kupiono autobusy ${bus.name}`);
+  showAlert(banana.i18n("vhcl-purchase-success", busProp.name, inputEl.value));
   silentSaveGame();
   inputEl.value = "0";
   updateTotal();
@@ -230,7 +224,7 @@ navItemBuy.addEventListener("click", () => {
     buygui.style.display = "flex";
   } else {
     buygui.style.display = "none";
-    showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
+    showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
   }
 });
 
@@ -266,6 +260,7 @@ inputEl.addEventListener("input", () => {
 });
 
 function getTotalIncomeBoost(timedUpgrs) {
+  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
     let upgr = timedUpgrades.find((u) => u.id === upgrade);
@@ -290,6 +285,7 @@ const clickspace = document.getElementById("clicker");
 clickspace.addEventListener("click", clicker);
 
 function getTotalClickBoost(timedUpgrs) {
+  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
     let upgr = timedUpgrades.find((u) => u.id === upgrade);
@@ -304,7 +300,6 @@ function clicker() {
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
-  console.log(clickmod * totalBoost, totalBoost);
   bal += clickmod * totalBoost;
   displaybal();
 }

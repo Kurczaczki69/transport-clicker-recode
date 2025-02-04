@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.8.1 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.8.2 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -9,7 +9,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
+    <meta
+      name="description"
+      content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/scrlbar.css" />
     <link rel="stylesheet" href="css/tooltips.css" />
@@ -42,7 +44,7 @@
       }
     </style>
   </head>
-  <body>
+  <body data-page="game">
     <div id="loader-wrapper">
       <div class="col-sm-2">
         <div id="square5">
@@ -50,13 +52,13 @@
           <span></span>
           <span></span>
           <span></span>
-          <h5 id="loading-text">Ładowanie...</h5>
+          <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading"></h5></div>
         </div>
       </div>
     </div>
 
-    <div class="tints" id="window-tint" style="z-index: 799;"></div>
-    <div class="tints" id="alert-tint" style="z-index: 805;"></div>
+    <div class="tints" id="window-tint" style="z-index: 799"></div>
+    <div class="tints" id="alert-tint" style="z-index: 805"></div>
 
     <!-- account window elements -->
 
@@ -66,41 +68,63 @@
       </div>
 
       <div id="accMenuWrapper">
-        <h2 id="accWelcome">Witaj, <span id="accName"></span> 👋</h2>
-        <div id="email-wrap"><b>E-mail: </b><span id="accEmail"></span></div>
+        <h2 id="accWelcome"><span data-lang="acc-menu-welcome"></span><span id="accName"></span> 👋</h2>
+        <div id="email-wrap"><b data-lang="acc-menu-email"></b><span id="accEmail"></span></div>
         <div id="acc-btn-wrapper">
-          <button id="change-pass-btn" class="btns-acc-window">Zmień hasło</button>
-          <button id="logout-btn" class="btns-acc-window">Wyloguj się</button>
-          <button id="delete-account-btn" class="btns-acc-window">Usuń konto</button>
+          <button id="change-pass-btn" class="btns-acc-window"><span data-lang="acc-menu-change-pass"></span></button>
+          <button id="logout-btn" class="btns-acc-window"><span data-lang="acc-menu-logout"></span></button>
+          <button id="delete-account-btn" class="btns-acc-window"><span data-lang="btn-delete-acc"></span></button>
+          <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
+          <select name="langs" id="lang-dropdown">
+            <option value="pl">Polski</option>
+            <option value="en">English</option>
+          </select>
         </div>
       </div>
 
       <div id="areYouSureWrapper">
-        <h2 id="are-you-sure-title">⚠️ Czy na pewno chcesz usunąć konto?</h2>
-        <h4 id="are-you-sure-desc">Jeżeli tak, wpisz swoje hasło</h4>
-        <h4 id="are-you-sure-warning">UWAGA! Ta akcja jest nieodwracalna!</h4>
+        <h2 id="are-you-sure-title" data-lang="delete-acc-title"></h2>
+        <h4 id="are-you-sure-desc" data-lang="delete-acc-desc"></h4>
+        <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
 
         <div id="input-msg"></div>
-        <input type="password" placeholder="Podaj swoje hasło" id="are-you-sure-pass-input" class="inputs" />
+        <input
+          type="password"
+          placeholder=""
+          data-lang-placeholder="delete-acc-placeholder"
+          id="are-you-sure-pass-input"
+          class="inputs" />
         <div id="are-you-sure-btn-wrapper">
-          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns">Anuluj</button>
-          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns">Usuń konto</button>
+          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns" data-lang="btn-cancel"></button>
+          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns" data-lang="btn-delete-acc"></button>
         </div>
       </div>
 
       <div id="changePassWrapper">
-        <h2 id="change-pass-title">🔑 Zmień hasło</h2>
+        <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
         <div id="input-msg-change-pass"></div>
         <div id="change-pass-input-wrapper">
-          <input type="password" placeholder="Podaj stare hasło" id="change-pass-old-input" class="inputs" />
-          <input type="password" placeholder="Podaj nowe hasło" id="change-pass-new-input" class="inputs" />
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="change-pass-old-placeholder"
+            id="change-pass-old-input"
+            class="inputs" />
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="change-pass-new-placeholder"
+            id="change-pass-new-input"
+            class="inputs" />
           <div id="dont-remember-pass">
-            <label id="dont-remember-pass-link">Nie pamiętasz hasła?</label>
+            <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
           </div>
         </div>
-        <div id="change-pass-btn-wrapper">
-          <button id="change-pass-cancel-btn" class="change-pass-btns">Anuluj</button>
-          <button id="change-pass-confirm-btn" class="change-pass-btns">Zmień hasło</button>
+        <div id="change-pass-btn-wrapper-wrapper">
+          <div id="change-pass-btn-wrapper">
+            <button id="change-pass-cancel-btn" class="change-pass-btns" data-lang="btn-cancel"></button>
+            <button id="change-pass-confirm-btn" class="change-pass-btns" data-lang="change-pass"></button>
+          </div>
         </div>
       </div>
     </section>
@@ -112,10 +136,11 @@
         <span class="tabler--x"></span>
       </div>
 
-      <h2 id="small-title-changelog"><b>Lista zmian</b></h2>
+      <h2 id="small-title-changelog"><b data-lang="change-log-title"></b></h2>
 
       <div id="changelog-left-nav">
         <select name="versions" id="version-dropdown">
+          <option value="13">ALPHA 0.8.2</option>
           <option value="12">ALPHA 0.8.1</option>
           <option value="11">ALPHA 0.8.0</option>
           <option value="10">ALPHA 0.7.0</option>
@@ -133,14 +158,13 @@
       </div>
 
       <div id="content-container-changelog">
-        <h3>Wersja ALPHA 0.8.1</h3>
-        <h4>29/01/2025</h4>
+        <h3>Wersja ALPHA 0.8.2</h3>
+        <h4>04/02/2025</h4>
         <br />
 
-        - Zmienione ceny ulepszeń <br>
-        - Maksymalna ilość pojazdów które można kupić na raz została zwiększona do 100000 <br>
-        - Zmieniony format numerów na polski <br>
-        - Kilka mniejszych zmian w kodzie <br>
+        - Dodana możliwość zmiany języka w ustawieniach konta<br />
+        - Poprawki błędów <br />
+        - Zmiany wizualne <br />
       </div>
     </div>
 
@@ -151,11 +175,16 @@
         <span class="tabler--x"></span>
       </div>
       <div id="code-menu-wrapper">
-        <h2 id="code-menu-title">💻 Kody</h2>
+        <h2 id="code-menu-title" data-lang="code-menu-title"></h2>
         <form id="code-menu-form" action="javascript:void(0)">
           <div id="code-menu-msgbox"></div>
-          <input type="text" id="code-menu-input" placeholder="Podaj Kod" class="inputs" />
-          <button id="code-menu-confirm-btn" class="btns">OK</button>
+          <input
+            type="text"
+            id="code-menu-input"
+            placeholder=""
+            class="inputs"
+            data-lang-placeholder="code-menu-input-placeholder" />
+          <button id="code-menu-confirm-btn" class="btns" data-lang="ok"></button>
         </form>
       </div>
     </div>
@@ -165,9 +194,13 @@
     <section id="main">
       <section id="vars">
         <div id="vars-wrapper">
-          <div class="vars-item" id="income"><span id="income-show">błąd</span> $/sek.</div>
-          <div class="vars-item" id="balance"><span id="bal-show">błąd</span> $</div>
-          <div class="vars-item" id="clicks"><span id="click-show">błąd</span> $/klik.</div>
+          <div class="vars-item" id="income">
+            <span id="income-show" data-lang="error"></span> $/<span data-lang="time-seconds"></span>
+          </div>
+          <div class="vars-item" id="balance"><span id="bal-show" data-lang="error"></span> $</div>
+          <div class="vars-item" id="clicks">
+            <span id="click-show" data-lang="error"></span> $/<span data-lang="click"></span>
+          </div>
         </div>
 
         <!-- navigation bar -->
@@ -175,36 +208,35 @@
         <div class="navbar animation-nav-show" id="nav">
           <div class="nav-item" id="nav-item-buy">
             <span class="tabler--bus"></span>
-            <span class="tooltip">Kup pojazdy</span>
+            <span class="tooltip" data-lang="tooltip-buy-vhcls"></span>
           </div>
           <div class="nav-item" id="nav-item-upgr-menu">
             <span class="tabler--rocket"></span>
-            <span class="tooltip">Kup ulepszenia</span>
+            <span class="tooltip" data-lang="tooltip-buy-upgrs"></span>
           </div>
           <div class="nav-item" id="nav-item-codes-menu">
             <span class="tabler--code"></span>
-            <span class="tooltip">Kody</span>
+            <span class="tooltip" data-lang="tooltip-codes"></span>
           </div>
           <div class="nav-item" id="nav-item-save-game">
             <span class="tabler--brand-onedrive"></span>
-            <span class="tooltip">Zapisz grę</span>
+            <span class="tooltip" data-lang="tooltip-save"></span>
           </div>
           <div class="nav-item" id="nav-item-open-changelog">
             <span class="tabler--exchange"></span>
-            <span class="tooltip">Lista zmian</span>
+            <span class="tooltip" data-lang="tooltip-changelog"></span>
           </div>
           <div class="nav-item" id="nav-item-account-page">
             <span class="tabler--lock-open"></span>
-            <span class="tooltip">Konto</span>
+            <span class="tooltip" data-lang="tooltip-account"></span>
           </div>
         </div>
       </section>
       <section id="notif-display">
         <div id="notif-wrapper"></div>
-      </div>
       </section>
       <section id="main-screen">
-        <section id="clicker"><span id="clicker-text">Klikaj tutaj</span></section>
+        <section id="clicker"><span id="clicker-text" data-lang="click-here"></span></section>
       </section>
     </section>
 
@@ -215,33 +247,33 @@
         <span class="tabler--x"></span>
       </div>
       <div id="vhcl-menu-title-wrapper">
-        <h2 id="vhcl-menu-header">🚌 Pojazdy</h2>
+        <h2 id="vhcl-menu-header" data-lang="vhcl-menu-title"></h2>
         <div id="vhcl-menu-dropdowns-wrapper">
           <h4 id="vhcl-menu-category-name">
-            Kategoria:
+            <span data-lang="category"></span>
             <select name="vhcl-categories" class="vhcl-menu-dropdowns" id="vhcl-menu-category-dropdown">
-              <option value="0">Autobusy</option>
-              <option value="1">Trolejbusy</option>
-              <option value="2">Tramwaje</option>
+              <option value="0" data-lang="buses"></option>
+              <option value="1" data-lang="trolleybuses"></option>
+              <option value="2" data-lang="trams"></option>
             </select>
           </h4>
           <h4 id="vhcl-menu-subcategory-name">
-            Podkategoria:
+            <span data-lang="subcategory"></span>
             <select
               name="vhcl-subcategories-1"
               id="vhcl-menu-subcategory-dropdown-1"
               class="vhcl-menu-dropdowns"
               style="display: block">
-              <option value="0">Autobusy Miejskie</option>
-              <option value="1">Autobusy Wodorowe</option>
-              <option value="2">Autobusy Międzymiastowe</option>
+              <option value="0" data-lang="city-buses"></option>
+              <option value="1" data-lang="hydrogen-buses"></option>
+              <option value="2" data-lang="intercity-buses"></option>
             </select>
             <select
               name="vhcl-subcategories-2"
               id="vhcl-menu-subcategory-dropdown-2"
               class="vhcl-menu-dropdowns"
               style="display: none">
-              <option value="0">Niedostępne!</option>
+              <option value="0" data-lang="unavailable"></option>
             </select>
           </h4>
         </div>
@@ -254,14 +286,14 @@
             <table id="vhcl-menu-citybus-table" class="vhcl-menu-tables">
               <!-- MAN A20 -->
               <tr>
-                <th class="vhcl-menu-name"><h4>MAN A20</h4></th>
+                <th class="vhcl-menu-name"><h4 data-lang="bus-a20"></h4></th>
                 <th class="vhcl-menu-price">
-                  <span id="vhcl-menu-price-item"><b>DARMO</b></span>
+                  <span id="vhcl-menu-price-item"><b data-lang="free-indicator"></b></span>
                 </th>
-                <th class="vhcl-menu-citybus-income-boost">+0$/sek.</th>
-                <th class="vhcl-menu-citybus-clickmod-boost">+1$/klik.</th>
+                <th class="vhcl-menu-citybus-income-boost">+0$/<span data-lang="time-seconds"></span></th>
+                <th class="vhcl-menu-citybus-clickmod-boost">+1$/<span data-lang="click"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn-a20" id="mana20">Kup</button>
+                  <button class="vhcl-menu-btn-a20" id="mana20" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 8 -->
@@ -277,7 +309,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu8">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu8" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 9 -->
@@ -293,7 +325,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu9">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu9" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 10.5 -->
@@ -309,7 +341,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu105">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu105" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 12 -->
@@ -325,7 +357,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu12">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu12" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Alpino 8.6 -->
@@ -341,7 +373,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="sola86">Kup</button>
+                  <button class="vhcl-menu-btn" id="sola86" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 18 -->
@@ -357,7 +389,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu18">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu18" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 24 -->
@@ -373,7 +405,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu24">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu24" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- MAN Lion's City -->
@@ -389,7 +421,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="manlion">Kup</button>
+                  <button class="vhcl-menu-btn" id="manlion" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Jelcz M121M -->
@@ -405,7 +437,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="jelczm121m">Kup</button>
+                  <button class="vhcl-menu-btn" id="jelczm121m" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- MAN Lion's City GXL -->
@@ -421,7 +453,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="manlioncig">Kup</button>
+                  <button class="vhcl-menu-btn" id="manlioncig" data-lang="btn-buy"></button>
                 </th>
               </tr>
             </table>
@@ -442,7 +474,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu12h">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu12h" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Urbino 18 Hydrogen -->
@@ -458,7 +490,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solu18h">Kup</button>
+                  <button class="vhcl-menu-btn" id="solu18h" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Toyota FC Bus -->
@@ -474,7 +506,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="toyotafc">Kup</button>
+                  <button class="vhcl-menu-btn" id="toyotafc" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Toyota Sora -->
@@ -490,7 +522,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="toyotasora">Kup</button>
+                  <button class="vhcl-menu-btn" id="toyotasora" data-lang="btn-buy"></button>
                 </th>
               </tr>
             </table>
@@ -511,7 +543,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="vacanza12">Kup</button>
+                  <button class="vhcl-menu-btn" id="vacanza12" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris Vacanza 13 -->
@@ -527,7 +559,7 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="vacanza13">Kup</button>
+                  <button class="vhcl-menu-btn" id="vacanza13" data-lang="btn-buy"></button>
                 </th>
               </tr>
               <!-- Solaris InterUrbino 12 -->
@@ -543,31 +575,36 @@
                 <th class="vhcl-menu-citybus-income-boost"><span class="vhclIncomeBoost"></span></th>
                 <th class="vhcl-menu-citybus-clickmod-boost"><span class="vhclClickMod"></span></th>
                 <th class="vhcl-menu-btn-wrapper">
-                  <button class="vhcl-menu-btn" id="solint12">Kup</button>
+                  <button class="vhcl-menu-btn" id="solint12" data-lang="btn-buy"></button>
                 </th>
               </tr>
             </table>
-            <h5 id="more-buses-indicator">Więcej autobusów już niedługo!</h5>
+            <h5 id="more-buses-indicator" data-lang="more-buses-indicator"></h5>
           </div>
         </div>
         <!-- OTHER CATEGORIES -->
         <div id="vhcl-menu-other-categories">
-          <h5 id="vhcl-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
+          <h5 id="vhcl-menu-not-ready-indicator" data-lang="not-ready-text1"></h5>
         </div>
       </div>
 
-      <!-- bus purchase window (with stuff like quantity etc.) -->
+      <!-- vehicle purchase window (with stuff like quantity etc.) -->
 
       <div id="buy-menu">
         <div class="closegui" id="closebuymenu">
           <span class="tabler--x"></span>
         </div>
-        <h2 class="header2">Menu kupna</h2>
+        <h2 class="header2" data-lang="vhcl-buy-menu-header"></h2>
         <br />
-        Ile autobusów chcesz kupić?<br />
-        <input type="number" placeholder="Wpisz ilość" id="small-input" min="1" />
+        <span data-lang="vhcl-buy-menu-desc"></span><br />
+        <input
+          type="number"
+          placeholder=""
+          id="small-input"
+          min="1"
+          data-lang-placeholder="vhcl-buy-menu-placeholder" />
         <br /><br />
-        <h3><b>Wybierz trasę: </b></h3>
+        <!-- <h3><b data-lang="vhcl-buy-menu-routes"></b></h3>
         <select name="routes" id="route-dropdown">
           <option value="1">Linia 1 10$</option>
           <option value="2">Linia 2 20$</option>
@@ -585,8 +622,9 @@
           <option value="26">Linia 26 20k$</option>
         </select>
         <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
-        Boost trasy: <span id="show-line-boost"></span>
-        <h3><b>Łączny koszt: </b> <span id="show-full-cost"></span>$</h3>
+        Boost trasy: <span id="show-line-boost"></span> -->
+        <br /><br /><br /><br /><br />
+        <h3><b data-lang="vhcl-buy-menu-full-cost"></b> <span id="show-full-cost"></span>$</h3>
         <div id="finish-operation-btn">
           <span class="tabler--check" id="done-icon"> done </span>
         </div>
@@ -601,14 +639,14 @@
       </div>
 
       <div id="upgr-menu-title-wrapper">
-        <h2 id="upgr-menu-header">🚀 Ulepszenia</h2>
+        <h2 id="upgr-menu-header" data-lang="title-upgrades"></h2>
         <h4 id="upgr-menu-category-name">
-          Kategoria:
+          <span data-lang="category"></span>
           <select name="upgr-categories" id="upgr-menu-category-dropdown">
-            <option value="0">Typy pojazdów</option>
-            <option value="1">Ulepszenia czasowe</option>
-            <option value="3">Inne ulepszenia</option>
-            <option value="4">Trasy</option>
+            <option value="0" data-lang="upgr-category-vhcl-types"></option>
+            <option value="1" data-lang="upgr-category-time-upgrs"></option>
+            <option value="3" data-lang="upgr-category-other"></option>
+            <option value="4" data-lang="upgr-category-routes"></option>
           </select>
         </h4>
       </div>
@@ -624,14 +662,16 @@
                   <span id="upgr1-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr1-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="citybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="citybus" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- Hydrogen buses -->
@@ -642,14 +682,16 @@
                   <span id="upgr2-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr2-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="hydrogenbus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="hydrogenbus" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- intercity buses -->
@@ -660,14 +702,16 @@
                   <span id="upgr3-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr3-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="intercitybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="intercitybus" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- trolleybuses -->
@@ -678,14 +722,16 @@
                   <span id="upgr4-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr4-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="trolleybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="trolleybus" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- long trolleybuses -->
@@ -696,14 +742,16 @@
                   <span id="upgr5-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr5-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="longtrolleybus">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="longtrolleybus" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- trams -->
@@ -714,14 +762,16 @@
                   <span id="upgr6-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr6-price" class="upgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="tram">Kup</button>
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="tram" data-lang="btn-buy"></button>
               </th>
             </tr>
           </table>
@@ -737,14 +787,16 @@
                   <span id="timed-upgr1-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel10min">Kup</button>
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel10min" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- gold fuel - 30min -->
@@ -755,14 +807,16 @@
                   <span id="timed-upgr2-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel30min">Kup</button>
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel30min" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- gold fuel - 1h -->
@@ -773,14 +827,16 @@
                   <span id="timed-upgr3-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel1h">Kup</button>
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="goldfuel1h" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- super mouse - 5 min -->
@@ -791,14 +847,16 @@
                   <span id="timed-upgr4-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-timed-upgr-item-btn btns" id="supermouse5min">Kup</button>
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="supermouse5min" data-lang="btn-buy"></button>
               </th>
             </tr>
             <!-- super mouse - 10 min -->
@@ -809,34 +867,36 @@
                   <span id="timed-upgr5-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none">Niedostępne!</span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-timed-upgr-item-btn btns" id="supermouse20min">Kup</button>
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="supermouse20min" data-lang="btn-buy"></button>
               </th>
             </tr>
           </table>
         </div>
         <div id="upgr-menu-other-categories">
-          <h5 id="upgr-menu-not-ready-indicator">Dostępne w przyszłych aktualizacjach!</h5>
+          <h5 id="upgr-menu-not-ready-indicator" data-lang="not-ready-text1"></h5>
         </div>
 
         <!-- confirmation dialog when buying an upgrade -->
         <div id="confirm-upgrade-dialog">
           <div id="confirm-upgrade-dialog-text-wrapper">
             <h5 id="confirm-upgrade-dialog-text">
-              Czy chcesz kupić ulepszenie <span id="confirm-upgrade-dialog-text-name"></span>?
+              <span data-lang="confirm-upgrade"></span> <span id="confirm-upgrade-dialog-text-name"></span>?
             </h5>
             <span id="msg-confirm-upgrade"></span>
           </div>
 
           <div id="confirm-upgrade-dialog-btns">
-            <button id="confirm-upgr-btn">Kup</button>
-            <button id="cancel-upgr-btn">Anuluj</button>
+            <button id="confirm-upgr-btn" data-lang="btn-buy"></button>
+            <button id="cancel-upgr-btn" data-lang="btn-cancel"></button>
           </div>
         </div>
       </div>
@@ -844,9 +904,9 @@
 
     <section id="alert-window">
       <div id="alert-window-info-wrapper">
-        <span id="alert-message">Wystąpił błąd!</span>
+        <span id="alert-message" data-lang="error-occured"></span>
       </div>
-      <button id="accept-alert-btn">OK</button>
+      <button id="accept-alert-btn" data-lang="ok"></button>
     </section>
 
     <section id="credits-window">
@@ -856,28 +916,34 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.1</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.2</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
-            <div class="link-wrapper"><span class="tabler--users"></span> Autorzy</div>
+            <div class="link-wrapper">
+              <span class="tabler--users"></span> <span data-lang="credits-authors"></span>
+            </div>
           </div>
           <div class="credits-menu-section-left-item" id="credits-menu-translators-btn">
-            <div class="link-wrapper"><span class="tabler--language"></span> Tłumacze</div>
+            <div class="link-wrapper">
+              <span class="tabler--language"></span> <span data-lang="credits-translators"></span>
+            </div>
           </div>
           <div class="credits-menu-section-left-item">
             <a href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
-              ><div class="link-wrapper"><span class="tabler--brand-github"></span> GitHub</div></a
-            >
+              ><div class="link-wrapper">
+                <span class="tabler--brand-github"></span> <span data-lang="github"></span></div
+            ></a>
           </div>
           <div class="credits-menu-section-left-item">
             <a href="https://discord.gg/VSKb37tg33" target="_blank"
-              ><div class="link-wrapper"><span class="tabler--brand-discord"></span> Discord</div></a
-            >
+              ><div class="link-wrapper">
+                <span class="tabler--brand-discord"></span> <span data-lang="discord"></span></div
+            ></a>
           </div>
         </div>
 
         <div id="credits-menu-section-right">
           <div id="credits-menu-authors-section">
-            <h2 id="credits-menu-authors-section-title">Autorzy</h2>
+            <h2 id="credits-menu-authors-section-title" data-lang="credits-authors"></h2>
 
             <div class="credits-menu-contributor-item">
               luku <br />
@@ -886,7 +952,7 @@
           </div>
 
           <div id="credits-menu-translators-section">
-            <h2 id="credits-menu-translators-section-title">Tłumacze</h2>
+            <h2 id="credits-menu-translators-section-title" data-lang="credits-translators"></h2>
 
             <div class="credits-menu-contributor-item">
               luku <br />
@@ -897,10 +963,10 @@
       </div>
     </section>
 
-    <section id="credits-btn">O grze [vALPHA0.8.1]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.8.2]</section>
 
     <script type="module" src="js/scr.js"></script>
-    <script src="js/changelog.js"></script>
+    <script type="module" src="js/changelog.js"></script>
     <script type="module" src="js/codes.js"></script>
     <script type="module" src="js/creditsMenu.js"></script>
     <script type="module" src="js/accountSystem/accountWindow.js"></script>
@@ -912,9 +978,11 @@
     <script type="module" src="js/accountSystem/deleteAccount.js"></script>
     <script type="module" src="js/accountSystem/changePassword.js"></script>
     <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
+    <script type="module" src="js/langs.js"></script>
     <script type="module" src="js/busMenu.js"></script>
     <script type="module" src="js/utilities.js"></script>
     <script type="module" src="js/data/upgradeData.js"></script>
+    <script type="module" src="js/data/timedUpgradeData.js"></script>
     <script type="module" src="js/data/busData.js"></script>
     <script type="module" src="js/notifs.js"></script>
   </body>

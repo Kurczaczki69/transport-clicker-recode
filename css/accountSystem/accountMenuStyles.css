@@ -53,6 +53,7 @@
   left: 5%;
   display: flex;
   flex-direction: column;
+  width: 10%;
 }
 
 .btns-acc-window {
@@ -106,15 +107,15 @@
 #are-you-sure-desc {
   text-align: left;
   font-size: 2.25vh;
+  margin-bottom: -3%;
   font-weight: 400;
-  margin-bottom: 20px;
 }
 
 #are-you-sure-warning {
   text-align: left;
   font-size: 2.5vh;
   font-weight: 1000;
-  margin-bottom: 20px;
+  margin-bottom: -1%;
   color: red;
 }
 
@@ -124,11 +125,12 @@
   position: absolute;
   bottom: 10%;
   right: 5%;
+  max-width: 29%;
 }
 
 .are-you-sure-btns {
-  width: 325%;
-  padding: 12%;
+  width: 100%;
+  padding: 10%;
   margin-right: 2vh;
   cursor: pointer;
   border: none;
@@ -150,6 +152,36 @@
   background: rgb(255, 17, 0);
   background: radial-gradient(circle, rgba(255, 17, 0, 1) 20%, rgba(232, 110, 3, 1) 83%);
   box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+}
+
+#lang-dropdown {
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 300;
+  color: var(--colorscheme2);
+  font-size: 1rem;
+  text-align: center;
+
+  width: 325%;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-bottom: 15%;
+  margin-top: 50%;
+}
+
+#lang-dropdown:focus {
+  outline: none;
+  border: none;
+}
+
+#lang-title-wrap {
+  position: absolute;
+  top: 55%;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .inputs {
@@ -213,18 +245,24 @@
   margin-top: 1.5vh;
 }
 
+#change-pass-btn-wrapper-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: -7%;
+}
+
 #change-pass-btn-wrapper {
   display: flex;
   flex-direction: row;
   position: absolute;
-  bottom: 23.5%;
   right: 5%;
+  max-width: 30%;
 }
 
 .change-pass-btns {
-  width: 325%;
-  padding-top: 12%;
-  padding-bottom: 12%;
+  width: 100%;
+  padding-top: 10%;
+  padding-bottom: 10%;
   margin-bottom: 15%;
   margin-left: 5%;
   cursor: pointer;

@@ -1,88 +1,81 @@
-// array containing all upgrades
-export const upgrades = [
-  {
-    category: "vehicleType",
-    id: "citybus",
-    name: "Autobusy Miejskie",
-    desc: "Odblokowuje autobusy w menu pojazdów",
-    price: 0,
-    isAvailable: true,
-    unlockcategory: "citybus",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-  {
-    category: "vehicleType",
-    id: "hydrogenbus",
-    name: "Autobusy Wodorowe",
-    desc: "Odblokowuje autobusy wodorowe w menu pojazdów",
-    price: 50000,
-    isAvailable: true,
-    unlockcategory: "hydrogenbus",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-  {
-    category: "vehicleType",
-    id: "intercitybus",
-    name: "Autobusy Międzymiastowe",
-    desc: "Odblokowuje autobusy międzymiastowe w menu pojazdów",
-    price: 125000,
-    isAvailable: true,
-    unlockcategory: "intercitybus",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-  {
-    category: "vehicleType",
-    id: "trolleybus",
-    name: "Trolejbusy",
-    desc: "Odblokowuje trolejbusy w menu pojazdów",
-    price: 275000,
-    isAvailable: false,
-    unlockcategory: "trolleybus",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-  {
-    category: "vehicleType",
-    id: "trolleybus",
-    name: "Trolejbusy(długie)",
-    desc: "Odblokowuje długie trolejbusy w menu pojazdów",
-    price: 350000,
-    isAvailable: false,
-    unlockcategory: "longtrolleybus",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-  {
-    category: "vehicleType",
-    id: "tram",
-    name: "Tramwaje",
-    desc: "Odblokowuje tramwaje w menu pojazdów",
-    price: 600000,
-    isAvailable: false,
-    unlockcategory: "tram",
-    incomeboost: 0,
-    clickboost: 0,
-  },
-];
+import { banana } from "../langs.js";
 
-// array containg all upgrade categories
-export const upgradeCategories = [
-  {
-    id: "vehicleType",
-    name: "Typy pojazdów",
-    isAvailable: true,
-  },
-  {
-    id: "timedUpgrades",
-    name: "Ulepszenia czasowe",
-    isAvailable: true,
-  },
-  {
-    id: "routeUpgrades",
-    name: "Trasy",
-    isAvailable: false,
-  },
-];
+let upgrades = [];
+
+// array containing all upgrades
+function initializeUpgrades() {
+  upgrades = [
+    {
+      category: "vehicleType",
+      id: "citybus",
+      name: banana.i18n("city-buses"),
+      desc: banana.i18n("city-buses-desc"),
+      price: 0,
+      isAvailable: true,
+      unlockcategory: "citybus",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+    {
+      category: "vehicleType",
+      id: "hydrogenbus",
+      name: banana.i18n("hydrogen-buses"),
+      desc: banana.i18n("hydrogen-buses-desc"),
+      price: 50000,
+      isAvailable: true,
+      unlockcategory: "hydrogenbus",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+    {
+      category: "vehicleType",
+      id: "intercitybus",
+      name: banana.i18n("intercity-buses"),
+      desc: banana.i18n("intercity-buses-desc"),
+      price: 125000,
+      isAvailable: true,
+      unlockcategory: "intercitybus",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+    {
+      category: "vehicleType",
+      id: "trolleybus",
+      name: banana.i18n("trolleybuses"),
+      desc: banana.i18n("trolleybuses-desc"),
+      price: 275000,
+      isAvailable: false,
+      unlockcategory: "trolleybus",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+    {
+      category: "vehicleType",
+      id: "trolleybus",
+      name: banana.i18n("trolleybuses-long"),
+      desc: banana.i18n("trolleybuses-long-desc"),
+      price: 350000,
+      isAvailable: false,
+      unlockcategory: "longtrolleybus",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+    {
+      category: "vehicleType",
+      id: "tram",
+      name: banana.i18n("trams"),
+      desc: banana.i18n("trams-desc"),
+      price: 600000,
+      isAvailable: false,
+      unlockcategory: "tram",
+      incomeboost: 0,
+      clickboost: 0,
+    },
+  ];
+}
+
+function getUpgrades() {
+  return upgrades;
+}
+
+export { initializeUpgrades, getUpgrades };

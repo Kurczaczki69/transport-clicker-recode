@@ -1,3 +1,5 @@
+import { banana } from "./langs.js";
+
 // simple sleep function so you dont have to use setTimeout, the parameter is the time in milliseconds
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -45,7 +47,7 @@ export function showAlert(message) {
 
 // abbreviates number to human readable format
 export function abbreviateNumber(num) {
-  const formatter = new Intl.NumberFormat("pl", {
+  const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
     notation: "compact",
     compactDisplay: "short",
     maximumSignificantDigits: 4,
@@ -62,13 +64,13 @@ export function formatTime(ms) {
   const days = Math.floor(ms / (1000 * 60 * 60 * 24));
 
   const formattedTime = [
-    days > 0 ? `${days} d` : "",
-    hours > 0 ? `${hours} godz` : "",
-    minutes > 0 ? `${minutes} min` : "",
-    seconds > 0 ? `${seconds} s` : "",
+    days > 0 ? `${days} ${banana.i18n("time-days")}` : "",
+    hours > 0 ? `${hours} ${banana.i18n("time-hours")}` : "",
+    minutes > 0 ? `${minutes} ${banana.i18n("time-minutes")}` : "",
+    seconds > 0 ? `${seconds} ${banana.i18n("time-seconds")}` : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  return formattedTime || "0 s";
+  return formattedTime || `0 ${banana.i18n("time-seconds")}`;
 }
