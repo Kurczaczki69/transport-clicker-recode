@@ -9,7 +9,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
+    <meta
+      name="description"
+      content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/scrlbar.css" />
     <link rel="stylesheet" href="css/tooltips.css" />
@@ -50,13 +52,13 @@
           <span></span>
           <span></span>
           <span></span>
-          <h5 id="loading-text" data-lang="loading"></h5>
+          <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading"></h5></div>
         </div>
       </div>
     </div>
 
-    <div class="tints" id="window-tint" style="z-index: 799;"></div>
-    <div class="tints" id="alert-tint" style="z-index: 805;"></div>
+    <div class="tints" id="window-tint" style="z-index: 799"></div>
+    <div class="tints" id="alert-tint" style="z-index: 805"></div>
 
     <!-- account window elements -->
 
@@ -86,7 +88,12 @@
         <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
 
         <div id="input-msg"></div>
-        <input type="password" placeholder="" data-lang-placeholder="delete-acc-placeholder" id="are-you-sure-pass-input" class="inputs" />
+        <input
+          type="password"
+          placeholder=""
+          data-lang-placeholder="delete-acc-placeholder"
+          id="are-you-sure-pass-input"
+          class="inputs" />
         <div id="are-you-sure-btn-wrapper">
           <button id="are-you-sure-cancel-btn" class="are-you-sure-btns" data-lang="btn-cancel"></button>
           <button id="are-you-sure-confirm-btn" class="are-you-sure-btns" data-lang="btn-delete-acc"></button>
@@ -97,15 +104,27 @@
         <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
         <div id="input-msg-change-pass"></div>
         <div id="change-pass-input-wrapper">
-          <input type="password" placeholder="" data-lang-placeholder="change-pass-old-placeholder" id="change-pass-old-input" class="inputs" />
-          <input type="password" placeholder="" data-lang-placeholder="change-pass-new-placeholder" id="change-pass-new-input" class="inputs" />
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="change-pass-old-placeholder"
+            id="change-pass-old-input"
+            class="inputs" />
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="change-pass-new-placeholder"
+            id="change-pass-new-input"
+            class="inputs" />
           <div id="dont-remember-pass">
             <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
           </div>
         </div>
-        <div id="change-pass-btn-wrapper">
-          <button id="change-pass-cancel-btn" class="change-pass-btns" data-lang="btn-cancel"></button>
-          <button id="change-pass-confirm-btn" class="change-pass-btns" data-lang="change-pass"></button>
+        <div id="change-pass-btn-wrapper-wrapper">
+          <div id="change-pass-btn-wrapper">
+            <button id="change-pass-cancel-btn" class="change-pass-btns" data-lang="btn-cancel"></button>
+            <button id="change-pass-confirm-btn" class="change-pass-btns" data-lang="change-pass"></button>
+          </div>
         </div>
       </div>
     </section>
@@ -142,10 +161,10 @@
         <h4>29/01/2025</h4>
         <br />
 
-        - Zmienione ceny ulepszeń <br>
-        - Maksymalna ilość pojazdów które można kupić na raz została zwiększona do 100000 <br>
-        - Zmieniony format numerów na polski <br>
-        - Kilka mniejszych zmian w kodzie <br>
+        - Zmienione ceny ulepszeń <br />
+        - Maksymalna ilość pojazdów które można kupić na raz została zwiększona do 100000 <br />
+        - Zmieniony format numerów na polski <br />
+        - Kilka mniejszych zmian w kodzie <br />
       </div>
     </div>
 
@@ -159,7 +178,12 @@
         <h2 id="code-menu-title" data-lang="code-menu-title"></h2>
         <form id="code-menu-form" action="javascript:void(0)">
           <div id="code-menu-msgbox"></div>
-          <input type="text" id="code-menu-input" placeholder="" class="inputs" data-lang-placeholder="code-menu-input-placeholder"/>
+          <input
+            type="text"
+            id="code-menu-input"
+            placeholder=""
+            class="inputs"
+            data-lang-placeholder="code-menu-input-placeholder" />
           <button id="code-menu-confirm-btn" class="btns" data-lang="ok"></button>
         </form>
       </div>
@@ -170,9 +194,13 @@
     <section id="main">
       <section id="vars">
         <div id="vars-wrapper">
-          <div class="vars-item" id="income"><span id="income-show" data-lang="error"></span> $/<span data-lang="time-seconds"></span></div>
+          <div class="vars-item" id="income">
+            <span id="income-show" data-lang="error"></span> $/<span data-lang="time-seconds"></span>
+          </div>
           <div class="vars-item" id="balance"><span id="bal-show" data-lang="error"></span> $</div>
-          <div class="vars-item" id="clicks"><span id="click-show" data-lang="error"></span> $/<span data-lang="click"></span></div>
+          <div class="vars-item" id="clicks">
+            <span id="click-show" data-lang="error"></span> $/<span data-lang="click"></span>
+          </div>
         </div>
 
         <!-- navigation bar -->
@@ -206,7 +234,6 @@
       </section>
       <section id="notif-display">
         <div id="notif-wrapper"></div>
-      </div>
       </section>
       <section id="main-screen">
         <section id="clicker"><span id="clicker-text" data-lang="click-here"></span></section>
@@ -570,7 +597,12 @@
         <h2 class="header2" data-lang="vhcl-buy-menu-header"></h2>
         <br />
         <span data-lang="vhcl-buy-menu-desc"></span><br />
-        <input type="number" placeholder="" id="small-input" min="1" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+        <input
+          type="number"
+          placeholder=""
+          id="small-input"
+          min="1"
+          data-lang-placeholder="vhcl-buy-menu-placeholder" />
         <br /><br />
         <!-- <h3><b data-lang="vhcl-buy-menu-routes"></b></h3>
         <select name="routes" id="route-dropdown">
@@ -591,7 +623,7 @@
         </select>
         <span class="not-ready">Trasy będą dostępne w przyszłych aktualizacjach!</span>
         Boost trasy: <span id="show-line-boost"></span> -->
-        <br><br><br><br><br>
+        <br /><br /><br /><br /><br />
         <h3><b data-lang="vhcl-buy-menu-full-cost"></b> <span id="show-full-cost"></span>$</h3>
         <div id="finish-operation-btn">
           <span class="tabler--check" id="done-icon"> done </span>
@@ -630,7 +662,9 @@
                   <span id="upgr1-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr1-price" class="upgrPrice"></span></b
@@ -648,7 +682,9 @@
                   <span id="upgr2-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr2-price" class="upgrPrice"></span></b
@@ -666,7 +702,9 @@
                   <span id="upgr3-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr3-price" class="upgrPrice"></span></b
@@ -684,7 +722,9 @@
                   <span id="upgr4-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr4-price" class="upgrPrice"></span></b
@@ -702,7 +742,9 @@
                   <span id="upgr5-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr5-price" class="upgrPrice"></span></b
@@ -720,7 +762,9 @@
                   <span id="upgr6-desc" class="upgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: block" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: block" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span id="upgr6-price" class="upgrPrice"></span></b
@@ -743,7 +787,9 @@
                   <span id="timed-upgr1-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
@@ -761,7 +807,9 @@
                   <span id="timed-upgr2-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
@@ -779,7 +827,9 @@
                   <span id="timed-upgr3-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
@@ -797,7 +847,9 @@
                   <span id="timed-upgr4-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
@@ -815,7 +867,9 @@
                   <span id="timed-upgr5-desc" class="timedUpgrDesc"></span>
                 </div>
               </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible"><span style="display: none" data-lang="unavailable"></span></th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
                   ><b><span class="timedUpgrPrice"></span></b
@@ -864,20 +918,26 @@
         <div id="credits-menu-section-left">
           <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.2DEV</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
-            <div class="link-wrapper"><span class="tabler--users"></span> <span data-lang="credits-authors"></span></div>
+            <div class="link-wrapper">
+              <span class="tabler--users"></span> <span data-lang="credits-authors"></span>
+            </div>
           </div>
           <div class="credits-menu-section-left-item" id="credits-menu-translators-btn">
-            <div class="link-wrapper"><span class="tabler--language"></span> <span data-lang="credits-translators"></span></div>
+            <div class="link-wrapper">
+              <span class="tabler--language"></span> <span data-lang="credits-translators"></span>
+            </div>
           </div>
           <div class="credits-menu-section-left-item">
             <a href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
-              ><div class="link-wrapper"><span class="tabler--brand-github"></span> <span data-lang="github"></span></div></a
-            >
+              ><div class="link-wrapper">
+                <span class="tabler--brand-github"></span> <span data-lang="github"></span></div
+            ></a>
           </div>
           <div class="credits-menu-section-left-item">
             <a href="https://discord.gg/VSKb37tg33" target="_blank"
-              ><div class="link-wrapper"><span class="tabler--brand-discord"></span> <span data-lang="discord"></span></div></a
-            >
+              ><div class="link-wrapper">
+                <span class="tabler--brand-discord"></span> <span data-lang="discord"></span></div
+            ></a>
           </div>
         </div>
 

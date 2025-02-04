@@ -2,22 +2,29 @@ import Banana from "../node_modules/banana-i18n/dist/esm/banana-i18n.js";
 import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
+import { sleep } from "./utilities.js";
 
 const banana = new Banana();
 
 function updateLang(lang) {
-  fetch(`lang/${lang}.json`)
-    .then((response) => response.json())
-    .then((messages) => {
-      banana.load(messages, lang);
-      banana.setLocale(lang);
-      updateLangInHtml();
-      initializeTimedUpgrades();
-      initializeUpgrades();
-      updateHtmlData();
-      const currentPage = document.body.getAttribute("data-page");
-      setPageTitle(currentPage);
-    });
+  $("#loader-wrapper").fadeIn(350);
+  sleep(360).then(() => {
+    fetch(`lang/${lang}.json`)
+      .then((response) => response.json())
+      .then((messages) => {
+        banana.load(messages, lang);
+        banana.setLocale(lang);
+        updateLangInHtml();
+        initializeTimedUpgrades();
+        initializeUpgrades();
+        updateHtmlData();
+        const currentPage = document.body.getAttribute("data-page");
+        setPageTitle(currentPage);
+        sleep(200).then(() => {
+          $("#loader-wrapper").fadeOut("slow");
+        });
+      });
+  });
 }
 
 function changeLang(lang) {

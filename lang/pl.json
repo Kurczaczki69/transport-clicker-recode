@@ -77,7 +77,7 @@
   "change-pass-success": "Hasło zmienione pomyślnie",
   "change-pass-doesnt-meet-requirements": "Nowe hasło musi mieć conajmniej 8 znaków, zawierać dużą i małą literę oraz cyfrę",
   "change-pass-wrong-old-password": "Niepoprawne stare hasło",
-  "delete-acc-title": "⚠️ Czy na pewno chcesz usunąć konto?",
+  "delete-acc-title": "⚠️ Czy na pewno chcesz usunąć swoje konto?",
   "delete-acc-desc": "Jeżeli tak, wpisz swoje hasło",
   "delete-acc-warning": "UWAGA! Ta akcja jest nieodwracalna",
   "delete-acc-placeholder": "Podaj swoje hasło",

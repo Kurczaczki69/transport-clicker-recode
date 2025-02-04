@@ -107,15 +107,15 @@
 #are-you-sure-desc {
   text-align: left;
   font-size: 2.25vh;
+  margin-bottom: -3%;
   font-weight: 400;
-  margin-bottom: 20px;
 }
 
 #are-you-sure-warning {
   text-align: left;
   font-size: 2.5vh;
   font-weight: 1000;
-  margin-bottom: 20px;
+  margin-bottom: -1%;
   color: red;
 }
 
@@ -125,11 +125,12 @@
   position: absolute;
   bottom: 10%;
   right: 5%;
+  max-width: 29%;
 }
 
 .are-you-sure-btns {
-  width: 325%;
-  padding: 12%;
+  width: 100%;
+  padding: 10%;
   margin-right: 2vh;
   cursor: pointer;
   border: none;
@@ -244,18 +245,24 @@
   margin-top: 1.5vh;
 }
 
+#change-pass-btn-wrapper-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: -7%;
+}
+
 #change-pass-btn-wrapper {
   display: flex;
   flex-direction: row;
   position: absolute;
-  bottom: 23.5%;
   right: 5%;
+  max-width: 30%;
 }
 
 .change-pass-btns {
-  width: 325%;
-  padding-top: 12%;
-  padding-bottom: 12%;
+  width: 100%;
+  padding-top: 10%;
+  padding-bottom: 10%;
   margin-bottom: 15%;
   margin-left: 5%;
   cursor: pointer;
