@@ -14,7 +14,7 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ✅ Javascript recode\
 ✅ New changelog system\
 ✅ Login system\
-❌ Language changing system and a translation service for translators(eg. crowdin or something like that)\
+✅ Language changing system and a translation service for translators(eg. crowdin or something like that)\
 ✅ Codes system\
 ✅ New UI\
 ❌ Trolleybuses\
