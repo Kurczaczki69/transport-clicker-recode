@@ -25,6 +25,7 @@ const contents = [
   "<h3>Wersja ALPHA 0.8.0</h3> <h4>28/01/2025</h4> <br /> - Dodano system ulepszeń czasowych <br> - Dodano system kodów(Odbierz sobie kod ALPHA01)<br> - Od teraz za oknami jest czarne przyciemnienie<br> - Gdy kupisz ulepszenie wyświetla się teraz okienko z wiadomością<br> - Zmiany wizualne <br> - Poprawki kodu <br> - Optymalizacja kodu gry <br>",
   "<h3>Wersja ALPHA 0.8.1</h3> <h4>29/01/2025</h4> <br /> - Zmienione ceny ulepszeń <br> - Maksymalna ilość pojazdów które można kupić na raz została zwiększona do 100000 <br> - Zmieniony format numerów na polski <br> - Kilka mniejszych zmian w kodzie <br>",
   "<h3>Wersja ALPHA 0.8.2</h3> <h4>04/02/2025</h4> <br /> - Dodana możliwość zmiany języka w ustawieniach konta<br /> - Poprawki błędów <br /> - Zmiany wizualne <br />",
+  "<h3>Wersja ALPHA 0.8.3</h3> <h4>08/02/2025</h4> <br /> - Szybka poprawka <br />",
 ];
 
 const tint = document.querySelector("#window-tint");
