@@ -3,8 +3,6 @@ import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
 import { sleep } from "./utilities.js";
-import { getTimedUpgrades } from "./data/timedUpgradeData.js";
-import { formatTime } from "./utilities.js";
 
 const banana = new Banana();
 
