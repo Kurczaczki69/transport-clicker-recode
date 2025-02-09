@@ -7,6 +7,7 @@ function initializeTimedUpgrades() {
     {
       name: banana.i18n("gold-fuel-10min-name"),
       id: "goldfuel10min",
+      type: "goldfuel",
       desc: banana.i18n("gold-fuel-10min-desc"),
       price: 45000,
       priceGold: 100,
@@ -17,6 +18,7 @@ function initializeTimedUpgrades() {
     {
       name: banana.i18n("gold-fuel-30min-name"),
       id: "goldfuel30min",
+      type: "goldfuel",
       desc: banana.i18n("gold-fuel-30min-desc"),
       price: 100000,
       priceGold: 300,
@@ -27,6 +29,7 @@ function initializeTimedUpgrades() {
     {
       name: banana.i18n("gold-fuel-1h-name"),
       id: "goldfuel1h",
+      type: "goldfuel",
       desc: banana.i18n("gold-fuel-1h-desc"),
       price: 200000,
       priceGold: 600,
@@ -37,6 +40,7 @@ function initializeTimedUpgrades() {
     {
       name: banana.i18n("super-mouse-5min-name"),
       id: "supermouse5min",
+      type: "supermouse",
       desc: banana.i18n("super-mouse-5min-desc"),
       price: 35000,
       priceGold: 75,
@@ -47,6 +51,7 @@ function initializeTimedUpgrades() {
     {
       name: banana.i18n("super-mouse-20min-name"),
       id: "supermouse20min",
+      type: "supermouse",
       desc: banana.i18n("super-mouse-20min-desc"),
       price: 90000,
       priceGold: 225,
