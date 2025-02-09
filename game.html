@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.8.3 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.8.4 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -8,7 +8,10 @@
   <!-- ROADMAP FOR 0.9.0
   - create the dynamic pricing system 
   - trolleybuses
-  - 
+  - add new vehicles
+  - routes (maybe)
+  - implement a statistics system
+  - add more timed upgrades
   - -->
   <head>
     <meta charset="UTF-8" />
@@ -145,6 +148,7 @@
 
       <div id="changelog-left-nav">
         <select name="versions" id="version-dropdown">
+          <option value="15">ALPHA 0.8.4</option>
           <option value="14">ALPHA 0.8.3</option>
           <option value="13">ALPHA 0.8.2</option>
           <option value="12">ALPHA 0.8.1</option>
@@ -164,11 +168,14 @@
       </div>
 
       <div id="content-container-changelog">
-        <h3>Wersja ALPHA 0.8.3</h3>
-        <h4>08/02/2025</h4>
+        <h3>Wersja ALPHA 0.8.4</h3>
+        <h4>09/02/2025</h4>
         <br />
 
-        - Szybka poprawka <br />
+        - Od teraz nie można mieć aktywnych dwóch ulepszeń tego samego typu na raz <br />
+        - Limit kupna autobusów został zwiększony do 10 mln z powodu próśb graczy(xd) <br />
+        - Poprawki wielu błędów <br />
+        - Poprawki kodu gry <br />
       </div>
     </div>
 
@@ -920,7 +927,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.3</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.4</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users"></span> <span data-lang="credits-authors"></span>
@@ -967,7 +974,7 @@
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.8.3]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.8.4]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script type="module" src="js/changelog.js"></script>

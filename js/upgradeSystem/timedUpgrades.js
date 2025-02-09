@@ -20,26 +20,39 @@ function buyTimedUpgrade(upgrId) {
     showAlert(banana.i18n("cant-afford"));
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
-      let activeUpgrs = getActiveTimedUpgrades();
-      activeUpgrs.push(upgradeToBuy.id);
-      setActiveTimedUpgrades(activeUpgrs);
-      bal -= upgradeToBuy.price;
-      setBal(bal);
-      confirmationDialog.style.display = "none";
-      showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
-      showNotif(
-        upgradeToBuy.name,
-        banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
-        "notif-timed-upgr"
-      );
-      const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
-      notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
-      runUpgrade(upgradeToBuy);
+      if (!checkUpgradeByType(upgradeToBuy.type)) {
+        let activeUpgrs = getActiveTimedUpgrades();
+        activeUpgrs.push(upgradeToBuy.id);
+        setActiveTimedUpgrades(activeUpgrs);
+        bal -= upgradeToBuy.price;
+        setBal(bal);
+        confirmationDialog.style.display = "none";
+        showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
+        showNotif(
+          upgradeToBuy.name,
+          banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
+          "notif-timed-upgr"
+        );
+        const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
+        notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
+        runUpgrade(upgradeToBuy);
+      } else {
+        confirmationDialog.style.display = "none";
+        showAlert(banana.i18n("timed-upgr-already-active"));
+      }
     } else {
       confirmationDialog.style.display = "none";
       showAlert(banana.i18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
     }
   }
+}
+
+function checkUpgradeByType(upgrT) {
+  let timedUpgrades = getTimedUpgrades();
+  return activeTimedUpgrades.some((activeUpgr) => {
+    let upgr = timedUpgrades.find((u) => u.id === activeUpgr);
+    return upgr.type === upgrT;
+  });
 }
 
 function confirmTimedUpgrade(upgradetobuy) {
@@ -129,6 +142,6 @@ export function grantUpgrade(upgrId) {
 function updateTimerDisplay(upgrade, remainingTime) {
   const timerEl = document.querySelector(`#notif-small-text${upgrade.id}`);
   if (timerEl) {
-    timerEl.textContent = `Pozostały czas: ${formatTime(remainingTime)}`;
+    timerEl.textContent = banana.i18n("timed-upgr-notif", formatTime(remainingTime));
   }
 }

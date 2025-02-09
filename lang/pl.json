@@ -134,5 +134,6 @@
   "upgrade-not-available": "To ulepszenie będzie dostępne w następnych aktualizacjach",
   "timed-upgr-activated": "Ulepszenie aktywowane na $1",
   "timed-upgr-notif": "Pozostały czas: $1",
-  "timed-upgr-limit-reached": "Możesz mieć tylko $1 aktywne {{PLURAL:$1|ulepszenie|ulepszenia|ulepszeń}}"
+  "timed-upgr-limit-reached": "Możesz mieć tylko $1 aktywne {{PLURAL:$1|ulepszenie|ulepszenia|ulepszeń}}",
+  "timed-upgr-already-active": "Możesz mieć tylko jedno aktywne ulepszenie tego typu"
 }
