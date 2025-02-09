@@ -135,5 +135,5 @@
   "timed-upgr-activated": "Upgrade activated for $1",
   "timed-upgr-notif": "Time left: $1",
   "timed-upgr-limit-reached": "You can only have $1 active {{PLURAL:$1|upgrade|upgrades}}",
-  "timed-upgr-already-active": "Możesz mieć tylko jedno aktywne ulepszenie tego typu"
+  "timed-upgr-already-active": "You can only have one active upgrade of that type"
 }
