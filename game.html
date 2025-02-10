@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.8.4 -->
+  <!-- TRANSPORT CLICKER ALPHA 0.9.0DEV -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -9,7 +9,7 @@
   - create the dynamic pricing system 
   - trolleybuses
   - add new vehicles
-  - routes (maybe)
+  - leveling system
   - implement a statistics system
   - add more timed upgrades
   - -->
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/icons.css" />
     <link rel="stylesheet" href="css/creditsMenuStyles.css" />
     <link rel="stylesheet" href="css/notifDisplay.css" />
+    <link rel="stylesheet" href="css/statsSystem.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
@@ -137,6 +138,32 @@
       </div>
     </section>
 
+    <!-- stats window elements -->
+
+    <section id="stats-window">
+      <div class="closegui" id="close-stats-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <h2 id="stats-title" data-lang="stats-title"></h2>
+      <div id="user-stats-wrapper">
+        <div id="user-level">
+          <span data-lang="stats-level"></span> <span id="user-level-value" data-lang="error"></span>
+        </div>
+        <div id="user-xp"><span data-lang="stats-xp"></span> <span id="user-xp-value" data-lang="error"></span></div>
+        <div id="level-bar-wrapper">
+          <div id="level-bar-empty">
+            <div id="level-bar-container">
+              <div id="level-bar-filled"></div>
+            </div>
+          </div>
+        </div>
+        <div id="to-next-level">
+          <span data-lang="stats-to-next-level"></span> <span id="to-next-level-value" data-lang="error"></span>
+        </div>
+      </div>
+    </section>
+
     <!-- changelog window elements -->
 
     <div id="changelog">
@@ -236,6 +263,10 @@
           <div class="nav-item" id="nav-item-open-changelog">
             <span class="tabler--exchange"></span>
             <span class="tooltip" data-lang="tooltip-changelog"></span>
+          </div>
+          <div class="nav-item" id="nav-item-open-stats">
+            <span class="tabler--chart-bar"></span>
+            <span class="tooltip" data-lang="tooltip-stats"></span>
           </div>
           <div class="nav-item" id="nav-item-account-page">
             <span class="tabler--lock-open"></span>
@@ -927,7 +958,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.8.4</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.9.0DEV</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users"></span> <span data-lang="credits-authors"></span>
@@ -974,7 +1005,7 @@
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.8.4]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.9.0DEV]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script type="module" src="js/changelog.js"></script>
@@ -996,5 +1027,6 @@
     <script type="module" src="js/data/timedUpgradeData.js"></script>
     <script type="module" src="js/data/busData.js"></script>
     <script type="module" src="js/notifs.js"></script>
+    <script type="module" src="js/levelSystem.js"></script>
   </body>
 </html>

@@ -135,5 +135,12 @@
   "timed-upgr-activated": "Upgrade activated for $1",
   "timed-upgr-notif": "Time left: $1",
   "timed-upgr-limit-reached": "You can only have $1 active {{PLURAL:$1|upgrade|upgrades}}",
-  "timed-upgr-already-active": "You can only have one active upgrade of that type"
+  "timed-upgr-already-active": "You can only have one active upgrade of that type",
+  "stats-title": "📊 Statystyki",
+  "stats-level": "Poziom:",
+  "stats-xp": "XP:",
+  "stats-to-next-level": "XP potrzebne do następnego poziomu:",
+  "notif-reward-title": "Nagroda!",
+  "notif-reward-text": "Otrzymałeś $1 $ za osiągnięcie poziomu $2!",
+  "stats-xp-needed": "$1 XP"
 }

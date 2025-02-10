@@ -58,6 +58,7 @@
   "tooltip-codes": "Kody",
   "tooltip-save": "Zapisz grę",
   "tooltip-changelog": "Lista zmian",
+  "tooltip-stats": "Statystyki",
   "tooltip-account": "Konto",
   "error": "błąd",
   "code-menu-input-placeholder": "Podaj Kod",
@@ -77,7 +78,7 @@
   "change-pass-success": "Hasło zmienione pomyślnie",
   "change-pass-doesnt-meet-requirements": "Nowe hasło musi mieć conajmniej 8 znaków, zawierać dużą i małą literę oraz cyfrę",
   "change-pass-wrong-old-password": "Niepoprawne stare hasło",
-  "delete-acc-title": "⚠️ Czy na pewno chcesz usunąć swoje konto?",
+  "delete-acc-title": "⚠️ Czy na pewno chcesz usunąć konto?",
   "delete-acc-desc": "Jeżeli tak, wpisz swoje hasło",
   "delete-acc-warning": "UWAGA! Ta akcja jest nieodwracalna",
   "delete-acc-placeholder": "Podaj swoje hasło",
@@ -135,5 +136,12 @@
   "timed-upgr-activated": "Ulepszenie aktywowane na $1",
   "timed-upgr-notif": "Pozostały czas: $1",
   "timed-upgr-limit-reached": "Możesz mieć tylko $1 aktywne {{PLURAL:$1|ulepszenie|ulepszenia|ulepszeń}}",
-  "timed-upgr-already-active": "Możesz mieć tylko jedno aktywne ulepszenie tego typu"
+  "timed-upgr-already-active": "Możesz mieć tylko jedno aktywne ulepszenie tego typu",
+  "stats-title": "📊 Statystyki",
+  "stats-level": "Poziom:",
+  "stats-xp": "XP:",
+  "stats-to-next-level": "XP potrzebne do następnego poziomu:",
+  "notif-reward-title": "Nagroda!",
+  "notif-reward-text": "Otrzymałeś $1 $ za osiągnięcie poziomu $2!",
+  "stats-xp-needed": "$1 XP"
 }

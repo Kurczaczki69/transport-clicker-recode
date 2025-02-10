@@ -1,0 +1,70 @@
+#stats-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--colorscheme2);
+  width: 70vw;
+  height: 500px;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 800;
+}
+
+#stats-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--colorscheme3);
+}
+
+#level-bar-empty {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100px;
+  width: 60%;
+  height: 2vh;
+  background-color: var(--colorscheme3);
+  z-index: 801;
+}
+
+#level-bar-filled {
+  border-radius: 100px;
+  width: 90%;
+  height: 2vh;
+  z-index: 802;
+  background: var(--colorscheme4);
+  background: linear-gradient(90deg, var(--colorscheme4) 0%, var(--colorscheme2) 100%);
+}
+
+#user-level {
+  position: absolute;
+  top: 20%;
+  left: 21%;
+  border-radius: 100px;
+  font-size: 1.75rem;
+  font-weight: 900;
+  font-style: italic;
+}
+
+#user-xp {
+  position: absolute;
+  top: 24%;
+  left: 69%;
+  transform: translate(-50%, -50%);
+  border-radius: 100px;
+  font-size: 1.75rem;
+  font-weight: 900;
+  font-style: italic;
+}
+
+#to-next-level {
+  position: absolute;
+  top: 32%;
+  left: 21%;
+  font-size: 1rem;
+}

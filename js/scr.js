@@ -329,13 +329,21 @@ window.addEventListener("beforeunload", function (event) {
   event.returnValue = "";
 });
 
-// getter and setter functions for upgrades
+// getter and setter functions for variables
 export function getBal() {
   return bal;
 }
 
 export function setBal(newBal) {
   bal = newBal;
+}
+
+export function getIncome() {
+  return income;
+}
+
+export function getClickMod() {
+  return clickmod;
 }
 
 export function getBghtUpgrs() {
