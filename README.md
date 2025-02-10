@@ -26,4 +26,4 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ An actual tutorial on how to start playing\
 ✅ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
 ✅ Different categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")\
-❌ Seasonal vehicles (eg. christmas, easter, halloween)
+❌ Seasonal events (eg. christmas, easter, halloween)
