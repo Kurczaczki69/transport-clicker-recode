@@ -2,6 +2,8 @@ import { getUpgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
 import { showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
+import { getLevel } from "../levelSystem.js";
+import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 
 // REGULAR UPGRADES ONLY (so no timed upgrades)
 
@@ -17,6 +19,7 @@ dropdown.addEventListener("change", () => {
     vehicleTypeSection.style.display = "block";
     timedUpgrSection.style.display = "none";
   } else if (dropdown.value === "1") {
+    checkTimedUpgrLevel();
     timedUpgrSection.style.display = "block";
     vehicleTypeSection.style.display = "none";
     notReadySection.style.display = "none";
@@ -34,6 +37,7 @@ const tint = document.querySelector("#window-tint");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
 navItemUpgrMenu.addEventListener("click", () => {
+  checkLevel();
   tint.style.display = "block";
   upgradeGUI.style.display = "flex";
 });
@@ -94,11 +98,39 @@ function confirmUpgrade(upgradetobuy) {
   });
 }
 
-const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
+function blockUpgrade(upgradetobuy, reason) {
+  const upgrades = getUpgrades();
+  const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
 
-// Loop over the bus elements and attach an event listener to each one
-upgrEls.forEach((upgrEl) => {
-  upgrEl.addEventListener("click", () => {
-    confirmUpgrade(upgrEl.id);
+  if (reason == "level") {
+    showAlert(banana.i18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
+  }
+}
+
+const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
+const upgrTextEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn-text");
+
+function checkLevel() {
+  const upgrades = getUpgrades();
+  const level = getLevel();
+
+  upgrEls.forEach((upgrEl, index) => {
+    const upgrade = upgrades.find((u) => u.id === upgrEl.id);
+    if (upgrade && upgrade.requiredLevel > level) {
+      upgrTextEls[index].textContent = "";
+      upgrTextEls[index].classList.add("tabler--lock-filled");
+      upgrEl.style.padding = "3%";
+      upgrEl.addEventListener("click", () => {
+        blockUpgrade(upgrEl.id, "level");
+      });
+    } else if (upgrade && upgrade.requiredLevel == level) {
+      upgrEl.addEventListener("click", () => {
+        confirmUpgrade(upgrEl.id);
+      });
+    } else {
+      upgrEl.addEventListener("click", () => {
+        confirmUpgrade(upgrEl.id);
+      });
+    }
   });
-});
+}

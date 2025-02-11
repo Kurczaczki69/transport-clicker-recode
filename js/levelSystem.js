@@ -8,13 +8,16 @@ import { banana } from "./langs.js";
 const statsWindow = document.querySelector("#stats-window");
 const statsWindowCloseBtn = document.querySelector("#close-stats-btn");
 const statsWindowOpenBtn = document.querySelector("#nav-item-open-stats");
+const tint = document.querySelector("#window-tint");
 
 statsWindowOpenBtn.addEventListener("click", () => {
   displayData();
+  tint.style.display = "block";
   statsWindow.style.display = "block";
 });
 
 statsWindowCloseBtn.addEventListener("click", () => {
+  tint.style.display = "none";
   statsWindow.style.display = "none";
 });
 
@@ -40,6 +43,10 @@ function calculateLevelProgress(xp) {
     xp -= xpRequirement;
     previousXpRequirement = xpRequirement;
     xpRequirement = Math.floor(xpRequirement * 1.1); // increase by 10%
+  }
+
+  if (previousLevel == 0 || previousLevel == null || previousLevel == undefined) {
+    previousLevel = level;
   }
 
   if (previousLevel >= level) {
@@ -83,4 +90,13 @@ function displayData() {
     "stats-xp-needed",
     abbreviateNumber(xpToNextLevel)
   );
+}
+
+export function getLevel() {
+  const income = getIncome();
+  const clickMod = getClickMod();
+  const xp = calculateXP(income, clickMod);
+  const { level, levelProgress, xpRequirement, previousXpRequirement, xpToNextLevel } = calculateLevelProgress(xp);
+
+  return level;
 }
