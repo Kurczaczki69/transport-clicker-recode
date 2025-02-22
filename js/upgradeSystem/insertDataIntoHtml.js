@@ -1,7 +1,7 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getUpgrades } from "../data/upgradeData.js";
 import { abbreviateNumber } from "../utilities.js";
-import { vhcls } from "../data/busData.js";
+import { getVhcls } from "../data/vhclData.js";
 
 const timedUpgrNames = document.querySelectorAll(".timedUpgrName");
 const timedUpgrDescs = document.querySelectorAll(".timedUpgrDesc");
@@ -21,6 +21,7 @@ export function updateHtmlData() {
   if (window.location.href.includes("game.html")) {
     const timedUpgrades = getTimedUpgrades();
     const upgrades = getUpgrades();
+    const vhcls = getVhcls();
     const maxLen = Math.max(timedUpgrades.length, upgrades.length, vhcls.length);
     for (index = 0; index < maxLen; index++) {
       if (index < timedUpgrades.length) {

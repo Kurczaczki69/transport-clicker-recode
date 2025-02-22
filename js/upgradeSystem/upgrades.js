@@ -38,6 +38,7 @@ const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
 navItemUpgrMenu.addEventListener("click", () => {
   checkLevel();
+  checkTimedUpgrLevel();
   tint.style.display = "block";
   upgradeGUI.style.display = "flex";
 });

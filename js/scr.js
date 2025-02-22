@@ -2,11 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { vhcls, a20 } from "./data/busData.js";
+import { getVhcls, a20 } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
+import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -30,11 +31,18 @@ let bal = 0;
 let income = 0;
 
 let buyTotal = 0;
-let chosenBus = "";
+let chosenVhcl = "";
 let bghtUpgrs = [];
 
-const navItemSaveGame = document.getElementById("nav-item-save-game");
-navItemSaveGame.addEventListener("click", saveGame);
+let vhclAmounts = {};
+let vhclPrices = {};
+
+const isGamePage = window.location.pathname.endsWith("game.html");
+
+if (isGamePage) {
+  const navItemSaveGame = document.getElementById("nav-item-save-game");
+  navItemSaveGame.addEventListener("click", saveGame);
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
@@ -56,6 +64,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           clickmod: clickmod,
           bghta20: bghta20,
           bghtUpgrs: bghtUpgrs,
+          vhclAmounts: vhclAmounts,
+          vhclPrices: vhclPrices,
         });
         console.log("saved data to server");
         sleep(700).then(() => {
@@ -67,13 +77,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         clickmod = userData.clickmod;
         bghta20 = userData.bghta20;
         bghtUpgrs = userData.bghtUpgrs;
+        vhclAmounts = userData.vhclAmounts;
+        vhclPrices = userData.vhclPrices;
         console.log("data loaded from server");
         if (auth.currentUser.emailVerified) {
           console.log("email is verified");
+          if (vhclPrices == undefined || vhclPrices == null) {
+            vhclPrices = {};
+          }
+          if (vhclAmounts == undefined || vhclAmounts == null) {
+            vhclAmounts = {};
+          }
           getCodes()
             .then(() => {
               console.log("codes loaded from server");
               sleep(700).then(() => {
+                syncVehiclePrices();
                 $("#loader-wrapper").fadeOut("slow");
               });
             })
@@ -101,6 +120,8 @@ function saveGame() {
     clickmod: clickmod,
     bghta20: bghta20,
     bghtUpgrs: bghtUpgrs,
+    vhclAmounts: vhclAmounts,
+    vhclPrices: vhclPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -122,6 +143,8 @@ export function silentSaveGame() {
     clickmod: clickmod,
     bghta20: bghta20,
     bghtUpgrs: bghtUpgrs,
+    vhclAmounts: vhclAmounts,
+    vhclPrices: vhclPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -134,8 +157,10 @@ export function silentSaveGame() {
 }
 
 // buying mana20
-const manA20Btn = document.getElementById("mana20");
-manA20Btn.addEventListener("click", buyManA20);
+if (isGamePage) {
+  const manA20Btn = document.getElementById("mana20");
+  manA20Btn.addEventListener("click", buyManA20);
+}
 
 function buyManA20() {
   if (bal >= a20[0].price) {
@@ -158,24 +183,24 @@ function buyManA20() {
 const menu = document.getElementById("buy-menu");
 const finishBtn = document.getElementById("finish-operation-btn");
 
-function buyBus(busCode) {
-  chosenBus = busCode;
+function buyVhcl(vhclCode) {
+  chosenVhcl = vhclCode;
   menu.style.display = "block";
-  finishBtn.removeEventListener("click", buyBusChecker);
-  finishBtn.addEventListener("click", buyBusChecker, { once: true });
+  finishBtn.removeEventListener("click", buyVhclChecker);
+  finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
 
 // closing the buy menu
-const busCntGUIBtn = document.getElementById("closebuymenu");
-busCntGUIBtn.addEventListener("click", () => {
-  const busCntGUI = document.getElementById("buy-menu");
-  inputEl.value = "";
-  chosenBus = "";
-  updateTotal();
-  busCntGUI.style.display = "none";
-});
+if (isGamePage) {
+  const busCntGUIBtn = document.getElementById("closebuymenu");
+  busCntGUIBtn.addEventListener("click", () => {
+    const busCntGUI = document.getElementById("buy-menu");
+    busCntGUI.style.display = "none";
+    resetBuyMenu();
+  });
+}
 
-function buyBusChecker() {
+function buyVhclChecker() {
   if (isEmpty(inputEl.value)) {
     showAlert(banana.i18n("vhcl-invalid-quantity"));
     resetBuyMenu();
@@ -183,7 +208,7 @@ function buyBusChecker() {
   }
 
   if (bal >= buyTotal) {
-    buyBusRight();
+    buyVhclRight();
   } else {
     showAlert(banana.i18n("cant-afford"));
     resetBuyMenu();
@@ -193,56 +218,88 @@ function buyBusChecker() {
 function resetBuyMenu() {
   inputEl.value = "";
   updateTotal();
-  chosenBus = "";
+  chosenVhcl = "";
   menu.style.display = "none";
-  finishBtn.removeEventListener("click", buyBusChecker);
+  finishBtn.removeEventListener("click", buyVhclChecker);
 }
 
-function buyBusRight() {
-  let bus = vhcls.find((bus) => bus.code === chosenBus);
+function buyVhclRight() {
+  const vhcls = getVhcls();
+  let bus = vhcls.find((bus) => bus.code === chosenVhcl);
   const busProp = bus;
+  const quantity = parseInt(inputEl.value);
 
   bal -= buyTotal;
-  income += parseInt(busProp.incomemod) * parseInt(inputEl.value);
-  clickmod += parseInt(busProp.clickmod) * parseInt(inputEl.value);
+  income += parseInt(busProp.incomemod) * quantity;
+  clickmod += parseInt(busProp.clickmod) * quantity;
 
-  showAlert(banana.i18n("vhcl-purchase-success", busProp.name, inputEl.value));
+  // increase price for each vehicle purchased
+  const basePrice = vhclPrices[busProp.code] || busProp.price;
+  const priceMultiplier = 1 + 0.025 * Math.log10(quantity + 1);
+  vhclPrices[busProp.code] = basePrice * priceMultiplier;
+
+  if (vhclAmounts[busProp.code]) {
+    vhclAmounts[busProp.code] += quantity;
+  } else {
+    vhclAmounts[busProp.code] = quantity;
+  }
+
+  showAlert(banana.i18n("vhcl-purchase-success", busProp.name, quantity));
+  syncVehiclePrices();
   silentSaveGame();
-  inputEl.value = "0";
-  updateTotal();
-  chosenBus = "";
-  menu.style.display = "none";
+  updateHtmlData();
+  resetBuyMenu();
 }
 
-// open vehicle menu
-const navItemBuy = document.getElementById("nav-item-buy");
-navItemBuy.addEventListener("click", () => {
-  const buygui = document.getElementById("buy-vehicle");
-  const tint = document.querySelector("#window-tint");
-  if (bghtUpgrs.includes("citybus")) {
-    tint.style.display = "block";
-    buygui.style.display = "flex";
-  } else {
-    buygui.style.display = "none";
-    showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
-  }
-});
+export function syncVehiclePrices() {
+  if (!isGamePage) return;
+  const vhcls = getVhcls();
 
-// close vehicle menu
-const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
-closeBusGuiBtn.addEventListener("click", () => {
-  const buygui = document.getElementById("buy-vehicle");
-  const tint = document.querySelector("#window-tint");
-  tint.style.display = "none";
-  buygui.style.display = "none";
-});
+  vhcls.forEach((vehicle) => {
+    if (vhclPrices[vehicle.code]) {
+      vehicle.price = vhclPrices[vehicle.code];
+    } else {
+      vhclPrices[vehicle.code] = vehicle.price;
+    }
+  });
+
+  updateHtmlData();
+  console.log("vehicle prices synchronized");
+}
+
+if (isGamePage) {
+  // open vehicle menu
+  const navItemBuy = document.getElementById("nav-item-buy");
+  navItemBuy.addEventListener("click", () => {
+    const buygui = document.getElementById("buy-vehicle");
+    const tint = document.querySelector("#window-tint");
+    if (bghtUpgrs.includes("citybus")) {
+      tint.style.display = "block";
+      buygui.style.display = "flex";
+    } else {
+      buygui.style.display = "none";
+      showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
+    }
+  });
+
+  // close vehicle menu
+  const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
+  closeBusGuiBtn.addEventListener("click", () => {
+    const buygui = document.getElementById("buy-vehicle");
+    const tint = document.querySelector("#window-tint");
+    tint.style.display = "none";
+    buygui.style.display = "none";
+  });
+}
 
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 
-// updating the total in bus buy window
+// updating the total in vhcl buy window
 function updateTotal() {
-  const busData = vhcls.find((bus) => bus.code === chosenBus);
+  if (!isGamePage) return;
+  const vhcls = getVhcls();
+  const busData = vhcls.find((bus) => bus.code === chosenVhcl);
   const price = busData ? busData.price : 0;
   const maxQuantity = busData ? busData.maxQuantity : Infinity;
 
@@ -254,10 +311,12 @@ function updateTotal() {
   totalEl.innerHTML = abbreviateNumber(buyTotal);
 }
 
-inputEl.addEventListener("input", () => {
-  inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
-  updateTotal();
-});
+if (isGamePage) {
+  inputEl.addEventListener("input", () => {
+    inputEl.value = !!inputEl.value && Math.abs(inputEl.value) >= 0 ? Math.abs(inputEl.value) : null;
+    updateTotal();
+  });
+}
 
 function getTotalIncomeBoost(timedUpgrs) {
   let timedUpgrades = getTimedUpgrades();
@@ -281,8 +340,10 @@ async function add() {
   add();
 }
 
-const clickspace = document.getElementById("clicker");
-clickspace.addEventListener("click", clicker);
+if (isGamePage) {
+  const clickspace = document.getElementById("clicker");
+  clickspace.addEventListener("click", clicker);
+}
 
 function getTotalClickBoost(timedUpgrs) {
   let timedUpgrades = getTimedUpgrades();
@@ -306,6 +367,7 @@ function clicker() {
 
 // displaying player data on main game screen
 function displaybal() {
+  if (!isGamePage) return;
   document.querySelector("#bal-show").innerHTML = abbreviateNumber(bal);
   document.querySelector("#income-show").innerHTML = abbreviateNumber(income);
   document.querySelector("#click-show").innerHTML = abbreviateNumber(clickmod);
@@ -324,11 +386,12 @@ window.addEventListener("load", displaybal);
 updateTotal();
 
 // warn the user about saving the game before closing
-window.addEventListener("beforeunload", function (event) {
-  event.preventDefault();
-  event.returnValue = "";
-});
-
+if (isGamePage) {
+  window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
+    event.returnValue = "";
+  });
+}
 // getter and setter functions for variables
 export function getBal() {
   return bal;
@@ -346,6 +409,22 @@ export function getClickMod() {
   return clickmod;
 }
 
+export function getVhclAmounts() {
+  return vhclAmounts;
+}
+
+export function setVhclAmounts(newVhclAmounts) {
+  vhclAmounts = newVhclAmounts;
+}
+
+export function getVhclPrices() {
+  return vhclPrices;
+}
+
+export function setVhclPrices(newVhclPrices) {
+  vhclPrices = newVhclPrices;
+}
+
 export function getBghtUpgrs() {
   return bghtUpgrs;
 }
@@ -354,12 +433,12 @@ export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
 }
 
-// Get all bus elements
-const busEls = document.querySelectorAll(".vhcl-menu-btn");
+// Get all vhcl elements
+const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
 
-// Loop over the bus elements and attach an event listener to each one
-busEls.forEach((busEl) => {
-  busEl.addEventListener("click", () => {
-    buyBus(busEl.id);
+// Loop over the vhcl elements and attach an event listener to each one
+vhclEls.forEach((vhclEl) => {
+  vhclEl.addEventListener("click", () => {
+    buyVhcl(vhclEl.id);
   });
 });

@@ -56,6 +56,35 @@ function checkUpgradeByType(upgrT) {
   });
 }
 
+// function confirmTimedUpgrade(upgradetobuy) {
+//   console.log("confirming upgrade");
+//   let timedUpgrades = getTimedUpgrades();
+//   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgradetobuy);
+//   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
+//   const confirmBtn = document.querySelector("#confirm-upgr-btn");
+//   const cancelBtn = document.querySelector("#cancel-upgr-btn");
+//   const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
+//   upgradeName.textContent = upgradeToBuy.name;
+//   clearMsg("msg-confirm-upgrade");
+//   confirmationDialog.style.display = "block";
+
+//   confirmBtn.addEventListener(
+//     "click",
+//     () => {
+//       console.log("buying upgrade");
+//       buyTimedUpgrade(upgradetobuy);
+//     },
+//     { once: true }
+//   );
+
+//   cancelBtn.addEventListener("click", () => {
+//     confirmBtn.removeEventListener("click", () => {
+//       buyTimedUpgrade(upgradetobuy);
+//     });
+//     confirmationDialog.style.display = "none";
+//   });
+// }
+
 function confirmTimedUpgrade(upgradetobuy) {
   let timedUpgrades = getTimedUpgrades();
   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgradetobuy);
@@ -67,15 +96,18 @@ function confirmTimedUpgrade(upgradetobuy) {
   clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
 
-  confirmBtn.addEventListener(
-    "click",
-    () => {
-      buyTimedUpgrade(upgradetobuy);
-    },
-    { once: true }
-  );
+  // Remove any existing event listeners
+  const newConfirmBtn = confirmBtn.cloneNode(true);
+  const newCancelBtn = cancelBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+  cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
 
-  cancelBtn.addEventListener("click", () => {
+  // Add new event listeners
+  newConfirmBtn.addEventListener("click", () => {
+    buyTimedUpgrade(upgradetobuy);
+  });
+
+  newCancelBtn.addEventListener("click", () => {
     confirmationDialog.style.display = "none";
   });
 }
@@ -106,11 +138,11 @@ export function checkTimedUpgrLevel() {
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
       upgrEl.addEventListener("click", () => {
-        confirmUpgrade(upgrEl.id);
+        confirmTimedUpgrade(upgrEl.id);
       });
     } else {
       upgrEl.addEventListener("click", () => {
-        confirmUpgrade(upgrEl.id);
+        confirmTimedUpgrade(upgrEl.id);
       });
     }
   });

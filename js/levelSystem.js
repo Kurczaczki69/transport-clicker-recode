@@ -5,21 +5,25 @@ import { banana } from "./langs.js";
 
 // window close and open
 
-const statsWindow = document.querySelector("#stats-window");
-const statsWindowCloseBtn = document.querySelector("#close-stats-btn");
-const statsWindowOpenBtn = document.querySelector("#nav-item-open-stats");
-const tint = document.querySelector("#window-tint");
+const isGamePage = window.location.pathname.endsWith("game.html");
 
-statsWindowOpenBtn.addEventListener("click", () => {
-  displayData();
-  tint.style.display = "block";
-  statsWindow.style.display = "block";
-});
+if (isGamePage) {
+  const statsWindow = document.querySelector("#stats-window");
+  const statsWindowCloseBtn = document.querySelector("#close-stats-btn");
+  const statsWindowOpenBtn = document.querySelector("#nav-item-open-stats");
+  const tint = document.querySelector("#window-tint");
 
-statsWindowCloseBtn.addEventListener("click", () => {
-  tint.style.display = "none";
-  statsWindow.style.display = "none";
-});
+  statsWindowOpenBtn.addEventListener("click", () => {
+    displayData();
+    tint.style.display = "block";
+    statsWindow.style.display = "block";
+  });
+
+  statsWindowCloseBtn.addEventListener("click", () => {
+    tint.style.display = "none";
+    statsWindow.style.display = "none";
+  });
+}
 
 // all the math etc.
 
