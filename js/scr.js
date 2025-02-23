@@ -200,10 +200,6 @@ function checkLevel() {
       vhclEl.addEventListener("click", () => {
         blockVhcl(vhclEl.id, "level");
       });
-    } else if (vhcl && vhcl.requiredLevel == level) {
-      vhclEl.addEventListener("click", () => {
-        buyVhcl(vhclEl.id);
-      });
     } else {
       vhclEl.addEventListener("click", () => {
         buyVhcl(vhclEl.id);

@@ -40,7 +40,7 @@ dropdown1.addEventListener("change", () => {
   }
 });
 
-// main categories for bus menu
+// main categories for vehicle menu
 const dropdown = document.getElementById("vhcl-menu-category-dropdown");
 const busSection = document.getElementById("vhcl-menu-bus-category");
 const otherSections = document.getElementById("vhcl-menu-other-categories");
