@@ -32,6 +32,7 @@
   "vhcl-already-used-a20": "Już wykorzystałeś swoje kupno darmowego autobusu",
   "vhcl-bought-a20": "Kupiono autobus MAN A20",
   "vhcl-unlock-level": "Potrzebujesz poziomu $1 aby móc kupić ten pojazd",
+  "vhcl-category-locked": "Musisz najpierw kupić ulepszenie $1",
   "cant-afford": "Nie stać cię!",
   "vhcl-invalid-quantity": "Wprowadź prawidłową ilość",
   "vhcl-purchase-success": "Kupiono $2 {{PLURAL:$2|pojazd|pojazdy|pojazdów}} $1",

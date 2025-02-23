@@ -1,5 +1,6 @@
 import { getBghtUpgrs } from "./scr.js";
 import { showAlert } from "./utilities.js";
+import { banana } from "./langs.js";
 
 // subcategories for buses
 const dropdown1 = document.getElementById("vhcl-menu-subcategory-dropdown-1");
@@ -15,7 +16,7 @@ dropdown1.addEventListener("change", () => {
       hydrogenBusSection.style.display = "none";
       intercityBusSection.style.display = "none";
     } else {
-      showAlert("Musisz kupić ulepszenie Autobusy Miejskie!");
+      showAlert(banana.i18n("vhcl-category-locked", banana.i18n("city-buses")));
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   } else if (dropdown1.value === "1") {
@@ -24,7 +25,7 @@ dropdown1.addEventListener("change", () => {
       cityBusSection.style.display = "none";
       intercityBusSection.style.display = "none";
     } else {
-      showAlert("Musisz kupić ulepszenie Autobusy Wodorowe!");
+      showAlert(banana.i18n("vhcl-category-locked", banana.i18n("hydrogen-buses")));
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   } else if (dropdown1.value === "2") {
@@ -33,7 +34,7 @@ dropdown1.addEventListener("change", () => {
       cityBusSection.style.display = "none";
       hydrogenBusSection.style.display = "none";
     } else {
-      showAlert("Musisz kupić ulepszenie Autobusy Międzymiastowe!");
+      showAlert(banana.i18n("vhcl-category-locked", banana.i18n("intercity-buses")));
       $("#vhcl-menu-subcategory-dropdown-1").val("0");
     }
   }
