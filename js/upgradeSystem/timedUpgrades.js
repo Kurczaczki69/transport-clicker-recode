@@ -56,35 +56,6 @@ function checkUpgradeByType(upgrT) {
   });
 }
 
-// function confirmTimedUpgrade(upgradetobuy) {
-//   console.log("confirming upgrade");
-//   let timedUpgrades = getTimedUpgrades();
-//   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgradetobuy);
-//   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
-//   const confirmBtn = document.querySelector("#confirm-upgr-btn");
-//   const cancelBtn = document.querySelector("#cancel-upgr-btn");
-//   const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
-//   upgradeName.textContent = upgradeToBuy.name;
-//   clearMsg("msg-confirm-upgrade");
-//   confirmationDialog.style.display = "block";
-
-//   confirmBtn.addEventListener(
-//     "click",
-//     () => {
-//       console.log("buying upgrade");
-//       buyTimedUpgrade(upgradetobuy);
-//     },
-//     { once: true }
-//   );
-
-//   cancelBtn.addEventListener("click", () => {
-//     confirmBtn.removeEventListener("click", () => {
-//       buyTimedUpgrade(upgradetobuy);
-//     });
-//     confirmationDialog.style.display = "none";
-//   });
-// }
-
 function confirmTimedUpgrade(upgradetobuy) {
   let timedUpgrades = getTimedUpgrades();
   const upgradeToBuy = timedUpgrades.find((u) => u.id === upgradetobuy);

@@ -56,6 +56,16 @@ export function abbreviateNumber(num) {
   return formatter.format(num);
 }
 
+export function shortAbbreviateNumber(num) {
+  const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumSignificantDigits: 3,
+  });
+
+  return formatter.format(num);
+}
+
 // formats time from milliseconds to human readable format
 export function formatTime(ms) {
   const seconds = Math.floor((ms / 1000) % 60);

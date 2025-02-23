@@ -50,12 +50,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userDoc = await getDoc(doc(db, "users", loggedInUserId));
     if (userDoc.exists()) {
       const userData = userDoc.data();
-      if (
-        userData.balance == null ||
-        userData.income == null ||
-        userData.clickmod == null ||
-        userData.bghta20 == null
-      ) {
+      // loads existing data from server or sets default value if no data is found
+      bal = userData.balance || bal;
+      income = userData.income || income;
+      clickmod = userData.clickmod || clickmod;
+      bghta20 = userData.bghta20 || bghta20;
+      bghtUpgrs = userData.bghtUpgrs || bghtUpgrs;
+      vhclAmounts = userData.vhclAmounts || {};
+      vhclPrices = userData.vhclPrices || {};
+
+      // data is saved to server only if it is a new account
+      if (!userData.balance && !userData.income && !userData.clickmod) {
         await setDoc(doc(db, "users", loggedInUserId), {
           email: userData.email,
           username: userData.username,
@@ -67,45 +72,33 @@ document.addEventListener("DOMContentLoaded", async () => {
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
         });
-        console.log("saved data to server");
-        sleep(700).then(() => {
-          $("#loader-wrapper").fadeOut("slow");
-        });
-      } else {
-        bal = userData.balance;
-        income = userData.income;
-        clickmod = userData.clickmod;
-        bghta20 = userData.bghta20;
-        bghtUpgrs = userData.bghtUpgrs;
-        vhclAmounts = userData.vhclAmounts;
-        vhclPrices = userData.vhclPrices;
-        console.log("data loaded from server");
-        if (auth.currentUser.emailVerified) {
-          console.log("email is verified");
-          if (vhclPrices == undefined || vhclPrices == null) {
-            vhclPrices = {};
-          }
-          if (vhclAmounts == undefined || vhclAmounts == null) {
-            vhclAmounts = {};
-          }
-          getCodes()
-            .then(() => {
-              console.log("codes loaded from server");
-              sleep(700).then(() => {
-                syncVehiclePrices();
-                $("#loader-wrapper").fadeOut("slow");
-              });
-            })
-            .catch((error) => {
-              console.error("error getting codes:", error);
-            });
-        } else {
-          console.log("email is not verified");
-          window.location.href = "index.html";
-          localStorage.removeItem("loggedInUserId");
-          localStorage.setItem("loggedIn", false);
-          showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
+      }
+      console.log("data loaded from server");
+      if (auth.currentUser.emailVerified) {
+        console.log("email is verified");
+        if (vhclPrices == undefined || vhclPrices == null) {
+          vhclPrices = {};
         }
+        if (vhclAmounts == undefined || vhclAmounts == null) {
+          vhclAmounts = {};
+        }
+        getCodes()
+          .then(() => {
+            console.log("codes loaded from server");
+            sleep(700).then(() => {
+              syncVehiclePrices();
+              $("#loader-wrapper").fadeOut("slow");
+            });
+          })
+          .catch((error) => {
+            console.error("error getting codes:", error);
+          });
+      } else {
+        console.log("email is not verified");
+        window.location.href = "index.html";
+        localStorage.removeItem("loggedInUserId");
+        localStorage.setItem("loggedIn", false);
+        showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
       }
     }
   }

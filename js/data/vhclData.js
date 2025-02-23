@@ -1,5 +1,5 @@
 // HOW TO ADD A VEHICLE
-// 1. Add to buses array with all data neccesary
+// 1. Add to vhcls array with all data neccesary
 // 2. Add to html
 
 let vhcls = [];
