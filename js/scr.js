@@ -6,6 +6,7 @@ import { getVhcls, a20 } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
+import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
 import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 
@@ -183,6 +184,44 @@ function buyVhcl(vhclCode) {
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
 
+const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
+const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
+
+function checkLevel() {
+  const vhcls = getVhcls();
+  const level = getLevel();
+
+  vhclEls.forEach((vhclEl, index) => {
+    const vhcl = vhcls.find((v) => v.code === vhclEl.id);
+    if (vhcl && vhcl.requiredLevel > level) {
+      vhclTextEls[index].textContent = "";
+      vhclTextEls[index].classList.add("tabler--lock-filled");
+      vhclEl.style.padding = "3%";
+      vhclEl.addEventListener("click", () => {
+        blockVhcl(vhclEl.id, "level");
+      });
+    } else if (vhcl && vhcl.requiredLevel == level) {
+      vhclEl.addEventListener("click", () => {
+        buyVhcl(vhclEl.id);
+      });
+    } else {
+      vhclEl.addEventListener("click", () => {
+        buyVhcl(vhclEl.id);
+      });
+    }
+  });
+}
+
+function blockVhcl(vhclCode, reason) {
+  const vhcls = getVhcls();
+  const vhcl = vhcls.find((v) => v.code === vhclCode);
+  let message = "";
+  if (reason === "level") {
+    message = banana.i18n("vhcl-unlock-level", vhcl.requiredLevel);
+  }
+  showAlert(message);
+}
+
 // closing the buy menu
 if (isGamePage) {
   const busCntGUIBtn = document.getElementById("closebuymenu");
@@ -267,6 +306,7 @@ if (isGamePage) {
     const buygui = document.getElementById("buy-vehicle");
     const tint = document.querySelector("#window-tint");
     if (bghtUpgrs.includes("citybus")) {
+      checkLevel();
       tint.style.display = "block";
       buygui.style.display = "flex";
     } else {
@@ -425,13 +465,3 @@ export function getBghtUpgrs() {
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
 }
-
-// Get all vhcl elements
-const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
-
-// Loop over the vhcl elements and attach an event listener to each one
-vhclEls.forEach((vhclEl) => {
-  vhclEl.addEventListener("click", () => {
-    buyVhcl(vhclEl.id);
-  });
-});
