@@ -4,7 +4,7 @@
 
 let vhcls = [];
 
-function initializeVehicles() {
+export function initializeVehicles() {
   vhcls = [
     {
       code: "solu8",
@@ -196,14 +196,64 @@ function initializeVehicles() {
       category: "intercitybus",
       maxQuantity: 10000000,
     },
+    {
+      code: "soltroll12",
+      name: "Solaris Trollino 12",
+      clickmod: 20,
+      incomemod: 20,
+      price: 200000,
+      requiredLevel: 25,
+      category: "trolleybus",
+      maxQuantity: 10000000,
+    },
+    {
+      code: "soltroll18",
+      name: "Solaris Trollino 18",
+      clickmod: 30,
+      incomemod: 32,
+      price: 380000,
+      requiredLevel: 37,
+      category: "trolleybus",
+      maxQuantity: 10000000,
+    },
+    {
+      code: "soltroll24",
+      name: "Solaris Trollino 24",
+      clickmod: 38,
+      incomemod: 42,
+      price: 475000,
+      requiredLevel: 45,
+      category: "trolleybus",
+      maxQuantity: 10000000,
+    },
+    {
+      code: "mercedes530",
+      name: "Mercedes-Benz O530L",
+      clickmod: 45,
+      incomemod: 48,
+      price: 575000,
+      requiredLevel: 55,
+      category: "trolleybus",
+      maxQuantity: 10000000,
+    },
+    {
+      code: "mercedescitaro2",
+      name: "Mercedes-Benz Citaro 2",
+      clickmod: 50,
+      incomemod: 57,
+      price: 675000,
+      requiredLevel: 63,
+      category: "trolleybus",
+      maxQuantity: 10000000,
+    },
   ];
 }
 
-function getVhcls() {
+export function getVhcls() {
   return vhcls;
 }
 
-function setVhcls(vhcls) {
+export function setVhcls(vhcls) {
   vhcls = vhcls;
 }
 
@@ -218,5 +268,3 @@ export const a20 = [
     category: "citybus",
   },
 ];
-
-export { initializeVehicles, getVhcls, setVhcls };
