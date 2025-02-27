@@ -1,6 +1,7 @@
 import { getIncome, getClickMod, getBal, setBal } from "./scr.js";
 import { abbreviateNumber } from "./utilities.js";
 import { showNotif } from "./notifs.js";
+import { displayStats } from "./stats.js";
 import { banana } from "./langs.js";
 
 // window close and open
@@ -15,8 +16,9 @@ if (isGamePage) {
 
   statsWindowOpenBtn.addEventListener("click", () => {
     displayData();
+    displayStats();
     tint.style.display = "block";
-    statsWindow.style.display = "block";
+    statsWindow.style.display = "flex";
   });
 
   statsWindowCloseBtn.addEventListener("click", () => {
