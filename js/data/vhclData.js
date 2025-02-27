@@ -176,6 +176,26 @@ function initializeVehicles() {
       category: "intercitybus",
       maxQuantity: 10000000,
     },
+    {
+      code: "volvo9700",
+      name: "Volvo 9700",
+      clickmod: 20,
+      incomemod: 22,
+      price: 200000,
+      requiredLevel: 25,
+      category: "intercitybus",
+      maxQuantity: 10000000,
+    },
+    {
+      code: "volvo9700double",
+      name: "Volvo 9700 Double Decker",
+      clickmod: 25,
+      incomemod: 25,
+      price: 250000,
+      requiredLevel: 30,
+      category: "intercitybus",
+      maxQuantity: 10000000,
+    },
   ];
 }
 
