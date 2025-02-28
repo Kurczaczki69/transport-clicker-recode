@@ -1,6 +1,8 @@
 {
-  "credits-translators": "Tłumacze",
-  "credits-authors": "Autorzy",
+  "credits-licenses": "Licencje",
+  "credits-translator": "Tłumacz",
+  "credits-programmer": "Programista",
+  "credits-contributors": "Współtwórcy",
   "discord": "Discord",
   "github": "GitHub",
   "time-days": "d",
