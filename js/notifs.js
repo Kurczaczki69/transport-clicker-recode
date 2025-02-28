@@ -66,17 +66,21 @@ export function updateTimedUpgrNotif(notif) {
   notifEl.querySelector(".notif-small-text").textContent = notif.text;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.querySelectorAll(".notif").length === 0) {
-    const notifDisplay = document.querySelector("#notif-display");
-    notifDisplay.style.display = "none";
-  }
+const isGamePage = window.location.pathname.endsWith("game.html");
 
-  const notifCloseBtns = document.querySelectorAll(".notif-close-btn");
+if (isGamePage) {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.querySelectorAll(".notif").length === 0) {
+      const notifDisplay = document.querySelector("#notif-display");
+      notifDisplay.style.display = "none";
+    }
 
-  notifCloseBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      removeNotif(btn.parentElement.id);
+    const notifCloseBtns = document.querySelectorAll(".notif-close-btn");
+
+    notifCloseBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        removeNotif(btn.parentElement.id);
+      });
     });
   });
-});
+}

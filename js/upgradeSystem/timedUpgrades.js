@@ -3,6 +3,7 @@ import { getBal, setBal } from "../scr.js";
 import { clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 import { banana } from "../langs.js";
+import { getLevel } from "../levelSystem.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
@@ -66,24 +67,57 @@ function confirmTimedUpgrade(upgradetobuy) {
   clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
 
-  confirmBtn.addEventListener(
-    "click",
-    () => {
-      buyTimedUpgrade(upgradetobuy);
-    },
-    { once: true }
-  );
+  // Remove any existing event listeners
+  const newConfirmBtn = confirmBtn.cloneNode(true);
+  const newCancelBtn = cancelBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+  cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
 
-  cancelBtn.addEventListener("click", () => {
+  // Add new event listeners
+  newConfirmBtn.addEventListener("click", () => {
+    buyTimedUpgrade(upgradetobuy);
+  });
+
+  newCancelBtn.addEventListener("click", () => {
     confirmationDialog.style.display = "none";
   });
 }
 
-timedUpgrEls.forEach((timedUpgrEl) => {
-  timedUpgrEl.addEventListener("click", () => {
-    confirmTimedUpgrade(timedUpgrEl.id);
+function blockUpgrade(upgradetobuy, reason) {
+  const upgrades = getTimedUpgrades();
+  const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
+
+  if (reason == "level") {
+    showAlert(banana.i18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
+  }
+}
+
+const timedUpgrTextEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn-text");
+
+export function checkTimedUpgrLevel() {
+  const upgrades = getTimedUpgrades();
+  const level = getLevel();
+
+  timedUpgrEls.forEach((upgrEl, index) => {
+    const upgrade = upgrades.find((u) => u.id === upgrEl.id);
+    if (upgrade && upgrade.requiredLevel > level) {
+      timedUpgrTextEls[index].textContent = "";
+      timedUpgrTextEls[index].classList.add("tabler--lock-filled");
+      upgrEl.style.padding = "3%";
+      upgrEl.addEventListener("click", () => {
+        blockUpgrade(upgrEl.id, "level");
+      });
+    } else if (upgrade && upgrade.requiredLevel == level) {
+      upgrEl.addEventListener("click", () => {
+        confirmTimedUpgrade(upgrEl.id);
+      });
+    } else {
+      upgrEl.addEventListener("click", () => {
+        confirmTimedUpgrade(upgrEl.id);
+      });
+    }
   });
-});
+}
 
 export function getActiveTimedUpgrades() {
   return activeTimedUpgrades;

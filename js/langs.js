@@ -2,6 +2,8 @@ import Banana from "../node_modules/banana-i18n/dist/esm/banana-i18n.js";
 import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
+import { initializeVehicles } from "./data/vhclData.js";
+import { syncVehiclePrices } from "./scr.js";
 import { sleep } from "./utilities.js";
 
 const banana = new Banana();
@@ -17,6 +19,8 @@ function updateLang(lang) {
         updateLangInHtml();
         initializeTimedUpgrades();
         initializeUpgrades();
+        initializeVehicles();
+        syncVehiclePrices();
         updateHtmlData();
         const currentPage = document.body.getAttribute("data-page");
         setPageTitle(currentPage);

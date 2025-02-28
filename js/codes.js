@@ -27,26 +27,28 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-// elements
-
-const codesMenu = document.getElementById("codes-menu");
-const tint = document.querySelector("#window-tint");
-const closeGuiBtn = document.getElementById("close-codes-gui-btn");
-const openGuiBtn = document.getElementById("nav-item-codes-menu");
-
 // listeners
 
-openGuiBtn.addEventListener("click", () => {
-  tint.style.display = "block";
-  codesMenu.style.display = "block";
-  clearMsg("code-menu-msgbox");
-});
+const isGamePage = window.location.pathname.endsWith("game.html");
 
-closeGuiBtn.addEventListener("click", () => {
-  tint.style.display = "none";
-  codesMenu.style.display = "none";
-  clearMsg("code-menu-msgbox");
-});
+if (isGamePage) {
+  const codesMenu = document.getElementById("codes-menu");
+  const tint = document.querySelector("#window-tint");
+  const closeGuiBtn = document.getElementById("close-codes-gui-btn");
+  const openGuiBtn = document.getElementById("nav-item-codes-menu");
+
+  openGuiBtn.addEventListener("click", () => {
+    tint.style.display = "block";
+    codesMenu.style.display = "block";
+    clearMsg("code-menu-msgbox");
+  });
+
+  closeGuiBtn.addEventListener("click", () => {
+    tint.style.display = "none";
+    codesMenu.style.display = "none";
+    clearMsg("code-menu-msgbox");
+  });
+}
 
 // accessing codes from database
 
@@ -117,9 +119,11 @@ export async function getCodes() {
   });
 }
 
-const codeInput = document.getElementById("code-menu-input");
-const confirmBtn = document.getElementById("code-menu-confirm-btn");
-confirmBtn.addEventListener("click", () => {
-  useCode(codeInput.value);
-  codeInput.value = "";
-});
+if (isGamePage) {
+  const codeInput = document.getElementById("code-menu-input");
+  const confirmBtn = document.getElementById("code-menu-confirm-btn");
+  confirmBtn.addEventListener("click", () => {
+    useCode(codeInput.value);
+    codeInput.value = "";
+  });
+}
