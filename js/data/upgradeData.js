@@ -55,18 +55,6 @@ function initializeUpgrades() {
     },
     {
       category: "vehicleType",
-      id: "longtrolleybus",
-      name: banana.i18n("trolleybuses-long"),
-      desc: banana.i18n("trolleybuses-long-desc"),
-      requiredLevel: 50,
-      price: 425000,
-      isAvailable: false,
-      unlockcategory: "longtrolleybus",
-      incomeboost: 0,
-      clickboost: 0,
-    },
-    {
-      category: "vehicleType",
       id: "tram",
       name: banana.i18n("trams"),
       desc: banana.i18n("trams-desc"),

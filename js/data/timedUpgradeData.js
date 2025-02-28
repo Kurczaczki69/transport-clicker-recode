@@ -64,6 +64,18 @@ function initializeTimedUpgrades() {
       incomeboost: 0,
       clickboost: 5,
     },
+    {
+      name: banana.i18n("turbo-engine-10min-name"),
+      id: "turboengine10min",
+      type: "turboengine",
+      desc: banana.i18n("turbo-engine-10min-desc"),
+      requiredLevel: 50,
+      price: 450000,
+      priceGold: 1500,
+      duration: 600000,
+      incomeboost: 7,
+      clickboost: 3,
+    },
   ];
 }
 

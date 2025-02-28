@@ -7,11 +7,11 @@
     currently thats it :) -->
   <!-- ROADMAP FOR 0.9.0
   - create the dynamic pricing system DONE
-  - trolleybuses
-  - add new vehicles
+  - trolleybuses DONE
+  - add new vehicles DONE
   - leveling system DONE
   - implement a statistics system DONE
-  - add more timed upgrades
+  - add more timed upgrades DONE
   - -->
   <head>
     <meta charset="UTF-8" />
@@ -330,7 +330,6 @@
               id="vhcl-menu-subcategory-dropdown-3"
               style="display: none">
               <option value="0" data-lang="trolleybuses"></option>
-              <option value="1" data-lang="trolleybuses-long"></option>
             </select>
           </h4>
         </div>
@@ -966,28 +965,7 @@
                 </button>
               </th>
             </tr>
-            <!-- long trolleybuses -->
-            <tr>
-              <th class="upgr-menu-vehicle-type-item-header">
-                <h4><span id="upgr5" class="upgrName"></span></h4>
-                <div class="upgrDesc-wrapper">
-                  <span id="upgr5-desc" class="upgrDesc"></span>
-                </div>
-              </th>
-              <th class="upgr-menu-vehicle-type-item-is-avaible">
-                <span style="display: block" data-lang="unavailable"></span>
-              </th>
-              <th class="upgr-menu-vehicle-type-item-price">
-                <span id="upgr-menu-vehicle-type-item-price-item1"
-                  ><b><span id="upgr5-price" class="upgrPrice"></span></b
-                ></span>
-              </th>
-              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
-                <button class="upgr-menu-vehicle-type-item-btn btns" id="longtrolleybus">
-                  <div class="upgr-menu-vehicle-type-item-btn-text" data-lang="btn-buy"></div>
-                </button>
-              </th>
-            </tr>
+
             <!-- trams -->
             <tr>
               <th class="upgr-menu-vehicle-type-item-header">
@@ -1121,6 +1099,28 @@
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
                 <button class="upgr-menu-timed-upgr-item-btn btns" id="supermouse20min">
+                  <div class="upgr-menu-timed-upgr-item-btn-text" data-lang="btn-buy"></div>
+                </button>
+              </th>
+            </tr>
+            <!-- turbo engine - 10 min -->
+            <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="timed-upgr5" class="timedUpgrName"></span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="timed-upgr5-desc" class="timedUpgrDesc"></span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable"></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span class="timedUpgrPrice"></span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="turboengine10min">
                   <div class="upgr-menu-timed-upgr-item-btn-text" data-lang="btn-buy"></div>
                 </button>
               </th>

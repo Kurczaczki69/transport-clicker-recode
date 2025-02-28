@@ -365,6 +365,7 @@ async function add() {
 
   await sleep(100);
   bal += (income / 10) * totalBoost;
+  // console.log((income / 10) * totalBoost, totalBoost);
   displaybal();
   add();
 }
@@ -391,6 +392,7 @@ function clicker() {
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
   bal += clickmod * totalBoost;
+  // console.log(totalBoost, clickmod * totalBoost);
   displaybal();
 }
 

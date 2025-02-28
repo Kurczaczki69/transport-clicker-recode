@@ -44,16 +44,6 @@ dropdown1.addEventListener("change", () => {
 const trolleybusSection = document.getElementById("vhcl-menu-trolleybus-category");
 const otherSections = document.getElementById("vhcl-menu-other-categories");
 
-dropdown3.addEventListener("change", () => {
-  if (dropdown3.value === "0") {
-    trolleybusSection.style.display = "block";
-    otherSections.style.display = "none";
-  } else if (dropdown3.value === "1") {
-    trolleybusSection.style.display = "none";
-    otherSections.style.display = "block";
-  }
-});
-
 // main categories for vehicle menu
 const dropdown = document.getElementById("vhcl-menu-category-dropdown");
 const busSection = document.getElementById("vhcl-menu-bus-category");

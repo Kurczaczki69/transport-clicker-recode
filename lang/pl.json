@@ -106,6 +106,8 @@
   "super-mouse-20min-name": "Super myszka - 20 min",
   "super-mouse-5min-desc": "Zarobki z klikania x5 na 5 minut",
   "super-mouse-20min-desc": "Zarobki z klikania x5 na 20 minut",
+  "turbo-engine-10min-name": "Turbo silnik - 10 min",
+  "turbo-engine-10min-desc": "Zarobki x7 i zarobki z klikania x3 na 10 minut",
   "error-occurred": "Wystąpił błąd",
   "wrong-password": "Niepoprawne hasło",
   "auth-empty-fields": "Wypełnij wszystkie pola",
