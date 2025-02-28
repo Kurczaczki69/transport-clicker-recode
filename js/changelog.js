@@ -27,6 +27,7 @@ const contents = [
   "<h3>Wersja ALPHA 0.8.2</h3> <h4>04/02/2025</h4> <br /> - Dodana możliwość zmiany języka w ustawieniach konta<br /> - Poprawki błędów <br /> - Zmiany wizualne <br />",
   "<h3>Wersja ALPHA 0.8.3</h3> <h4>08/02/2025</h4> <br /> - Szybka poprawka <br />",
   "<h3>Wersja ALPHA 0.8.4</h3> <h4>09/02/2025</h4> <br /> - Od teraz nie można mieć aktywnych dwóch ulepszeń tego samego typu na raz <br /> - Limit kupna autobusów został zwiększony do 10 mln z powodu próśb graczy(xd) <br /> - Poprawki wielu błędów <br /> - Poprawki kodu gry <br />",
+  "<h3>Wersja ALPHA 0.9.0</h3> <h4>28/02/2025</h4> <br /> - Dodano system poziomów <br /> - Dodano okno ze statystykami <br /> - Ceny pojazdów od teraz zwiększają się za każdym zakupem <br /> - Ulepszenia mają teraz wymagane poziomy aby je kupić, tak samo pojazdy <br /> - Nowe autobusy: <br /> |- Volvo 9700 <br /> |- Volvo 9700 Double Decker <br /> - Dodano trolejbusy: <br /> |- Solaris Trollino 12 <br /> |- Solaris Trollino 18 <br /> |- Solaris Trollino 24 <br /> |- Mercedes-Benz O530L <br /> |- Mercedes-Benz Citaro 2 <br /> - Okno z informacjami o grze ma teraz sekcję z licencjami <br /> - Poprawki wielu błędów <br /> - Poprawki i optymalizacja kodu <br /> - Wiele innych mniejszych zmian i poprawek <br /> <br />",
 ];
 
 const tint = document.querySelector("#window-tint");
