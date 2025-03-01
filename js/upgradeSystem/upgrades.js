@@ -37,7 +37,7 @@ const tint = document.querySelector("#window-tint");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
 navItemUpgrMenu.addEventListener("click", () => {
-  checkLevel();
+  checkLevelUpgr();
   checkTimedUpgrLevel();
   tint.style.display = "block";
   upgradeGUI.style.display = "flex";
@@ -108,10 +108,9 @@ function blockUpgrade(upgradetobuy, reason) {
   }
 }
 
-const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
-const upgrTextEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn-text");
-
-function checkLevel() {
+export function checkLevelUpgr() {
+  const upgrEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn");
+  const upgrTextEls = document.querySelectorAll(".upgr-menu-vehicle-type-item-btn-text");
   const upgrades = getUpgrades();
   const level = getLevel();
 

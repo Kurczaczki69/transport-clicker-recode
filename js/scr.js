@@ -8,7 +8,7 @@ import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
-import { populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
               populateVhclData();
+              populateUpgrData();
               $("#loader-wrapper").fadeOut("slow");
             });
           })

@@ -56,14 +56,24 @@ export function abbreviateNumber(num) {
   return formatter.format(num);
 }
 
-export function shortAbbreviateNumber(num) {
+export function shortAbbreviateNumber(num, location) {
   const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
     notation: "compact",
     compactDisplay: "short",
     maximumSignificantDigits: 3,
   });
-
-  return formatter.format(num);
+  let formattedNum = formatter.format(num);
+  if (location == "vhcls") {
+    return formattedNum;
+  } else if (location == "upgrs") {
+    if (num === 0) {
+      return banana.i18n("free-indicator");
+    } else {
+      return formattedNum;
+    }
+  } else {
+    return formattedNum;
+  }
 }
 
 // formats time from milliseconds to human readable format

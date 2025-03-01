@@ -9,7 +9,6 @@ let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
 
 // timed upgrade buy logic
-const timedUpgrEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn");
 
 function buyTimedUpgrade(upgrId) {
   let timedUpgrades = getTimedUpgrades();
@@ -92,9 +91,9 @@ function blockUpgrade(upgradetobuy, reason) {
   }
 }
 
-const timedUpgrTextEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn-text");
-
 export function checkTimedUpgrLevel() {
+  const timedUpgrTextEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn-text");
+  const timedUpgrEls = document.querySelectorAll(".upgr-menu-timed-upgr-item-btn");
   const upgrades = getTimedUpgrades();
   const level = getLevel();
 

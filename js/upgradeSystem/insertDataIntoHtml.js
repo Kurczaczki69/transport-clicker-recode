@@ -4,6 +4,8 @@ import { shortAbbreviateNumber } from "../utilities.js";
 import { getVhcls } from "../data/vhclData.js";
 import { checkLevel, getVhclPrices, syncVehiclePrices } from "../scr.js";
 import { banana } from "../langs.js";
+import { checkLevelUpgr } from "./upgrades.js";
+import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 
 let index;
 const isGamePage = window.location.pathname.endsWith("game.html");
@@ -85,10 +87,12 @@ export function populateVhclData() {
           </span>
         </th>
         <th class="vhcl-menu-citybus-income-boost">
-          <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod)}$/${banana.i18n("time-seconds")}</span>
+          <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod, "vhcls")}$/${banana.i18n(
+      "time-seconds"
+    )}</span>
         </th>
         <th class="vhcl-menu-citybus-clickmod-boost">
-          <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod)}$/${banana.i18n("click")}</span>
+          <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${banana.i18n("click")}</span>
         </th>
         <th class="vhcl-menu-btn-wrapper">
           <button class="vhcl-menu-btn" id="${vhcl.code}">
@@ -116,4 +120,85 @@ export function populateVhclData() {
 
   checkLevel();
   syncVehiclePrices();
+}
+
+export function populateUpgrData() {
+  if (!isGamePage) return;
+  const upgrades = getUpgrades();
+  const timedUpgrades = getTimedUpgrades();
+  const upgradeContent = document.querySelector("#upgr-menu-vehicle-type-table");
+  const timedUpgrContent = document.querySelector("#upgr-menu-timed-upgrades-table");
+  upgradeContent.innerHTML = "";
+  timedUpgrContent.innerHTML = "";
+
+  upgrades.forEach((upgrade) => {
+    const row = `
+    <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="upgr${upgrade.num}" class="upgrName">${upgrade.name}</span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="upgr${upgrade.num}-desc" class="upgrDesc">${upgrade.desc}</span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: ${checkAvailability(upgrade)}" data-lang="unavailable">${banana.i18n(
+      "unavailable"
+    )}</span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span id="upgr${upgrade.num}-price" class="upgrPrice">${shortAbbreviateNumber(
+      upgrade.price,
+      "upgrs"
+    )}</span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-vehicle-type-item-btn btns" id="${upgrade.id}">
+                  <div class="upgr-menu-vehicle-type-item-btn-text" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
+                </button>
+              </th>
+            </tr>
+    `;
+    upgradeContent.innerHTML += row;
+  });
+
+  checkLevelUpgr();
+
+  timedUpgrades.forEach((upgr) => {
+    const row = `
+    <tr>
+              <th class="upgr-menu-vehicle-type-item-header">
+                <h4><span id="timed-upgr${upgr.num}" class="timedUpgrName">${upgr.name}</span></h4>
+                <div class="upgrDesc-wrapper">
+                  <span id="timed-upgr${upgr.num}-desc" class="timedUpgrDesc">${upgr.desc}</span>
+                </div>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-is-avaible">
+                <span style="display: none" data-lang="unavailable">${banana.i18n("unavailable")}</span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-price">
+                <span id="upgr-menu-vehicle-type-item-price-item1"
+                  ><b><span class="timedUpgrPrice">${shortAbbreviateNumber(upgr.price, "upgrs")}</span></b
+                ></span>
+              </th>
+              <th class="upgr-menu-vehicle-type-item-btn-wrapper">
+                <button class="upgr-menu-timed-upgr-item-btn btns" id="${upgr.id}">
+                  <div class="upgr-menu-timed-upgr-item-btn-text" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
+                </button>
+              </th>
+            </tr>
+    `;
+    timedUpgrContent.innerHTML += row;
+  });
+
+  checkTimedUpgrLevel();
+}
+
+function checkAvailability(upgr) {
+  if (upgr.isAvailable) {
+    return "none";
+  } else {
+    return "block";
+  }
 }
