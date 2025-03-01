@@ -67,6 +67,7 @@
   "tooltip-changelog": "Changelog",
   "tooltip-stats": "Stats",
   "tooltip-account": "Account",
+  "tooltip-settings": "Ustawienia",
   "error": "error",
   "code-menu-input-placeholder": "Enter code",
   "code-menu-title": "💻 Codes",
@@ -153,5 +154,18 @@
   "stats-to-next-level": "XP needed to level up:",
   "notif-reward-title": "Reward!",
   "notif-reward-text": "You received $1 for reaching level $2!",
-  "stats-xp-needed": "$1 XP"
+  "stats-xp-needed": "$1 XP",
+  "settings-menu-title": "🛠️ Ustawienia",
+  "settings-menu-theme": "Motyw:",
+  "theme-default": "Domyślny",
+  "theme-sunset": "Zachód słońca",
+  "theme-forest": "Las",
+  "theme-ocean": "Ocean",
+  "theme-lavender": "Lawenda",
+  "theme-autumn": "Jesień",
+  "theme-mint": "Mięta",
+  "theme-berry": "Jagoda",
+  "theme-desert": "Pustynia",
+  "theme-sakura": "Wiśnia",
+  "theme-cola": "Cola"
 }
