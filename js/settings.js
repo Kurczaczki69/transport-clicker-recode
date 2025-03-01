@@ -6,16 +6,20 @@ const tint = document.querySelector("#window-tint");
 const openWindowBtn = document.querySelector("#nav-item-settings-page");
 const closeWindowBtn = document.querySelector("#settings-menu-close-btn");
 
-openWindowBtn.addEventListener("click", () => {
-  populateThemeOptions();
-  tint.style.display = "block";
-  settingsWindow.style.display = "block";
-});
+const isGamePage = window.location.pathname.endsWith("game.html");
 
-closeWindowBtn.addEventListener("click", () => {
-  tint.style.display = "none";
-  settingsWindow.style.display = "none";
-});
+if (isGamePage) {
+  openWindowBtn.addEventListener("click", () => {
+    populateThemeOptions();
+    tint.style.display = "block";
+    settingsWindow.style.display = "block";
+  });
+
+  closeWindowBtn.addEventListener("click", () => {
+    tint.style.display = "none";
+    settingsWindow.style.display = "none";
+  });
+}
 
 function updateColorScheme(colors) {
   localStorage.setItem("colorScheme", JSON.stringify(colors));
@@ -37,6 +41,7 @@ function retrieveColorScheme() {
 }
 
 export function populateThemeOptions() {
+  if (!isGamePage) return;
   const themeWrapper = document.querySelector("#settings-theme-items");
   themeWrapper.innerHTML = "";
 

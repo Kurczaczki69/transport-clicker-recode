@@ -1,6 +1,5 @@
 // HOW TO ADD A VEHICLE
 // 1. Add to vhcls array with all data neccesary
-// 2. Add to html
 
 let vhcls = [];
 
@@ -256,15 +255,3 @@ export function getVhcls() {
 export function setVhcls(vhcls) {
   vhcls = vhcls;
 }
-
-export const a20 = [
-  {
-    code: "mana20",
-    name: "MAN A20",
-    price: 0,
-    incomemod: 0,
-    clickmod: 1,
-    requiredUpgr: "none",
-    category: "citybus",
-  },
-];

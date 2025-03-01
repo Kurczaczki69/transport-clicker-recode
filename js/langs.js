@@ -21,8 +21,6 @@ function updateLang(lang) {
         initializeTimedUpgrades();
         initializeUpgrades();
         initializeVehicles();
-        syncVehiclePrices();
-        updateHtmlData();
         populateThemeOptions();
         const currentPage = document.body.getAttribute("data-page");
         setPageTitle(currentPage);

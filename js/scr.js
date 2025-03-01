@@ -2,13 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { getVhcls, a20 } from "./data/vhclData.js";
+import { getVhcls } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
-import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -27,7 +27,6 @@ const db = getFirestore();
 const auth = getAuth();
 
 let clickmod = 1;
-let bghta20 = false;
 let bal = 0;
 let income = 0;
 
@@ -55,7 +54,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       bal = userData.balance || bal;
       income = userData.income || income;
       clickmod = userData.clickmod || clickmod;
-      bghta20 = userData.bghta20 || bghta20;
       bghtUpgrs = userData.bghtUpgrs || bghtUpgrs;
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
@@ -68,7 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           balance: bal,
           income: income,
           clickmod: clickmod,
-          bghta20: bghta20,
           bghtUpgrs: bghtUpgrs,
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
@@ -87,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           .then(() => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
-              syncVehiclePrices();
+              populateVhclData();
               $("#loader-wrapper").fadeOut("slow");
             });
           })
@@ -112,7 +109,6 @@ function saveGame() {
     balance: bal,
     income: income,
     clickmod: clickmod,
-    bghta20: bghta20,
     bghtUpgrs: bghtUpgrs,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
@@ -135,7 +131,6 @@ export function silentSaveGame() {
     balance: bal,
     income: income,
     clickmod: clickmod,
-    bghta20: bghta20,
     bghtUpgrs: bghtUpgrs,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
@@ -150,28 +145,6 @@ export function silentSaveGame() {
     });
 }
 
-// buying mana20
-if (isGamePage) {
-  const manA20Btn = document.getElementById("mana20");
-  manA20Btn.addEventListener("click", buyManA20);
-}
-
-function buyManA20() {
-  if (bal >= a20[0].price) {
-    if (bghta20 == false) {
-      bal = bal - a20[0].price;
-      clickmod = clickmod + a20[0].clickmod;
-      bghta20 = true;
-      showAlert(banana.i18n("vhcl-bought-a20"));
-      silentSaveGame();
-    } else {
-      showAlert(banana.i18n("vhcl-already-used-a20"));
-    }
-  } else if (bal < a20[0].price) {
-    showAlert(banana.i18n("cant-afford"));
-  }
-}
-
 // bus buy logic
 
 const menu = document.getElementById("buy-menu");
@@ -184,10 +157,9 @@ function buyVhcl(vhclCode) {
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
 
-const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
-const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
-
-function checkLevel() {
+export function checkLevel() {
+  const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
+  const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
   const vhcls = getVhcls();
   const level = getLevel();
 
@@ -328,9 +300,9 @@ const inputEl = document.getElementById("small-input");
 function updateTotal() {
   if (!isGamePage) return;
   const vhcls = getVhcls();
-  const busData = vhcls.find((bus) => bus.code === chosenVhcl);
-  const price = busData ? busData.price : 0;
-  const maxQuantity = busData ? busData.maxQuantity : Infinity;
+  const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
+  const price = vhclData ? vhclData.price : 0;
+  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
 
   if (inputEl.value > maxQuantity) {
     inputEl.value = maxQuantity;
