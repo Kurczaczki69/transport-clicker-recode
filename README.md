@@ -8,7 +8,7 @@ the code is horrible btw 😭
 
 If someone wants to contribute just `git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev` and that's it, you don't need any additional setup, it's just vanilla js, html and css. Then make a pull request and _maybe_ I'll accept it 
 
-## PLANNED FEATURES
+## PLANNED FEATURES FOR THE ALPHA PHASE
 
 ✅ Javascript recode\
 ✅ New changelog system\
