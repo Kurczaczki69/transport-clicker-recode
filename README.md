@@ -25,3 +25,14 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ✅ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
 ✅ Different categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")\
 ❌ Seasonal events (eg. christmas, easter, halloween)
+
+## PLANNED FEATURES FOR THE BETA PHASE
+
+❌ Fuel system
+❌ Passenger satisfaction
+❌ Prestige/rebirth system
+❌ Strikes, weather etc. and other negative effects
+❌ Leaderboards, profiles, friends
+❌ Choosing a company name
+❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.
+❌ Offline income
