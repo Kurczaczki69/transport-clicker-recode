@@ -28,11 +28,11 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 
 ## PLANNED FEATURES FOR THE BETA PHASE
 
-❌ Fuel system
-❌ Passenger satisfaction
-❌ Prestige/rebirth system
-❌ Strikes, weather etc. and other negative effects
-❌ Leaderboards, profiles, friends
-❌ Choosing a company name
-❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.
-❌ Offline income
+❌ Fuel system\
+❌ Passenger satisfaction\
+❌ Prestige/rebirth system\
+❌ Strikes, weather etc. and other negative effects\
+❌ Leaderboards, profiles, friends\
+❌ Choosing a company name\
+❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
+❌ Offline income\
