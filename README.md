@@ -40,4 +40,4 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Passenger numbers or something like that\
 ❌ Hiring workers\
 ❌ Extensive route system\
-❌ Achievments\
+❌ Achievements\
