@@ -22,6 +22,7 @@ function updateLang(lang) {
         initializeUpgrades();
         initializeVehicles();
         populateThemeOptions();
+        syncVehiclePrices();
         const currentPage = document.body.getAttribute("data-page");
         setPageTitle(currentPage);
         sleep(200).then(() => {

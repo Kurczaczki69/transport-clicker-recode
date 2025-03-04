@@ -1,6 +1,8 @@
 import { getBghtUpgrs } from "./scr.js";
 import { showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
+import { getCurrentCity } from "./scr.js";
+import { cities } from "./data/cityData.js";
 
 // subcategories for buses
 const dropdown1 = document.getElementById("vhcl-menu-subcategory-dropdown-1");
@@ -63,13 +65,20 @@ dropdown.addEventListener("change", () => {
     subDropdownTrolleybus.style.display = "none";
   } else if (dropdown.value === "1") {
     if (getBghtUpgrs().includes("trolleybus")) {
-      busSection.style.display = "none";
-      trolleybusSection.style.display = "block";
-      otherSections.style.display = "none";
+      const currentCity = getCurrentCity();
+      const currentCityData = cities.find((city) => city.id === currentCity);
+      if (currentCityData.vehicles.includes("trolleybuses")) {
+        busSection.style.display = "none";
+        trolleybusSection.style.display = "block";
+        otherSections.style.display = "none";
 
-      subDropdownCityBus.style.display = "none";
-      subDropdownOthers.style.display = "none";
-      subDropdownTrolleybus.style.display = "block";
+        subDropdownCityBus.style.display = "none";
+        subDropdownOthers.style.display = "none";
+        subDropdownTrolleybus.style.display = "block";
+      } else {
+        showAlert(banana.i18n("vhcl-category-locked-2"));
+        $("#vhcl-menu-category-dropdown").val("0");
+      }
     } else {
       showAlert(banana.i18n("vhcl-category-locked", banana.i18n("trolleybuses")));
       $("#vhcl-menu-category-dropdown").val("0");

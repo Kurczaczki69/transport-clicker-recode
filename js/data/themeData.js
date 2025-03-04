@@ -7,6 +7,22 @@ export const themes = [
     color3: "#3a9188",
     color4: "#b8e1dd",
   },
+  // dark
+  {
+    name: "dark",
+    color1: "#121212",
+    color2: "#1E1E1E",
+    color3: "#2D2D2D",
+    color4: "#b7c0be",
+  },
+  // metal
+  {
+    name: "metal",
+    color1: "#1A1C1E",
+    color2: "#2D3436",
+    color3: "#707D83",
+    color4: "#D1D8DA",
+  },
   // forest
   {
     name: "forest",
@@ -62,6 +78,22 @@ export const themes = [
     color2: "#5E3023",
     color3: "#CB8E4B",
     color4: "#F3DEB7",
+  },
+  // vegan
+  {
+    name: "vegan",
+    color1: "#0A2E0F",
+    color2: "#267D38",
+    color3: "#4CB963",
+    color4: "#DFFCE4",
+  },
+  // meat
+  {
+    name: "meat",
+    color1: "#2B0D0D",
+    color2: "#641C1C",
+    color3: "#A13333",
+    color4: "#FFDADA",
   },
   // sakura
   {

@@ -1,5 +1,5 @@
 import { getUpgrades } from "../data/upgradeData.js";
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, silentSaveGame } from "../scr.js";
+import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame } from "../scr.js";
 import { showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
@@ -12,23 +12,27 @@ const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-categ
 const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
 const dropdown = document.getElementById("upgr-menu-category-dropdown");
 
+const isGamePage = window.location.pathname === "/game.html";
+
 // upgrade menu category dropdown
-dropdown.addEventListener("change", () => {
-  if (dropdown.value === "0") {
-    notReadySection.style.display = "none";
-    vehicleTypeSection.style.display = "block";
-    timedUpgrSection.style.display = "none";
-  } else if (dropdown.value === "1") {
-    checkTimedUpgrLevel();
-    timedUpgrSection.style.display = "block";
-    vehicleTypeSection.style.display = "none";
-    notReadySection.style.display = "none";
-  } else {
-    notReadySection.style.display = "block";
-    vehicleTypeSection.style.display = "none";
-    timedUpgrSection.style.display = "none";
-  }
-});
+if (isGamePage) {
+  dropdown.addEventListener("change", () => {
+    if (dropdown.value === "0") {
+      notReadySection.style.display = "none";
+      vehicleTypeSection.style.display = "block";
+      timedUpgrSection.style.display = "none";
+    } else if (dropdown.value === "1") {
+      checkTimedUpgrLevel();
+      timedUpgrSection.style.display = "block";
+      vehicleTypeSection.style.display = "none";
+      notReadySection.style.display = "none";
+    } else {
+      notReadySection.style.display = "block";
+      vehicleTypeSection.style.display = "none";
+      timedUpgrSection.style.display = "none";
+    }
+  });
+}
 
 // opening upgrade menu
 const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
@@ -36,18 +40,20 @@ const upgradeGUI = document.getElementById("upgrades");
 const tint = document.querySelector("#window-tint");
 const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
 
-navItemUpgrMenu.addEventListener("click", () => {
-  checkLevelUpgr();
-  checkTimedUpgrLevel();
-  tint.style.display = "block";
-  upgradeGUI.style.display = "flex";
-});
+if (isGamePage) {
+  navItemUpgrMenu.addEventListener("click", () => {
+    checkLevelUpgr();
+    checkTimedUpgrLevel();
+    tint.style.display = "block";
+    upgradeGUI.style.display = "flex";
+  });
 
-// closing upgrade menu
-upgrMenuCloseBtn.addEventListener("click", () => {
-  tint.style.display = "none";
-  upgradeGUI.style.display = "none";
-});
+  // closing upgrade menu
+  upgrMenuCloseBtn.addEventListener("click", () => {
+    tint.style.display = "none";
+    upgradeGUI.style.display = "none";
+  });
+}
 
 // buy upgrade after confirming it
 function buyUpgrade(upgrade) {
@@ -67,7 +73,7 @@ function buyUpgrade(upgrade) {
         setBghtUpgrs(bghtUpgrs);
         confirmationDialog.style.display = "none";
         showAlert(banana.i18n("upgrade-success"));
-        silentSaveGame();
+        saveGame(true);
       }
     } else {
       confirmationDialog.style.display = "none";

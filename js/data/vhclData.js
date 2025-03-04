@@ -13,7 +13,7 @@ export function initializeVehicles() {
       price: 500,
       requiredLevel: 0,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu9",
@@ -23,7 +23,7 @@ export function initializeVehicles() {
       price: 1500,
       requiredLevel: 1,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu105",
@@ -33,7 +33,7 @@ export function initializeVehicles() {
       price: 3500,
       requiredLevel: 2,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu12",
@@ -43,7 +43,7 @@ export function initializeVehicles() {
       price: 7000,
       requiredLevel: 3,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "sola86",
@@ -53,7 +53,7 @@ export function initializeVehicles() {
       price: 12000,
       requiredLevel: 5,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu18",
@@ -63,7 +63,7 @@ export function initializeVehicles() {
       price: 18000,
       requiredLevel: 6,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu24",
@@ -73,7 +73,7 @@ export function initializeVehicles() {
       price: 25000,
       requiredLevel: 7,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "manlion",
@@ -83,7 +83,7 @@ export function initializeVehicles() {
       price: 32000,
       requiredLevel: 9,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "jelczm121m",
@@ -93,7 +93,7 @@ export function initializeVehicles() {
       price: 38000,
       requiredLevel: 10,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "manlioncig",
@@ -103,7 +103,7 @@ export function initializeVehicles() {
       price: 45000,
       requiredLevel: 12,
       category: "citybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu12h",
@@ -113,7 +113,7 @@ export function initializeVehicles() {
       price: 50000,
       requiredLevel: 13,
       category: "hydrogenbus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solu18h",
@@ -123,7 +123,7 @@ export function initializeVehicles() {
       price: 65000,
       requiredLevel: 15,
       category: "hydrogenbus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "toyotafc",
@@ -133,7 +133,7 @@ export function initializeVehicles() {
       price: 85000,
       requiredLevel: 17,
       category: "hydrogenbus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "toyotasora",
@@ -143,7 +143,7 @@ export function initializeVehicles() {
       price: 120000,
       requiredLevel: 19,
       category: "hydrogenbus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "vacanza12",
@@ -153,7 +153,7 @@ export function initializeVehicles() {
       price: 55000,
       requiredLevel: 14,
       category: "intercitybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "vacanza13",
@@ -163,7 +163,7 @@ export function initializeVehicles() {
       price: 90000,
       requiredLevel: 18,
       category: "intercitybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "solint12",
@@ -173,7 +173,7 @@ export function initializeVehicles() {
       price: 150000,
       requiredLevel: 22,
       category: "intercitybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "volvo9700",
@@ -183,7 +183,7 @@ export function initializeVehicles() {
       price: 200000,
       requiredLevel: 25,
       category: "intercitybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "volvo9700double",
@@ -193,7 +193,7 @@ export function initializeVehicles() {
       price: 250000,
       requiredLevel: 30,
       category: "intercitybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "soltroll12",
@@ -203,7 +203,7 @@ export function initializeVehicles() {
       price: 200000,
       requiredLevel: 25,
       category: "trolleybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "soltroll18",
@@ -213,7 +213,7 @@ export function initializeVehicles() {
       price: 380000,
       requiredLevel: 37,
       category: "trolleybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "soltroll24",
@@ -223,7 +223,7 @@ export function initializeVehicles() {
       price: 475000,
       requiredLevel: 45,
       category: "trolleybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "mercedes530",
@@ -233,7 +233,7 @@ export function initializeVehicles() {
       price: 575000,
       requiredLevel: 55,
       category: "trolleybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
     {
       code: "mercedescitaro2",
@@ -243,7 +243,7 @@ export function initializeVehicles() {
       price: 675000,
       requiredLevel: 63,
       category: "trolleybus",
-      maxQuantity: 10000000,
+      maxQuantity: 10000000000,
     },
   ];
 }

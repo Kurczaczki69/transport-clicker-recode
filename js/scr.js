@@ -9,6 +9,8 @@ import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { calculateCityBoost } from "./cities.js";
+import { cities } from "./data/cityData.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -37,11 +39,17 @@ let bghtUpgrs = [];
 let vhclAmounts = {};
 let vhclPrices = {};
 
+let unlockedCities = ["sko"];
+let citySwitchCost = 20000;
+let currentCity = "sko";
+
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
   const navItemSaveGame = document.getElementById("nav-item-save-game");
-  navItemSaveGame.addEventListener("click", saveGame);
+  navItemSaveGame.addEventListener("click", () => {
+    saveGame(false);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -55,6 +63,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       income = userData.income || income;
       clickmod = userData.clickmod || clickmod;
       bghtUpgrs = userData.bghtUpgrs || bghtUpgrs;
+      citySwitchCost = userData.citySwitchCost || citySwitchCost;
+      unlockedCities = userData.unlockedCities || unlockedCities;
+      currentCity = userData.currentCity || currentCity;
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
 
@@ -67,6 +78,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           income: income,
           clickmod: clickmod,
           bghtUpgrs: bghtUpgrs,
+          citySwitchCost: citySwitchCost,
+          unlockedCities: unlockedCities,
+          currentCity: currentCity,
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
         });
@@ -84,9 +98,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           .then(() => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
-              populateVhclData();
-              populateUpgrData();
               $("#loader-wrapper").fadeOut("slow");
+              sleep(750).then(() => {
+                populateVhclData();
+                populateUpgrData();
+              });
             });
           })
           .catch((error) => {
@@ -103,7 +119,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function saveGame() {
+/**
+ * Saves the current game state to the server.
+ * @param {boolean} isSilent Whether to log a success message or not.
+ */
+export function saveGame(isSilent) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   const userDatatoSave = {
@@ -111,34 +131,20 @@ function saveGame() {
     income: income,
     clickmod: clickmod,
     bghtUpgrs: bghtUpgrs,
+    citySwitchCost: citySwitchCost,
+    unlockedCities: unlockedCities,
+    currentCity: currentCity,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
-      console.log("saved data to server");
-      showAlert(banana.i18n("alert-game-saved"));
-    })
-    .catch((error) => {
-      console.error("error writing document", error);
-      window.location.href = "index.html";
-    });
-}
-
-export function silentSaveGame() {
-  const loggedInUserId = localStorage.getItem("loggedInUserId");
-  const docRef = doc(db, "users", loggedInUserId);
-  const userDatatoSave = {
-    balance: bal,
-    income: income,
-    clickmod: clickmod,
-    bghtUpgrs: bghtUpgrs,
-    vhclAmounts: vhclAmounts,
-    vhclPrices: vhclPrices,
-  };
-  setDoc(docRef, userDatatoSave, { merge: true })
-    .then(() => {
-      console.log("saved data to server silently");
+      if (!isSilent) {
+        console.log("saved data to server");
+        showAlert(banana.i18n("alert-game-saved"));
+      } else {
+        console.log("saved data to server silently");
+      }
     })
     .catch((error) => {
       console.error("error writing document", error);
@@ -247,7 +253,7 @@ function buyVhclRight() {
 
   showAlert(banana.i18n("vhcl-purchase-success", busProp.name, quantity));
   syncVehiclePrices();
-  silentSaveGame();
+  saveGame(true);
   updateHtmlData();
   resetBuyMenu();
 }
@@ -334,12 +340,14 @@ function getTotalIncomeBoost(timedUpgrs) {
 
 async function add() {
   const timedUpgrs = getActiveTimedUpgrades();
-  const totalBoost = getTotalIncomeBoost(timedUpgrs);
+  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
+  const currentCityData = cities.find((city) => city.id === currentCity);
+  const cityBoost = calculateCityBoost(currentCityData);
 
   await sleep(100);
-  bal += (income / 10) * totalBoost;
+  bal += Math.floor((income / 10) * timedUpgrBoost * cityBoost);
   // console.log((income / 10) * totalBoost, totalBoost);
-  displaybal();
+  displayStats();
   add();
 }
 
@@ -364,38 +372,36 @@ function clicker() {
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
-  bal += clickmod * totalBoost;
+  bal += Math.floor(clickmod * totalBoost);
   // console.log(totalBoost, clickmod * totalBoost);
-  displaybal();
+  displayStats();
 }
 
 // displaying player data on main game screen
-function displaybal() {
+function displayStats() {
   if (!isGamePage) return;
-  document.querySelector("#bal-show").innerHTML = abbreviateNumber(bal);
-  document.querySelector("#income-show").innerHTML = abbreviateNumber(income);
-  document.querySelector("#click-show").innerHTML = abbreviateNumber(clickmod);
+  const timedUpgrs = getActiveTimedUpgrades();
+  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
+  const totalClickBoost = getTotalClickBoost(timedUpgrs);
+  const currentCityData = cities.find((city) => city.id === currentCity);
+  const cityBoost = calculateCityBoost(currentCityData);
+  document.querySelector("#bal-show").textContent = abbreviateNumber(bal);
+  document.querySelector("#income-show").textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
+  document.querySelector("#click-show").textContent = abbreviateNumber(clickmod * totalClickBoost);
 }
 
 // saving game every 90 seconds to firestore
 async function gameSaver() {
   await sleep(90 * 1000);
-  silentSaveGame();
+  saveGame(true);
   gameSaver();
 }
 
 window.addEventListener("load", add);
 window.addEventListener("load", gameSaver);
-window.addEventListener("load", displaybal);
+window.addEventListener("load", displayStats);
 updateTotal();
 
-// warn the user about saving the game before closing
-if (isGamePage) {
-  window.addEventListener("beforeunload", function (event) {
-    event.preventDefault();
-    event.returnValue = "";
-  });
-}
 // getter and setter functions for variables
 export function getBal() {
   return bal;
@@ -435,4 +441,28 @@ export function getBghtUpgrs() {
 
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
+}
+
+export function getCitySwitchCost() {
+  return citySwitchCost;
+}
+
+export function setCitySwitchCost(newCitySwitchCost) {
+  citySwitchCost = newCitySwitchCost;
+}
+
+export function getUnlockedCities() {
+  return unlockedCities;
+}
+
+export function setUnlockedCities(newUnlockedCities) {
+  unlockedCities = newUnlockedCities;
+}
+
+export function getCurrentCity() {
+  return currentCity;
+}
+
+export function setCurrentCity(newCurrentCity) {
+  currentCity = newCurrentCity;
 }

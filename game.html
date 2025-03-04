@@ -10,9 +10,9 @@
   - settings page with theme switcher DONE
   - more trolleybuses
   - negative events that shrink your income (saved on server so you cant bypass it)
-  - routes system with city chooser
+  - city system and maybe routes
   - saving timed upgrades on the server
-  - dynamically populating the vehicle menu
+  - dynamically populating the vehicle menu DONE
   - -->
   <head>
     <meta charset="UTF-8" />
@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="css/notifDisplay.css" />
     <link rel="stylesheet" href="css/statsSystem.css" />
     <link rel="stylesheet" href="css/settingsMenu.css" />
+    <link rel="stylesheet" href="css/citiesWindow.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
@@ -272,6 +273,10 @@
             <span class="tabler--rocket"></span>
             <span class="tooltip" data-lang="tooltip-buy-upgrs"></span>
           </div>
+          <div class="nav-item" id="nav-item-city-menu">
+            <span class="tabler--map-pin"></span>
+            <span class="tooltip" data-lang="tooltip-cities"></span>
+          </div>
           <div class="nav-item" id="nav-item-codes-menu">
             <span class="tabler--code"></span>
             <span class="tooltip" data-lang="tooltip-codes"></span>
@@ -304,6 +309,24 @@
       <section id="main-screen">
         <section id="clicker"><span id="clicker-text" data-lang="click-here"></span></section>
       </section>
+    </section>
+
+    <!-- cities window -->
+    <section id="cities-window">
+      <div class="closegui" id="cities-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="cities-menu-title-wrapper">
+        <h2 id="cities-menu-title" data-lang="cities-menu-title"></h2>
+        <div id="cities-stats-wrapper">
+          <div id="cities-switch-cost" class="city-stat"></div>
+          <div class="city-stats-separator"></div>
+          <div id="cities-current" class="city-stat"></div>
+        </div>
+      </div>
+
+      <div class="cities-grid" id="cities-grid"></div>
     </section>
 
     <!-- settings window -->
@@ -502,13 +525,13 @@
             </div>
           </div>
           <div class="credits-menu-section-left-item">
-            <a href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
+            <a target="_blank" href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
               ><div class="link-wrapper">
                 <span class="tabler--brand-github"></span> <span data-lang="github"></span></div
             ></a>
           </div>
           <div class="credits-menu-section-left-item">
-            <a href="https://discord.gg/VSKb37tg33" target="_blank"
+            <a target="_blank" href="https://discord.gg/VSKb37tg33" target="_blank"
               ><div class="link-wrapper">
                 <span class="tabler--brand-discord"></span> <span data-lang="discord"></span></div
             ></a>
@@ -536,7 +559,7 @@
               Tabler Icons <br />
               <span class="credits-menu-contributor-github"
                 >MIT,
-                <a href="https://icon-sets.iconify.design/tabler/?keyword=tabler"
+                <a target="_blank" href="https://icon-sets.iconify.design/tabler/?keyword=tabler"
                   >https://icon-sets.iconify.design/tabler/?keyword=tabler</a
                 ></span
               >
@@ -545,8 +568,19 @@
               banana-i18n <br />
               <span class="credits-menu-contributor-github"
                 >MIT,
-                <a href="https://github.com/wikimedia/banana-i18n?tab=readme-ov-file"
+                <a target="_blank" href="https://github.com/wikimedia/banana-i18n?tab=readme-ov-file"
                   >https://github.com/wikimedia/banana-i18n?tab=readme-ov-file</a
+                ></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              Trollleybus Lublin 150 on aleja generała Władysława Andersa.jpg - Українець627 <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0,
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Trollleybus_Lublin_150_on_aleja_genera%C5%82a_W%C5%82adys%C5%82awa_Andersa.jpg"
+                  >commons.wikimedia.org</a
                 ></span
               >
             </div>
@@ -580,5 +614,7 @@
     <script type="module" src="js/levelSystem.js"></script>
     <script type="module" src="js/settings.js"></script>
     <script type="module" src="js/data/themeData.js"></script>
+    <script type="module" src="js/data/cityData.js"></script>
+    <script type="module" src="js/cities.js"></script>
   </body>
 </html>
