@@ -37,4 +37,5 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Choosing a company name\
 ❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
 ❌ Offline income\
-❌ Passenger numbers or something like that
+❌ Passenger numbers or something like that\
+❌ Hiring workers
