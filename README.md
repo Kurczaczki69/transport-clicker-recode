@@ -18,7 +18,7 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ✅ New UI\
 ✅ Trolleybuses\
 ❌ Trams\
-❌ Routes or cities idk\
+❌ Cities\
 ✅ Dynamic prices (example: if you buy a bus for 500 then the price increases to 550 (by 10%))\
 ✅ Upgrades system (example: "intercity" buses upgrade to unlock all InterCity buses. Also Upgrades will be sorted into categories example: category for upgrades that unlock vehicles or also other categories)\
 ❌ An actual tutorial on how to start playing\
@@ -38,4 +38,5 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
 ❌ Offline income\
 ❌ Passenger numbers or something like that\
-❌ Hiring workers
+❌ Hiring workers\
+❌ Extensive route system\
