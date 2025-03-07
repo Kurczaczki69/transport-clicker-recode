@@ -2,7 +2,7 @@ import { getBghtUpgrs } from "./scr.js";
 import { showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
 import { getCurrentCity } from "./scr.js";
-import { cities } from "./data/cityData.js";
+import { getCities } from "./data/cityData.js";
 
 // subcategories for buses
 const dropdown1 = document.getElementById("vhcl-menu-subcategory-dropdown-1");
@@ -10,6 +10,8 @@ const dropdown3 = document.getElementById("vhcl-menu-subcategory-dropdown-3");
 const cityBusSection = document.getElementById("vhcl-menu-bus-sub-citybus-category");
 const hydrogenBusSection = document.getElementById("vhcl-menu-bus-sub-hydrogen-category");
 const intercityBusSection = document.getElementById("vhcl-menu-bus-sub-intercity-category");
+
+const cities = getCities();
 
 dropdown1.addEventListener("change", () => {
   let bghtUpgrs = getBghtUpgrs();

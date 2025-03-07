@@ -1,4 +1,4 @@
-import { getIncome, getClickMod, getBal, setBal } from "./scr.js";
+import { getIncome, getClickMod, getBal, setBal, syncVehiclePrices, checkLevel } from "./scr.js";
 import { abbreviateNumber } from "./utilities.js";
 import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
@@ -68,6 +68,8 @@ function calculateLevelProgress(xp) {
         banana.i18n("notif-reward-text", abbreviateNumber(moneyReward), previousLevel),
         "notif-reward"
       );
+      syncVehiclePrices();
+      checkLevel();
     }
   }
 

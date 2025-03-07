@@ -3,6 +3,7 @@
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   background: var(--colorscheme3);
   background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   font-family: "Noto Sans", sans-serif;
@@ -133,7 +134,7 @@ option {
 #clicker {
   background-color: var(--colorscheme2);
   border: var(--border5);
-  width: 65vw;
+  width: 60vw;
   height: 65vh;
   border-radius: 20px;
 

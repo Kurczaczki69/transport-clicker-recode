@@ -6,6 +6,7 @@ import { initializeVehicles } from "./data/vhclData.js";
 import { syncVehiclePrices } from "./scr.js";
 import { populateThemeOptions } from "./settings.js";
 import { sleep } from "./utilities.js";
+import { initializeCities } from "./data/cityData.js";
 
 const banana = new Banana();
 
@@ -21,6 +22,7 @@ function updateLang(lang) {
         initializeTimedUpgrades();
         initializeUpgrades();
         initializeVehicles();
+        initializeCities();
         populateThemeOptions();
         syncVehiclePrices();
         const currentPage = document.body.getAttribute("data-page");

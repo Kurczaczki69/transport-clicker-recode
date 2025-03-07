@@ -10,7 +10,7 @@ import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
-import { cities } from "./data/cityData.js";
+import { getCities } from "./data/cityData.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 /**
  * Saves the current game state to the server.
- * @param {boolean} isSilent Whether to log a success message or not.
+ * @param {boolean} isSilent If true, doesn't show a success message.
  */
 export function saveGame(isSilent) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
@@ -159,6 +159,7 @@ const finishBtn = document.getElementById("finish-operation-btn");
 
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
+  inputEl.focus();
   menu.style.display = "block";
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
@@ -338,6 +339,8 @@ function getTotalIncomeBoost(timedUpgrs) {
   return totalBoost;
 }
 
+const cities = getCities();
+
 async function add() {
   const timedUpgrs = getActiveTimedUpgrades();
   const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
@@ -346,7 +349,7 @@ async function add() {
 
   await sleep(100);
   bal += Math.floor((income / 10) * timedUpgrBoost * cityBoost);
-  // console.log((income / 10) * totalBoost, totalBoost);
+  // console.log((income / 10) * timedUpgrBoost * cityBoost, "timedupgr: ", timedUpgrBoost, "city: ", cityBoost);
   displayStats();
   add();
 }
@@ -378,6 +381,10 @@ function clicker() {
 }
 
 // displaying player data on main game screen
+const balShow = document.querySelector("#bal-show");
+const incomeShow = document.querySelector("#income-show");
+const clickShow = document.querySelector("#click-show");
+
 function displayStats() {
   if (!isGamePage) return;
   const timedUpgrs = getActiveTimedUpgrades();
@@ -385,9 +392,9 @@ function displayStats() {
   const totalClickBoost = getTotalClickBoost(timedUpgrs);
   const currentCityData = cities.find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
-  document.querySelector("#bal-show").textContent = abbreviateNumber(bal);
-  document.querySelector("#income-show").textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
-  document.querySelector("#click-show").textContent = abbreviateNumber(clickmod * totalClickBoost);
+  balShow.textContent = abbreviateNumber(bal);
+  incomeShow.textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
+  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost);
 }
 
 // saving game every 90 seconds to firestore

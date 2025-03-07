@@ -123,3 +123,36 @@
   gap: 0.8rem;
   height: 2rem;
 }
+
+#active-events-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1%;
+  width: 18%;
+}
+
+.active-event {
+  display: block;
+  padding: 3%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.event-name,
+.event-boost,
+.event-timer {
+  width: 100%;
+  text-align: center;
+}
+
+.event-name {
+  font-weight: 600;
+}

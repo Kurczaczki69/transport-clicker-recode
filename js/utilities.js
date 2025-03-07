@@ -100,3 +100,8 @@ export function formatTime(ms) {
 
   return formattedTime || `0 ${banana.i18n("time-seconds")}`;
 }
+
+export function convertDecimalBoostToPercent(value) {
+  if (value < 1) return "-" + (100 - value * 100).toFixed(0);
+  else return "+" + (value * 100 - 100).toFixed(0);
+}
