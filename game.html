@@ -428,23 +428,31 @@
       <!-- vehicle purchase window (with stuff like quantity etc.) -->
 
       <div id="buy-menu">
-        <div class="closegui" id="closebuymenu">
-          <span class="tabler--x"></span>
+        <div id="buy-menu-top-row">
+          <div class="closegui" id="closebuymenu">
+            <span class="tabler--x"></span>
+          </div>
+          <h2 id="buy-menu-header" class="header2" data-lang="vhcl-buy-menu-header"></h2>
         </div>
-        <h2 class="header2" data-lang="vhcl-buy-menu-header"></h2>
-        <br />
-        <span data-lang="vhcl-buy-menu-desc"></span><br />
-        <input
-          type="number"
-          placeholder=""
-          id="small-input"
-          min="1"
-          data-lang-placeholder="vhcl-buy-menu-placeholder" />
-        <br /><br />
-        <br /><br /><br /><br /><br />
-        <h3><b data-lang="vhcl-buy-menu-full-cost"></b> <span id="show-full-cost"></span>$</h3>
-        <div id="finish-operation-btn">
-          <span class="tabler--check" id="done-icon"> done </span>
+        <div id="buy-menu-middle-row">
+          <span data-lang="vhcl-buy-menu-desc" id="buy-menu-desc"></span><br />
+          <div id="buy-menu-input-wrapper">
+            <input
+              type="number"
+              placeholder=""
+              id="small-input"
+              min="1"
+              data-lang-placeholder="vhcl-buy-menu-placeholder" />
+            <button id="buy-menu-max-button" class="btns" data-lang="btn-max"></button>
+          </div>
+        </div>
+        <div id="buy-menu-bottom-row">
+          <h3 id="buy-menu-total-cost">
+            <b data-lang="vhcl-buy-menu-full-cost"></b> <span id="show-full-cost"></span>$
+          </h3>
+          <div id="finish-operation-btn">
+            <span class="tabler--check" id="done-icon"></span>
+          </div>
         </div>
       </div>
     </div>

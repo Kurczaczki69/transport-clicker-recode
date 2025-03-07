@@ -14,7 +14,8 @@ export function showNotif(title, smalltext, type) {
   notifSmallText.classList.add("notif-small-text");
   notifTitle.textContent = title;
   notifSmallText.textContent = smalltext;
-  if (!type === "notif-timed-upgr") {
+  if (type === "notif-timed-upgr") {
+  } else {
     notifBtnWrapper.classList.add("notif-close-btn");
     notifBtnIcon.classList.add("tabler--x");
   }
@@ -34,7 +35,7 @@ export function showNotif(title, smalltext, type) {
   notif.appendChild(notifTitle);
   notif.appendChild(notifSmallText);
   document.querySelector("#notif-wrapper").appendChild(notif);
-  if (!type === "notif-timed-upgr") {
+  if (type === "notif-reward") {
     notifBtnWrapper.appendChild(notifBtnIcon);
     notif.appendChild(notifBtnWrapper);
   }

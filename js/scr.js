@@ -304,6 +304,20 @@ if (isGamePage) {
 
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
+const maxBtn = document.querySelector("#buy-menu-max-button");
+
+maxBtn.addEventListener("click", setInputToMax);
+
+function setInputToMax() {
+  const bal = getBal();
+  const vhcls = getVhcls();
+  const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
+  const price = vhclData ? vhclData.price : 0;
+  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
+
+  inputEl.value = Math.floor(bal / price) > maxQuantity ? maxQuantity : Math.floor(bal / price);
+  updateTotal();
+}
 
 // updating the total in vhcl buy window
 function updateTotal() {
