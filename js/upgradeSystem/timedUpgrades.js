@@ -7,6 +7,22 @@ import { getLevel } from "../levelSystem.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
+const isGamePage = window.location.pathname.endsWith("game.html");
+
+export function startTimedUpgrades() {
+  if (!isGamePage) return;
+  let activeUpgrs = getActiveTimedUpgrades();
+  activeUpgrs = activeUpgrs.filter((upgr) => upgr.endTime > Date.now());
+  activeUpgrs.forEach((upgr) => {
+    showNotif(upgr.name, banana.i18n("timed-upgr-notif", formatTime(upgr.endTime - Date.now())), "notif-timed-upgr");
+    const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
+    notifSmallText.id = "notif-small-text" + upgr.id;
+    const notifTitle = document.querySelector(`#notif-title${getNotifCount()}`);
+    notifTitle.id = "notif-title" + upgr.id;
+    runUpgrade(upgr);
+  });
+  setActiveTimedUpgrades(activeUpgrs);
+}
 
 // timed upgrade buy logic
 
@@ -22,7 +38,13 @@ function buyTimedUpgrade(upgrId) {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       if (!checkUpgradeByType(upgradeToBuy.type)) {
         let activeUpgrs = getActiveTimedUpgrades();
-        activeUpgrs.push(upgradeToBuy.id);
+        const newActiveUpgr = {
+          ...upgradeToBuy,
+          startTime: Date.now(),
+          endTime: Date.now() + upgradeToBuy.duration,
+        };
+        activeUpgrs.push(newActiveUpgr);
+        console.log(activeUpgrs);
         setActiveTimedUpgrades(activeUpgrs);
         bal -= upgradeToBuy.price;
         setBal(bal);
@@ -35,7 +57,9 @@ function buyTimedUpgrade(upgrId) {
         );
         const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
         notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
-        runUpgrade(upgradeToBuy);
+        const notifTitle = document.querySelector(`#notif-title${getNotifCount()}`);
+        notifTitle.id = "notif-title" + upgradeToBuy.id;
+        runUpgrade(newActiveUpgr);
       } else {
         confirmationDialog.style.display = "none";
         showAlert(banana.i18n("timed-upgr-already-active"));
@@ -48,10 +72,8 @@ function buyTimedUpgrade(upgrId) {
 }
 
 function checkUpgradeByType(upgrT) {
-  let timedUpgrades = getTimedUpgrades();
   return activeTimedUpgrades.some((activeUpgr) => {
-    let upgr = timedUpgrades.find((u) => u.id === activeUpgr);
-    return upgr.type === upgrT;
+    return activeUpgr.type === upgrT;
   });
 }
 
@@ -119,37 +141,33 @@ export function checkTimedUpgrLevel() {
 }
 
 export function getActiveTimedUpgrades() {
-  return activeTimedUpgrades;
+  return localStorage.getItem("activeTimedUpgrades") ? JSON.parse(localStorage.getItem("activeTimedUpgrades")) : [];
 }
 
 export function setActiveTimedUpgrades(upgrades) {
-  upgrades.forEach((upgrade) => {
-    // checks if the upgrade is already active
-    if (!activeTimedUpgrades.some((activeUpgrade) => activeUpgrade.id === upgrade.id)) {
-      activeTimedUpgrades.push(upgrade);
-    }
-  });
+  activeTimedUpgrades = upgrades;
+  localStorage.setItem("activeTimedUpgrades", JSON.stringify(activeTimedUpgrades));
 }
 
 export async function runUpgrade(upgr) {
-  let timedUpgrades = getTimedUpgrades();
-  const upgrade = timedUpgrades.find((u) => u.id === upgr.id);
-  let remainingTime = upgrade.duration;
-  updateTimerDisplay(upgrade, remainingTime);
-  while (remainingTime > 0) {
+  let remainingTime = upgr.endTime - Date.now();
+  updateTimerDisplay(upgr, remainingTime);
+  while (upgr.endTime > Date.now()) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     remainingTime -= 1000;
-    updateTimerDisplay(upgrade, remainingTime);
+    updateTimerDisplay(upgr, remainingTime);
   }
-  removeUpgrade(upgr.id, upgrade);
+  removeUpgrade(upgr);
   updateTimerDisplay(upgr, remainingTime);
 }
 
-export function removeUpgrade(upgr, upgrade) {
+export function removeUpgrade(upgr) {
   const index = activeTimedUpgrades.indexOf(upgr);
   if (index > -1) {
-    activeTimedUpgrades.splice(index, 1);
-    const timerEl = document.querySelector(`#notif-small-text${upgrade.id}`);
+    let activeUpgrs = getActiveTimedUpgrades();
+    activeUpgrs.splice(index, 1);
+    setActiveTimedUpgrades(activeUpgrs);
+    const timerEl = document.querySelector(`#notif-small-text${upgr.id}`);
     const notif = timerEl.parentElement.id;
     removeNotif(notif);
   }
@@ -163,18 +181,29 @@ export function grantUpgrade(upgrId) {
     return;
   }
   let activeUpgrs = getActiveTimedUpgrades();
-  activeUpgrs.push(upgradeToGrant.id);
+  const newActiveUpgr = {
+    ...upgradeToGrant,
+    startTime: Date.now(),
+    endTime: Date.now() + upgradeToGrant.duration,
+  };
+  activeUpgrs.push(newActiveUpgr);
   setActiveTimedUpgrades(activeUpgrs);
 
   showNotif(upgradeToBuy.name, banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)), "notif-timed-upgr");
   const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
   notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
-  runUpgrade(upgradeToGrant);
+  runUpgrade(newActiveUpgr);
 }
 
 function updateTimerDisplay(upgrade, remainingTime) {
+  let timedUpgrs = getTimedUpgrades();
+  const currentUpgrade = timedUpgrs.find((u) => u.id === upgrade.id);
   const timerEl = document.querySelector(`#notif-small-text${upgrade.id}`);
+  const titleEl = document.querySelector(`#notif-title${upgrade.id}`);
   if (timerEl) {
     timerEl.textContent = banana.i18n("timed-upgr-notif", formatTime(remainingTime));
+  }
+  if (titleEl) {
+    titleEl.textContent = currentUpgrade.name;
   }
 }

@@ -4,13 +4,13 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-aut
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
 import { getVhcls } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
-import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
 import { getCities } from "./data/cityData.js";
+import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           .then(() => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
+              startTimedUpgrades();
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
                 populateVhclData();
@@ -328,12 +329,10 @@ if (isGamePage) {
 }
 
 function getTotalIncomeBoost(timedUpgrs) {
-  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
-    let upgr = timedUpgrades.find((u) => u.id === upgrade);
-    if (upgr && upgr.hasOwnProperty("incomeboost")) {
-      totalBoost += upgr.incomeboost;
+    if (upgrade && upgrade.hasOwnProperty("incomeboost")) {
+      totalBoost += upgrade.incomeboost;
     }
   });
   return totalBoost;
@@ -360,12 +359,10 @@ if (isGamePage) {
 }
 
 function getTotalClickBoost(timedUpgrs) {
-  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
-    let upgr = timedUpgrades.find((u) => u.id === upgrade);
-    if (upgr && upgr.hasOwnProperty("clickboost")) {
-      totalBoost += upgr.clickboost;
+    if (upgrade && upgrade.hasOwnProperty("clickboost")) {
+      totalBoost += upgrade.clickboost;
     }
   });
   return totalBoost;

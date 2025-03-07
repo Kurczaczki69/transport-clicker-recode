@@ -199,7 +199,7 @@ function startRandomEvents() {
   });
   setInterval(() => {
     const chance = Math.random();
-    if (chance < 0.2 && activeEvents.length < 3) {
+    if (chance < 0.1 && activeEvents.length < 3) {
       triggerRandomEvent();
     }
   }, 25000);

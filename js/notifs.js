@@ -14,8 +14,7 @@ export function showNotif(title, smalltext, type) {
   notifSmallText.classList.add("notif-small-text");
   notifTitle.textContent = title;
   notifSmallText.textContent = smalltext;
-  if (type === "notif-timed-upgr") {
-  } else {
+  if (!type === "notif-timed-upgr") {
     notifBtnWrapper.classList.add("notif-close-btn");
     notifBtnIcon.classList.add("tabler--x");
   }
@@ -28,14 +27,14 @@ export function showNotif(title, smalltext, type) {
   notifCount++;
   if (type === "notif-timed-upgr") {
     notifSmallText.id = "notif-small-text" + notifCount;
+    notifTitle.id = "notif-title" + notifCount;
   }
 
   // appending everything together
   notif.appendChild(notifTitle);
   notif.appendChild(notifSmallText);
   document.querySelector("#notif-wrapper").appendChild(notif);
-  if (type === "notif-timed-upgr") {
-  } else {
+  if (!type === "notif-timed-upgr") {
     notifBtnWrapper.appendChild(notifBtnIcon);
     notif.appendChild(notifBtnWrapper);
   }
