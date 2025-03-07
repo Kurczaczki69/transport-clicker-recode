@@ -21,10 +21,8 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Cities\
 ✅ Dynamic prices (example: if you buy a bus for 500 then the price increases to 550 (by 10%))\
 ✅ Upgrades system (example: "intercity" buses upgrade to unlock all InterCity buses. Also Upgrades will be sorted into categories example: category for upgrades that unlock vehicles or also other categories)\
-❌ An actual tutorial on how to start playing\
 ✅ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
 ✅ Different categories of buses and other vehicles (eg. for buses a sub-category with "intercity buses")\
-❌ Seasonal events (eg. christmas, easter, halloween)
 
 ## PLANNED FEATURES FOR THE BETA PHASE
 
@@ -35,9 +33,10 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Strikes, weather etc. and other negative effects\
 ❌ Leaderboards, profiles, friends\
 ❌ Choosing a company name\
+❌ Seasonal events (eg. christmas, easter, halloween)\
 ❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
 ❌ Offline income\
 ❌ Passenger numbers or something like that\
 ❌ Hiring workers\
 ❌ Extensive route system\
-❌ Achievements\
+❌ Achievements
