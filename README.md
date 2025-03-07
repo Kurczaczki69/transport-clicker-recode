@@ -18,7 +18,7 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ✅ New UI\
 ✅ Trolleybuses\
 ❌ Trams\
-❌ Cities\
+✅ Cities\
 ✅ Dynamic prices (example: if you buy a bus for 500 then the price increases to 550 (by 10%))\
 ✅ Upgrades system (example: "intercity" buses upgrade to unlock all InterCity buses. Also Upgrades will be sorted into categories example: category for upgrades that unlock vehicles or also other categories)\
 ✅ Better alert system (eg. not using window.alert but a custom function with a cool UI)\
