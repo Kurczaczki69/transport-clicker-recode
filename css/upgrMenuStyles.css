@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   background-color: var(--colorscheme2);
   width: 70vw;
-  height: 500px;
+  height: 70vh;
   border: var(--border5);
   border-radius: 20px;
   display: none;
@@ -38,14 +38,17 @@
   text-align: left;
   position: absolute;
   left: 5%;
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 #upgr-menu-category-name {
   position: absolute;
-  top: 12%;
-  left: 10.1%;
-  font-size: 20px;
+  top: 10%;
+  left: 10%;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #upgr-menu-category {
@@ -189,6 +192,7 @@
   transform: translate(-50%, -50%);
   width: 40%;
   height: 30%;
+  padding: 1vw;
   background-color: var(--colorscheme2);
   border: var(--border5);
   border-radius: 10px;

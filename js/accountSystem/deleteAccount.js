@@ -5,6 +5,7 @@ import {
   deleteUser,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { showMsg } from "../utilities.js";
 import { banana } from "../langs.js";
 
@@ -19,7 +20,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
 // showing the window and hiding it
 const accDelBtn = document.getElementById("delete-account-btn");
@@ -36,40 +37,38 @@ cancelBtn.addEventListener("click", () => {
 
 const confirmBtn = document.getElementById("are-you-sure-confirm-btn");
 
-confirmBtn.addEventListener("click", (event) => {
+confirmBtn.addEventListener("click", async (event) => {
   event.preventDefault();
   const auth = getAuth();
   const user = auth.currentUser;
   const password = document.getElementById("are-you-sure-pass-input").value;
   const email = user.email;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log("deletion success");
-      deleteUser(user)
-        .then(() => {
-          localStorage.setItem("loggedIn", false);
-          localStorage.removeItem("loggedInUserId");
-          window.alert(banana.i18n("delete-acc-success"));
-          window.location.href = "index.html";
-          console.log("account deleted succesfully");
-        })
-        .catch((error) => {
-          showMsg(banana.i18n("error-occured"), "input-msg");
-          console.error("deletion unsuccesful - error:", error);
-        });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === "auth/invalid-credential") {
-        showMsg(banana.i18n("wrong-password"), "input-msg");
-        console.error("deletion unsuccesful - wrong password");
-      } else if (errorCode === "auth/requires-recent-login") {
-        showMsg(banana.i18n("delete-account-requires-recent-login"), "input-msg");
-      } else {
-        showMsg(banana.i18n("error-occured"), "input-msg");
-        console.error("deletion unsuccesful - error:", error);
-        console.log(errorCode);
-      }
-    });
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    console.log("authentication success");
+
+    await deleteDoc(doc(db, "users", user.uid));
+    console.log("user data deleted successfully");
+
+    await deleteUser(user);
+    localStorage.setItem("loggedIn", false);
+    localStorage.removeItem("loggedInUserId");
+    localStorage.removeItem("previousLevel");
+    window.alert(banana.i18n("delete-acc-success"));
+    window.location.href = "index.html";
+    console.log("account deleted successfully");
+  } catch (error) {
+    const errorCode = error.code;
+    if (errorCode === "auth/invalid-credential") {
+      showMsg(banana.i18n("wrong-password"), "input-msg");
+      console.error("deletion unsuccesful - wrong password");
+    } else if (errorCode === "auth/requires-recent-login") {
+      showMsg(banana.i18n("delete-account-requires-recent-login"), "input-msg");
+    } else {
+      showMsg(banana.i18n("error-occured"), "input-msg");
+      console.error("deletion unsuccesful - error:", error);
+      console.log(errorCode);
+    }
+  }
 });

@@ -2,13 +2,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { getVhcls, a20 } from "./data/vhclData.js";
+import { getVhcls } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
-import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana } from "./langs.js";
-import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { calculateCityBoost } from "./cities.js";
+import { getCities } from "./data/cityData.js";
+import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -27,7 +29,6 @@ const db = getFirestore();
 const auth = getAuth();
 
 let clickmod = 1;
-let bghta20 = false;
 let bal = 0;
 let income = 0;
 
@@ -38,11 +39,17 @@ let bghtUpgrs = [];
 let vhclAmounts = {};
 let vhclPrices = {};
 
+let unlockedCities = ["sko"];
+let citySwitchCost = 20000;
+let currentCity = "sko";
+
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
   const navItemSaveGame = document.getElementById("nav-item-save-game");
-  navItemSaveGame.addEventListener("click", saveGame);
+  navItemSaveGame.addEventListener("click", () => {
+    saveGame(false);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -55,8 +62,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       bal = userData.balance || bal;
       income = userData.income || income;
       clickmod = userData.clickmod || clickmod;
-      bghta20 = userData.bghta20 || bghta20;
       bghtUpgrs = userData.bghtUpgrs || bghtUpgrs;
+      citySwitchCost = userData.citySwitchCost || citySwitchCost;
+      unlockedCities = userData.unlockedCities || unlockedCities;
+      currentCity = userData.currentCity || currentCity;
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
 
@@ -68,8 +77,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           balance: bal,
           income: income,
           clickmod: clickmod,
-          bghta20: bghta20,
           bghtUpgrs: bghtUpgrs,
+          citySwitchCost: citySwitchCost,
+          unlockedCities: unlockedCities,
+          currentCity: currentCity,
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
         });
@@ -87,8 +98,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           .then(() => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
-              syncVehiclePrices();
+              startTimedUpgrades();
               $("#loader-wrapper").fadeOut("slow");
+              sleep(750).then(() => {
+                populateVhclData();
+                populateUpgrData();
+              });
             });
           })
           .catch((error) => {
@@ -105,71 +120,37 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function saveGame() {
+/**
+ * Saves the current game state to the server.
+ * @param {boolean} isSilent If true, doesn't show a success message.
+ */
+export function saveGame(isSilent) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   const userDatatoSave = {
     balance: bal,
     income: income,
     clickmod: clickmod,
-    bghta20: bghta20,
     bghtUpgrs: bghtUpgrs,
+    citySwitchCost: citySwitchCost,
+    unlockedCities: unlockedCities,
+    currentCity: currentCity,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
-      console.log("saved data to server");
-      showAlert(banana.i18n("alert-game-saved"));
+      if (!isSilent) {
+        console.log("saved data to server");
+        showAlert(banana.i18n("alert-game-saved"));
+      } else {
+        console.log("saved data to server silently");
+      }
     })
     .catch((error) => {
       console.error("error writing document", error);
       window.location.href = "index.html";
     });
-}
-
-export function silentSaveGame() {
-  const loggedInUserId = localStorage.getItem("loggedInUserId");
-  const docRef = doc(db, "users", loggedInUserId);
-  const userDatatoSave = {
-    balance: bal,
-    income: income,
-    clickmod: clickmod,
-    bghta20: bghta20,
-    bghtUpgrs: bghtUpgrs,
-    vhclAmounts: vhclAmounts,
-    vhclPrices: vhclPrices,
-  };
-  setDoc(docRef, userDatatoSave, { merge: true })
-    .then(() => {
-      console.log("saved data to server silently");
-    })
-    .catch((error) => {
-      console.error("error writing document", error);
-      window.location.href = "index.html";
-    });
-}
-
-// buying mana20
-if (isGamePage) {
-  const manA20Btn = document.getElementById("mana20");
-  manA20Btn.addEventListener("click", buyManA20);
-}
-
-function buyManA20() {
-  if (bal >= a20[0].price) {
-    if (bghta20 == false) {
-      bal = bal - a20[0].price;
-      clickmod = clickmod + a20[0].clickmod;
-      bghta20 = true;
-      showAlert(banana.i18n("vhcl-bought-a20"));
-      silentSaveGame();
-    } else {
-      showAlert(banana.i18n("vhcl-already-used-a20"));
-    }
-  } else if (bal < a20[0].price) {
-    showAlert(banana.i18n("cant-afford"));
-  }
 }
 
 // bus buy logic
@@ -179,15 +160,15 @@ const finishBtn = document.getElementById("finish-operation-btn");
 
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
+  inputEl.focus();
   menu.style.display = "block";
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
 
-const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
-const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
-
-function checkLevel() {
+export function checkLevel() {
+  const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
+  const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
   const vhcls = getVhcls();
   const level = getLevel();
 
@@ -199,6 +180,13 @@ function checkLevel() {
       vhclEl.style.padding = "3%";
       vhclEl.addEventListener("click", () => {
         blockVhcl(vhclEl.id, "level");
+      });
+    } else if (vhcl && vhcl.maxLevel < level) {
+      vhclTextEls[index].textContent = "";
+      vhclTextEls[index].classList.add("tabler--lock-filled");
+      vhclEl.style.padding = "3%";
+      vhclEl.addEventListener("click", () => {
+        blockVhcl(vhclEl.id, "max-level");
       });
     } else {
       vhclEl.addEventListener("click", () => {
@@ -214,6 +202,8 @@ function blockVhcl(vhclCode, reason) {
   let message = "";
   if (reason === "level") {
     message = banana.i18n("vhcl-unlock-level", vhcl.requiredLevel);
+  } else if (reason === "max-level") {
+    message = banana.i18n("vhcl-unlock-max-level", vhcl.maxLevel);
   }
   showAlert(message);
 }
@@ -274,7 +264,7 @@ function buyVhclRight() {
 
   showAlert(banana.i18n("vhcl-purchase-success", busProp.name, quantity));
   syncVehiclePrices();
-  silentSaveGame();
+  saveGame(true);
   updateHtmlData();
   resetBuyMenu();
 }
@@ -323,14 +313,30 @@ if (isGamePage) {
 
 const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
+const maxBtn = document.querySelector("#buy-menu-max-button");
+
+if (isGamePage) {
+  maxBtn.addEventListener("click", setInputToMax);
+}
+
+function setInputToMax() {
+  const bal = getBal();
+  const vhcls = getVhcls();
+  const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
+  const price = vhclData ? vhclData.price : 0;
+  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
+
+  inputEl.value = Math.floor(bal / price) > maxQuantity ? maxQuantity : Math.floor(bal / price);
+  updateTotal();
+}
 
 // updating the total in vhcl buy window
 function updateTotal() {
   if (!isGamePage) return;
   const vhcls = getVhcls();
-  const busData = vhcls.find((bus) => bus.code === chosenVhcl);
-  const price = busData ? busData.price : 0;
-  const maxQuantity = busData ? busData.maxQuantity : Infinity;
+  const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
+  const price = vhclData ? vhclData.price : 0;
+  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
 
   if (inputEl.value > maxQuantity) {
     inputEl.value = maxQuantity;
@@ -348,25 +354,27 @@ if (isGamePage) {
 }
 
 function getTotalIncomeBoost(timedUpgrs) {
-  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
-    let upgr = timedUpgrades.find((u) => u.id === upgrade);
-    if (upgr && upgr.hasOwnProperty("incomeboost")) {
-      totalBoost += upgr.incomeboost;
+    if (upgrade && upgrade.hasOwnProperty("incomeboost")) {
+      totalBoost += upgrade.incomeboost;
     }
   });
   return totalBoost;
 }
 
+const cities = getCities();
+
 async function add() {
   const timedUpgrs = getActiveTimedUpgrades();
-  const totalBoost = getTotalIncomeBoost(timedUpgrs);
+  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
+  const currentCityData = cities.find((city) => city.id === currentCity);
+  const cityBoost = calculateCityBoost(currentCityData);
 
   await sleep(100);
-  bal += (income / 10) * totalBoost;
-  // console.log((income / 10) * totalBoost, totalBoost);
-  displaybal();
+  bal += Math.floor((income / 10) * timedUpgrBoost * cityBoost);
+  // console.log((income / 10) * timedUpgrBoost * cityBoost, "timedupgr: ", timedUpgrBoost, "city: ", cityBoost);
+  displayStats();
   add();
 }
 
@@ -376,12 +384,10 @@ if (isGamePage) {
 }
 
 function getTotalClickBoost(timedUpgrs) {
-  let timedUpgrades = getTimedUpgrades();
   let totalBoost = 1;
   timedUpgrs.forEach((upgrade) => {
-    let upgr = timedUpgrades.find((u) => u.id === upgrade);
-    if (upgr && upgr.hasOwnProperty("clickboost")) {
-      totalBoost += upgr.clickboost;
+    if (upgrade && upgrade.hasOwnProperty("clickboost")) {
+      totalBoost += upgrade.clickboost;
     }
   });
   return totalBoost;
@@ -391,38 +397,40 @@ function clicker() {
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
-  bal += clickmod * totalBoost;
+  bal += Math.floor(clickmod * totalBoost);
   // console.log(totalBoost, clickmod * totalBoost);
-  displaybal();
+  displayStats();
 }
 
 // displaying player data on main game screen
-function displaybal() {
+const balShow = document.querySelector("#bal-show");
+const incomeShow = document.querySelector("#income-show");
+const clickShow = document.querySelector("#click-show");
+
+function displayStats() {
   if (!isGamePage) return;
-  document.querySelector("#bal-show").innerHTML = abbreviateNumber(bal);
-  document.querySelector("#income-show").innerHTML = abbreviateNumber(income);
-  document.querySelector("#click-show").innerHTML = abbreviateNumber(clickmod);
+  const timedUpgrs = getActiveTimedUpgrades();
+  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
+  const totalClickBoost = getTotalClickBoost(timedUpgrs);
+  const currentCityData = cities.find((city) => city.id === currentCity);
+  const cityBoost = calculateCityBoost(currentCityData);
+  balShow.textContent = abbreviateNumber(bal);
+  incomeShow.textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
+  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost);
 }
 
 // saving game every 90 seconds to firestore
 async function gameSaver() {
   await sleep(90 * 1000);
-  silentSaveGame();
+  saveGame(true);
   gameSaver();
 }
 
 window.addEventListener("load", add);
 window.addEventListener("load", gameSaver);
-window.addEventListener("load", displaybal);
+window.addEventListener("load", displayStats);
 updateTotal();
 
-// warn the user about saving the game before closing
-if (isGamePage) {
-  window.addEventListener("beforeunload", function (event) {
-    event.preventDefault();
-    event.returnValue = "";
-  });
-}
 // getter and setter functions for variables
 export function getBal() {
   return bal;
@@ -462,4 +470,28 @@ export function getBghtUpgrs() {
 
 export function setBghtUpgrs(newBghtUpgrs) {
   bghtUpgrs = newBghtUpgrs;
+}
+
+export function getCitySwitchCost() {
+  return citySwitchCost;
+}
+
+export function setCitySwitchCost(newCitySwitchCost) {
+  citySwitchCost = newCitySwitchCost;
+}
+
+export function getUnlockedCities() {
+  return unlockedCities;
+}
+
+export function setUnlockedCities(newUnlockedCities) {
+  unlockedCities = newUnlockedCities;
+}
+
+export function getCurrentCity() {
+  return currentCity;
+}
+
+export function setCurrentCity(newCurrentCity) {
+  currentCity = newCurrentCity;
 }

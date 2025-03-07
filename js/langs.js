@@ -4,7 +4,9 @@ import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
 import { initializeVehicles } from "./data/vhclData.js";
 import { syncVehiclePrices } from "./scr.js";
+import { populateThemeOptions } from "./settings.js";
 import { sleep } from "./utilities.js";
+import { initializeCities } from "./data/cityData.js";
 
 const banana = new Banana();
 
@@ -20,8 +22,9 @@ function updateLang(lang) {
         initializeTimedUpgrades();
         initializeUpgrades();
         initializeVehicles();
+        initializeCities();
+        populateThemeOptions();
         syncVehiclePrices();
-        updateHtmlData();
         const currentPage = document.body.getAttribute("data-page");
         setPageTitle(currentPage);
         sleep(200).then(() => {

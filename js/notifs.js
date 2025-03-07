@@ -28,14 +28,14 @@ export function showNotif(title, smalltext, type) {
   notifCount++;
   if (type === "notif-timed-upgr") {
     notifSmallText.id = "notif-small-text" + notifCount;
+    notifTitle.id = "notif-title" + notifCount;
   }
 
   // appending everything together
   notif.appendChild(notifTitle);
   notif.appendChild(notifSmallText);
   document.querySelector("#notif-wrapper").appendChild(notif);
-  if (type === "notif-timed-upgr") {
-  } else {
+  if (type === "notif-reward") {
     notifBtnWrapper.appendChild(notifBtnIcon);
     notif.appendChild(notifBtnWrapper);
   }

@@ -104,4 +104,11 @@
 
 #credits-menu-translators-section {
   display: none;
+  overflow-y: auto;
+  height: 100%;
+}
+
+#credits-menu-authors-section {
+  overflow-y: auto;
+  height: 100%;
 }

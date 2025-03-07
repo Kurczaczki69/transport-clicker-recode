@@ -8,7 +8,7 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { showMsg, clearMsg } from "./utilities.js";
-import { getBal, setBal, silentSaveGame } from "./scr.js";
+import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
 
@@ -107,7 +107,7 @@ async function setUsedCodes(usedCodes) {
     },
     { merge: true }
   );
-  silentSaveGame();
+  saveGame(true);
 }
 
 export async function getCodes() {

@@ -16,6 +16,7 @@ function initializeUpgrades() {
       unlockcategory: "citybus",
       incomeboost: 0,
       clickboost: 0,
+      num: 1,
     },
     {
       category: "vehicleType",
@@ -28,6 +29,7 @@ function initializeUpgrades() {
       unlockcategory: "hydrogenbus",
       incomeboost: 0,
       clickboost: 0,
+      num: 2,
     },
     {
       category: "vehicleType",
@@ -40,6 +42,7 @@ function initializeUpgrades() {
       unlockcategory: "intercitybus",
       incomeboost: 0,
       clickboost: 0,
+      num: 3,
     },
     {
       category: "vehicleType",
@@ -52,6 +55,7 @@ function initializeUpgrades() {
       unlockcategory: "trolleybus",
       incomeboost: 0,
       clickboost: 0,
+      num: 4,
     },
     {
       category: "vehicleType",
@@ -64,6 +68,7 @@ function initializeUpgrades() {
       unlockcategory: "tram",
       incomeboost: 0,
       clickboost: 0,
+      num: 6,
     },
   ];
 }

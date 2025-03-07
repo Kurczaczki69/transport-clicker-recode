@@ -47,23 +47,39 @@ export function showAlert(message) {
 
 // abbreviates number to human readable format
 export function abbreviateNumber(num) {
+  const roundedNum = Math.floor(num);
+  const bigNum = BigInt(roundedNum);
   const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
     notation: "compact",
     compactDisplay: "short",
-    maximumSignificantDigits: 4,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
   });
 
-  return formatter.format(num);
+  return formatter.format(bigNum);
 }
 
-export function shortAbbreviateNumber(num) {
+export function shortAbbreviateNumber(num, location) {
+  const roundedNum = Math.floor(num);
+  const bigNum = BigInt(roundedNum);
   const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
     notation: "compact",
     compactDisplay: "short",
-    maximumSignificantDigits: 3,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
   });
-
-  return formatter.format(num);
+  let formattedNum = formatter.format(bigNum);
+  if (location == "vhcls") {
+    return formattedNum;
+  } else if (location == "upgrs" || location == "price") {
+    if (num === 0) {
+      return banana.i18n("free-indicator");
+    } else {
+      return formattedNum;
+    }
+  } else {
+    return formattedNum;
+  }
 }
 
 // formats time from milliseconds to human readable format
@@ -83,4 +99,9 @@ export function formatTime(ms) {
     .join(" ");
 
   return formattedTime || `0 ${banana.i18n("time-seconds")}`;
+}
+
+export function convertDecimalBoostToPercent(value) {
+  if (value < 1) return "-" + (100 - value * 100).toFixed(0);
+  else return "+" + (value * 100 - 100).toFixed(0);
 }

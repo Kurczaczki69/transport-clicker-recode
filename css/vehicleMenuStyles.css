@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   background-color: var(--colorscheme2);
   width: 70vw;
-  height: 500px;
+  height: 70vh;
   border: var(--border5);
   border-radius: 20px;
   display: none;
@@ -18,7 +18,7 @@
   border: var(--border5);
   border-radius: 20px;
   width: 40%;
-  height: 65%;
+  height: 50%;
   position: absolute;
   top: 50%;
   left: 49%;
@@ -28,8 +28,9 @@
 }
 
 #small-input {
-  width: 25%;
-  height: 5%;
+  width: 50%;
+  height: 3vh;
+  padding: 1vh;
   border: var(--border2);
   border-radius: 5px;
   background: var(--colorscheme4);
@@ -50,21 +51,60 @@
   border: var(--border2);
 }
 
-#route-dropdown {
-  font-family: "Lato", sans-serif;
-  background-color: rgb(88, 84, 84);
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  border: var(--border2);
-  color: var(--colorscheme2);
-  font-weight: 200;
+#buy-menu-header {
+  margin-left: 0.5vw;
 }
 
-#route-dropdown:focus {
-  outline: none;
-  border: var(--border2);
+#buy-menu-desc {
+  text-align: left;
+  margin-left: 0.5vw;
+}
+
+#buy-menu-bottom-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+#buy-menu-middle-row {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#buy-menu-top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#buy-menu-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0.5vw;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#buy-menu-max-button {
+  width: 10%;
+  height: 4.75vh;
+  font-weight: 500;
+  border: var(--border5);
+  color: var(--colorscheme2);
+}
+
+#buy-menu-total-cost {
+  position: absolute;
+  left: 5%;
+  top: 71%;
+  text-align: left;
+  width: 60%;
+  height: 5vh;
 }
 
 #finish-operation-btn {
@@ -73,9 +113,9 @@
   background: var(--colorscheme4);
   background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   width: 25%;
-  height: 10%;
+  height: 5vh;
   position: absolute;
-  top: 85%;
+  top: 75%;
   left: 70%;
   transition: background-color 0.3s, transform 0.3s;
   color: black;
@@ -106,28 +146,31 @@
   text-align: left;
   position: absolute;
   left: 5%;
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 #vhcl-menu-category-name {
-  position: absolute;
-  top: 12%;
-  left: 10%;
-  font-size: 20px;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #vhcl-menu-subcategory-name {
-  position: absolute;
-  top: 12%;
-  left: 32%;
-  font-size: 20px;
+  font-size: 1.25rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 #vhcl-menu-dropdowns-wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  gap: 1rem;
 }
 
 .vhcl-menu-dropdowns {
