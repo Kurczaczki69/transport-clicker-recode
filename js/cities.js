@@ -199,10 +199,10 @@ function startRandomEvents() {
   });
   setInterval(() => {
     const chance = Math.random();
-    if (chance < 0.99 && activeEvents.length < 3) {
+    if (chance < 0.2 && activeEvents.length < 3) {
       triggerRandomEvent();
     }
-  }, 3000);
+  }, 25000);
 }
 
 /**
@@ -281,7 +281,7 @@ function updateActiveEventsDisplay() {
 
     eventElement.innerHTML = `
       <div class="event-info">
-        <div class="event-name">${event.name}</div>
+        <div class="event-name">${banana.i18n(`city-event-${event.id}`)}</div>
         <div class="event-boost">${banana.i18n("cities-boost", convertDecimalBoostToPercent(event.boost))}</div>
         <div class="event-timer">${banana.i18n("timed-upgr-notif", timeFormat(timeLeft))}</div>
       </div>
