@@ -167,7 +167,7 @@ function addListeners() {
         switchCity(city.id);
       });
     } else {
-      if (getLevel() >= city.requiredLevel) {
+      if (getLevel() >= city.unlockLevel) {
         btn.textContent = banana.i18n("btn-unlock");
         btn.addEventListener("click", () => {
           unlockCity(city.id);
