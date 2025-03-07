@@ -52,6 +52,8 @@ const logOutBtn = document.getElementById("logout-btn");
 logOutBtn.addEventListener("click", () => {
   localStorage.removeItem("loggedInUserId");
   localStorage.removeItem("previousLevel");
+  localStorage.removeItem("activeTimedUpgrades");
+  localStorage.removeItem("activeEvents");
   localStorage.setItem("loggedIn", false);
   signOut(auth)
     .then(() => {

@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.10.0DEV -->
+  <!-- TRANSPORT CLICKER ALPHA 0.10.0 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
   - Kiniaczu (Translator)
     currently thats it :) -->
-  <!-- ROADMAP FOR 0.10.0
-  - settings page with theme switcher DONE
-  - more trolleybuses
-  - negative events that shrink your income DONE
-  - city system DONE
-  - saving timed upgrades in local storage DONE
-  - dynamically populating the vehicle menu DONE
-  - -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,7 +17,6 @@
     <link rel="stylesheet" href="css/scrlbar.css" />
     <link rel="stylesheet" href="css/tooltips.css" />
     <link rel="stylesheet" href="css/upgrMenuStyles.css" />
-    <link rel="stylesheet" href="css/changelogStyles.css" />
     <link rel="stylesheet" href="css/codesStyles.css" />
     <link rel="stylesheet" href="css/accountSystem/accountMenuStyles.css" />
     <link rel="stylesheet" href="css/verNumberDisplay.css" />
@@ -169,64 +160,6 @@
       </div>
     </section>
 
-    <!-- changelog window elements -->
-
-    <div id="changelog">
-      <div class="closegui" id="close-changelog-btn">
-        <span class="tabler--x"></span>
-      </div>
-
-      <h2 id="small-title-changelog"><b data-lang="change-log-title"></b></h2>
-
-      <div id="changelog-left-nav">
-        <select name="versions" id="version-dropdown">
-          <option value="16">ALPHA 0.9.0</option>
-          <option value="15">ALPHA 0.8.4</option>
-          <option value="14">ALPHA 0.8.3</option>
-          <option value="13">ALPHA 0.8.2</option>
-          <option value="12">ALPHA 0.8.1</option>
-          <option value="11">ALPHA 0.8.0</option>
-          <option value="10">ALPHA 0.7.0</option>
-          <option value="9">ALPHA 0.6.2</option>
-          <option value="8">ALPHA 0.6.1</option>
-          <option value="7">ALPHA 0.6.0</option>
-          <option value="6">ALPHA 0.5.0</option>
-          <option value="5">ALPHA 0.4.0</option>
-          <option value="4">ALPHA 0.3.1</option>
-          <option value="3">ALPHA 0.3.0</option>
-          <option value="2">ALPHA 0.2.0</option>
-          <option value="1">ALPHA 0.1.1</option>
-          <option value="0">ALPHA 0.1.0</option>
-        </select>
-      </div>
-
-      <div id="content-container-changelog">
-        <h3>Wersja ALPHA 0.9.0</h3>
-        <h4>28/02/2025</h4>
-        <br />
-
-        - Dodano system poziomów <br />
-        - Dodano okno ze statystykami <br />
-        - Ceny pojazdów od teraz zwiększają się za każdym zakupem <br />
-        - Ulepszenia mają teraz wymagane poziomy aby je kupić, tak samo pojazdy <br />
-        - Nowe ulepszenie czasowe - Turbo Silnik - 10 min <br />
-        - Nowe autobusy: <br />
-        |- Volvo 9700 <br />
-        |- Volvo 9700 Double Decker <br />
-        - Dodano trolejbusy: <br />
-        |- Solaris Trollino 12 <br />
-        |- Solaris Trollino 18 <br />
-        |- Solaris Trollino 24 <br />
-        |- Mercedes-Benz O530L <br />
-        |- Mercedes-Benz Citaro 2 <br />
-        - Okno z informacjami o grze ma teraz sekcję z licencjami <br />
-        - Poprawki wielu błędów <br />
-        - Poprawki i optymalizacja kodu <br />
-        - Wiele innych mniejszych zmian i poprawek <br />
-        <br />
-      </div>
-    </div>
-
     <!-- codes window elements -->
 
     <div id="codes-menu">
@@ -284,10 +217,6 @@
           <div class="nav-item" id="nav-item-save-game">
             <span class="tabler--brand-onedrive"></span>
             <span class="tooltip" data-lang="tooltip-save"></span>
-          </div>
-          <div class="nav-item" id="nav-item-open-changelog">
-            <span class="tabler--exchange"></span>
-            <span class="tooltip" data-lang="tooltip-changelog"></span>
           </div>
           <div class="nav-item" id="nav-item-open-stats">
             <span class="tabler--chart-bar"></span>
@@ -522,7 +451,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.0DEV</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.0</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users"></span> <span data-lang="credits-contributors"></span>
@@ -607,10 +536,9 @@
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.0DEV]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.0]</section>
 
     <script type="module" src="js/scr.js"></script>
-    <script type="module" src="js/changelog.js"></script>
     <script type="module" src="js/codes.js"></script>
     <script type="module" src="js/creditsMenu.js"></script>
     <script type="module" src="js/accountSystem/accountWindow.js"></script>

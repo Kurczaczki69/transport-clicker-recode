@@ -315,7 +315,9 @@ const totalEl = document.getElementById("show-full-cost");
 const inputEl = document.getElementById("small-input");
 const maxBtn = document.querySelector("#buy-menu-max-button");
 
-maxBtn.addEventListener("click", setInputToMax);
+if (isGamePage) {
+  maxBtn.addEventListener("click", setInputToMax);
+}
 
 function setInputToMax() {
   const bal = getBal();
