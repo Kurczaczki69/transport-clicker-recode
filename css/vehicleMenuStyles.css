@@ -56,9 +56,8 @@
 }
 
 #buy-menu-desc {
-  position: absolute;
-  top: -10%;
-  left: 50%;
+  text-align: left;
+  margin-left: 0.5vw;
 }
 
 #buy-menu-bottom-row {
@@ -86,10 +85,7 @@
 #buy-menu-input-wrapper {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  top: 110%;
-  left: 80%;
-  transform: translateX(-50%);
+  margin-left: 0.5vw;
   gap: 0.5rem;
   width: 100%;
 }
