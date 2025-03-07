@@ -191,6 +191,12 @@ let activeEvents = [];
 
 function startRandomEvents() {
   activeEvents = localStorage.getItem("activeEvents") ? JSON.parse(localStorage.getItem("activeEvents")) : [];
+  activeEvents = activeEvents.filter((event) => event.endTime > Date.now());
+  activeEvents.forEach((event) => {
+    setTimeout(() => {
+      removeEvent(event.id);
+    }, event.endTime - Date.now());
+  });
   setInterval(() => {
     const chance = Math.random();
     if (chance < 0.99 && activeEvents.length < 3) {
@@ -253,6 +259,7 @@ function removeEvent(eventId) {
   if (eventIndex !== -1) {
     const removedEvent = activeEvents[eventIndex];
     activeEvents.splice(eventIndex, 1);
+    localStorage.setItem("activeEvents", JSON.stringify(activeEvents));
     populateCitiesGrid();
   }
 }
