@@ -181,6 +181,13 @@ export function checkLevel() {
       vhclEl.addEventListener("click", () => {
         blockVhcl(vhclEl.id, "level");
       });
+    } else if (vhcl && vhcl.maxLevel < level) {
+      vhclTextEls[index].textContent = "";
+      vhclTextEls[index].classList.add("tabler--lock-filled");
+      vhclEl.style.padding = "3%";
+      vhclEl.addEventListener("click", () => {
+        blockVhcl(vhclEl.id, "max-level");
+      });
     } else {
       vhclEl.addEventListener("click", () => {
         buyVhcl(vhclEl.id);
@@ -195,6 +202,8 @@ function blockVhcl(vhclCode, reason) {
   let message = "";
   if (reason === "level") {
     message = banana.i18n("vhcl-unlock-level", vhcl.requiredLevel);
+  } else if (reason === "max-level") {
+    message = banana.i18n("vhcl-unlock-max-level", vhcl.maxLevel);
   }
   showAlert(message);
 }

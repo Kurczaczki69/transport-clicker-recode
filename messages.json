@@ -32,6 +32,7 @@
   "vhcl-buy-menu-placeholder": "Podaj ilość",
   "vhcl-buy-menu-full-cost": "Łączny koszt: ",
   "vhcl-unlock-level": "Potrzebujesz poziomu $1 aby móc kupić ten pojazd",
+  "vhcl-unlock-max-level": "Maksymalny poziom na którym możesz kupić ten pojazd to $1",
   "vhcl-category-locked": "Musisz najpierw kupić ulepszenie $1",
   "vhcl-category-locked-2": "Ta kategoria pojazdów nie jest dostępna w twoim aktualnym mieście",
   "cant-afford": "Nie stać cię!",
