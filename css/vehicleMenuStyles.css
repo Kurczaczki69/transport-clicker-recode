@@ -17,11 +17,11 @@
   background-color: var(--colorscheme2);
   border: var(--border5);
   border-radius: 20px;
-  width: 40%;
-  height: 50%;
+  width: 30vw;
+  height: 35vh;
   position: absolute;
   top: 50%;
-  left: 49%;
+  left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
   display: none;
@@ -135,6 +135,30 @@
   transform: translate(-50%, -50%);
 }
 
+@media screen and (max-width: 768px) {
+  #buy-menu {
+    width: 80vw;
+    height: 35vh;
+  }
+
+  #buy-menu-total-cost {
+    position: absolute;
+    left: 5%;
+    top: 71%;
+    text-align: left;
+    width: 60%;
+    height: 5vh;
+  }
+
+  #buy-menu-max-button {
+    width: calc(auto + 10%);
+    height: 4.4vh;
+    font-weight: 500;
+    border: var(--border5);
+    color: var(--colorscheme2);
+  }
+}
+
 .not-ready {
   color: red;
   font-weight: 400;
@@ -230,7 +254,7 @@
 .vhcl-menu-btn {
   margin-right: 5%;
   cursor: pointer;
-  width: 15vh;
+  width: 8vw;
   padding: 5%;
   border: none;
   border-radius: 5px;
@@ -313,4 +337,53 @@
 
 #vhcl-menu-trolleybus-category {
   display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #buy-vehicle {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #vhcl-menu-dropdowns-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 10%;
+    gap: 0rem;
+  }
+
+  #vhcl-menu-subcategory-name {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: absolute;
+    top: 40%;
+    left: 0%;
+  }
+
+  .vhcl-menu-name {
+    font-size: 1rem;
+  }
+
+  .vhcl-menu-btn {
+    padding: 2vh;
+    width: 15vw;
+  }
+
+  .vhcl-menu-price,
+  .vhcl-menu-citybus-clickmod-boost,
+  .vhcl-menu-citybus-income-boost {
+    display: block;
+    width: 100%;
+    height: 33%;
+    text-align: left;
+    padding-left: 2%;
+    margin: 0.25rem 0;
+  }
+
+  .vhcl-menu-btn-wrapper {
+    width: 20%;
+  }
 }

@@ -71,6 +71,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 20px;
+  text-align: center;
 }
 
 #upgr-menu-other-categories {
@@ -143,6 +144,32 @@
   padding: 5%;
 }
 
+@media screen and (max-width: 768px) {
+  #upgrades {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  .upgr-menu-vehicle-type-item-btn {
+    padding: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upgr-menu-timed-upgr-item-btn {
+    padding: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upgr-menu-vehicle-type-item-is-avaible {
+    width: 10%;
+    display: none;
+  }
+}
+
 .upgrs-tables {
   width: 100%;
   border-collapse: collapse;
@@ -196,6 +223,16 @@
   margin-bottom: 1.33em;
 }
 
+@media screen and (max-width: 768px) {
+  .upgr-menu-vehicle-type-item-header {
+    width: 50%;
+  }
+
+  #confirm-upgrade-dialog {
+    width: 70%;
+  }
+}
+
 #confirm-upgrade-dialog {
   position: absolute;
   top: 50%;
@@ -207,7 +244,6 @@
   background-color: var(--colorscheme2);
   border: var(--border5);
   border-radius: 10px;
-  overflow: auto;
   display: none;
 }
 
@@ -275,4 +311,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  #confirm-upgrade-dialog {
+    width: 80%;
+    height: 25%;
+  }
+
+  #confirm-upgr-btn {
+    width: 15vh;
+    padding: 2.5%;
+  }
+
+  #cancel-upgr-btn {
+    width: 15vh;
+    padding: 2.5%;
+    margin-left: 1vw;
+  }
 }

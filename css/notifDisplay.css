@@ -14,6 +14,14 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  #notif-display {
+    width: 25%;
+    z-index: 24;
+    margin-top: 12vh;
+  }
+}
+
 .notif {
   display: flex;
   flex-direction: column;

@@ -19,9 +19,16 @@
   align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  #alert-window {
+    width: 75%;
+    height: 25%;
+  }
+}
+
 #alert-message {
   text-align: center;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 #alert-window-info-wrapper {

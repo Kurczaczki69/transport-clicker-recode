@@ -202,7 +202,7 @@
   flex-direction: column;
   display: none;
   z-index: 9999;
-  padding: 10px;
+  padding: 1vw;
   font-size: 2.5vh;
 }
 
@@ -249,4 +249,105 @@
 .change-pass-btns:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  #accountbox {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #email-wrap {
+    top: 23%;
+  }
+
+  .btns-acc-window {
+    width: 80vw;
+    height: 5vh;
+  }
+
+  .btns-acc-window:hover {
+    transform: none;
+  }
+
+  #changePassWrapper {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45%;
+    width: 90%;
+  }
+
+  #change-pass-input-wrapper {
+    width: 100%;
+    position: absolute;
+    left: 10%;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+
+  #dont-remember-pass-link {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+  }
+
+  .inputs {
+    width: 70%;
+  }
+
+  .change-pass-btns {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+  }
+
+  #change-pass-btn-wrapper {
+    width: 100%;
+    position: absolute;
+    left: 10%;
+    top: 80%;
+  }
+
+  #input-msg-change-pass {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translateY(-50%);
+  }
+
+  #change-pass-title {
+    position: absolute;
+    left: 10%;
+  }
+
+  #areYouSureWrapper {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 43%;
+    width: 90%;
+  }
+
+  #are-you-sure-title {
+    font-size: 1.4rem;
+  }
+
+  #are-you-sure-desc {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  #are-you-sure-warning {
+    font-size: 1.1rem;
+  }
+
+  #are-you-sure-btn-wrapper {
+    width: 100%;
+    height: 17%;
+    position: absolute;
+    top: 80%;
+    left: 5%;
+  }
 }

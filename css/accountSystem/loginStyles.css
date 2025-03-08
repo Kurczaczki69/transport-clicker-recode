@@ -68,7 +68,7 @@ body {
   padding: 2.5%;
   border: var(--border2);
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 1vh;
   background-color: var(--colorscheme3);
   color: var(--colorscheme4);
 }
@@ -101,21 +101,8 @@ body {
   transition: transform 0.3s;
 }
 
-#return-btn {
-  cursor: pointer;
-  width: 40%;
-  padding: 2.5%;
-  border: none;
-  border-radius: 5px;
-  background: rgb(255, 222, 0);
-  background: radial-gradient(circle, rgba(207, 151, 102, 1) 20%, rgba(255, 222, 0, 1) 83%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  margin-top: 2%;
-}
-
 #username-input {
-  margin-bottom: 3.4%;
+  margin-bottom: 3vh;
 }
 
 .msgDiv {
@@ -154,4 +141,31 @@ option {
   font-family: "Lato", sans-serif;
   color: var(--colorscheme4);
   background-color: var(--colorscheme3);
+}
+
+@media screen and (max-width: 768px) {
+  #login-box {
+    width: 80vw;
+    height: 90vh;
+  }
+
+  #lang-dropdown {
+    width: 75%;
+    padding: 2%;
+  }
+
+  .form-input {
+    width: 80%;
+    margin-top: 0.1vh;
+    padding: 2vh;
+  }
+
+  .submit-form-btn {
+    width: 80%;
+    padding: 2vh;
+  }
+
+  .submit-form-btn:hover {
+    transform: none;
+  }
 }

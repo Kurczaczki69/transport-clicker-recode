@@ -66,3 +66,9 @@
   width: 20%;
   height: 30%;
 }
+
+@media screen and (max-width: 768px) {
+  #codes-menu {
+    width: 80vw;
+  }
+}
