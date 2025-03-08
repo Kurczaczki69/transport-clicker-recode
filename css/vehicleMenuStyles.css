@@ -91,7 +91,7 @@
 }
 
 #buy-menu-max-button {
-  width: 10%;
+  width: calc(auto + 10%);
   height: 4.75vh;
   font-weight: 500;
   border: var(--border5);
