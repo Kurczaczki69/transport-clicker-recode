@@ -12,7 +12,7 @@ const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-categ
 const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
 const dropdown = document.getElementById("upgr-menu-category-dropdown");
 
-const isGamePage = window.location.pathname === "/game.html";
+const isGamePage = window.location.pathname.includes("game.html");
 
 // upgrade menu category dropdown
 if (isGamePage) {
