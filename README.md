@@ -1,4 +1,4 @@
-# WORK IN PROGRESS, WILL UPDATE README LATER
+# TRANSPORT CLICKER
 
 Polish game about clicking on a ~~circle~~ square and buying vehicles and upgrades.
 
