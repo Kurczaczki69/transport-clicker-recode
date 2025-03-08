@@ -272,8 +272,11 @@
   border-collapse: collapse;
 }
 
-.vhcl-menu-tables th {
+.vhcl-menu-tables tr {
   border-top: var(--border2);
+}
+
+.vhcl-menu-tables tr:not(:last-child) {
   border-bottom: var(--border2);
 }
 

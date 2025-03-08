@@ -100,14 +100,22 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border-radius: 1px;
+  border-radius: 2px;
+}
+
+.upgrs-categories {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 2px;
 }
 
 .upgr-menu-vehicle-type-item {
   height: 20%;
   width: 100%;
-  border-top: var(--border2);
-  border-bottom: var(--border2);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -140,8 +148,11 @@
   border-collapse: collapse;
 }
 
-.upgrs-tables th {
+.upgrs-tables tr {
   border-top: var(--border2);
+}
+
+.upgrs-tables tr:not(:first-child) {
   border-bottom: var(--border2);
 }
 

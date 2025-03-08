@@ -160,6 +160,17 @@ export function initializeVehicles() {
       maxQuantity: 10000000000,
     },
     {
+      code: "mercedesecitaro",
+      name: "Mercedes-Benz eCitaro",
+      clickmod: 13,
+      incomemod: 13,
+      price: 150000,
+      requiredLevel: 21,
+      maxLevel: 170,
+      category: "hydrogenbus",
+      maxQuantity: 10000000000,
+    },
+    {
       code: "vacanza12",
       name: "Solaris Vacanza 12",
       clickmod: 5,
