@@ -99,7 +99,8 @@ export function abbreviateNumber(num) {
 
 export function shortAbbreviateNumber(num, location) {
   const bigNum = Math.floor(num);
-  const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
+  const lang = localStorage.getItem("lang") || "en";
+  const formatter = new Intl.NumberFormat(lang, {
     notation: "compact",
     compactDisplay: "short",
     maximumFractionDigits: 2,

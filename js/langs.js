@@ -26,6 +26,7 @@ function updateLang(lang) {
         populateThemeOptions();
         syncVehiclePrices();
         const currentPage = document.body.getAttribute("data-page");
+        document.documentElement.setAttribute("lang", lang);
         setPageTitle(currentPage);
         sleep(200).then(() => {
           $("#loader-wrapper").fadeOut("slow");
