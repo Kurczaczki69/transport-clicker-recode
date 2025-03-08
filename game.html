@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl-PL">
-  <!-- TRANSPORT CLICKER ALPHA 0.10.0 -->
+<html lang="en">
+  <!-- TRANSPORT CLICKER ALPHA 0.10.1 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
@@ -198,37 +198,39 @@
         <!-- navigation bar -->
 
         <div class="navbar animation-nav-show" id="nav">
-          <div class="nav-item" id="nav-item-buy">
-            <span class="tabler--bus"></span>
-            <span class="tooltip" data-lang="tooltip-buy-vhcls"></span>
-          </div>
-          <div class="nav-item" id="nav-item-upgr-menu">
-            <span class="tabler--rocket"></span>
-            <span class="tooltip" data-lang="tooltip-buy-upgrs"></span>
-          </div>
-          <div class="nav-item" id="nav-item-city-menu">
-            <span class="tabler--map-pin"></span>
-            <span class="tooltip" data-lang="tooltip-cities"></span>
-          </div>
-          <div class="nav-item" id="nav-item-codes-menu">
-            <span class="tabler--code"></span>
-            <span class="tooltip" data-lang="tooltip-codes"></span>
-          </div>
-          <div class="nav-item" id="nav-item-save-game">
-            <span class="tabler--brand-onedrive"></span>
-            <span class="tooltip" data-lang="tooltip-save"></span>
-          </div>
-          <div class="nav-item" id="nav-item-open-stats">
-            <span class="tabler--chart-bar"></span>
-            <span class="tooltip" data-lang="tooltip-stats"></span>
-          </div>
-          <div class="nav-item" id="nav-item-account-page">
-            <span class="tabler--lock-open"></span>
-            <span class="tooltip" data-lang="tooltip-account"></span>
-          </div>
-          <div class="nav-item" id="nav-item-settings-page">
-            <span class="tabler--settings"></span>
-            <span class="tooltip" data-lang="tooltip-settings"></span>
+          <div id="nav-items">
+            <div class="nav-item" id="nav-item-buy">
+              <span class="tabler--bus"></span>
+              <span class="tooltip" data-lang="tooltip-buy-vhcls"></span>
+            </div>
+            <div class="nav-item" id="nav-item-upgr-menu">
+              <span class="tabler--rocket"></span>
+              <span class="tooltip" data-lang="tooltip-buy-upgrs"></span>
+            </div>
+            <div class="nav-item" id="nav-item-city-menu">
+              <span class="tabler--map-pin"></span>
+              <span class="tooltip" data-lang="tooltip-cities"></span>
+            </div>
+            <div class="nav-item" id="nav-item-codes-menu">
+              <span class="tabler--code"></span>
+              <span class="tooltip" data-lang="tooltip-codes"></span>
+            </div>
+            <div class="nav-item" id="nav-item-save-game">
+              <span class="tabler--brand-onedrive"></span>
+              <span class="tooltip" data-lang="tooltip-save"></span>
+            </div>
+            <div class="nav-item" id="nav-item-open-stats">
+              <span class="tabler--chart-bar"></span>
+              <span class="tooltip" data-lang="tooltip-stats"></span>
+            </div>
+            <div class="nav-item" id="nav-item-account-page">
+              <span class="tabler--lock-open"></span>
+              <span class="tooltip" data-lang="tooltip-account"></span>
+            </div>
+            <div class="nav-item" id="nav-item-settings-page">
+              <span class="tabler--settings"></span>
+              <span class="tooltip" data-lang="tooltip-settings"></span>
+            </div>
           </div>
         </div>
       </section>
@@ -275,13 +277,13 @@
       <div id="lang-options-wrapper">
         <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
         <select name="langs" id="lang-dropdown">
-          <option value="pl">Polski</option>
           <option value="en">English</option>
+          <option value="pl">Polski</option>
         </select>
       </div>
     </section>
 
-    <!-- bus purchase menu -->
+    <!-- vehicle purchase menu -->
 
     <div id="buy-vehicle">
       <div class="closegui" id="close-bus-gui-btn">
@@ -408,15 +410,15 @@
 
       <div id="upgr-menu-main-section-wrapper">
         <!-- vehicle type upgrades -->
-        <div id="upgr-menu-vehicle-type-category">
+        <div id="upgr-menu-vehicle-type-category" class="upgrs-categories">
           <table id="upgr-menu-vehicle-type-table" class="upgrs-tables"></table>
         </div>
         <!-- timed upgrades -->
-        <div id="upgr-menu-timed-upgrades-category" style="display: none">
+        <div id="upgr-menu-timed-upgrades-category" class="upgrs-categories" style="display: none">
           <table id="upgr-menu-timed-upgrades-table" class="upgrs-tables"></table>
         </div>
         <!-- other categories -->
-        <div id="upgr-menu-other-categories">
+        <div id="upgr-menu-other-categories" class="upgrs-categories">
           <h5 id="upgr-menu-not-ready-indicator" data-lang="not-ready-text1"></h5>
         </div>
 
@@ -451,27 +453,27 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.0</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.1</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
-              <span class="tabler--users"></span> <span data-lang="credits-contributors"></span>
+              <span class="tabler--users credits-icons"></span> <span data-lang="credits-contributors"></span>
             </div>
           </div>
           <div class="credits-menu-section-left-item" id="credits-menu-translators-btn">
             <div class="link-wrapper">
-              <span class="tabler--license"></span> <span data-lang="credits-licenses"></span>
+              <span class="tabler--license credits-icons"></span> <span data-lang="credits-licenses"></span>
             </div>
           </div>
           <div class="credits-menu-section-left-item">
             <a target="_blank" href="https://github.com/Kurczaczki69/transport-clicker-recode" target="_blank"
               ><div class="link-wrapper">
-                <span class="tabler--brand-github"></span> <span data-lang="github"></span></div
+                <span class="tabler--brand-github credits-icons"></span> <span data-lang="github"></span></div
             ></a>
           </div>
           <div class="credits-menu-section-left-item">
             <a target="_blank" href="https://discord.gg/VSKb37tg33" target="_blank"
               ><div class="link-wrapper">
-                <span class="tabler--brand-discord"></span> <span data-lang="discord"></span></div
+                <span class="tabler--brand-discord credits-icons"></span> <span data-lang="discord"></span></div
             ></a>
           </div>
         </div>
@@ -536,7 +538,7 @@
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.0]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.1]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script type="module" src="js/codes.js"></script>

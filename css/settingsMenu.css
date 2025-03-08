@@ -47,7 +47,7 @@
 }
 
 .settings-theme-item {
-  min-width: 100px;
+  min-width: 15vh;
   height: 15vh;
   border-radius: 10px;
   cursor: pointer;
@@ -113,4 +113,53 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  #settings-menu {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #settings-menu-title {
+    position: absolute;
+    top: -2.5%;
+    left: 8%;
+  }
+
+  #settings-menu-theme-text {
+    position: absolute;
+    top: 12%;
+    left: 10%;
+  }
+
+  #settings-theme-items {
+    gap: 2rem;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+  }
+
+  #lang-dropdown {
+    width: 40vw;
+  }
+
+  #lang-options-wrapper {
+    left: 10%;
+  }
+
+  .settings-theme-item {
+    width: 3vw;
+    min-height: 10vh;
+    margin: 1.5%;
+  }
+
+  .settings-theme-name {
+    bottom: -3rem;
+  }
 }

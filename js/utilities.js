@@ -45,24 +45,62 @@ export function showAlert(message) {
   });
 }
 
-// abbreviates number to human readable format
+// abbreviates large numbers to human readable format
 export function abbreviateNumber(num) {
+  // suffixes for large numbers (keys for the language files)
+  const suffixes = [
+    "",
+    "number-thousand",
+    "number-million",
+    "number-billion",
+    "number-trillion",
+    "number-quadrillion",
+    "number-quintillion",
+    "number-sextillion",
+    "number-septillion",
+    "number-octillion",
+    "number-nonillion",
+    "number-decillion",
+  ];
+
+  const lang = localStorage.getItem("lang") || "en";
   const roundedNum = Math.floor(num);
-  const bigNum = BigInt(roundedNum);
-  const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
-    notation: "compact",
-    compactDisplay: "short",
+
+  // numbers less than one trillion use Intl.NumberFormat
+  if (roundedNum < 1e12) {
+    const formatter = new Intl.NumberFormat(lang, {
+      notation: "compact",
+      compactDisplay: "short",
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 0,
+    });
+    return formatter.format(roundedNum);
+  }
+
+  // larger numbers use the custom suffixes from the language files
+  const order = Math.floor(Math.log10(roundedNum) / 3);
+  if (order >= suffixes.length) {
+    return "∞";
+  }
+
+  const suffix = banana.i18n(suffixes[order]);
+  const scaled = roundedNum / Math.pow(10, order * 3);
+
+  // Use Intl.NumberFormat for locale-specific number formatting
+  const formatter = new Intl.NumberFormat(lang, {
     maximumFractionDigits: 2,
     minimumFractionDigits: 0,
   });
 
-  return formatter.format(bigNum);
+  const formatted = formatter.format(scaled);
+
+  return `${formatted} ${suffix}`;
 }
 
 export function shortAbbreviateNumber(num, location) {
-  const roundedNum = Math.floor(num);
-  const bigNum = BigInt(roundedNum);
-  const formatter = new Intl.NumberFormat(localStorage.getItem("lang"), {
+  const bigNum = Math.floor(num);
+  const lang = localStorage.getItem("lang") || "en";
+  const formatter = new Intl.NumberFormat(lang, {
     notation: "compact",
     compactDisplay: "short",
     maximumFractionDigits: 2,

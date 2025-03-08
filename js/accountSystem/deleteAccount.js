@@ -65,6 +65,9 @@ confirmBtn.addEventListener("click", async (event) => {
       console.error("deletion unsuccesful - wrong password");
     } else if (errorCode === "auth/requires-recent-login") {
       showMsg(banana.i18n("delete-account-requires-recent-login"), "input-msg");
+    } else if (errorCode === "auth/missing-password") {
+      showMsg(banana.i18n("auth-login-missing-password"), "input-msg");
+      console.log(errorCode);
     } else {
       showMsg(banana.i18n("error-occured"), "input-msg");
       console.error("deletion unsuccesful - error:", error);

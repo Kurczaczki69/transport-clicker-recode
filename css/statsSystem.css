@@ -58,7 +58,6 @@
   top: 24%;
   left: 69%;
   transform: translate(-50%, -50%);
-  border-radius: 100px;
   font-size: 1.75rem;
   font-weight: 900;
   font-style: italic;
@@ -105,4 +104,42 @@
   padding: 0.5rem;
   background-color: var(--colorscheme3);
   color: var(--colorscheme2);
+}
+
+@media screen and (max-width: 768px) {
+  #stats-window {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #level-bar-empty {
+    width: 90%;
+  }
+
+  #user-level {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 23%;
+    left: 10%;
+  }
+
+  #user-xp {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 25%;
+    left: 100%;
+    width: 85%;
+  }
+
+  #to-next-level {
+    position: absolute;
+    top: 32%;
+    left: 10%;
+    font-size: 1rem;
+  }
+
+  #vhcl-stats-table {
+    width: 100%;
+    transform: translateX(0%);
+  }
 }

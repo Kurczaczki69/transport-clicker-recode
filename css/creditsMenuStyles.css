@@ -112,3 +112,42 @@
   overflow-y: auto;
   height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  #credits-window {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #credits-menu-section-left {
+    width: 40%;
+  }
+
+  .credits-menu-section-left-item {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #credits-menu-section-left-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  #credits-menu-translators-section-title {
+    font-size: 1.5rem;
+  }
+
+  #credits-menu-authors-section-title {
+    font-size: 1.5rem;
+  }
+
+  .link-wrapper {
+    justify-content: center;
+  }
+
+  .credits-icons {
+    display: none;
+  }
+}
