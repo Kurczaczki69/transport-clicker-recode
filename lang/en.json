@@ -204,5 +204,16 @@
   "city-event-crash-desc": "$1: An accident has occurred! Your earnings have been decreased by $2%.",
   "city-event-protest-desc": "$1 A protest is being organized! Your earnings have been decreased by $2%.",
   "city-event-film-shooting-desc": "$1: A movie is being shot! Your earnings have been increased by $2%.",
-  "city-event-forest-fire-desc": "$1: A forest has caught on fire! Your earnings have been decreased by $2%."
+  "city-event-forest-fire-desc": "$1: A forest has caught on fire! Your earnings have been decreased by $2%.",
+  "number-thousand": "K",
+  "number-million": "M",
+  "number-billion": "B",
+  "number-trillion": "T",
+  "number-quadrillion": "Qa",
+  "number-quintillion": "Qi",
+  "number-sextillion": "Sx",
+  "number-septillion": "Sp",
+  "number-octillion": "Oc",
+  "number-nonillion": "No",
+  "number-decillion": "Dc"
 }
