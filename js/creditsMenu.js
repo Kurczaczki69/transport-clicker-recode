@@ -1,7 +1,7 @@
-const creditsWindow = document.getElementById("credits-window");
+const creditsWindow = document.querySelector("#credits-window");
 const tint = document.querySelector("#window-tint");
-const creditsBtn = document.getElementById("credits-btn");
-const closeCreditsBtn = document.getElementById("close-credits-window-btn");
+const creditsBtn = document.querySelector("#credits-btn");
+const closeCreditsBtn = document.querySelector("#close-credits-window-btn");
 
 creditsBtn.addEventListener("click", () => {
   tint.style.display = "block";
@@ -15,8 +15,8 @@ closeCreditsBtn.addEventListener("click", () => {
 
 // switching categories in credits menu
 
-const contributorsBtn = document.getElementById("credits-menu-authors-btn");
-const translatorsBtn = document.getElementById("credits-menu-translators-btn");
+const contributorsBtn = document.querySelector("#credits-menu-authors-btn");
+const translatorsBtn = document.querySelector("#credits-menu-translators-btn");
 
 contributorsBtn.addEventListener("click", () => {
   document.getElementById("credits-menu-authors-section").style.display = "block";

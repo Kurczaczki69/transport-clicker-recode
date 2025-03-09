@@ -7,7 +7,7 @@ body {
   background: var(--colorscheme3);
   background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   font-family: "Noto Sans", sans-serif;
-  overflow-y: hidden;
+  overflow: hidden;
   user-select: none;
   scroll-behavior: smooth;
   color: var(--colorscheme4);

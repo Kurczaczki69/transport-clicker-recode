@@ -7,10 +7,10 @@ import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 
 // REGULAR UPGRADES ONLY (so no timed upgrades)
 
-const notReadySection = document.getElementById("upgr-menu-other-categories");
-const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
-const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
-const dropdown = document.getElementById("upgr-menu-category-dropdown");
+const notReadySection = document.querySelector("#upgr-menu-other-categories");
+const vehicleTypeSection = document.querySelector("#upgr-menu-vehicle-type-category");
+const timedUpgrSection = document.querySelector("#upgr-menu-timed-upgrades-category");
+const dropdown = document.querySelector("#upgr-menu-category-dropdown");
 
 const isGamePage = window.location.pathname.includes("game.html");
 
@@ -35,10 +35,10 @@ if (isGamePage) {
 }
 
 // opening upgrade menu
-const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-const upgradeGUI = document.getElementById("upgrades");
+const navItemUpgrMenu = document.querySelector("#nav-item-upgr-menu");
+const upgradeGUI = document.querySelector("#upgrades");
 const tint = document.querySelector("#window-tint");
-const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
+const upgrMenuCloseBtn = document.querySelector("#upgr-menu-close-btn");
 
 if (isGamePage) {
   navItemUpgrMenu.addEventListener("click", () => {
@@ -96,11 +96,16 @@ function confirmUpgrade(upgradetobuy) {
   upgradeName.textContent = upgradeToBuy.name;
   confirmationDialog.style.display = "block";
 
-  confirmBtn.addEventListener("click", () => {
+  const newConfirmBtn = confirmBtn.cloneNode(true);
+  const newCancelBtn = cancelBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+  cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+  newConfirmBtn.addEventListener("click", () => {
     buyUpgrade(upgradetobuy);
   });
 
-  cancelBtn.addEventListener("click", () => {
+  newCancelBtn.addEventListener("click", () => {
     confirmationDialog.style.display = "none";
   });
 }
@@ -126,14 +131,17 @@ export function checkLevelUpgr() {
       upgrTextEls[index].textContent = "";
       upgrTextEls[index].classList.add("tabler--lock-filled");
       upgrEl.style.padding = "3%";
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         confirmUpgrade(upgrEl.id);
       });
     } else {
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         confirmUpgrade(upgrEl.id);
       });

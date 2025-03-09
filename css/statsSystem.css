@@ -110,6 +110,7 @@
   #stats-window {
     width: 90vw;
     height: 80vh;
+    overflow-x: hidden;
   }
 
   #level-bar-empty {

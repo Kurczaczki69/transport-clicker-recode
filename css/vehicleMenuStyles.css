@@ -221,6 +221,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 20px;
+  text-align: center;
 }
 
 #vhcl-menu-other-categories {
