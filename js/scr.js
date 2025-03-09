@@ -168,31 +168,40 @@ function buyVhcl(vhclCode) {
 
 export function checkLevel() {
   const vhclEls = document.querySelectorAll(".vhcl-menu-btn");
-  const vhclTextEls = document.querySelectorAll(".vhcl-btn-content");
   const vhcls = getVhcls();
   const level = getLevel();
 
-  vhclEls.forEach((vhclEl, index) => {
-    const vhcl = vhcls.find((v) => v.code === vhclEl.id);
+  vhclEls.forEach((vhclEl) => {
+    const clonedEl = vhclEl.cloneNode(true);
+    const clonedTextEl = clonedEl.querySelector(".vhcl-btn-content");
+
+    const vhcl = vhcls.find((v) => v.code === clonedEl.id);
     if (vhcl && vhcl.requiredLevel > level) {
-      vhclTextEls[index].textContent = "";
-      vhclTextEls[index].classList.add("tabler--lock-filled");
-      vhclEl.style.padding = "3%";
-      vhclEl.addEventListener("click", () => {
-        blockVhcl(vhclEl.id, "level");
+      clonedTextEl.textContent = "";
+      clonedTextEl.classList.add("tabler--lock-filled");
+      clonedEl.style.padding = "3%";
+      clonedEl.addEventListener("click", () => {
+        blockVhcl(clonedEl.id, "level");
       });
     } else if (vhcl && vhcl.maxLevel < level) {
-      vhclTextEls[index].textContent = "";
-      vhclTextEls[index].classList.add("tabler--lock-filled");
-      vhclEl.style.padding = "3%";
-      vhclEl.addEventListener("click", () => {
-        blockVhcl(vhclEl.id, "max-level");
+      clonedTextEl.textContent = "";
+      clonedTextEl.classList.add("tabler--lock-filled");
+      clonedEl.style.padding = "3%";
+      clonedEl.addEventListener("click", () => {
+        blockVhcl(clonedEl.id, "max-level");
       });
     } else {
-      vhclEl.addEventListener("click", () => {
-        buyVhcl(vhclEl.id);
+      clonedTextEl.classList.remove("tabler--lock-filled");
+      if (!clonedTextEl.textContent) {
+        clonedTextEl.textContent = banana.i18n("btn-buy");
+      }
+      clonedEl.style.padding = "";
+      clonedEl.addEventListener("click", () => {
+        buyVhcl(clonedEl.id);
       });
     }
+
+    vhclEl.parentNode.replaceChild(clonedEl, vhclEl);
   });
 }
 

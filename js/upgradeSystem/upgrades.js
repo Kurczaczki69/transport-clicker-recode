@@ -96,11 +96,16 @@ function confirmUpgrade(upgradetobuy) {
   upgradeName.textContent = upgradeToBuy.name;
   confirmationDialog.style.display = "block";
 
-  confirmBtn.addEventListener("click", () => {
+  const newConfirmBtn = confirmBtn.cloneNode(true);
+  const newCancelBtn = cancelBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+  cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+  newConfirmBtn.addEventListener("click", () => {
     buyUpgrade(upgradetobuy);
   });
 
-  cancelBtn.addEventListener("click", () => {
+  newCancelBtn.addEventListener("click", () => {
     confirmationDialog.style.display = "none";
   });
 }
@@ -126,14 +131,17 @@ export function checkLevelUpgr() {
       upgrTextEls[index].textContent = "";
       upgrTextEls[index].classList.add("tabler--lock-filled");
       upgrEl.style.padding = "3%";
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         confirmUpgrade(upgrEl.id);
       });
     } else {
+      upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         confirmUpgrade(upgrEl.id);
       });
