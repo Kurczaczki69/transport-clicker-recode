@@ -7,10 +7,10 @@ import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 
 // REGULAR UPGRADES ONLY (so no timed upgrades)
 
-const notReadySection = document.getElementById("upgr-menu-other-categories");
-const vehicleTypeSection = document.getElementById("upgr-menu-vehicle-type-category");
-const timedUpgrSection = document.getElementById("upgr-menu-timed-upgrades-category");
-const dropdown = document.getElementById("upgr-menu-category-dropdown");
+const notReadySection = document.querySelector("#upgr-menu-other-categories");
+const vehicleTypeSection = document.querySelector("#upgr-menu-vehicle-type-category");
+const timedUpgrSection = document.querySelector("#upgr-menu-timed-upgrades-category");
+const dropdown = document.querySelector("#upgr-menu-category-dropdown");
 
 const isGamePage = window.location.pathname.includes("game.html");
 
@@ -35,10 +35,10 @@ if (isGamePage) {
 }
 
 // opening upgrade menu
-const navItemUpgrMenu = document.getElementById("nav-item-upgr-menu");
-const upgradeGUI = document.getElementById("upgrades");
+const navItemUpgrMenu = document.querySelector("#nav-item-upgr-menu");
+const upgradeGUI = document.querySelector("#upgrades");
 const tint = document.querySelector("#window-tint");
-const upgrMenuCloseBtn = document.getElementById("upgr-menu-close-btn");
+const upgrMenuCloseBtn = document.querySelector("#upgr-menu-close-btn");
 
 if (isGamePage) {
   navItemUpgrMenu.addEventListener("click", () => {

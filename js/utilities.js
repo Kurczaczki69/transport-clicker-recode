@@ -12,7 +12,7 @@ export function isEmpty(value) {
 
 // shows message in div specified in parameter
 export function showMsg(message, divId) {
-  var messageDiv = document.getElementById(divId);
+  var messageDiv = document.querySelector(`#${divId}`);
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
   messageDiv.style.opacity = 1;
@@ -23,15 +23,15 @@ export function showMsg(message, divId) {
 
 // clears message from div specified in parameter
 export function clearMsg(divId) {
-  var messageDiv = document.getElementById(divId);
+  var messageDiv = document.querySelector(`#${divId}`);
   messageDiv.style.display = "none";
 }
 
 // shows alert window with message specified in parameter
 export function showAlert(message) {
-  const alertSpan = document.getElementById("alert-message");
-  const alertWindow = document.getElementById("alert-window");
-  const alertCloseBtn = document.getElementById("accept-alert-btn");
+  const alertSpan = document.querySelector("#alert-message");
+  const alertWindow = document.querySelector("#alert-window");
+  const alertCloseBtn = document.querySelector("#accept-alert-btn");
   const tint = document.querySelector("#alert-tint");
 
   tint.style.display = "block";

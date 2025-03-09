@@ -32,10 +32,10 @@ const db = getFirestore();
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
-  const codesMenu = document.getElementById("codes-menu");
+  const codesMenu = document.querySelector("#codes-menu");
   const tint = document.querySelector("#window-tint");
-  const closeGuiBtn = document.getElementById("close-codes-gui-btn");
-  const openGuiBtn = document.getElementById("nav-item-codes-menu");
+  const closeGuiBtn = document.querySelector("#close-codes-gui-btn");
+  const openGuiBtn = document.querySelector("#nav-item-codes-menu");
 
   openGuiBtn.addEventListener("click", () => {
     tint.style.display = "block";
@@ -120,8 +120,8 @@ export async function getCodes() {
 }
 
 if (isGamePage) {
-  const codeInput = document.getElementById("code-menu-input");
-  const confirmBtn = document.getElementById("code-menu-confirm-btn");
+  const codeInput = document.querySelector("#code-menu-input");
+  const confirmBtn = document.querySelector("#code-menu-confirm-btn");
   confirmBtn.addEventListener("click", () => {
     useCode(codeInput.value);
     codeInput.value = "";

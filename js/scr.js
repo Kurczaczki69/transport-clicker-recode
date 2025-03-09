@@ -46,7 +46,7 @@ let currentCity = "sko";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
-  const navItemSaveGame = document.getElementById("nav-item-save-game");
+  const navItemSaveGame = document.querySelector("#nav-item-save-game");
   navItemSaveGame.addEventListener("click", () => {
     saveGame(false);
   });
@@ -153,10 +153,10 @@ export function saveGame(isSilent) {
     });
 }
 
-// bus buy logic
+// vehicle buy logic
 
-const menu = document.getElementById("buy-menu");
-const finishBtn = document.getElementById("finish-operation-btn");
+const menu = document.querySelector("#buy-menu");
+const finishBtn = document.querySelector("#finish-operation-btn");
 
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
@@ -219,10 +219,9 @@ function blockVhcl(vhclCode, reason) {
 
 // closing the buy menu
 if (isGamePage) {
-  const busCntGUIBtn = document.getElementById("closebuymenu");
+  const busCntGUIBtn = document.querySelector("#closebuymenu");
   busCntGUIBtn.addEventListener("click", () => {
-    const busCntGUI = document.getElementById("buy-menu");
-    busCntGUI.style.display = "none";
+    menu.style.display = "none";
     resetBuyMenu();
   });
 }
@@ -296,9 +295,9 @@ export function syncVehiclePrices() {
 
 if (isGamePage) {
   // open vehicle menu
-  const navItemBuy = document.getElementById("nav-item-buy");
+  const navItemBuy = document.querySelector("#nav-item-buy");
   navItemBuy.addEventListener("click", () => {
-    const buygui = document.getElementById("buy-vehicle");
+    const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
     if (bghtUpgrs.includes("citybus")) {
       checkLevel();
@@ -311,17 +310,17 @@ if (isGamePage) {
   });
 
   // close vehicle menu
-  const closeBusGuiBtn = document.getElementById("close-bus-gui-btn");
+  const closeBusGuiBtn = document.querySelector("#close-bus-gui-btn");
   closeBusGuiBtn.addEventListener("click", () => {
-    const buygui = document.getElementById("buy-vehicle");
+    const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
     tint.style.display = "none";
     buygui.style.display = "none";
   });
 }
 
-const totalEl = document.getElementById("show-full-cost");
-const inputEl = document.getElementById("small-input");
+const totalEl = document.querySelector("#show-full-cost");
+const inputEl = document.querySelector("#small-input");
 const maxBtn = document.querySelector("#buy-menu-max-button");
 
 if (isGamePage) {
@@ -330,12 +329,10 @@ if (isGamePage) {
 
 function setInputToMax() {
   const bal = getBal();
-  const vhcls = getVhcls();
-  const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
-  const price = vhclData ? vhclData.price : 0;
-  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
+  const vhclPrice = vhclPrices[chosenVhcl] || 0;
+  const maxQuantity = getVhcls().find((vhcl) => vhcl.code === chosenVhcl)?.maxQuantity || Infinity;
 
-  inputEl.value = Math.floor(bal / price) > maxQuantity ? maxQuantity : Math.floor(bal / price);
+  inputEl.value = Math.min(Math.floor(bal / vhclPrice), maxQuantity);
   updateTotal();
 }
 
@@ -388,7 +385,7 @@ async function add() {
 }
 
 if (isGamePage) {
-  const clickspace = document.getElementById("clicker");
+  const clickspace = document.querySelector("#clicker");
   clickspace.addEventListener("click", clicker);
 }
 
