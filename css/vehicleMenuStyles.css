@@ -272,26 +272,6 @@
   transition: transform 0.3s;
 }
 
-.vhcl-menu-btn-a20 {
-  margin-right: 5%;
-  cursor: pointer;
-  width: 15vh;
-  padding: 5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-.vhcl-menu-btn-a20:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
-
 .vhcl-menu-tables {
   width: 100%;
   border-collapse: collapse;
@@ -337,6 +317,10 @@
 }
 
 #vhcl-menu-trolleybus-category {
+  display: none;
+}
+
+#vhcl-menu-tram-category {
   display: none;
 }
 
