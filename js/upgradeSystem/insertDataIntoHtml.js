@@ -70,10 +70,12 @@ export function populateVhclData() {
   const hydrogenBusCategory = document.querySelector("#vhcl-menu-hydrogenbus-table");
   const intercityBusCategory = document.querySelector("#vhcl-menu-intercitybus-table");
   const trolleyBusCategory = document.querySelector("#vhcl-menu-trolleybus-table");
+  const tramCategory = document.querySelector("#vhcl-menu-tram-table");
   cityBusCategory.innerHTML = "";
   hydrogenBusCategory.innerHTML = "";
   intercityBusCategory.innerHTML = "";
   trolleyBusCategory.innerHTML = "";
+  tramCategory.innerHTML = "";
 
   vhcls.forEach((vhcl) => {
     const row = `
@@ -114,6 +116,9 @@ export function populateVhclData() {
         break;
       case "trolleybus":
         trolleyBusCategory.innerHTML += row;
+        break;
+      case "tram":
+        tramCategory.innerHTML += row;
         break;
     }
   });
