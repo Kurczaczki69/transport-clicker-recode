@@ -130,7 +130,8 @@ export function checkLevelUpgr() {
     if (upgrade && upgrade.requiredLevel > level) {
       upgrTextEls[index].textContent = "";
       upgrTextEls[index].classList.add("tabler--lock-filled");
-      upgrEl.style.padding = "3%";
+      upgrEl.classList.remove("upgr-menu-vehicle-type-item-btn");
+      upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
         blockUpgrade(upgrEl.id, "level");

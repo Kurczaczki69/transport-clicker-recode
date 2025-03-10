@@ -229,8 +229,8 @@ function triggerRandomEvent() {
   const positiveEvents = possibleEvents.filter((event) => event.boost >= 1);
   const negativeEvents = possibleEvents.filter((event) => event.boost < 1);
 
-  // 70% chance of positive, 30% chance of negative
-  const isPositive = Math.random() < 0.7;
+  // 50% chance of positive, 50% chance of negative
+  const isPositive = Math.random() < 0.5;
   const eventPool = isPositive ? positiveEvents : negativeEvents;
 
   // if chosen pool is empty use all

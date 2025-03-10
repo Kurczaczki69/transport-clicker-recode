@@ -2,11 +2,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
-import { getVhcls } from "./data/vhclData.js";
+import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
-import { banana } from "./langs.js";
+import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
 import { getCities } from "./data/cityData.js";
@@ -99,6 +99,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("codes loaded from server");
             sleep(700).then(() => {
               startTimedUpgrades();
+              const currentPage = document.body.getAttribute("data-page");
+              setPageTitle(currentPage);
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
                 populateVhclData();
@@ -160,8 +162,8 @@ const finishBtn = document.querySelector("#finish-operation-btn");
 
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
-  inputEl.focus();
   menu.style.display = "block";
+  inputEl.focus();
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
@@ -293,32 +295,6 @@ export function syncVehiclePrices() {
   console.log("vehicle prices synchronized");
 }
 
-if (isGamePage) {
-  // open vehicle menu
-  const navItemBuy = document.querySelector("#nav-item-buy");
-  navItemBuy.addEventListener("click", () => {
-    const buygui = document.querySelector("#buy-vehicle");
-    const tint = document.querySelector("#window-tint");
-    if (bghtUpgrs.includes("citybus")) {
-      checkLevel();
-      tint.style.display = "block";
-      buygui.style.display = "flex";
-    } else {
-      buygui.style.display = "none";
-      showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
-    }
-  });
-
-  // close vehicle menu
-  const closeBusGuiBtn = document.querySelector("#close-bus-gui-btn");
-  closeBusGuiBtn.addEventListener("click", () => {
-    const buygui = document.querySelector("#buy-vehicle");
-    const tint = document.querySelector("#window-tint");
-    tint.style.display = "none";
-    buygui.style.display = "none";
-  });
-}
-
 const totalEl = document.querySelector("#show-full-cost");
 const inputEl = document.querySelector("#small-input");
 const maxBtn = document.querySelector("#buy-menu-max-button");
@@ -330,7 +306,7 @@ if (isGamePage) {
 function setInputToMax() {
   const bal = getBal();
   const vhclPrice = vhclPrices[chosenVhcl] || 0;
-  const maxQuantity = getVhcls().find((vhcl) => vhcl.code === chosenVhcl)?.maxQuantity || Infinity;
+  const maxQuantity = vhclMaxQuantity || Infinity;
 
   inputEl.value = Math.min(Math.floor(bal / vhclPrice), maxQuantity);
   updateTotal();
@@ -342,7 +318,7 @@ function updateTotal() {
   const vhcls = getVhcls();
   const vhclData = vhcls.find((vhcl) => vhcl.code === chosenVhcl);
   const price = vhclData ? vhclData.price : 0;
-  const maxQuantity = vhclData ? vhclData.maxQuantity : Infinity;
+  const maxQuantity = vhclMaxQuantity || Infinity;
 
   if (inputEl.value > maxQuantity) {
     inputEl.value = maxQuantity;

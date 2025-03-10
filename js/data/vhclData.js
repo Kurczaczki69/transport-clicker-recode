@@ -2,6 +2,7 @@
 // 1. Add to vhcls array with all data neccesary
 
 let vhcls = [];
+export const vhclMaxQuantity = 10000000000;
 
 export function initializeVehicles() {
   vhcls = [
@@ -14,7 +15,6 @@ export function initializeVehicles() {
       requiredLevel: 0,
       maxLevel: 30,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu9",
@@ -25,7 +25,6 @@ export function initializeVehicles() {
       requiredLevel: 1,
       maxLevel: 35,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu105",
@@ -36,7 +35,6 @@ export function initializeVehicles() {
       requiredLevel: 2,
       maxLevel: 35,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu12",
@@ -47,7 +45,6 @@ export function initializeVehicles() {
       requiredLevel: 3,
       maxLevel: 35,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "sola86",
@@ -58,7 +55,6 @@ export function initializeVehicles() {
       requiredLevel: 5,
       maxLevel: 35,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu18",
@@ -69,7 +65,6 @@ export function initializeVehicles() {
       requiredLevel: 6,
       maxLevel: 40,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu24",
@@ -80,7 +75,6 @@ export function initializeVehicles() {
       requiredLevel: 7,
       maxLevel: 55,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "manlion",
@@ -91,7 +85,6 @@ export function initializeVehicles() {
       requiredLevel: 9,
       maxLevel: 60,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "jelczm121m",
@@ -102,7 +95,6 @@ export function initializeVehicles() {
       requiredLevel: 10,
       maxLevel: 75,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "manlioncig",
@@ -113,7 +105,6 @@ export function initializeVehicles() {
       requiredLevel: 12,
       maxLevel: 90,
       category: "citybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu12h",
@@ -124,7 +115,6 @@ export function initializeVehicles() {
       requiredLevel: 13,
       maxLevel: 100,
       category: "hydrogenbus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solu18h",
@@ -135,7 +125,6 @@ export function initializeVehicles() {
       requiredLevel: 15,
       maxLevel: 100,
       category: "hydrogenbus",
-      maxQuantity: 10000000000,
     },
     {
       code: "toyotafc",
@@ -146,7 +135,6 @@ export function initializeVehicles() {
       requiredLevel: 17,
       maxLevel: 125,
       category: "hydrogenbus",
-      maxQuantity: 10000000000,
     },
     {
       code: "toyotasora",
@@ -157,7 +145,6 @@ export function initializeVehicles() {
       requiredLevel: 19,
       maxLevel: 150,
       category: "hydrogenbus",
-      maxQuantity: 10000000000,
     },
     {
       code: "mercedesecitaro",
@@ -168,7 +155,6 @@ export function initializeVehicles() {
       requiredLevel: 21,
       maxLevel: 170,
       category: "hydrogenbus",
-      maxQuantity: 10000000000,
     },
     {
       code: "vacanza12",
@@ -179,7 +165,6 @@ export function initializeVehicles() {
       requiredLevel: 14,
       maxLevel: 150,
       category: "intercitybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "vacanza13",
@@ -190,7 +175,6 @@ export function initializeVehicles() {
       requiredLevel: 18,
       maxLevel: 175,
       category: "intercitybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "solint12",
@@ -201,7 +185,6 @@ export function initializeVehicles() {
       requiredLevel: 22,
       maxLevel: 250,
       category: "intercitybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "volvo9700",
@@ -212,7 +195,6 @@ export function initializeVehicles() {
       requiredLevel: 25,
       maxLevel: 275,
       category: "intercitybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "volvo9700double",
@@ -223,7 +205,6 @@ export function initializeVehicles() {
       requiredLevel: 30,
       maxLevel: 310,
       category: "intercitybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "soltroll12",
@@ -234,7 +215,6 @@ export function initializeVehicles() {
       requiredLevel: 25,
       maxLevel: 320,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "soltroll18",
@@ -245,7 +225,6 @@ export function initializeVehicles() {
       requiredLevel: 37,
       maxLevel: 325,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "soltroll24",
@@ -256,7 +235,6 @@ export function initializeVehicles() {
       requiredLevel: 45,
       maxLevel: 400,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "mercedes530",
@@ -267,7 +245,6 @@ export function initializeVehicles() {
       requiredLevel: 55,
       maxLevel: 500,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "mercedescitaro2",
@@ -278,7 +255,6 @@ export function initializeVehicles() {
       requiredLevel: 63,
       maxLevel: 550,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "exquicity18",
@@ -289,7 +265,6 @@ export function initializeVehicles() {
       requiredLevel: 67,
       maxLevel: 600,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "exquicity24",
@@ -300,7 +275,6 @@ export function initializeVehicles() {
       requiredLevel: 75,
       maxLevel: 650,
       category: "trolleybus",
-      maxQuantity: 10000000000,
     },
     {
       code: "newflyerxt60",
@@ -311,7 +285,76 @@ export function initializeVehicles() {
       requiredLevel: 85,
       maxLevel: 700,
       category: "trolleybus",
-      maxQuantity: 10000000000,
+    },
+    {
+      code: "duwaggt8",
+      name: "Düwag GT8",
+      clickmod: 90,
+      incomemod: 94,
+      price: 1350000,
+      requiredLevel: 85,
+      maxLevel: 800,
+      category: "tram",
+    },
+    {
+      code: "konstal105na",
+      name: "Konstal 105Na",
+      clickmod: 95,
+      incomemod: 98,
+      price: 1500000,
+      requiredLevel: 91,
+      maxLevel: 850,
+      category: "tram",
+    },
+    {
+      code: "konstal112n",
+      name: "Konstal 112N",
+      clickmod: 100,
+      incomemod: 104,
+      price: 1850000,
+      requiredLevel: 96,
+      maxLevel: 900,
+      category: "tram",
+    },
+    {
+      code: "konstal111n",
+      name: "Konstal 111N",
+      clickmod: 110,
+      incomemod: 114,
+      price: 2200000,
+      requiredLevel: 101,
+      maxLevel: 950,
+      category: "tram",
+    },
+    {
+      code: "duwagpt",
+      name: "Düwag Pt",
+      clickmod: 120,
+      incomemod: 124,
+      price: 2650000,
+      requiredLevel: 106,
+      maxLevel: 1000,
+      category: "tram",
+    },
+    {
+      code: "sgplohnere1",
+      name: "SGP/Lohner E1",
+      clickmod: 128,
+      incomemod: 132,
+      price: 3200000,
+      requiredLevel: 113,
+      maxLevel: 1050,
+      category: "tram",
+    },
+    {
+      code: "duwagmn",
+      name: "Düwag M/N",
+      clickmod: 138,
+      incomemod: 142,
+      price: 3850000,
+      requiredLevel: 120,
+      maxLevel: 1100,
+      category: "tram",
     },
   ];
 }

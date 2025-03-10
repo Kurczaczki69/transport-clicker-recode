@@ -56,7 +56,7 @@ function updateLangInHtml() {
   updateHtmlData();
 }
 
-function setPageTitle(page) {
+export function setPageTitle(page) {
   const titleKey = `page-title-${page}`;
   const title = banana.i18n(titleKey);
   if (title) {

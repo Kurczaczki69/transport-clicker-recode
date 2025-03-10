@@ -124,7 +124,8 @@ export function checkTimedUpgrLevel() {
     if (upgrade && upgrade.requiredLevel > level) {
       timedUpgrTextEls[index].textContent = "";
       timedUpgrTextEls[index].classList.add("tabler--lock-filled");
-      upgrEl.style.padding = "3%";
+      upgrEl.classList.remove("upgr-menu-timed-upgr-item-btn");
+      upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.addEventListener("click", () => {
         blockUpgrade(upgrEl.id, "level");
       });
