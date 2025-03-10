@@ -1,9 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   background: var(--colorscheme3);
   background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
   font-family: "Noto Sans", sans-serif;
@@ -11,6 +18,7 @@ body {
   user-select: none;
   scroll-behavior: smooth;
   color: var(--colorscheme4);
+  position: absolute;
 }
 
 a {

@@ -3,7 +3,7 @@ import { abbreviateNumber } from "./utilities.js";
 import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
 import { banana } from "./langs.js";
-import { populateVhclData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { populateUpgrData, populateVhclData } from "./upgradeSystem/insertDataIntoHtml.js";
 
 // window close and open
 
@@ -72,6 +72,7 @@ function calculateLevelProgress(xp) {
       syncVehiclePrices();
       checkLevel();
       populateVhclData();
+      populateUpgrData();
     }
   }
 

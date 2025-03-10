@@ -138,6 +138,12 @@
   transition: transform 0.3s;
 }
 
+.upgr-btn-disabled {
+  margin-right: 5%;
+  width: 6.824vw;
+  padding: 5%;
+}
+
 .upgr-menu-timed-upgr-item-btn {
   margin-right: 5%;
   width: 6.824vw;
@@ -162,6 +168,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .upgr-btn-disabled {
+    padding: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .upgr-menu-vehicle-type-item-btn-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .upgr-menu-timed-upgr-item-btn-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .upgr-menu-vehicle-type-item-is-avaible {

@@ -160,8 +160,8 @@ const finishBtn = document.querySelector("#finish-operation-btn");
 
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
-  inputEl.focus();
   menu.style.display = "block";
+  inputEl.focus();
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
 }
