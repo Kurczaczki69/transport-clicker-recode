@@ -27,7 +27,8 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Passenger numbers or something like that\
 ❌ Hiring workers\
 ❌ Extensive route system\
-❌ Achievements
+❌ Achievements\
+❌ Better UI with different images, pixel art or something like that 
 
 ## PLANNED FEATURES FOR THE ALPHA PHASE
 ### The alpha phase is finished yayyayayayaya! 🎉
