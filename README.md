@@ -1,6 +1,6 @@
 # TRANSPORT CLICKER
 
-Polish game about clicking on a ~~circle~~ square and buying vehicles and upgrades.
+Polish game about clicking on a ~~circle~~ ~~square~~ rectangle and buying vehicles and upgrades.
 
 Game link: https://kurczaczki69.github.io/transport-clicker-recode/
 
