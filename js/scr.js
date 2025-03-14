@@ -9,8 +9,9 @@ import { getLevel } from "./levelSystem.js";
 import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
-import { getCities } from "./data/cityData.js";
+import { getCities, initializeCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
+import { initializeBuildings } from "./data/buildingData.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -43,6 +44,8 @@ let unlockedCities = ["sko"];
 let citySwitchCost = 20000;
 let currentCity = "sko";
 
+let userCityData = {};
+
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
@@ -68,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentCity = userData.currentCity || currentCity;
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
+      userCityData = userData.userCityData || {};
 
       // data is saved to server only if it is a new account
       if (!userData.balance && !userData.income && !userData.clickmod) {
@@ -83,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           currentCity: currentCity,
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
+          userCityData: userCityData,
         });
       }
       console.log("data loaded from server");
@@ -103,6 +108,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               setPageTitle(currentPage);
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
+                initializeCities();
+                initializeBuildings();
                 populateVhclData();
                 populateUpgrData();
               });
@@ -130,15 +137,16 @@ export function saveGame(isSilent) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   const userDatatoSave = {
-    balance: bal,
-    income: income,
-    clickmod: clickmod,
+    balance: Math.round(bal * 100) / 100,
+    income: Math.round(income * 100) / 100,
+    clickmod: Math.round(clickmod * 100) / 100,
     bghtUpgrs: bghtUpgrs,
-    citySwitchCost: citySwitchCost,
+    citySwitchCost: Math.round(citySwitchCost * 100) / 100,
     unlockedCities: unlockedCities,
     currentCity: currentCity,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
+    userCityData: userCityData,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -264,7 +272,7 @@ function buyVhclRight() {
   // increase price for each vehicle purchased
   const basePrice = vhclPrices[busProp.code] || busProp.price;
   const priceMultiplier = 1 + 0.025 * Math.log10(quantity + 1);
-  vhclPrices[busProp.code] = basePrice * priceMultiplier;
+  vhclPrices[busProp.code] = Math.round(basePrice * priceMultiplier);
 
   if (vhclAmounts[busProp.code]) {
     vhclAmounts[busProp.code] += quantity;
@@ -408,9 +416,11 @@ async function gameSaver() {
   gameSaver();
 }
 
-window.addEventListener("load", add);
-window.addEventListener("load", gameSaver);
-window.addEventListener("load", displayStats);
+window.addEventListener("load", async () => {
+  add();
+  gameSaver();
+  displayStats();
+});
 updateTotal();
 
 // getter and setter functions for variables
@@ -476,4 +486,19 @@ export function getCurrentCity() {
 
 export function setCurrentCity(newCurrentCity) {
   currentCity = newCurrentCity;
+}
+
+export function getUserCityData() {
+  return userCityData;
+}
+
+export function setUserCityData(newUserCityData) {
+  userCityData = newUserCityData;
+}
+
+export function updateCityProperty(cityId, property, value) {
+  if (!userCityData[cityId]) {
+    userCityData[cityId] = {};
+  }
+  userCityData[cityId][property] = value;
 }

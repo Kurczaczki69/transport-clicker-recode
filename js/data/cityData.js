@@ -1,13 +1,16 @@
 import { banana } from "../langs.js";
-import { getCurrentCity } from "../scr.js";
+import { getCurrentCity, getUserCityData } from "../scr.js";
 import { convertDecimalBoostToPercent } from "../utilities.js";
 
 let cities = [];
 let cityEvents = [];
 const isGamePage = window.location.pathname.endsWith("game.html");
 
-function initializeCities() {
+async function initializeCities() {
   if (!isGamePage) return;
+
+  const userCityData = getUserCityData();
+
   cities = [
     {
       name: banana.i18n("city-name-skarzysko"),
@@ -19,6 +22,7 @@ function initializeCities() {
       cost: 0,
       vehicles: ["city-buses", "hydrogen-buses", "intercity-buses"],
       weather: ["sunny", "rainy", "snowy", "stormy", "snowstorm"],
+      buildings: ["gas-station"],
       unlockLevel: 0,
       pollutionLevel: 0.75,
       tourismFactor: 0.03,
@@ -34,6 +38,7 @@ function initializeCities() {
       cost: 150000,
       vehicles: ["city-buses", "hydrogen-buses", "intercity-buses", "trolleybuses"],
       weather: ["sunny", "rainy", "snowy", "stormy", "snowstorm"],
+      buildings: ["gas-station"],
       unlockLevel: 15,
       pollutionLevel: 0.85,
       tourismFactor: 0.05,
@@ -49,6 +54,7 @@ function initializeCities() {
       cost: 750000,
       vehicles: ["city-buses", "hydrogen-buses", "intercity-buses", "trolleybuses"],
       weather: ["sunny", "rainy", "snowy", "stormy", "snowstorm"],
+      buildings: ["gas-station"],
       unlockLevel: 40,
       pollutionLevel: 0.6,
       tourismFactor: 0.13,
@@ -64,6 +70,7 @@ function initializeCities() {
       cost: 6500000,
       vehicles: ["city-buses", "hydrogen-buses", "intercity-buses", "trolleybuses", "trams"],
       weather: ["sunny", "rainy", "snowy", "stormy", "snowstorm"],
+      buildings: ["gas-station"],
       unlockLevel: 85,
       pollutionLevel: 0.6,
       tourismFactor: 0.15,
@@ -71,6 +78,18 @@ function initializeCities() {
     },
   ];
 
+  cities = cities.map((city) => {
+    if (userCityData[city.id]) {
+      return {
+        ...city,
+        ...userCityData[city.id],
+      };
+    }
+    return city;
+  });
+}
+
+function initializeCityEvents() {
   const currentCity = getCurrentCity();
   const currentCityData = cities.find((city) => city.id === currentCity);
   cityEvents = [
@@ -135,6 +154,54 @@ function initializeCities() {
       boost: 0.6,
       duration: 200000,
     },
+    {
+      name: banana.i18n("event-tourist-season"),
+      description: banana.i18n("event-tourist-season-desc", currentCityData.name),
+      id: "tourist-season",
+      boost: 1.35,
+      duration: 300000,
+      requiredBuildings: ["tourist-center"],
+    },
+    {
+      name: banana.i18n("event-city-tour"),
+      description: banana.i18n("event-city-tour-desc", currentCityData.name),
+      id: "city-tour",
+      boost: 1.2,
+      duration: 150000,
+      requiredBuildings: ["tourist-center"],
+    },
+    {
+      name: banana.i18n("event-photo-tour"),
+      description: banana.i18n("event-photo-tour-desc", currentCityData.name),
+      id: "photo-tour",
+      boost: 1.25,
+      duration: 150000,
+      requiredBuildings: ["sightseeing-platform"],
+    },
+    {
+      name: banana.i18n("event-sunset-tour"),
+      description: banana.i18n("event-sunset-tour-desc", currentCityData.name),
+      id: "sunset-tour",
+      boost: 1.35,
+      duration: 150000,
+      requiredBuildings: ["sightseeing-platform"],
+    },
+    {
+      name: banana.i18n("event-museum-exhibition"),
+      description: banana.i18n("event-museum-exhibition-desc", currentCityData.name),
+      id: "museum-exhibition",
+      boost: 1.15,
+      duration: 200000,
+      requiredBuildings: ["transport-museum"],
+    },
+    {
+      name: banana.i18n("event-vintage-vehicle-show"),
+      description: banana.i18n("event-vintage-vehicle-show-desc", currentCityData.name),
+      id: "vintage-vehicle-show",
+      boost: 1.2,
+      duration: 200000,
+      requiredBuildings: ["transport-museum"],
+    },
   ];
 }
 
@@ -143,9 +210,13 @@ function getCities() {
   return cities;
 }
 
+function setCities(newCities) {
+  cities = newCities;
+}
+
 function getCityEvents() {
-  initializeCities();
+  initializeCityEvents();
   return cityEvents;
 }
 
-export { initializeCities, getCities, getCityEvents };
+export { initializeCities, getCities, setCities, getCityEvents };

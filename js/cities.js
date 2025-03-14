@@ -1,5 +1,10 @@
 import { getCities, getCityEvents } from "./data/cityData.js";
-import { shortAbbreviateNumber, showAlert, convertDecimalBoostToPercent } from "./utilities.js";
+import {
+  shortAbbreviateNumber,
+  showAlert,
+  convertDecimalBoostToPercent,
+  convertDecimalToPercent,
+} from "./utilities.js";
 import { banana } from "./langs.js";
 import {
   getBal,
@@ -12,6 +17,7 @@ import {
   saveGame,
 } from "./scr.js";
 import { getLevel } from "./levelSystem.js";
+import { addBuildListener } from "./buildings.js";
 
 const citiesWindow = document.querySelector("#cities-window");
 const tint = document.querySelector("#window-tint");
@@ -35,12 +41,9 @@ if (isGamePage) {
 }
 
 function createCityCard(city) {
-  const cities = getCities();
   const card = document.createElement("div");
   const calculatedBoost = calculateCityBoost(city);
   card.className = "city-card";
-
-  const vehiclesList = city.vehicles.map((vehicle) => banana.i18n(vehicle)).join(", ");
 
   card.innerHTML = `
     <img src="${city.imgPath}" alt="${city.name}" class="city-card-image">
@@ -51,16 +54,18 @@ function createCityCard(city) {
         <span>${banana.i18n("cities-area", shortAbbreviateNumber(city.area))}</span>
         <span>${banana.i18n("cities-boost", convertDecimalBoostToPercent(calculatedBoost))}</span>
         <span>${banana.i18n("cities-price", shortAbbreviateNumber(city.cost, "price"))}</span>
-        <span>${banana.i18n("cities-vehicles", vehiclesList)}</span>
       </div>
-      <button class="city-card-btn" id="${city.id}"></button>
+      <div id="city-btns-wrapper">
+        <button class="city-card-btn" id="${city.id}"></button>
+        <button class="city-card-details-btn btns" id="details-${city.id}" data-city-id="${city.id}"></button>
+      </div>
     </div>
   `;
 
   return card;
 }
 
-function populateCitiesGrid() {
+export async function populateCitiesGrid() {
   const cities = getCities();
   const cityData = cities;
   const grid = document.getElementById("cities-grid");
@@ -104,7 +109,7 @@ function increaseSwitchCost() {
   return Math.round(switchCost * 1.05);
 }
 
-function unlockCity(city) {
+async function unlockCity(city) {
   const cities = getCities();
   const cityToUnlock = cities.find((c) => c.id === city);
   const unlockCost = cityToUnlock.cost;
@@ -123,7 +128,7 @@ function unlockCity(city) {
   }
 }
 
-function blockCityUnlock(city, reason) {
+export async function blockCityUnlock(city, reason) {
   const cities = getCities();
   const cityToBlock = cities.find((c) => c.id === city);
 
@@ -132,7 +137,7 @@ function blockCityUnlock(city, reason) {
   }
 }
 
-function switchCity(city) {
+async function switchCity(city) {
   const cities = getCities();
   const switchCost = getCitySwitchCost();
   const currentCity = getCurrentCity();
@@ -155,9 +160,10 @@ function switchCity(city) {
   }
 }
 
-function addListeners() {
+async function addListeners() {
   const cities = getCities();
   const unlockBtns = document.querySelectorAll(".city-card-btn");
+  const detailsBtns = document.querySelectorAll(".city-card-details-btn");
   const unlockedCities = getUnlockedCities();
   unlockBtns.forEach((btn) => {
     const city = cities.find((c) => c.id === btn.id);
@@ -183,6 +189,52 @@ function addListeners() {
       }
     }
   });
+
+  detailsBtns.forEach((btn) => {
+    const cityId = btn.getAttribute("data-city-id");
+    const city = cities.find((c) => c.id === cityId);
+    btn.textContent = banana.i18n("btn-details");
+    btn.addEventListener("click", () => {
+      showCityDetails(city);
+    });
+  });
+}
+
+const cityDetailsCloseBtn = document.querySelector("#city-details-close-btn");
+const cityDetails = document.querySelector("#city-details");
+const cityDetailsTitle = document.querySelector("#city-details-title");
+const cityDetailsStatVehicles = document.querySelector("#city-vehicles");
+const cityDetailsStatBuildings = document.querySelector("#city-buildings");
+const cityDetailsStatPollution = document.querySelector("#city-pollution");
+const cityDetailsStatTourism = document.querySelector("#city-tourism");
+const cityBuildBtn = document.querySelector("#city-details-buildings-btn");
+
+if (isGamePage) {
+  cityDetailsCloseBtn.addEventListener("click", () => {
+    cityDetails.style.display = "none";
+    cityBuildBtn.setAttribute("data-city-id", "");
+  });
+}
+
+export function showCityDetails(city) {
+  const vehiclesList = city.vehicles.map((vehicle) => banana.i18n(vehicle)).join(", ");
+  const buildingsList = city.buildings.map((building) => banana.i18n(`building-${building}`)).join(", ");
+
+  cityDetailsTitle.textContent = banana.i18n("city-details-title", city.name);
+  cityDetailsStatVehicles.textContent = banana.i18n("city-details-stat-vehicles", vehiclesList);
+  cityDetailsStatBuildings.textContent = banana.i18n("city-details-stat-buildings", buildingsList);
+  cityDetailsStatPollution.textContent = banana.i18n(
+    "city-details-stat-pollution",
+    convertDecimalToPercent(city.pollutionLevel)
+  );
+  cityDetailsStatTourism.textContent = banana.i18n(
+    "city-details-stat-tourism",
+    convertDecimalToPercent(city.tourismFactor)
+  );
+
+  cityBuildBtn.setAttribute("data-city-id", city.id);
+  addBuildListener();
+  cityDetails.style.display = "block";
 }
 
 // city events section
@@ -202,7 +254,7 @@ function startRandomEvents() {
     if (chance < 0.1 && activeEvents.length < 3) {
       triggerRandomEvent();
     }
-  }, 25000);
+  }, 35000);
 }
 
 /**
@@ -219,9 +271,24 @@ function startRandomEvents() {
 function triggerRandomEvent() {
   const events = getCityEvents();
   const currentLevel = getLevel();
+  const currentCityId = getCurrentCity();
+  const cities = getCities();
+  const currentCity = cities.find((c) => c.id === currentCityId);
 
-  const availableEvents = events.filter((event) => !event.requiresLevel || event.requiresLevel <= currentLevel);
-  const possibleEvents = availableEvents.filter((event) => !activeEvents.some((active) => active.id === event.id));
+  // checks for level
+  const availableEvents = events.filter(
+    (event) =>
+      (!event.requiresLevel || event.requiresLevel <= currentLevel) &&
+      !activeEvents.some((active) => active.id === event.id)
+  );
+
+  // checks for buildings
+  const possibleEvents = availableEvents.filter((event) => {
+    if (!event.requiredBuildings || event.requiredBuildings.length === 0) {
+      return true;
+    }
+    return event.requiredBuildings.every((building) => currentCity.buildings.includes(building));
+  });
 
   if (possibleEvents.length === 0) return;
 

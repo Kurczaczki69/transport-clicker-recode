@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- TRANSPORT CLICKER ALPHA 0.10.4 -->
+  <!-- TRANSPORT CLICKER BETA 1.0.0 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123
   - Kiniaczu (Translator)
     currently thats it :) -->
+
+  <!-- TODOS FOR BETA 1.0.0
+    - buildings system
+    - vehicle income and clickmod calculated individually for each vehicle and saved for later use
+    - fuel system 
+    -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,6 +35,7 @@
     <link rel="stylesheet" href="css/statsSystem.css" />
     <link rel="stylesheet" href="css/settingsMenu.css" />
     <link rel="stylesheet" href="css/citiesWindow.css" />
+    <link rel="stylesheet" href="css/buildingsStyles.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
@@ -260,6 +267,39 @@
 
       <div class="cities-grid" id="cities-grid"></div>
     </section>
+    <!-- city details window -->
+    <section id="city-details">
+      <div class="closegui" id="city-details-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="city-details-wrapper">
+        <h3 id="city-details-title"></h3>
+        <div id="city-details-stats-wrapper">
+          <div id="city-details-stat-buildings" class="city-stats">
+            <span id="city-buildings"></span>
+            <button id="city-details-buildings-btn" data-lang="btn-build" data-city-id=""></button>
+          </div>
+          <div id="city-details-stat-others" class="city-stats">
+            <span id="city-pollution"></span> <br />
+            <span id="city-tourism"></span>
+          </div>
+          <div id="city-details-stat-vehicles" class="city-stats">
+            <span id="city-vehicles"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- buildings window -->
+
+    <section id="buildings-window">
+      <div class="closegui" id="buildings-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="buildings-grid"></div>
+    </section>
 
     <!-- settings window -->
 
@@ -467,7 +507,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.4</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vBETA1.0.0</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users credits-icons"></span> <span data-lang="credits-contributors"></span>
@@ -554,12 +594,59 @@
                 <a target="_blank" href="https://commons.wikimedia.org/wiki/File:GT8_79.jpg">commons.wikimedia.org</a>
               </span>
             </div>
+            <div class="credits-menu-contributor-item">
+              Stacja Benzynowa Orlen DW 801.jpg - Lukas skywalker <br />
+              <span class="credits-menu-contributor-github"
+                >GNU Free Documentation License 1.2
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Stacja_Benzynowa_Orlen_DW_801.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Brussels Cinquantenaire R04.jpg - Marc Ryckaert <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 3.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Brussels_Cinquantenaire_R04.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Centrum Informacji Turystycznej w Buzodrowmie.jpg - Roman Szuszkiewicz <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 3.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Brussels_Cinquantenaire_R04.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Observation deck at Kyoto Tower with staff cleaning the windows, Japan.jpg - Basile Morin <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Observation_deck_at_Kyoto_Tower_with_staff_cleaning_the_windows,_Japan.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Bode Museum.jpg - Dominik Wesche <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Bode_Museum.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.4]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vBETA1.0.0]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script type="module" src="js/codes.js"></script>
@@ -579,11 +666,13 @@
     <script type="module" src="js/data/upgradeData.js"></script>
     <script type="module" src="js/data/timedUpgradeData.js"></script>
     <script type="module" src="js/data/vhclData.js"></script>
+    <script type="module" src="js/data/buildingData.js"></script>
     <script type="module" src="js/notifs.js"></script>
     <script type="module" src="js/levelSystem.js"></script>
     <script type="module" src="js/settings.js"></script>
     <script type="module" src="js/data/themeData.js"></script>
     <script type="module" src="js/data/cityData.js"></script>
     <script type="module" src="js/cities.js"></script>
+    <script type="module" src="js/buildings.js"></script>
   </body>
 </html>

@@ -75,9 +75,11 @@ const VEHICLE_CATEGORIES = {
   },
 };
 
+const cities = await getCities();
+
 class VehicleMenuManager {
   constructor() {
-    this.cities = getCities();
+    this.cities = cities;
     this.initializeElements();
     this.setupEventListeners();
   }
@@ -230,7 +232,7 @@ const isGamePage = document.location.pathname.includes("game.html");
 if (isGamePage) {
   // open vehicle menu
   const navItemBuy = document.querySelector("#nav-item-buy");
-  navItemBuy.addEventListener("click", () => {
+  navItemBuy.addEventListener("click", async () => {
     const bghtUpgrs = getBghtUpgrs();
     const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
@@ -241,7 +243,7 @@ if (isGamePage) {
 
       if (selectedCategory?.requiresCity) {
         const currentCity = getCurrentCity();
-        const cities = getCities();
+        const cities = await getCities();
         const currentCityData = cities.find((city) => city.id === currentCity);
 
         if (!currentCityData?.vehicles.includes(selectedCategory.vehicleType)) {

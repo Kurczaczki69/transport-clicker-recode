@@ -143,3 +143,7 @@ export function convertDecimalBoostToPercent(value) {
   if (value < 1) return "-" + (100 - value * 100).toFixed(0);
   else return "+" + (value * 100 - 100).toFixed(0);
 }
+
+export function convertDecimalToPercent(value) {
+  return (value * 100).toFixed(0);
+}
