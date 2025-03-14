@@ -39,6 +39,7 @@ let bghtUpgrs = [];
 
 let vhclAmounts = {};
 let vhclPrices = {};
+let vhclStats = {};
 
 let unlockedCities = ["sko"];
 let citySwitchCost = 20000;
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
       userCityData = userData.userCityData || {};
+      vhclStats = userData.vhclStats || {};
 
       // data is saved to server only if it is a new account
       if (!userData.balance && !userData.income && !userData.clickmod) {
@@ -88,6 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
           userCityData: userCityData,
+          vhclStats: vhclStats,
         });
       }
       console.log("data loaded from server");
@@ -147,6 +150,7 @@ export function saveGame(isSilent) {
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
     userCityData: userCityData,
+    vhclStats: vhclStats,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -266,8 +270,20 @@ function buyVhclRight() {
   const quantity = parseInt(inputEl.value);
 
   bal -= buyTotal;
-  income += parseInt(busProp.incomemod) * quantity;
-  clickmod += parseInt(busProp.clickmod) * quantity;
+  const incomeIncrease = parseInt(busProp.incomemod) * quantity;
+  const clickmodIncrease = parseInt(busProp.clickmod) * quantity;
+
+  income += incomeIncrease;
+  clickmod += clickmodIncrease;
+
+  if (!vhclStats[busProp.code]) {
+    vhclStats[busProp.code] = {
+      income: 0,
+      clickmod: 0,
+    };
+  }
+  vhclStats[busProp.code].income += incomeIncrease;
+  vhclStats[busProp.code].clickmod += clickmodIncrease;
 
   // increase price for each vehicle purchased
   const basePrice = vhclPrices[busProp.code] || busProp.price;
@@ -501,4 +517,19 @@ export function updateCityProperty(cityId, property, value) {
     userCityData[cityId] = {};
   }
   userCityData[cityId][property] = value;
+}
+
+export function getVhclStats() {
+  return vhclStats;
+}
+
+export function setVhclStats(newVhclStats) {
+  vhclStats = newVhclStats;
+}
+
+export function updateVhclStat(vehicleCode, property, value) {
+  if (!vhclStats[vehicleCode]) {
+    vhclStats[vehicleCode] = {};
+  }
+  vhclStats[vehicleCode][property] = value;
 }
