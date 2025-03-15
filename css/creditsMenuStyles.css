@@ -43,11 +43,14 @@
 .credits-menu-section-left-item {
   width: 100%;
   height: 20%;
-  border-bottom: var(--border2);
   font-size: 1.5rem;
   transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
   font-weight: 700;
+}
+
+.credits-menu-section-left-item:not(:last-child) {
+  border-bottom: var(--border2);
 }
 
 .credits-menu-section-left-item:hover {

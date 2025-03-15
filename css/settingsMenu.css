@@ -115,6 +115,78 @@
   align-items: center;
 }
 
+#sound-switch-wrapper {
+  position: absolute;
+  top: 85%;
+  left: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#sound-title-wrap {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#switch-wrapper {
+  margin-left: 10%;
+}
+
+/* Switch */
+/* From Uiverse.io by gharsh11032000 */
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 1.5em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--colorscheme3);
+  border-radius: 50px;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  inset: 0;
+  background-color: var(--colorscheme1);
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: var(--colorscheme4);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px var(--colorscheme4);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.6em);
+}
+
 @media screen and (max-width: 768px) {
   #settings-menu {
     width: 90vw;
@@ -150,6 +222,10 @@
   }
 
   #lang-options-wrapper {
+    left: 10%;
+  }
+
+  #sound-switch-wrapper {
     left: 10%;
   }
 

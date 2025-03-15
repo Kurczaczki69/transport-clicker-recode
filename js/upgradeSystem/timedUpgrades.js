@@ -4,6 +4,7 @@ import { clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
+import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
@@ -44,8 +45,8 @@ function buyTimedUpgrade(upgrId) {
           endTime: Date.now() + upgradeToBuy.duration,
         };
         activeUpgrs.push(newActiveUpgr);
-        console.log(activeUpgrs);
         setActiveTimedUpgrades(activeUpgrs);
+        playRandomCash();
         bal -= upgradeToBuy.price;
         setBal(bal);
         confirmationDialog.style.display = "none";
@@ -100,6 +101,7 @@ function confirmTimedUpgrade(upgradetobuy) {
   });
 
   newCancelBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     confirmationDialog.style.display = "none";
   });
 }
@@ -127,14 +129,17 @@ export function checkTimedUpgrLevel() {
       upgrEl.classList.remove("upgr-menu-timed-upgr-item-btn");
       upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmTimedUpgrade(upgrEl.id);
       });
     } else {
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmTimedUpgrade(upgrEl.id);
       });
     }

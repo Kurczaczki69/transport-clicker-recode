@@ -1,4 +1,5 @@
 import { banana } from "./langs.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 // simple sleep function so you dont have to use setTimeout, the parameter is the time in milliseconds
 export function sleep(ms) {
@@ -12,7 +13,7 @@ export function isEmpty(value) {
 
 // shows message in div specified in parameter
 export function showMsg(message, divId) {
-  var messageDiv = document.querySelector(`#${divId}`);
+  const messageDiv = document.querySelector(`#${divId}`);
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
   messageDiv.style.opacity = 1;
@@ -34,11 +35,15 @@ export function showAlert(message) {
   const alertCloseBtn = document.querySelector("#accept-alert-btn");
   const tint = document.querySelector("#alert-tint");
 
+  const newCloseBtn = alertCloseBtn.cloneNode(true);
+  alertCloseBtn.parentNode.replaceChild(newCloseBtn, alertCloseBtn);
+
   tint.style.display = "block";
   alertSpan.innerText = message;
   alertWindow.style.display = "flex";
 
-  alertCloseBtn.addEventListener("click", () => {
+  newCloseBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "none";
     alertWindow.style.display = "none";
     alertSpan.innerText = "";

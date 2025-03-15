@@ -4,6 +4,7 @@ import { showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
+import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 
 // REGULAR UPGRADES ONLY (so no timed upgrades)
 
@@ -44,12 +45,14 @@ if (isGamePage) {
   navItemUpgrMenu.addEventListener("click", () => {
     checkLevelUpgr();
     checkTimedUpgrLevel();
+    playRandomMouseClick();
     tint.style.display = "block";
     upgradeGUI.style.display = "flex";
   });
 
   // closing upgrade menu
   upgrMenuCloseBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "none";
     upgradeGUI.style.display = "none";
   });
@@ -102,10 +105,12 @@ function confirmUpgrade(upgradetobuy) {
   cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
 
   newConfirmBtn.addEventListener("click", () => {
+    playRandomCash();
     buyUpgrade(upgradetobuy);
   });
 
   newCancelBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     confirmationDialog.style.display = "none";
   });
 }
@@ -134,16 +139,19 @@ export function checkLevelUpgr() {
       upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmUpgrade(upgrEl.id);
       });
     } else {
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmUpgrade(upgrEl.id);
       });
     }

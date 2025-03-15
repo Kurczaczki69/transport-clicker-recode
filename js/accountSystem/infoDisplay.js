@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { banana } from "../langs.js";
+import { playRandomMouseClick } from "../sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -50,6 +51,7 @@ onAuthStateChanged(auth, (user) => {
 
 const logOutBtn = document.getElementById("logout-btn");
 logOutBtn.addEventListener("click", () => {
+  playRandomMouseClick();
   localStorage.removeItem("loggedInUserId");
   localStorage.removeItem("previousLevel");
   localStorage.removeItem("activeTimedUpgrades");

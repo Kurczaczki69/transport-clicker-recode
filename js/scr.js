@@ -13,6 +13,7 @@ import { getCities, initializeCities, setCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { initializeBuildings } from "./data/buildingData.js";
 import { showNotif } from "./notifs.js";
+import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -53,6 +54,7 @@ const isGamePage = window.location.pathname.endsWith("game.html");
 if (isGamePage) {
   const navItemSaveGame = document.querySelector("#nav-item-save-game");
   navItemSaveGame.addEventListener("click", () => {
+    playRandomMouseClick();
     saveGame(false);
   });
 }
@@ -199,6 +201,7 @@ export function checkLevel() {
       clonedTextEl.classList.add("tabler--lock-filled");
       clonedEl.style.padding = "3%";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockVhcl(clonedEl.id, "level");
       });
     } else if (vhcl && vhcl.maxLevel < level) {
@@ -206,6 +209,7 @@ export function checkLevel() {
       clonedTextEl.classList.add("tabler--lock-filled");
       clonedEl.style.padding = "3%";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockVhcl(clonedEl.id, "max-level");
       });
     } else {
@@ -215,6 +219,7 @@ export function checkLevel() {
       }
       clonedEl.style.padding = "";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         buyVhcl(clonedEl.id);
       });
     }
@@ -239,6 +244,7 @@ function blockVhcl(vhclCode, reason) {
 if (isGamePage) {
   const busCntGUIBtn = document.querySelector("#closebuymenu");
   busCntGUIBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     menu.style.display = "none";
     resetBuyMenu();
   });
@@ -252,8 +258,10 @@ function buyVhclChecker() {
   }
 
   if (bal >= buyTotal) {
+    playRandomCash();
     buyVhclRight();
   } else {
+    playRandomMouseClick();
     showAlert(banana.i18n("cant-afford"));
     resetBuyMenu();
   }
@@ -332,6 +340,7 @@ if (isGamePage) {
 }
 
 function setInputToMax() {
+  playRandomMouseClick();
   const bal = getBal();
   const vhclPrice = vhclPrices[chosenVhcl] || 0;
   const maxQuantity = vhclMaxQuantity || Infinity;
@@ -465,6 +474,7 @@ function clicker() {
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
   bal += Math.floor(clickmod * totalBoost);
+  playRandomMouseClick();
   // console.log(totalBoost, clickmod * totalBoost);
   displayStats();
 }

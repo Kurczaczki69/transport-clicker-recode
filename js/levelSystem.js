@@ -4,6 +4,7 @@ import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
 import { banana } from "./langs.js";
 import { populateUpgrData, populateVhclData } from "./upgradeSystem/insertDataIntoHtml.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 // window close and open
 
@@ -16,6 +17,7 @@ if (isGamePage) {
   const tint = document.querySelector("#window-tint");
 
   statsWindowOpenBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     displayData();
     displayStats();
     tint.style.display = "block";
@@ -23,6 +25,7 @@ if (isGamePage) {
   });
 
   statsWindowCloseBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "none";
     statsWindow.style.display = "none";
   });

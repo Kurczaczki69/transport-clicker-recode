@@ -10,6 +10,7 @@ import {
   showAlert,
 } from "./utilities.js";
 import { getBal, saveGame, setBal, getUserCityData, updateCityProperty } from "./scr.js";
+import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 
 let chosenCity = "";
 
@@ -25,6 +26,7 @@ function buildInCity(cityId, buildingId) {
 
   if (!userBuildings.includes(buildingId)) {
     if (getBal() >= building.cost) {
+      playRandomCash();
       setBal(getBal() - building.cost);
       userBuildings.push(buildingId);
       cityData.buildings = userBuildings;
@@ -47,9 +49,11 @@ function buildInCity(cityId, buildingId) {
       showAlert(banana.i18n("building-built", building.name, city.name));
       saveGame(true);
     } else {
+      playRandomMouseClick();
       showAlert(banana.i18n("cant-afford"));
     }
   } else {
+    playRandomMouseClick();
     showAlert(banana.i18n("building-already-built"));
   }
 }
@@ -115,6 +119,7 @@ function addBuildingListeners() {
       iconSpan.classList.add("tabler--lock-filled");
       btn.appendChild(iconSpan);
       btn.addEventListener("click", () => {
+        playRandomMouseClick();
         blockBuilding(btn.id, "level");
       });
     }
@@ -141,11 +146,13 @@ export function addBuildListener() {
     iconSpan.classList.add("tabler--lock-filled");
     newBtn.appendChild(iconSpan);
     newBtn.addEventListener("click", () => {
+      playRandomMouseClick();
       blockCityUnlock(cityId, "level");
     });
   } else {
     newBtn.textContent = banana.i18n("btn-build");
     newBtn.addEventListener("click", () => {
+      playRandomMouseClick();
       populateBuildingsGrid();
       chosenCity = cityBuildBtn.getAttribute("data-city-id");
       buildingsWindow.style.display = "block";
@@ -156,6 +163,7 @@ export function addBuildListener() {
 
 if (isGamePage) {
   closeBtn.addEventListener("click", async () => {
+    playRandomMouseClick();
     const cities = getCities();
     buildingsWindow.style.display = "none";
     const city1 = cities.find((c) => c.id === chosenCity);

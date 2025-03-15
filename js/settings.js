@@ -1,5 +1,6 @@
 import { themes } from "./data/themeData.js";
 import { banana } from "./langs.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 const settingsWindow = document.querySelector("#settings-menu");
 const tint = document.querySelector("#window-tint");
@@ -11,11 +12,13 @@ const isGamePage = window.location.pathname.endsWith("game.html");
 if (isGamePage) {
   openWindowBtn.addEventListener("click", () => {
     populateThemeOptions();
+    playRandomMouseClick();
     tint.style.display = "block";
     settingsWindow.style.display = "block";
   });
 
   closeWindowBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "none";
     settingsWindow.style.display = "none";
   });
@@ -55,6 +58,7 @@ export function populateThemeOptions() {
     themeItem.style.backgroundColor = theme.color3;
 
     themeItem.addEventListener("click", () => {
+      playRandomMouseClick();
       updateColorScheme(theme);
     });
 
@@ -62,6 +66,29 @@ export function populateThemeOptions() {
   });
 }
 
+const soundSwitch = document.querySelector("#sound-switch");
+function retrieveSoundPreference() {
+  if (!isGamePage) return;
+  const soundPreference = localStorage.getItem("soundPreference") || "on";
+  if (soundPreference === "on") {
+    soundSwitch.checked = true;
+    updateSoundPreference();
+  }
+}
+
+function updateSoundPreference() {
+  const soundPreference = soundSwitch.checked ? "on" : "off";
+  localStorage.setItem("soundPreference", soundPreference);
+}
+
+if (isGamePage) {
+  soundSwitch.addEventListener("change", () => {
+    updateSoundPreference();
+    playRandomMouseClick();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   retrieveColorScheme();
+  retrieveSoundPreference();
 });

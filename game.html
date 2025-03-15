@@ -39,6 +39,11 @@
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
 
     <style>
       :root {
@@ -319,6 +324,18 @@
           <option value="en">English</option>
           <option value="pl">Polski</option>
         </select>
+      </div>
+      <div id="other-options-wrapper">
+        <div id="sound-switch-wrapper">
+          <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
+          <div id="switch-wrapper">
+            <!-- From Uiverse.io by gharsh11032000 -->
+            <label class="switch">
+              <input type="checkbox" id="sound-switch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -651,6 +668,27 @@
                 >
               </span>
             </div>
+            <div class="credits-menu-contributor-item">
+              Mouse Click Sound.mp3 - Pixeliota <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/678248/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              mouse-click-single-00.flac - pbimal <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/534103/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Mouse clicking 004.wav - ristooooo1 <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/539147/">freesound.org</a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -684,5 +722,6 @@
     <script type="module" src="js/data/cityData.js"></script>
     <script type="module" src="js/cities.js"></script>
     <script type="module" src="js/buildings.js"></script>
+    <script type="module" src="js/sounds.js"></script>
   </body>
 </html>

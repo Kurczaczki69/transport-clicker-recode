@@ -18,6 +18,7 @@ import {
 } from "./scr.js";
 import { getLevel } from "./levelSystem.js";
 import { addBuildListener } from "./buildings.js";
+import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 
 const citiesWindow = document.querySelector("#cities-window");
 const tint = document.querySelector("#window-tint");
@@ -29,12 +30,14 @@ const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
   openBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     populateCitiesGrid();
     citiesWindow.style.display = "block";
     tint.style.display = "block";
   });
 
   closeBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     citiesWindow.style.display = "none";
     tint.style.display = "none";
   });
@@ -117,6 +120,7 @@ async function unlockCity(city) {
 
   if (!unlockedCities.includes(cityToUnlock.id)) {
     if (getBal() >= unlockCost) {
+      playRandomCash();
       setBal(getBal() - unlockCost);
       unlockedCities.push(cityToUnlock.id);
       showAlert(banana.i18n("city-unlocked", cityToUnlock.name));
@@ -147,6 +151,7 @@ async function switchCity(city) {
 
   if (currentCity !== cityToSwitch.id) {
     if (getBal() >= switchCost) {
+      playRandomCash();
       const currentCityEl = document.querySelector("#cities-current");
       currentCityEl.textContent = banana.i18n("cities-current", cityToSwitch.name);
       setBal(getBal() - switchCost);
@@ -158,6 +163,7 @@ async function switchCity(city) {
       saveGame(true);
     }
   } else {
+    playRandomMouseClick();
     showAlert(banana.i18n("city-already-current-city"));
   }
 }
@@ -186,6 +192,7 @@ async function addListeners() {
         iconSpan.classList.add("tabler--lock-filled");
         btn.appendChild(iconSpan);
         btn.addEventListener("click", () => {
+          playRandomMouseClick();
           blockCityUnlock(city.id, "level");
         });
       }
@@ -197,6 +204,7 @@ async function addListeners() {
     const city = cities.find((c) => c.id === cityId);
     btn.textContent = banana.i18n("btn-details");
     btn.addEventListener("click", () => {
+      playRandomMouseClick();
       showCityDetails(city);
     });
   });
@@ -213,6 +221,7 @@ const cityBuildBtn = document.querySelector("#city-details-buildings-btn");
 
 if (isGamePage) {
   cityDetailsCloseBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     cityDetails.style.display = "none";
     cityBuildBtn.setAttribute("data-city-id", "");
   });

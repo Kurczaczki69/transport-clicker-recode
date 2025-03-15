@@ -2,6 +2,7 @@ import { getBghtUpgrs, getCurrentCity, checkLevel } from "./scr.js";
 import { showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
 import { getCities } from "./data/cityData.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 // yes this code is 100% chatgpt feel free to improve that if you know what you're doing
 // it only took 2 prompts to get it to work somehow
@@ -149,6 +150,7 @@ class VehicleMenuManager {
     if (!category) return;
 
     const bghtUpgrs = getBghtUpgrs();
+    playRandomMouseClick();
 
     if (!bghtUpgrs.includes(category.upgradeKey)) {
       showAlert(banana.i18n("vhcl-category-locked", banana.i18n(category.translationKey)));
@@ -193,6 +195,7 @@ class VehicleMenuManager {
     if (!subcategory) return;
 
     const bghtUpgrs = getBghtUpgrs();
+    playRandomMouseClick();
 
     if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
       showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
@@ -215,6 +218,7 @@ class VehicleMenuManager {
     );
 
     if (!subcategory) return;
+    playRandomMouseClick();
 
     Object.values(tramConfig.sections).forEach((section) => {
       const sectionEl = this.sections.get(section.sectionId);
@@ -243,7 +247,7 @@ if (isGamePage) {
 
       if (selectedCategory?.requiresCity) {
         const currentCity = getCurrentCity();
-        const cities = await getCities();
+        const cities = getCities();
         const currentCityData = cities.find((city) => city.id === currentCity);
 
         if (!currentCityData?.vehicles.includes(selectedCategory.vehicleType)) {
@@ -251,10 +255,11 @@ if (isGamePage) {
           mainDropdown.dispatchEvent(new Event("change"));
         }
       }
-
+      playRandomMouseClick();
       tint.style.display = "block";
       buygui.style.display = "flex";
     } else {
+      playRandomMouseClick();
       buygui.style.display = "none";
       showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
     }
@@ -265,6 +270,7 @@ if (isGamePage) {
   closeBusGuiBtn.addEventListener("click", () => {
     const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
+    playRandomMouseClick();
     tint.style.display = "none";
     buygui.style.display = "none";
   });

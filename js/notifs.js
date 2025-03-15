@@ -1,3 +1,5 @@
+import { playRandomMouseClick } from "./sounds.js";
+
 let notifCount = 0;
 
 export function getNotifCount() {
@@ -47,6 +49,7 @@ export function showNotif(title, smalltext, type) {
   const notifCloseBtns = document.querySelectorAll(".notif-close-btn");
   notifCloseBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      playRandomMouseClick();
       removeNotif(btn.parentElement.id);
     });
   });

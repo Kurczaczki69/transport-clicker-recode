@@ -11,6 +11,7 @@ import { showMsg, clearMsg } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -38,12 +39,14 @@ if (isGamePage) {
   const openGuiBtn = document.querySelector("#nav-item-codes-menu");
 
   openGuiBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "block";
     codesMenu.style.display = "block";
     clearMsg("code-menu-msgbox");
   });
 
   closeGuiBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     tint.style.display = "none";
     codesMenu.style.display = "none";
     clearMsg("code-menu-msgbox");
@@ -123,6 +126,7 @@ if (isGamePage) {
   const codeInput = document.querySelector("#code-menu-input");
   const confirmBtn = document.querySelector("#code-menu-confirm-btn");
   confirmBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     useCode(codeInput.value);
     codeInput.value = "";
   });
