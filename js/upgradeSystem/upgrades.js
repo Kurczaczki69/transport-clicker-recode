@@ -18,6 +18,7 @@ const isGamePage = window.location.pathname.includes("game.html");
 // upgrade menu category dropdown
 if (isGamePage) {
   dropdown.addEventListener("change", () => {
+    playRandomMouseClick();
     if (dropdown.value === "0") {
       notReadySection.style.display = "none";
       vehicleTypeSection.style.display = "block";
@@ -68,9 +69,11 @@ function buyUpgrade(upgrade) {
   if (upgradeToBuy.isAvailable) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
+        playRandomMouseClick();
         confirmationDialog.style.display = "none";
         showAlert(banana.i18n("cant-afford"));
       } else {
+        playRandomCash();
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
@@ -79,10 +82,12 @@ function buyUpgrade(upgrade) {
         saveGame(true);
       }
     } else {
+      playRandomMouseClick();
       confirmationDialog.style.display = "none";
       showAlert(banana.i18n("upgrade-already-bought"));
     }
   } else {
+    playRandomMouseClick();
     confirmationDialog.style.display = "none";
     showAlert(banana.i18n("upgrade-not-available"));
   }
@@ -105,7 +110,6 @@ function confirmUpgrade(upgradetobuy) {
   cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
 
   newConfirmBtn.addEventListener("click", () => {
-    playRandomCash();
     buyUpgrade(upgradetobuy);
   });
 
