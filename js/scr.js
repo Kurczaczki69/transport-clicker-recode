@@ -9,9 +9,10 @@ import { getLevel } from "./levelSystem.js";
 import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
-import { getCities, initializeCities } from "./data/cityData.js";
+import { getCities, initializeCities, setCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { initializeBuildings } from "./data/buildingData.js";
+import { showNotif } from "./notifs.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -109,6 +110,9 @@ document.addEventListener("DOMContentLoaded", async () => {
               startTimedUpgrades();
               const currentPage = document.body.getAttribute("data-page");
               setPageTitle(currentPage);
+              gameSaver();
+              displayStats();
+              startGameLoop();
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
                 initializeCities();
@@ -369,19 +373,76 @@ function getTotalIncomeBoost(timedUpgrs) {
   return totalBoost;
 }
 
-const cities = getCities();
+let totalIncome = 0;
+let shownNotif = false;
+function checkForFuelStations(cityData) {
+  if (!cityData || !cityData.buildings || !isGamePage) return;
 
-async function add() {
+  totalIncome = 0; // Start at 0 to avoid double counting
+
+  if (income === 0 || bal <= 0) return;
+
+  const vhcls = getVhcls();
+  const fuelTypeMap = vhcls.reduce((map, vhcl) => {
+    map[vhcl.code] = vhcl.fuelType;
+    return map;
+  }, {});
+
+  const fuelIncomeMap = vhcls.reduce((map, vhcl) => {
+    map[vhcl.code] = vhcl.incomemod;
+    return map;
+  }, {});
+
+  for (const vhclCode in vhclAmounts) {
+    if (!fuelTypeMap[vhclCode]) continue;
+
+    const fuelType = fuelTypeMap[vhclCode];
+    const stationType = fuelType === "diesel" ? "gas-station" : "hydrogen-station";
+    const hasStation = cityData.buildings.includes(stationType);
+
+    const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
+
+    if (hasStation) {
+      // console.log(`${fuelType} station found, adding ${incomeMod}`);
+      totalIncome += incomeMod;
+    } else {
+      // console.log(`${fuelType} station not found, reducing ${incomeMod}`);
+      if (!shownNotif) {
+        shownNotif = true;
+        showNotif(
+          banana.i18n("notif-fuel-station"),
+          banana.i18n("notif-fuel-station-text", banana.i18n(`fuel-type-${fuelType}`)),
+          "notif-fuel-station"
+        );
+      }
+      totalIncome -= incomeMod;
+    }
+  }
+
+  // console.log(`Final totalIncome: ${totalIncome}`);
+}
+
+function add() {
+  if (!isGamePage) return;
+  const cities = getCities();
   const timedUpgrs = getActiveTimedUpgrades();
   const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
   const currentCityData = cities.find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
-  await sleep(100);
-  bal += Math.floor((income / 10) * timedUpgrBoost * cityBoost);
-  // console.log((income / 10) * timedUpgrBoost * cityBoost, "timedupgr: ", timedUpgrBoost, "city: ", cityBoost);
+  totalIncome = 0;
+  checkForFuelStations(currentCityData);
+  // console.log("Total income after fuel check:", totalIncome);
+
+  bal += (totalIncome / 10) * timedUpgrBoost * cityBoost;
+  // console.log(totalIncome * timedUpgrBoost * cityBoost);
+  // console.log(income);
   displayStats();
-  add();
+}
+
+function startGameLoop() {
+  if (!isGamePage) return;
+  setInterval(add, 100);
 }
 
 if (isGamePage) {
@@ -415,13 +476,14 @@ const clickShow = document.querySelector("#click-show");
 
 function displayStats() {
   if (!isGamePage) return;
+  const cities = getCities();
   const timedUpgrs = getActiveTimedUpgrades();
   const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
   const totalClickBoost = getTotalClickBoost(timedUpgrs);
   const currentCityData = cities.find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
   balShow.textContent = abbreviateNumber(bal);
-  incomeShow.textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
+  incomeShow.textContent = abbreviateNumber(totalIncome * timedUpgrBoost * cityBoost);
   clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost);
 }
 
@@ -432,11 +494,6 @@ async function gameSaver() {
   gameSaver();
 }
 
-window.addEventListener("load", async () => {
-  add();
-  gameSaver();
-  displayStats();
-});
 updateTotal();
 
 // getter and setter functions for variables
@@ -525,11 +582,4 @@ export function getVhclStats() {
 
 export function setVhclStats(newVhclStats) {
   vhclStats = newVhclStats;
-}
-
-export function updateVhclStat(vehicleCode, property, value) {
-  if (!vhclStats[vehicleCode]) {
-    vhclStats[vehicleCode] = {};
-  }
-  vhclStats[vehicleCode][property] = value;
 }

@@ -122,6 +122,8 @@ async function unlockCity(city) {
       showAlert(banana.i18n("city-unlocked", cityToUnlock.name));
       populateCitiesGrid();
       saveGame(true);
+    } else {
+      showAlert(banana.i18n("cant-afford"));
     }
   } else {
     switchCity(cityToUnlock.id);

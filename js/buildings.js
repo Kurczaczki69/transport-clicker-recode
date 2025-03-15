@@ -46,6 +46,8 @@ function buildInCity(cityId, buildingId) {
       populateCitiesGrid();
       showAlert(banana.i18n("building-built", building.name, city.name));
       saveGame(true);
+    } else {
+      showAlert(banana.i18n("cant-afford"));
     }
   } else {
     showAlert(banana.i18n("building-already-built"));
@@ -100,7 +102,6 @@ function blockBuilding(id, reason) {
 }
 
 function addBuildingListeners() {
-  const cities = getCities();
   const buildings = getBuildings();
   const buildingBtns = document.querySelectorAll(".building-card-btn");
   buildingBtns.forEach((btn) => {

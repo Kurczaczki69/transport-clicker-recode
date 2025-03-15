@@ -64,7 +64,7 @@ export function abbreviateNumber(num) {
   ];
 
   const lang = localStorage.getItem("lang") || "en";
-  const roundedNum = Math.floor(num);
+  const roundedNum = Math.round(num);
 
   // numbers less than one trillion use Intl.NumberFormat
   if (roundedNum < 1e12) {

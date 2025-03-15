@@ -15,7 +15,19 @@ function initializeBuildings() {
       imgPath: "img/buildings/gas_station.jpg",
       boostType: "special",
       boostValue: 0.0,
-      boostScale: 0.0,
+      fuelType: "diesel",
+      events: [],
+    },
+    {
+      name: banana.i18n("building-hydrogen-station"),
+      desc: banana.i18n("building-hydrogen-station-desc"),
+      id: "hydrogen-station",
+      requiredLevel: 10,
+      cost: 100000,
+      imgPath: "img/buildings/hydrogen_station.jpg",
+      boostType: "special",
+      boostValue: 0.0,
+      fuelType: "hydrogen",
       events: [],
     },
     {
@@ -27,7 +39,6 @@ function initializeBuildings() {
       imgPath: "img/buildings/bus_terminal.jpg",
       boostType: "income",
       boostValue: 1.05,
-      boostScale: 0.05, // value in percent, shows how much the boost is increased per building level
       events: ["rush-hour"],
     },
     {
@@ -39,7 +50,6 @@ function initializeBuildings() {
       imgPath: "img/buildings/park.jpg",
       boostType: "pollution",
       boostValue: -0.05,
-      boostScale: 0.02,
       events: [],
     },
     {
@@ -51,7 +61,6 @@ function initializeBuildings() {
       imgPath: "img/buildings/tourist_center.jpg",
       boostType: "tourism",
       boostValue: 0.08,
-      boostScale: 0.03,
       events: ["tourist-season", "city-tour"],
     },
     {
@@ -63,7 +72,6 @@ function initializeBuildings() {
       imgPath: "img/buildings/sightseeing_platform.jpg",
       boostType: "tourism",
       boostValue: 0.12,
-      boostScale: 0.05,
       events: ["photo-tour", "sunset-tour"],
     },
     {
@@ -75,7 +83,6 @@ function initializeBuildings() {
       imgPath: "img/buildings/transport_museum.jpg",
       boostType: "tourism",
       boostValue: 0.19,
-      boostScale: 0.06,
       events: ["museum-exhibition", "vintage-vehicle-show"],
     },
   ];

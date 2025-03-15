@@ -35,7 +35,7 @@ export function showNotif(title, smalltext, type) {
   notif.appendChild(notifTitle);
   notif.appendChild(notifSmallText);
   document.querySelector("#notif-wrapper").appendChild(notif);
-  if (type === "notif-reward") {
+  if (type === "notif-reward" || type === "notif-fuel-station") {
     notifBtnWrapper.appendChild(notifBtnIcon);
     notif.appendChild(notifBtnWrapper);
   }

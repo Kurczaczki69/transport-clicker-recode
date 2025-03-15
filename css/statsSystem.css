@@ -87,20 +87,25 @@
   color: var(--colorscheme3);
 }
 
+#vhcl-stats-title-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #vhcl-stats-table {
   position: relative;
-  width: 300%;
+  width: 75%;
   margin: 0 auto;
-  margin-top: 5%;
   margin-bottom: 5%;
   border-collapse: collapse;
   border: var(--border5);
-  transform: translateX(-33%);
 }
 
 #vhcl-stats-table th {
   border: var(--border2);
-  width: 50%;
+  width: 50vw;
   padding: 0.5rem;
   background-color: var(--colorscheme3);
   color: var(--colorscheme2);
