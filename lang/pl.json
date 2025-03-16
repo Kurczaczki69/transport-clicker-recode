@@ -16,6 +16,8 @@
   "btn-buy": "Kup",
   "btn-cancel": "Anuluj",
   "btn-delete-acc": "Usuń konto",
+  "btn-search": "Search",
+  "btn-clear": "Clear",
   "confirm-upgrade": "Czy chcesz kupić ulepszenie",
   "not-ready-text1": "Dostępne w przyszłych aktualizacjach",
   "unavailable": "Niedostępne",
@@ -266,6 +268,8 @@
   "building-boost-special": "Inne",
   "building-built": "Zbudowano $1 w $2",
   "building-already-built": "Już zbudowałeś ten budynek",
+  "buildings-search": "Search buildings",
+  "buildings-search-no-results": "Didn't find any results matching your search",
   "fuel-type-diesel": "Paliwo",
   "fuel-type-hydrogen": "Wodór",
   "fuel-type-electric": "Prąd"
