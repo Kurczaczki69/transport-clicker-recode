@@ -59,6 +59,8 @@ function buildInCity(cityId, buildingId) {
 }
 
 export function populateBuildingsGrid() {
+  const searchBar = document.querySelector("#buildings-search");
+  searchBar.value = "";
   const buildings = getBuildings();
   const grid = document.querySelector("#buildings-grid");
   grid.innerHTML = "";
@@ -104,6 +106,39 @@ function blockBuilding(id, reason) {
     showAlert(banana.i18n("building-blocked-level", building.name, building.unlockLevel));
   }
 }
+
+// search
+const searchBar = document.querySelector("#buildings-search");
+const searchBtn = document.querySelector("#buildings-search-btn");
+const clearBtn = document.querySelector("#buildings-clear-search-btn");
+const noResults = document.querySelector("#no-search-results-wrapper");
+
+searchBtn.addEventListener("click", () => {
+  playRandomMouseClick();
+  const searchQuery = searchBar.value.toLowerCase();
+  const buildings = getBuildings();
+  const filteredBuildings = buildings.filter((building) => {
+    return building.name.toLowerCase().includes(searchQuery);
+  });
+  if (filteredBuildings.length === 0) {
+    noResults.style.display = "flex";
+  } else {
+    noResults.style.display = "none";
+  }
+  const grid = document.querySelector("#buildings-grid");
+  grid.innerHTML = "";
+  filteredBuildings.forEach((building) => {
+    const buildingCard = createBuildingCard(building);
+    grid.appendChild(buildingCard);
+  });
+  addBuildingListeners();
+});
+
+clearBtn.addEventListener("click", () => {
+  playRandomMouseClick();
+  noResults.style.display = "none";
+  populateBuildingsGrid();
+});
 
 function addBuildingListeners() {
   const buildings = getBuildings();
