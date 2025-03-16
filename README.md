@@ -31,7 +31,7 @@ If someone wants to contribute just `git clone https://github.com/Kurczaczki69/t
 ❌ Better UI with different images, pixel art or something like that 
 
 ## PLANNED FEATURES FOR THE ALPHA PHASE
-### The alpha phase is finished yayyayayayaya! 🎉
+### The alpha phase is finished yayyayayayay! 🎉
 
 ✅ Javascript recode\
 ✅ New changelog system\
