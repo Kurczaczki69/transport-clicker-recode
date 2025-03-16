@@ -16,6 +16,8 @@
   "btn-buy": "Buy",
   "btn-cancel": "Cancel",
   "btn-delete-acc": "Delete account",
+  "btn-search": "Search",
+  "btn-clear": "Clear",
   "confirm-upgrade": "Do you want to buy the upgrade",
   "not-ready-text1": "This will be available in the upcoming updates",
   "unavailable": "Unavailable",
@@ -266,6 +268,8 @@
   "building-boost-special": "Others",
   "building-built": "Built a $1 in $2",
   "building-already-built": "You already built that building",
+  "buildings-search": "Search buildings",
+  "buildings-search-no-results": "Didn't find any results matching your search",
   "fuel-type-diesel": "Gas",
   "fuel-type-hydrogen": "Hydrogen",
   "fuel-type-electric": "Electricity"
