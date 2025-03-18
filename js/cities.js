@@ -46,6 +46,7 @@ if (isGamePage) {
 function createCityCard(city) {
   const card = document.createElement("div");
   const calculatedBoost = calculateCityBoost(city);
+  const calculatedClickBoost = calculateCityClickMod(city);
   card.className = "city-card";
 
   card.innerHTML = `
@@ -56,6 +57,7 @@ function createCityCard(city) {
         <span>${banana.i18n("cities-population", shortAbbreviateNumber(city.population))}</span>
         <span>${banana.i18n("cities-area", shortAbbreviateNumber(city.area))}</span>
         <span>${banana.i18n("cities-boost", convertDecimalBoostToPercent(calculatedBoost))}</span>
+        <span>${banana.i18n("cities-click-boost", convertDecimalBoostToPercent(calculatedClickBoost))}</span>
         <span>${banana.i18n("cities-price", shortAbbreviateNumber(city.cost, "price"))}</span>
       </div>
       <div id="city-btns-wrapper">
@@ -102,6 +104,13 @@ export function calculateCityBoost(city) {
   activeEvents.forEach((event) => {
     totalBoost *= event.boost;
   });
+  return Math.max(0.25, Math.min(4.0, totalBoost));
+}
+
+export function calculateCityClickMod(city) {
+  if (!isGamePage) return;
+  let totalBoost = city.clickMod || 1;
+
   return Math.max(0.25, Math.min(4.0, totalBoost));
 }
 

@@ -44,6 +44,10 @@ function buildInCity(cityId, buildingId) {
           let val3 = city.tourismFactor + building.boostValue;
           updateCityProperty(cityId, "tourismFactor", Math.round(val3 * 100) / 100);
           break;
+        case "clickmod":
+          let val4 = city.clickMod * building.boostValue;
+          updateCityProperty(cityId, "clickMod", Math.round(val4 * 100) / 100);
+          break;
       }
       populateCitiesGrid();
       showAlert(banana.i18n("building-built", building.name, city.name));
@@ -79,7 +83,7 @@ function createBuildingCard(building) {
   card.className = "building-card";
 
   const boostValue =
-    building.boostType === "income"
+    building.boostType === "income" || building.boostType === "clickmod"
       ? convertDecimalBoostToPercent(building.boostValue)
       : convertDecimalToPercent(building.boostValue);
 
@@ -112,6 +116,23 @@ function blockBuilding(id, reason) {
     showAlert(banana.i18n("building-blocked-level", building.requiredLevel, building.name));
   }
 }
+
+// export function calculateBuildingsClickMod() {
+//   const buildings = getBuildings();
+//   const userCityData = getUserCityData();
+//   const cities = getCities();
+//   const cityData = userCityData[chosenCity] || {};
+//   const userBuildings = cityData.buildings || [];
+
+//   let mod = 1;
+//   buildings.forEach((building) => {
+//     if (userBuildings.includes(building.id)) {
+//       switch (building.boostType) {
+//         case "income":
+//           let val1 = cities[chosenCity].baseboost * building.boostValue;
+//           mod *= Math.round(val1 * 100) / 100;
+//           break;
+// }
 
 // search
 const searchBar = document.querySelector("#buildings-search");

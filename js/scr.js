@@ -8,7 +8,7 @@ import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
-import { calculateCityBoost } from "./cities.js";
+import { calculateCityBoost, calculateCityClickMod } from "./cities.js";
 import { getCities, initializeCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { initializeBuildings } from "./data/buildingData.js";
@@ -386,7 +386,7 @@ let shownNotif = false;
 function checkForFuelStations(cityData) {
   if (!cityData || !cityData.buildings || !isGamePage) return;
 
-  totalIncome = 0; // Start at 0 to avoid double counting
+  totalIncome = 0;
 
   if (income === 0 || bal <= 0) return;
 
@@ -411,10 +411,8 @@ function checkForFuelStations(cityData) {
     const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
 
     if (hasStation || fuelType === "electric") {
-      // console.log(`${fuelType} station found, adding ${incomeMod}`);
       totalIncome += incomeMod;
     } else {
-      // console.log(`${fuelType} station not found, reducing ${incomeMod}`);
       if (!shownNotif) {
         shownNotif = true;
         showNotif(
@@ -426,16 +424,12 @@ function checkForFuelStations(cityData) {
       totalIncome -= incomeMod;
     }
   }
-
-  // console.log(`Final totalIncome: ${totalIncome}`);
 }
 
 function add() {
   if (!isGamePage) return;
-  const cities = getCities();
-  const timedUpgrs = getActiveTimedUpgrades();
-  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
-  const currentCityData = cities.find((city) => city.id === currentCity);
+  const timedUpgrBoost = getTotalIncomeBoost(getActiveTimedUpgrades());
+  const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
   totalIncome = 0;
@@ -473,8 +467,9 @@ function getTotalClickBoost(timedUpgrs) {
 const clickspace = document.querySelector("#clicker-img");
 let lastAnimated = Date.now();
 function clicker(e) {
-  if (lastAnimated + 120 < Date.now()) {
-    lastAnimated = Date.now();
+  const now = Date.now();
+  if (lastAnimated + 120 < now) {
+    lastAnimated = now;
     anime({
       targets: clickspace,
       keyframes: [
@@ -490,18 +485,21 @@ function clicker(e) {
       duration: 100,
     });
   }
+  const cities = getCities();
+  const currentCityData = cities.find((city) => city.id === currentCity);
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
+  const cityBoost = calculateCityClickMod(currentCityData);
 
-  bal += Math.floor(clickmod * totalBoost);
+  const clickValue = Math.floor(clickmod * totalBoost * cityBoost);
+
+  bal += clickValue;
   const indicator = document.createElement("div");
   indicator.id = "click-indicator";
   document.body.appendChild(indicator);
-  let x = e.clientX;
-  let y = e.clientY;
-  indicator.style.left = x + "px";
-  indicator.style.top = y - 75 + "px";
-  indicator.textContent = "+" + shortAbbreviateNumber(Math.floor(clickmod * totalBoost));
+  indicator.style.left = `${e.clientX}px`;
+  indicator.style.top = `${e.clientY - 75}px`;
+  indicator.textContent = `+${shortAbbreviateNumber(clickValue)}`;
   anime({
     targets: indicator,
     keyframes: [
@@ -526,15 +524,15 @@ const clickShow = document.querySelector("#click-show");
 
 function displayStats() {
   if (!isGamePage) return;
-  const cities = getCities();
   const timedUpgrs = getActiveTimedUpgrades();
   const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
   const totalClickBoost = getTotalClickBoost(timedUpgrs);
-  const currentCityData = cities.find((city) => city.id === currentCity);
+  const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
+  const cityClickBoost = calculateCityClickMod(currentCityData);
   balShow.textContent = abbreviateNumber(bal);
   incomeShow.textContent = abbreviateNumber(totalIncome * timedUpgrBoost * cityBoost);
-  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost);
+  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost * cityClickBoost);
 }
 
 // saving game every 90 seconds to firestore
