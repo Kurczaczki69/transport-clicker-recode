@@ -214,6 +214,26 @@ function initializeCityEvents() {
       duration: 200000,
       requiredBuildings: ["transport-museum"],
     },
+    {
+      name: banana.i18n("city-event-world-cup"),
+      description: banana.i18n("city-event-world-cup-desc", currentCityData.name, convertDecimalBoostToPercent(1.6)),
+      id: "world-cup",
+      boost: 1.6,
+      duration: 300000,
+      requiredBuildings: ["stadium"],
+    },
+    {
+      name: banana.i18n("city-event-football-match"),
+      description: banana.i18n(
+        "city-event-football-match-desc",
+        currentCityData.name,
+        convertDecimalBoostToPercent(1.4)
+      ),
+      id: "football-match",
+      boost: 1.4,
+      duration: 180000,
+      requiredBuildings: ["stadium"],
+    },
   ];
 }
 

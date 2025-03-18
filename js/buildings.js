@@ -83,6 +83,11 @@ function createBuildingCard(building) {
       ? convertDecimalBoostToPercent(building.boostValue)
       : convertDecimalToPercent(building.boostValue);
 
+  let buildingEvents = building.events.map((event) => banana.i18n(`city-event-${event}`)).join(", ");
+  if (buildingEvents === "") {
+    buildingEvents = banana.i18n("none");
+  }
+
   card.innerHTML = `
       <img src="${building.imgPath}" alt="${building.name}" class="building-card-image">
     <div class="building-card-content">
@@ -92,6 +97,7 @@ function createBuildingCard(building) {
         <span>${banana.i18n("buildings-boost-type", banana.i18n(`building-boost-${building.boostType}`))}</span>
         <span>${banana.i18n("buildings-boost", boostValue)}</span>
         <span>${banana.i18n("cities-price", shortAbbreviateNumber(building.cost, "price"))}</span>
+        <span>${banana.i18n("buildings-events", buildingEvents)}</span>
       </div>
       <button class="building-card-btn btns" id="${building.id}"></button>
     </div>
@@ -103,7 +109,7 @@ function createBuildingCard(building) {
 function blockBuilding(id, reason) {
   const building = getBuildings().find((b) => b.id === id);
   if (reason === "level") {
-    showAlert(banana.i18n("building-blocked-level", building.name, building.unlockLevel));
+    showAlert(banana.i18n("building-blocked-level", building.requiredLevel, building.name));
   }
 }
 
@@ -113,32 +119,34 @@ const searchBtn = document.querySelector("#buildings-search-btn");
 const clearBtn = document.querySelector("#buildings-clear-search-btn");
 const noResults = document.querySelector("#no-search-results-wrapper");
 
-searchBtn.addEventListener("click", () => {
-  playRandomMouseClick();
-  const searchQuery = searchBar.value.toLowerCase();
-  const buildings = getBuildings();
-  const filteredBuildings = buildings.filter((building) => {
-    return building.name.toLowerCase().includes(searchQuery);
+if (isGamePage) {
+  searchBtn.addEventListener("click", () => {
+    playRandomMouseClick();
+    const searchQuery = searchBar.value.toLowerCase();
+    const buildings = getBuildings();
+    const filteredBuildings = buildings.filter((building) => {
+      return building.name.toLowerCase().includes(searchQuery);
+    });
+    if (filteredBuildings.length === 0) {
+      noResults.style.display = "flex";
+    } else {
+      noResults.style.display = "none";
+    }
+    const grid = document.querySelector("#buildings-grid");
+    grid.innerHTML = "";
+    filteredBuildings.forEach((building) => {
+      const buildingCard = createBuildingCard(building);
+      grid.appendChild(buildingCard);
+    });
+    addBuildingListeners();
   });
-  if (filteredBuildings.length === 0) {
-    noResults.style.display = "flex";
-  } else {
-    noResults.style.display = "none";
-  }
-  const grid = document.querySelector("#buildings-grid");
-  grid.innerHTML = "";
-  filteredBuildings.forEach((building) => {
-    const buildingCard = createBuildingCard(building);
-    grid.appendChild(buildingCard);
-  });
-  addBuildingListeners();
-});
 
-clearBtn.addEventListener("click", () => {
-  playRandomMouseClick();
-  noResults.style.display = "none";
-  populateBuildingsGrid();
-});
+  clearBtn.addEventListener("click", () => {
+    playRandomMouseClick();
+    noResults.style.display = "none";
+    populateBuildingsGrid();
+  });
+}
 
 function addBuildingListeners() {
   const buildings = getBuildings();

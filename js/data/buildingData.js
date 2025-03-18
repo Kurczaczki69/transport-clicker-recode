@@ -39,7 +39,7 @@ function initializeBuildings() {
       imgPath: "img/buildings/bus_terminal.jpg",
       boostType: "income",
       boostValue: 1.05,
-      events: ["rush-hour"],
+      events: [],
     },
     {
       name: banana.i18n("building-park"),
@@ -84,6 +84,17 @@ function initializeBuildings() {
       boostType: "tourism",
       boostValue: 0.19,
       events: ["museum-exhibition", "vintage-vehicle-show"],
+    },
+    {
+      name: banana.i18n("building-stadium"),
+      desc: banana.i18n("building-stadium-desc"),
+      id: "stadium",
+      requiredLevel: 50,
+      cost: 2250000,
+      imgPath: "img/buildings/stadium.jpg",
+      boostType: "tourism",
+      boostValue: 0.23,
+      events: ["world-cup", "football-match"],
     },
   ];
 }

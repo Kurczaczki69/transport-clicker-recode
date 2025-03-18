@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "animejs": "^3.2.2",
     "banana-i18n": "^2.4.0"
   }
 }

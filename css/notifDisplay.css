@@ -12,6 +12,7 @@
   border-bottom: var(--border2);
   border-top: var(--border2);
   border-radius: 10px;
+  box-shadow: var(--boxshadow);
 }
 
 @media screen and (max-width: 768px) {

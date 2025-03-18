@@ -72,10 +72,10 @@ function calculateLevelProgress(xp) {
         banana.i18n("notif-reward-text", abbreviateNumber(moneyReward), previousLevel),
         "notif-reward"
       );
-      syncVehiclePrices();
-      checkLevel();
       populateVhclData();
       populateUpgrData();
+      syncVehiclePrices();
+      checkLevel();
     }
   }
 

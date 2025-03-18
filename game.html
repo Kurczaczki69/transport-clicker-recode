@@ -44,12 +44,14 @@
       integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"></script>
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
 
     <style>
       :root {
         --border5: solid 1.5px var(--colorscheme4);
         --border2: solid 1px var(--colorscheme4);
         --linkcolor: var(--colorscheme3);
+        --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
 
         --colorscheme1: #062925;
         --colorscheme2: #044a42;
@@ -60,15 +62,8 @@
   </head>
   <body data-page="game">
     <div id="loader-wrapper">
-      <div class="col-sm-2">
-        <div id="square5">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
-        </div>
-      </div>
+      <div class="spinner"></div>
+      <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
     </div>
 
     <div class="tints" id="window-tint" style="z-index: 799"></div>
@@ -250,7 +245,10 @@
       </section>
       <div id="active-events-container"></div>
       <section id="main-screen">
-        <section id="clicker"><span id="clicker-text" data-lang="click-here"></span></section>
+        <section id="clicker">
+          <img src="img/other/bus-default.png" alt="bus" id="clicker-img" />
+        </section>
+        <div id="clicker-shadow"></div>
       </section>
     </section>
 
@@ -598,6 +596,18 @@
               >
             </div>
             <div class="credits-menu-contributor-item">
+              City Background Pack <br />
+              <span class="credits-menu-contributor-github">
+                <a target="_blank" href="https://craftpix.net/">craftpix.net</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Public Bus <br />
+              <span class="credits-menu-contributor-github">
+                <a target="_blank" href="https://dai420.itch.io/public-bus">itch.io</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
               Trollleybus Lublin 150 on aleja generała Władysława Andersa.jpg - Українець627 <br />
               <span class="credits-menu-contributor-github"
                 >CC BY-SA 4.0,
@@ -701,6 +711,17 @@
               <span class="credits-menu-contributor-github"
                 >Creative Commons 0
                 <a target="_blank" href="https://freesound.org/s/539147/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Stadium MK, Stadium Way West, Bletchley - geograph.org.uk - 7450199.jpg - Bryn Holmes <br />
+              <span class="credits-menu-contributor-github"
+                >CC Attribution-Share Alike 2.0 Generic
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Stadium_MK,_Stadium_Way_West,_Bletchley_-_geograph.org.uk_-_7450199.jpg"
+                  >commons.wikimedia.org</a
+                >
               </span>
             </div>
           </div>

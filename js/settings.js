@@ -27,12 +27,22 @@ if (isGamePage) {
 function updateColorScheme(colors) {
   localStorage.setItem("colorScheme", JSON.stringify(colors));
   const root = document.documentElement;
+  const body = document.body;
+  const clicker = document.querySelector("#clicker-img");
 
   // Update color variables
   root.style.setProperty("--colorscheme1", colors.color1 || "#062925");
   root.style.setProperty("--colorscheme2", colors.color2 || "#044a42");
   root.style.setProperty("--colorscheme3", colors.color3 || "#3a9188");
   root.style.setProperty("--colorscheme4", colors.color4 || "#b8e1dd");
+
+  // Update background image
+  body.style.backgroundImage = `url("${colors.bgPath || "img/bg/bg-1.png"}")`;
+
+  // Update clicker image
+  if (clicker) {
+    clicker.src = colors.busPath || "img/other/bus-default.png";
+  }
 }
 
 function retrieveColorScheme() {

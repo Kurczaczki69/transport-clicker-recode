@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
+import { sleep, isEmpty, showAlert, abbreviateNumber, shortAbbreviateNumber, showMsg } from "./utilities.js";
 import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
@@ -9,7 +9,7 @@ import { getLevel } from "./levelSystem.js";
 import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost } from "./cities.js";
-import { getCities, initializeCities, setCities } from "./data/cityData.js";
+import { getCities, initializeCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { initializeBuildings } from "./data/buildingData.js";
 import { showNotif } from "./notifs.js";
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         getCodes()
           .then(() => {
-            console.log("codes loaded from server");
             sleep(700).then(() => {
               startTimedUpgrades();
               const currentPage = document.body.getAttribute("data-page");
@@ -411,7 +410,7 @@ function checkForFuelStations(cityData) {
 
     const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
 
-    if (hasStation) {
+    if (hasStation || fuelType === "electric") {
       // console.log(`${fuelType} station found, adding ${incomeMod}`);
       totalIncome += incomeMod;
     } else {
@@ -456,7 +455,9 @@ function startGameLoop() {
 
 if (isGamePage) {
   const clickspace = document.querySelector("#clicker");
-  clickspace.addEventListener("click", clicker);
+  clickspace.addEventListener("click", (e) => {
+    clicker(e);
+  });
 }
 
 function getTotalClickBoost(timedUpgrs) {
@@ -469,11 +470,50 @@ function getTotalClickBoost(timedUpgrs) {
   return totalBoost;
 }
 
-function clicker() {
+const clickspace = document.querySelector("#clicker-img");
+let lastAnimated = Date.now();
+function clicker(e) {
+  if (lastAnimated + 120 < Date.now()) {
+    lastAnimated = Date.now();
+    anime({
+      targets: clickspace,
+      keyframes: [
+        {
+          scale: function () {
+            return Math.random() * (1.05 - 1.02) + 1.02;
+          },
+          duration: 50,
+        },
+        { scale: 1, duration: 50 },
+      ],
+      easing: "easeInOutQuad",
+      duration: 100,
+    });
+  }
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
 
   bal += Math.floor(clickmod * totalBoost);
+  const indicator = document.createElement("div");
+  indicator.id = "click-indicator";
+  document.body.appendChild(indicator);
+  let x = e.clientX;
+  let y = e.clientY;
+  indicator.style.left = x + "px";
+  indicator.style.top = y - 75 + "px";
+  indicator.textContent = "+" + shortAbbreviateNumber(Math.floor(clickmod * totalBoost));
+  anime({
+    targets: indicator,
+    keyframes: [
+      { translateY: 0, opacity: 1, duration: 100 },
+      { translateY: -75, opacity: 0, duration: 250 },
+    ],
+    easing: "easeInOutCubic",
+    duration: 500,
+  });
+  setTimeout(async () => {
+    indicator.remove();
+  }, 500);
   playRandomMouseClick();
   // console.log(totalBoost, clickmod * totalBoost);
   displayStats();
