@@ -2,7 +2,7 @@ import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getUpgrades } from "../data/upgradeData.js";
 import { shortAbbreviateNumber } from "../utilities.js";
 import { getVhcls } from "../data/vhclData.js";
-import { checkLevel, getVhclPrices, syncVehiclePrices } from "../scr.js";
+import { checkLevel, getVhclPrices, syncTimedUpgrPrices, syncVehiclePrices, getTimedUpgrsPrices } from "../scr.js";
 import { banana } from "../langs.js";
 import { checkLevelUpgr } from "./upgrades.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
@@ -133,6 +133,7 @@ export function populateUpgrData() {
   const timedUpgrades = getTimedUpgrades();
   const upgradeContent = document.querySelector("#upgr-menu-vehicle-type-table");
   const timedUpgrContent = document.querySelector("#upgr-menu-timed-upgrades-table");
+  const timedUpgrsPrices = getTimedUpgrsPrices();
   upgradeContent.innerHTML = "";
   timedUpgrContent.innerHTML = "";
 
@@ -184,7 +185,10 @@ export function populateUpgrData() {
               </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
-                  ><b><span class="timedUpgrPrice">${shortAbbreviateNumber(upgr.price, "upgrs")}</span></b
+                  ><b><span class="timedUpgrPrice">${shortAbbreviateNumber(
+                    timedUpgrsPrices[upgr.id],
+                    "upgrs"
+                  )}</span></b
                 ></span>
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
@@ -198,6 +202,7 @@ export function populateUpgrData() {
   });
 
   checkTimedUpgrLevel();
+  syncTimedUpgrPrices();
 }
 
 function checkAvailability(upgr) {

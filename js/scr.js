@@ -12,6 +12,7 @@ import { calculateCityBoost, calculateCityClickMod } from "./cities.js";
 import { getCities, initializeCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { initializeBuildings } from "./data/buildingData.js";
+import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { showNotif } from "./notifs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 
@@ -38,6 +39,8 @@ let income = 0;
 let buyTotal = 0;
 let chosenVhcl = "";
 let bghtUpgrs = [];
+
+let timedUpgrsPrices = {};
 
 let vhclAmounts = {};
 let vhclPrices = {};
@@ -77,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       vhclPrices = userData.vhclPrices || {};
       userCityData = userData.userCityData || {};
       vhclStats = userData.vhclStats || {};
+      timedUpgrsPrices = userData.timedUpgrsPrices || {};
 
       // data is saved to server only if it is a new account
       if (!userData.balance && !userData.income && !userData.clickmod) {
@@ -94,6 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           vhclPrices: vhclPrices,
           userCityData: userCityData,
           vhclStats: vhclStats,
+          timedUpgrsPrices: timedUpgrsPrices,
         });
       }
       console.log("data loaded from server");
@@ -156,6 +161,7 @@ export function saveGame(isSilent) {
     vhclPrices: vhclPrices,
     userCityData: userCityData,
     vhclStats: vhclStats,
+    timedUpgrsPrices: timedUpgrsPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -275,8 +281,7 @@ function resetBuyMenu() {
 }
 
 function buyVhclRight() {
-  const vhcls = getVhcls();
-  let bus = vhcls.find((bus) => bus.code === chosenVhcl);
+  let bus = getVhcls().find((bus) => bus.code === chosenVhcl);
   const busProp = bus;
   const quantity = parseInt(inputEl.value);
 
@@ -328,6 +333,22 @@ export function syncVehiclePrices() {
 
   updateHtmlData();
   console.log("vehicle prices synchronized");
+}
+
+export function syncTimedUpgrPrices() {
+  if (!isGamePage) return;
+  const timedUpgrs = getTimedUpgrades();
+
+  timedUpgrs.forEach((upgr) => {
+    if (timedUpgrsPrices[upgr.id]) {
+      upgr.price = timedUpgrsPrices[upgr.id];
+    } else {
+      timedUpgrsPrices[upgr.id] = upgr.price;
+    }
+  });
+
+  updateHtmlData();
+  console.log("timed upgrades prices synchronized");
 }
 
 const totalEl = document.querySelector("#show-full-cost");
@@ -630,4 +651,8 @@ export function getVhclStats() {
 
 export function setVhclStats(newVhclStats) {
   vhclStats = newVhclStats;
+}
+
+export function getTimedUpgrsPrices() {
+  return timedUpgrsPrices;
 }

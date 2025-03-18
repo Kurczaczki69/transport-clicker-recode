@@ -1,5 +1,5 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
-import { getBal, setBal } from "../scr.js";
+import { getBal, getTimedUpgrsPrices, saveGame, setBal, syncTimedUpgrPrices } from "../scr.js";
 import { clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 import { banana } from "../langs.js";
@@ -39,6 +39,7 @@ function buyTimedUpgrade(upgrId) {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       if (!checkUpgradeByType(upgradeToBuy.type)) {
         let activeUpgrs = getActiveTimedUpgrades();
+        const timedUpgrsPrices = getTimedUpgrsPrices();
         const newActiveUpgr = {
           ...upgradeToBuy,
           startTime: Date.now(),
@@ -49,6 +50,14 @@ function buyTimedUpgrade(upgrId) {
         playRandomCash();
         bal -= upgradeToBuy.price;
         setBal(bal);
+        const currentPrice = timedUpgrsPrices[upgradeToBuy.id] || upgradeToBuy.price;
+        const maxPrice = 1e20; // 100 quintillion
+        const scale = Math.max(0, 1 - currentPrice / maxPrice);
+        const priceMultiplier = 1 + 0.01 * scale * Math.log10(currentPrice + 1);
+        const newPrice = Math.round(currentPrice * priceMultiplier);
+        timedUpgrsPrices[upgradeToBuy.id] = newPrice;
+        syncTimedUpgrPrices();
+        saveGame(true);
         confirmationDialog.style.display = "none";
         showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
         showNotif(
