@@ -71,6 +71,7 @@ export function populateVhclData() {
   const intercityBusCategory = document.querySelector("#vhcl-menu-intercitybus-table");
   const trolleyBusCategory = document.querySelector("#vhcl-menu-trolleybus-table");
   const tramCategory = document.querySelector("#vhcl-menu-tram-table");
+  const modernTramCategory = document.querySelector("#vhcl-menu-modern-tram-table");
   cityBusCategory.innerHTML = "";
   hydrogenBusCategory.innerHTML = "";
   intercityBusCategory.innerHTML = "";
@@ -119,6 +120,9 @@ export function populateVhclData() {
         break;
       case "tram":
         tramCategory.innerHTML += row;
+        break;
+      case "moderntram":
+        modernTramCategory.innerHTML += row;
         break;
     }
   });

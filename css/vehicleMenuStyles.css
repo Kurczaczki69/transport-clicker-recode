@@ -324,6 +324,14 @@
   display: none;
 }
 
+#vhcl-menu-tram-category-modern {
+  display: none;
+}
+
+#vhcl-menu-tram-category-main {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   #buy-vehicle {
     width: 90vw;

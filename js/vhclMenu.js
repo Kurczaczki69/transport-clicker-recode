@@ -66,21 +66,25 @@ const VEHICLE_CATEGORIES = {
     sections: {
       old: {
         id: "0",
-        sectionId: "vhcl-menu-tram-category",
+        sectionId: "vhcl-menu-tram-category-main",
+        translationKey: "old-trams",
+        upgradeKey: "tram",
       },
       modern: {
         id: "1",
-        sectionId: "vhcl-menu-other-categories",
+        sectionId: "vhcl-menu-tram-category-modern",
+        requiresCity: true,
+        vehicleType: "modern-trams",
+        translationKey: "modern-trams",
+        upgradeKey: "moderntram",
       },
     },
   },
 };
 
-const cities = await getCities();
-
 class VehicleMenuManager {
   constructor() {
-    this.cities = cities;
+    this.cities = getCities();
     this.initializeElements();
     this.setupEventListeners();
   }
@@ -133,7 +137,8 @@ class VehicleMenuManager {
   }
 
   resetDropdownValue(dropdownId, value = "0") {
-    $(`#${dropdownId}`).val(value);
+    const id = dropdownId instanceof HTMLElement ? dropdownId.id : dropdownId;
+    $(`#${id}`).val(value);
   }
 
   checkCityRequirement(category) {
@@ -174,8 +179,8 @@ class VehicleMenuManager {
     if (subDropdown) {
       subDropdown.style.display = "block";
 
-      // Show first subcategory content for buses
-      if (category === VEHICLE_CATEGORIES.buses) {
+      // Show first subcategory content for different categories
+      if (category.sections) {
         const firstSubcategory = Object.values(category.sections)[0];
         if (firstSubcategory) {
           this.resetDropdownValue(category.subDropdownId, firstSubcategory.id);
@@ -218,7 +223,20 @@ class VehicleMenuManager {
     );
 
     if (!subcategory) return;
+    const bghtUpgrs = getBghtUpgrs();
     playRandomMouseClick();
+
+    if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
+      showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
+      this.resetDropdownValue(tramConfig.subDropdownId);
+      return;
+    }
+
+    if (subcategory.requiresCity && !this.checkCityRequirement(subcategory)) {
+      showAlert(banana.i18n("vhcl-category-locked-2"));
+      this.resetDropdownValue(this.subDropdowns.get(tramConfig.subDropdownId));
+      return;
+    }
 
     Object.values(tramConfig.sections).forEach((section) => {
       const sectionEl = this.sections.get(section.sectionId);

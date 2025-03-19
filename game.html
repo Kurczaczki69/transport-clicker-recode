@@ -8,8 +8,9 @@
     currently thats it :) -->
 
   <!-- TODOS FOR BETA 1.0.0
-    - buildings system
-    - vehicle income and clickmod calculated individually for each vehicle and saved for later use
+    - buildings system DONE
+    - vehicle income and clickmod calculated individually for each vehicle and saved for later use DONE
+    - modern trams
     -->
   <head>
     <meta charset="UTF-8" />
@@ -335,6 +336,7 @@
         <select name="langs" id="lang-dropdown">
           <option value="en">English</option>
           <option value="pl">Polski</option>
+          <option value="ar">العربية</option>
         </select>
       </div>
       <div id="other-options-wrapper">
@@ -428,8 +430,13 @@
         </div>
         <!-- TRAM CATEGORY -->
         <div id="vhcl-menu-tram-category">
+          <!-- OLD TRAMS -->
           <div id="vhcl-menu-tram-category-main">
             <table id="vhcl-menu-tram-table" class="vhcl-menu-tables"></table>
+          </div>
+          <!-- MODERN TRAMS -->
+          <div id="vhcl-menu-tram-category-modern">
+            <table id="vhcl-menu-modern-tram-table" class="vhcl-menu-tables"></table>
           </div>
         </div>
         <!-- OTHER CATEGORIES -->
@@ -570,6 +577,10 @@
             </div>
             <div class="credits-menu-contributor-item">
               Kiniaczu <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              yn (user99) <br />
               <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
             </div>
           </div>
@@ -797,6 +808,16 @@
                 <a
                   target="_blank"
                   href="https://commons.wikimedia.org/wiki/File:Riverside_view_of_Hotel_Sonar_Bangla_Taki_taken_from_3rd_floor_balcony_of_left_wing.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Pesa Tramicus 122N (1).jpg - Jakub Pietrasiak
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Pesa_Tramicus_122N_(1).jpg"
                   >commons.wikimedia.org</a
                 >
               </span>
