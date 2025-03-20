@@ -143,6 +143,7 @@
   "page-title-game": "Game - Transport Clicker",
   "email-not-verified-logged-out": "Your email address isn't verified so you$1 were logged out. Please log in again, so we can send $1you a verification email.",
   "alert-game-saved": "Saved the game",
+  "alert-game-save-fail": "Failed to save the game. Please try again and if the problem persists, contact the developer",
   "upgrade-success": "Bought the upgrade successfully",
   "upgrade-already-bought": "You already bought that upgrade",
   "upgrade-not-available": "This upgrade will available in the coming updates",
