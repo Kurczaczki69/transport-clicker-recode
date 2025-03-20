@@ -1,4 +1,7 @@
+const isGamePage = window.location.pathname.includes("game.html");
+
 export function playSound(sound) {
+  if (!isGamePage) return;
   if (!checkSoundPreference()) return;
   let audio = new Howl({
     src: [sound],
