@@ -1,6 +1,6 @@
 import { getUpgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame } from "../scr.js";
-import { showAlert } from "../utilities.js";
+import { animateWindowClose, animateWindowOpen, showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
@@ -47,15 +47,14 @@ if (isGamePage) {
     checkLevelUpgr();
     checkTimedUpgrLevel();
     playRandomMouseClick();
-    tint.style.display = "block";
     upgradeGUI.style.display = "flex";
+    animateWindowOpen(upgradeGUI, true, tint);
   });
 
   // closing upgrade menu
   upgrMenuCloseBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "none";
-    upgradeGUI.style.display = "none";
+    animateWindowClose(upgradeGUI, true, tint);
   });
 }
 
@@ -70,25 +69,25 @@ function buyUpgrade(upgrade) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
         playRandomMouseClick();
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("cant-afford"));
       } else {
         playRandomCash();
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("upgrade-success"));
         saveGame(true);
       }
     } else {
       playRandomMouseClick();
-      confirmationDialog.style.display = "none";
+      animateWindowClose(confirmationDialog, false);
       showAlert(banana.i18n("upgrade-already-bought"));
     }
   } else {
     playRandomMouseClick();
-    confirmationDialog.style.display = "none";
+    animateWindowClose(confirmationDialog, false);
     showAlert(banana.i18n("upgrade-not-available"));
   }
 }
@@ -103,6 +102,7 @@ function confirmUpgrade(upgradetobuy) {
   const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
   upgradeName.textContent = upgradeToBuy.name;
   confirmationDialog.style.display = "block";
+  animateWindowOpen(confirmationDialog, false);
 
   const newConfirmBtn = confirmBtn.cloneNode(true);
   const newCancelBtn = cancelBtn.cloneNode(true);
@@ -115,7 +115,7 @@ function confirmUpgrade(upgradetobuy) {
 
   newCancelBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    confirmationDialog.style.display = "none";
+    animateWindowClose(confirmationDialog, false);
   });
 }
 

@@ -1,4 +1,5 @@
 import { playRandomMouseClick } from "../sounds.js";
+import { animateWindowOpen, animateWindowClose } from "../utilities.js";
 
 const accWindow = document.querySelector("#accountbox");
 const tint = document.querySelector("#window-tint");
@@ -7,12 +8,11 @@ const closeWindowBtn = document.querySelector("#acc-menu-close-btn");
 
 openWindowBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  tint.style.display = "block";
   accWindow.style.display = "block";
+  animateWindowOpen(accWindow, true, tint);
 });
 
 closeWindowBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  tint.style.display = "none";
-  accWindow.style.display = "none";
+  animateWindowClose(accWindow, true, tint);
 });

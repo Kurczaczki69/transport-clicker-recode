@@ -1,4 +1,5 @@
 import { playRandomMouseClick } from "./sounds.js";
+import { animateWindowOpen, animateWindowClose } from "./utilities.js";
 
 const creditsWindow = document.querySelector("#credits-window");
 const tint = document.querySelector("#window-tint");
@@ -7,14 +8,13 @@ const closeCreditsBtn = document.querySelector("#close-credits-window-btn");
 
 creditsBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  tint.style.display = "block";
   creditsWindow.style.display = "block";
+  animateWindowOpen(creditsWindow, true, tint);
 });
 
 closeCreditsBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  tint.style.display = "none";
-  creditsWindow.style.display = "none";
+  animateWindowClose(creditsWindow, true, tint);
 });
 
 // switching categories in credits menu

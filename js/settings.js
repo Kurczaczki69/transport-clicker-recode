@@ -1,6 +1,7 @@
 import { themes } from "./data/themeData.js";
 import { banana } from "./langs.js";
 import { playRandomMouseClick } from "./sounds.js";
+import { animateWindowClose, animateWindowOpen } from "./utilities.js";
 
 const settingsWindow = document.querySelector("#settings-menu");
 const tint = document.querySelector("#window-tint");
@@ -13,14 +14,13 @@ if (isGamePage) {
   openWindowBtn.addEventListener("click", () => {
     populateThemeOptions();
     playRandomMouseClick();
-    tint.style.display = "block";
     settingsWindow.style.display = "block";
+    animateWindowOpen(settingsWindow, true, tint);
   });
 
   closeWindowBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "none";
-    settingsWindow.style.display = "none";
+    animateWindowClose(settingsWindow, true, tint);
   });
 }
 

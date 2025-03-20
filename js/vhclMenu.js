@@ -1,5 +1,5 @@
 import { getBghtUpgrs, getCurrentCity, checkLevel } from "./scr.js";
-import { showAlert } from "./utilities.js";
+import { animateWindowClose, animateWindowOpen, showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
 import { getCities } from "./data/cityData.js";
 import { playRandomMouseClick } from "./sounds.js";
@@ -274,8 +274,8 @@ if (isGamePage) {
         }
       }
       playRandomMouseClick();
-      tint.style.display = "block";
       buygui.style.display = "flex";
+      animateWindowOpen(buygui, true, tint);
     } else {
       playRandomMouseClick();
       buygui.style.display = "none";
@@ -289,7 +289,6 @@ if (isGamePage) {
     const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
     playRandomMouseClick();
-    tint.style.display = "none";
-    buygui.style.display = "none";
+    animateWindowClose(buygui, true, tint);
   });
 }

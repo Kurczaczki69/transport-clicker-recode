@@ -8,6 +8,8 @@ import {
   convertDecimalBoostToPercent,
   shortAbbreviateNumber,
   showAlert,
+  animateWindowClose,
+  animateWindowOpen,
 } from "./utilities.js";
 import { getBal, saveGame, setBal, getUserCityData, updateCityProperty } from "./scr.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
@@ -220,7 +222,8 @@ export function addBuildListener() {
       populateBuildingsGrid();
       chosenCity = cityBuildBtn.getAttribute("data-city-id");
       buildingsWindow.style.display = "block";
-      cityDetailsWindow.style.display = "none";
+      animateWindowOpen(buildingsWindow, false);
+      animateWindowClose(cityDetailsWindow, false);
     });
   }
 }
@@ -229,7 +232,7 @@ if (isGamePage) {
   closeBtn.addEventListener("click", async () => {
     playRandomMouseClick();
     const cities = getCities();
-    buildingsWindow.style.display = "none";
+    animateWindowClose(buildingsWindow, false);
     const city1 = cities.find((c) => c.id === chosenCity);
     showCityDetails(city1);
     chosenCity = "";

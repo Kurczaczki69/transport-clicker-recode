@@ -1,6 +1,6 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getBal, getTimedUpgrsPrices, saveGame, setBal, syncTimedUpgrPrices } from "../scr.js";
-import { clearMsg, formatTime, showAlert } from "../utilities.js";
+import { animateWindowClose, animateWindowOpen, clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
@@ -33,7 +33,7 @@ function buyTimedUpgrade(upgrId) {
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   if (bal < upgradeToBuy.price) {
-    confirmationDialog.style.display = "none";
+    animateWindowClose(confirmationDialog, false);
     showAlert(banana.i18n("cant-afford"));
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
@@ -58,7 +58,7 @@ function buyTimedUpgrade(upgrId) {
         timedUpgrsPrices[upgradeToBuy.id] = newPrice;
         syncTimedUpgrPrices();
         saveGame(true);
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
         showNotif(
           upgradeToBuy.name,
@@ -71,11 +71,11 @@ function buyTimedUpgrade(upgrId) {
         notifTitle.id = "notif-title" + upgradeToBuy.id;
         runUpgrade(newActiveUpgr);
       } else {
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("timed-upgr-already-active"));
       }
     } else {
-      confirmationDialog.style.display = "none";
+      animateWindowClose(confirmationDialog, false);
       showAlert(banana.i18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
     }
   }
@@ -97,6 +97,7 @@ function confirmTimedUpgrade(upgradetobuy) {
   upgradeName.textContent = upgradeToBuy.name;
   clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
+  animateWindowOpen(confirmationDialog, false);
 
   // Remove any existing event listeners
   const newConfirmBtn = confirmBtn.cloneNode(true);
@@ -111,7 +112,7 @@ function confirmTimedUpgrade(upgradetobuy) {
 
   newCancelBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    confirmationDialog.style.display = "none";
+    animateWindowClose(confirmationDialog, false);
   });
 }
 

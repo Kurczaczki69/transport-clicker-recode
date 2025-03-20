@@ -1,7 +1,16 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { sleep, isEmpty, showAlert, abbreviateNumber, shortAbbreviateNumber, showMsg } from "./utilities.js";
+import {
+  sleep,
+  isEmpty,
+  showAlert,
+  abbreviateNumber,
+  shortAbbreviateNumber,
+  showMsg,
+  animateWindowClose,
+  animateWindowOpen,
+} from "./utilities.js";
 import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
@@ -174,7 +183,7 @@ export function saveGame(isSilent) {
     })
     .catch((error) => {
       console.error("error writing document", error);
-      window.location.href = "index.html";
+      showAlert(banana.i18n("alert-game-save-fail"));
     });
 }
 
@@ -186,6 +195,7 @@ const finishBtn = document.querySelector("#finish-operation-btn");
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
   menu.style.display = "block";
+  animateWindowOpen(menu, false);
   inputEl.focus();
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
@@ -250,7 +260,7 @@ if (isGamePage) {
   const busCntGUIBtn = document.querySelector("#closebuymenu");
   busCntGUIBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    menu.style.display = "none";
+    animateWindowClose(menu, false);
     resetBuyMenu();
   });
 }
@@ -276,7 +286,7 @@ function resetBuyMenu() {
   inputEl.value = "";
   updateTotal();
   chosenVhcl = "";
-  menu.style.display = "none";
+  animateWindowClose(menu, false);
   finishBtn.removeEventListener("click", buyVhclChecker);
 }
 

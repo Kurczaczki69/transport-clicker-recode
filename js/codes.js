@@ -7,7 +7,7 @@ import {
   doc,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { showMsg, clearMsg } from "./utilities.js";
+import { showMsg, clearMsg, animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
@@ -40,15 +40,14 @@ if (isGamePage) {
 
   openGuiBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "block";
     codesMenu.style.display = "block";
+    animateWindowOpen(codesMenu, true, tint);
     clearMsg("code-menu-msgbox");
   });
 
   closeGuiBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "none";
-    codesMenu.style.display = "none";
+    animateWindowClose(codesMenu, true, tint);
     clearMsg("code-menu-msgbox");
   });
 }

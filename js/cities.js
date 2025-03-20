@@ -4,6 +4,8 @@ import {
   showAlert,
   convertDecimalBoostToPercent,
   convertDecimalToPercent,
+  animateWindowOpen,
+  animateWindowClose,
 } from "./utilities.js";
 import { banana } from "./langs.js";
 import {
@@ -32,14 +34,13 @@ if (isGamePage) {
   openBtn.addEventListener("click", () => {
     playRandomMouseClick();
     populateCitiesGrid();
-    citiesWindow.style.display = "block";
-    tint.style.display = "block";
+    citiesWindow.style.display = "flex";
+    animateWindowOpen(citiesWindow, true, tint);
   });
 
   closeBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    citiesWindow.style.display = "none";
-    tint.style.display = "none";
+    animateWindowClose(citiesWindow, true, tint);
   });
 }
 
@@ -231,7 +232,7 @@ const cityBuildBtn = document.querySelector("#city-details-buildings-btn");
 if (isGamePage) {
   cityDetailsCloseBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    cityDetails.style.display = "none";
+    animateWindowClose(cityDetails, false);
     cityBuildBtn.setAttribute("data-city-id", "");
   });
 }
@@ -255,6 +256,7 @@ export function showCityDetails(city) {
   cityBuildBtn.setAttribute("data-city-id", city.id);
   addBuildListener();
   cityDetails.style.display = "block";
+  animateWindowOpen(cityDetails, false);
 }
 
 // city events section

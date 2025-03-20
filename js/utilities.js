@@ -41,12 +41,14 @@ export function showAlert(message) {
   tint.style.display = "block";
   alertSpan.innerText = message;
   alertWindow.style.display = "flex";
+  animateWindowOpen(alertWindow, true, tint);
 
   newCloseBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "none";
-    alertWindow.style.display = "none";
-    alertSpan.innerText = "";
+    animateWindowClose(alertWindow, true, tint);
+    setTimeout(() => {
+      alertSpan.innerText = "";
+    }, 250);
   });
 }
 
@@ -151,4 +153,51 @@ export function convertDecimalBoostToPercent(value) {
 
 export function convertDecimalToPercent(value) {
   return (value * 100).toFixed(0);
+}
+
+export function animateWindowOpen(element, isTint, tint) {
+  if (isTint) {
+    tint.style.display = "block";
+    anime({
+      targets: [tint],
+      opacity: [0, 1],
+      duration: 200,
+      easing: "easeOutCubic",
+    });
+  }
+
+  element.style.opacity = 0;
+  element.style.transform = "translate(-50%, -50%) scale(0.8)";
+
+  anime({
+    targets: [element],
+    opacity: [0, 1],
+    scale: [0.8, 1],
+    duration: 150,
+    easing: "easeOutCubic",
+  });
+}
+
+export function animateWindowClose(element, isTint, tint) {
+  if (isTint) {
+    anime({
+      targets: [tint],
+      opacity: [1, 0],
+      duration: 200,
+      easing: "easeOutCubic",
+    });
+  }
+  anime({
+    targets: element,
+    opacity: [1, 0],
+    scale: [1, 0.8],
+    duration: 150,
+    easing: "easeInCubic",
+    complete: () => {
+      element.style.display = "none";
+      if (isTint) {
+        tint.style.display = "none";
+      }
+    },
+  });
 }

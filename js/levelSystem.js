@@ -1,5 +1,5 @@
 import { getIncome, getClickMod, getBal, setBal, syncVehiclePrices, checkLevel } from "./scr.js";
-import { abbreviateNumber } from "./utilities.js";
+import { abbreviateNumber, animateWindowClose, animateWindowOpen } from "./utilities.js";
 import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
 import { banana } from "./langs.js";
@@ -20,14 +20,13 @@ if (isGamePage) {
     playRandomMouseClick();
     displayData();
     displayStats();
-    tint.style.display = "block";
     statsWindow.style.display = "flex";
+    animateWindowOpen(statsWindow, true, tint);
   });
 
   statsWindowCloseBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    tint.style.display = "none";
-    statsWindow.style.display = "none";
+    animateWindowClose(statsWindow, true, tint);
   });
 }
 
