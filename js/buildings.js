@@ -1,5 +1,5 @@
 import { blockCityUnlock, populateCitiesGrid, showCityDetails } from "./cities.js";
-import { getBuildings } from "./data/buildingData.js";
+import { getBuildings, initializeBuildings } from "./data/buildingData.js";
 import { getCities } from "./data/cityData.js";
 import { banana } from "./langs.js";
 import { getLevel } from "./levelSystem.js";
@@ -95,10 +95,10 @@ function createBuildingCard(building) {
   }
 
   card.innerHTML = `
-      <img src="${building.imgPath}" alt="${building.name}" class="building-card-image">
+      <img src="${building.imgPath}" alt="${banana.i18n(`building-${building.id}`)}" class="building-card-image">
     <div class="building-card-content">
-      <div class="building-card-title">${building.name}</div>
-      <div class="building-card-desc">${building.desc}</div>
+      <div class="building-card-title">${banana.i18n(`building-${building.id}`)}</div>
+      <div class="building-card-desc">${banana.i18n(`building-${building.id}-desc`)}</div>
       <div class="building-card-info">
         <span>${banana.i18n("buildings-boost-type", banana.i18n(`building-boost-${building.boostType}`))}</span>
         <span>${banana.i18n("buildings-boost", boostValue)}</span>
