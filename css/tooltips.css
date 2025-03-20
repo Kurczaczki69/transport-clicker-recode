@@ -1,10 +1,10 @@
 .tooltip {
   position: absolute;
-  top: 8vh;
+  top: 7vh;
   opacity: 0;
   background-color: var(--colorscheme1);
   color: var(--colorscheme4);
-  padding: 5px 10px;
+  padding: 1vh 2vh;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -13,11 +13,12 @@
   pointer-events: none;
   letter-spacing: 0.25px;
   font-size: small;
+  white-space: nowrap;
 }
 
 .nav-item:hover .tooltip {
-  opacity: 1;
-  transition-duration: 0.5s;
+  opacity: 0.9;
+  transition-duration: 0.2s;
 }
 
 @media screen and (max-width: 768px) {

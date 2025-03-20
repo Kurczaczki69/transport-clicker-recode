@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { showMsg } from "../utilities.js";
+import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
 import { banana } from "../langs.js";
 import { playRandomMouseClick } from "../sounds.js";
 
@@ -26,17 +26,21 @@ const db = getFirestore(app);
 const accDelBtn = document.getElementById("delete-account-btn");
 const cancelBtn = document.getElementById("are-you-sure-cancel-btn");
 
+const passWrapper = document.querySelector("#changePassWrapper");
+const areYouSureWrapper = document.querySelector("#areYouSureWrapper");
+
 accDelBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  document.getElementById("areYouSureWrapper").style.display = "block";
-  document.getElementById("changePassWrapper").style.display = "none";
+  animateAppear(areYouSureWrapper);
+  animateDisappear(passWrapper);
 });
 
 cancelBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  document.getElementById("areYouSureWrapper").style.display = "none";
+  animateDisappear(areYouSureWrapper);
 });
 
+// account deletion
 const confirmBtn = document.getElementById("are-you-sure-confirm-btn");
 
 confirmBtn.addEventListener("click", async (event) => {

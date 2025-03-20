@@ -78,6 +78,11 @@ option {
   padding-left: 0.5vh;
   padding-right: 0.5vh;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: scale(1.075);
 }
 
 .closegui {
@@ -262,6 +267,10 @@ input::placeholder {
 
 @media (hover: none) {
   .btns:hover {
+    transform: none;
+  }
+
+  .nav-item:hover {
     transform: none;
   }
 }

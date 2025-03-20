@@ -60,7 +60,7 @@ function updateLangInHtml() {
 export function setPageTitle(page) {
   const titleKey = `page-title-${page}`;
   const title = banana.i18n(titleKey);
-  if (title) {
+  if (title && title !== titleKey) {
     document.title = title;
   }
 }

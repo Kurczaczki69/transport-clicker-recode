@@ -123,11 +123,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           .then(() => {
             sleep(700).then(() => {
               startTimedUpgrades();
-              const currentPage = document.body.getAttribute("data-page");
-              setPageTitle(currentPage);
               gameSaver();
               displayStats();
               startGameLoop();
+              const currentPage = document.body.getAttribute("data-page");
+              setPageTitle(currentPage);
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
                 initializeCities();
@@ -534,8 +534,8 @@ function clicker(e) {
   anime({
     targets: indicator,
     keyframes: [
-      { translateY: 0, opacity: 1, duration: 100 },
-      { translateY: -75, opacity: 0, duration: 250 },
+      { translateY: 0, opacity: 1, scale: 1.2, duration: 100 },
+      { translateY: -75, opacity: 0, scale: 0.8, duration: 250 },
     ],
     easing: "easeInOutCubic",
     duration: 500,

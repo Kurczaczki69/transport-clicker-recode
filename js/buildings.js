@@ -119,23 +119,6 @@ function blockBuilding(id, reason) {
   }
 }
 
-// export function calculateBuildingsClickMod() {
-//   const buildings = getBuildings();
-//   const userCityData = getUserCityData();
-//   const cities = getCities();
-//   const cityData = userCityData[chosenCity] || {};
-//   const userBuildings = cityData.buildings || [];
-
-//   let mod = 1;
-//   buildings.forEach((building) => {
-//     if (userBuildings.includes(building.id)) {
-//       switch (building.boostType) {
-//         case "income":
-//           let val1 = cities[chosenCity].baseboost * building.boostValue;
-//           mod *= Math.round(val1 * 100) / 100;
-//           break;
-// }
-
 // search
 const searchBar = document.querySelector("#buildings-search");
 const searchBtn = document.querySelector("#buildings-search-btn");
@@ -168,6 +151,17 @@ if (isGamePage) {
     playRandomMouseClick();
     noResults.style.display = "none";
     populateBuildingsGrid();
+  });
+
+  searchBar.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      searchBtn.click();
+    }
+  });
+
+  searchBar.addEventListener("click", () => {
+    searchBar.value = "";
+    playRandomMouseClick();
   });
 }
 

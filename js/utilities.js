@@ -39,11 +39,19 @@ export function showAlert(message) {
   alertCloseBtn.parentNode.replaceChild(newCloseBtn, alertCloseBtn);
 
   tint.style.display = "block";
-  alertSpan.innerText = message;
+  alertSpan.textContent = message;
   alertWindow.style.display = "flex";
   animateWindowOpen(alertWindow, true, tint);
 
+  const closeTimeout = setTimeout(() => {
+    animateWindowClose(alertWindow, true, tint);
+    setTimeout(() => {
+      alertSpan.textContent = "";
+    }, 250);
+  }, 10000);
+
   newCloseBtn.addEventListener("click", () => {
+    clearTimeout(closeTimeout);
     playRandomMouseClick();
     animateWindowClose(alertWindow, true, tint);
     setTimeout(() => {
@@ -104,6 +112,8 @@ export function abbreviateNumber(num) {
   return `${formatted} ${suffix}`;
 }
 
+// abbreviates large numbers to human readable format
+// but in a shorter format(use this for prices and other things that logically should be short)
 export function shortAbbreviateNumber(num, location) {
   const bigNum = Math.floor(num);
   const lang = localStorage.getItem("lang") || "en";
@@ -146,15 +156,23 @@ export function formatTime(ms) {
   return formattedTime || `0 ${banana.i18n("time-seconds")}`;
 }
 
+// converts decimal number to percentage in income boosts etc. (so 0.5 becomes -50 and 1.5 becomes +50)
+//  (the percent sign is added in the language files)
 export function convertDecimalBoostToPercent(value) {
   if (value < 1) return "-" + (100 - value * 100).toFixed(0);
   else return "+" + (value * 100 - 100).toFixed(0);
 }
 
+// regular percentage conversion (0.5 becomes 50)
+//  (the percent sign is added in the language files)
 export function convertDecimalToPercent(value) {
   return (value * 100).toFixed(0);
 }
 
+// animates a window opening
+// element - the element you wanna animate
+// isTint - if you want a tint to appear behind the window
+// tint - the tint element
 export function animateWindowOpen(element, isTint, tint) {
   if (isTint) {
     tint.style.display = "block";
@@ -178,6 +196,10 @@ export function animateWindowOpen(element, isTint, tint) {
   });
 }
 
+// animates a window closing
+// element - the element you wanna animate
+// isTint - if you want a tint to disappear behind the window
+// tint - the tint element
 export function animateWindowClose(element, isTint, tint) {
   if (isTint) {
     anime({
@@ -198,6 +220,34 @@ export function animateWindowClose(element, isTint, tint) {
       if (isTint) {
         tint.style.display = "none";
       }
+    },
+  });
+}
+
+// animates an element appearing
+// el - the element you wanna animate
+export function animateAppear(el) {
+  el.style.opacity = 0;
+  el.style.display = "block";
+  anime({
+    targets: el,
+    opacity: 1,
+    duration: 125,
+    easing: "easeInOutQuad",
+  });
+}
+
+// animates an element disappearing
+// el - the element you wanna animate
+export function animateDisappear(el) {
+  el.style.opacity = 1;
+  anime({
+    targets: el,
+    opacity: 0,
+    duration: 125,
+    easing: "easeInOutQuad",
+    complete: () => {
+      el.style.display = "none";
     },
   });
 }

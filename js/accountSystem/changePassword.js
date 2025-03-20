@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
   updatePassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { showMsg } from "../utilities.js";
+import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
 import { banana } from "../langs.js";
 import { playRandomMouseClick } from "../sounds.js";
 
@@ -26,15 +26,18 @@ const newPassInput = document.querySelector("#change-pass-new-input");
 const cancelBtn = document.querySelector("#change-pass-cancel-btn");
 const confirmBtn = document.querySelector("#change-pass-confirm-btn");
 
+const passWrapper = document.querySelector("#changePassWrapper");
+const areYouSureWrapper = document.querySelector("#areYouSureWrapper");
+
 changePassBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  document.querySelector("#changePassWrapper").style.display = "block";
-  document.querySelector("#areYouSureWrapper").style.display = "none";
+  animateDisappear(areYouSureWrapper);
+  animateAppear(passWrapper);
 });
 
 cancelBtn.addEventListener("click", () => {
   playRandomMouseClick();
-  document.querySelector("#changePassWrapper").style.display = "none";
+  animateDisappear(passWrapper);
 });
 
 confirmBtn.addEventListener("click", (event) => {
@@ -88,6 +91,6 @@ confirmBtn.addEventListener("click", (event) => {
   }
 });
 
-function isEmpty(str) {
+export function isEmpty(str) {
   return !str.trim().length;
 }
