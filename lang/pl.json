@@ -143,7 +143,7 @@
   "page-title-game": "Gra — Transport Clicker",
   "email-not-verified-logged-out": "Twój adres e-mail nie jest zweryfikowany więc$1 zostałeś wylogowany. Proszę zalogować się ponownie $1aby móc wysłać link do weryfikacji.",
   "alert-game-saved": "Zapisano grę",
-  "alert-game-save-fail": "Failed to save the game. Please try again and if the problem persists, contact the developer",
+  "alert-game-save-fail": "Nie udało się zapisać gry. Spróbuj ponownie, a jeśli problem będzie się powtarzał, skontaktuj się z deweloperem",
   "upgrade-success": "Kupiono ulepszenie",
   "upgrade-already-bought": "Już kupiłeś to ulepszenie",
   "upgrade-not-available": "To ulepszenie będzie dostępne w następnych aktualizacjach",
