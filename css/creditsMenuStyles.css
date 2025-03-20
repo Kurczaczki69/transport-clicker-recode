@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   width: 60%;
   height: 65%;
   background-color: var(--colorscheme2);
@@ -10,7 +10,10 @@
   border-radius: 10px;
   overflow: auto;
   display: none;
-  z-index: 1000;
+  z-index: 800;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 #credits-menu-wrapper {
@@ -43,11 +46,14 @@
 .credits-menu-section-left-item {
   width: 100%;
   height: 20%;
-  border-bottom: var(--border2);
   font-size: 1.5rem;
   transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
   font-weight: 700;
+}
+
+.credits-menu-section-left-item:not(:last-child) {
+  border-bottom: var(--border2);
 }
 
 .credits-menu-section-left-item:hover {

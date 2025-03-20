@@ -1,13 +1,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 import {
   getAuth,
   deleteUser,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { showMsg } from "../utilities.js";
+import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
 import { banana } from "../langs.js";
+import { playRandomMouseClick } from "../sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -26,19 +26,26 @@ const db = getFirestore(app);
 const accDelBtn = document.getElementById("delete-account-btn");
 const cancelBtn = document.getElementById("are-you-sure-cancel-btn");
 
+const passWrapper = document.querySelector("#changePassWrapper");
+const areYouSureWrapper = document.querySelector("#areYouSureWrapper");
+
 accDelBtn.addEventListener("click", () => {
-  document.getElementById("areYouSureWrapper").style.display = "block";
-  document.getElementById("changePassWrapper").style.display = "none";
+  playRandomMouseClick();
+  animateAppear(areYouSureWrapper);
+  animateDisappear(passWrapper);
 });
 
 cancelBtn.addEventListener("click", () => {
-  document.getElementById("areYouSureWrapper").style.display = "none";
+  playRandomMouseClick();
+  animateDisappear(areYouSureWrapper);
 });
 
+// account deletion
 const confirmBtn = document.getElementById("are-you-sure-confirm-btn");
 
 confirmBtn.addEventListener("click", async (event) => {
   event.preventDefault();
+  playRandomMouseClick();
   const auth = getAuth();
   const user = auth.currentUser;
   const password = document.getElementById("are-you-sure-pass-input").value;

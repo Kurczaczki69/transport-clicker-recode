@@ -23,8 +23,8 @@ const loginBtn = document.querySelector("#login-btn");
 loginBtn.addEventListener("click", (event) => {
   console.log("btn clicked");
   event.preventDefault();
-  const email = document.getElementById("email-input-login").value;
-  const password = document.getElementById("password-input-login").value;
+  const email = document.querySelector("#email-input-login").value;
+  const password = document.querySelector("#password-input-login").value;
   const auth = getAuth();
 
   signInWithEmailAndPassword(auth, email, password)
@@ -42,7 +42,7 @@ loginBtn.addEventListener("click", (event) => {
           banana.i18n("auth-login-verify-email", "<br>", "<span id='send-verification-again'>", "</span>"),
           "errorMsgLogin"
         );
-        const sendVerificationBtn = document.getElementById("send-verification-again");
+        const sendVerificationBtn = document.querySelector("#send-verification-again");
         sendVerificationBtn.addEventListener("click", () => {
           sendEmailVerification(auth.currentUser)
             .then(() => {

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 
 html {
   height: 100%;
@@ -11,9 +11,10 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background: var(--colorscheme3);
-  background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
-  font-family: "Noto Sans", sans-serif;
+  background-image: url("../img/bg/bg-1.png");
+  background-position: 0%;
+  background-size: cover;
+  font-family: "Geologica", sans-serif;
   overflow: hidden;
   user-select: none;
   scroll-behavior: smooth;
@@ -28,7 +29,7 @@ a {
 }
 
 option {
-  font-family: "Lato", sans-serif;
+  font-family: "Geologica", sans-serif;
   color: var(--colorscheme4);
   background-color: var(--colorscheme3);
 }
@@ -41,6 +42,7 @@ option {
   left: 0;
   background-color: rgba(21, 20, 20, 0.605);
   display: none;
+  opacity: 0;
 }
 
 .navbar {
@@ -76,6 +78,11 @@ option {
   padding-left: 0.5vh;
   padding-right: 0.5vh;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: scale(1.075);
 }
 
 .closegui {
@@ -91,7 +98,7 @@ option {
   border-radius: 5px;
   background: var(--colorscheme4);
   background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  box-shadow: var(--boxshadow);
   font-weight: 750;
   transform: scale(1);
   transition: transform 0.3s;
@@ -100,6 +107,14 @@ option {
 .btns:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
+}
+
+select {
+  font-family: "Geologica", sans-serif;
+}
+
+input::placeholder {
+  font-family: "Geologica", sans-serif;
 }
 
 #vars {
@@ -127,6 +142,7 @@ option {
   border-bottom-right-radius: 10px;
   background-color: var(--colorscheme2);
   border-bottom: var(--border2);
+  box-shadow: var(--boxshadow);
 }
 
 .vars-item {
@@ -148,17 +164,33 @@ option {
 }
 
 #clicker {
-  background-color: var(--colorscheme2);
-  border: var(--border5);
-  width: 60vw;
-  height: 65vh;
-  border-radius: 20px;
-
+  width: 35vw;
+  height: 35vh;
   z-index: 23;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#clicker-img {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+#clicker-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5vh 30vw 20vh rgba(0, 0, 0, 0.9);
 }
 
 #clicker-text {
@@ -172,7 +204,28 @@ option {
   color: var(--colorscheme3);
 }
 
+#click-indicator {
+  position: absolute;
+  z-index: 600;
+  font-weight: 800;
+}
+
 @media screen and (max-width: 768px) {
+  #clicker {
+    width: 85vw;
+    height: 65vh;
+    touch-action: manipulation;
+  }
+
+  #clicker-img {
+    width: 100%;
+    height: auto;
+  }
+
+  #clicker-shadow {
+    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.7);
+  }
+
   .navbar {
     width: 85vw;
     height: 17vh;
@@ -214,6 +267,10 @@ option {
 
 @media (hover: none) {
   .btns:hover {
+    transform: none;
+  }
+
+  .nav-item:hover {
     transform: none;
   }
 }

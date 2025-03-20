@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   background-color: var(--colorscheme2);
   width: 70vw;
   height: 70vh;
@@ -11,6 +11,9 @@
   display: none;
   flex-direction: column;
   z-index: 800;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .upgrade-item {
@@ -264,7 +267,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   width: 40%;
   height: 30%;
   padding: 1vw;
@@ -272,6 +275,9 @@
   border: var(--border5);
   border-radius: 10px;
   display: none;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 #confirm-upgrade-dialog-text {

@@ -1,4 +1,5 @@
 import { banana } from "./langs.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 // simple sleep function so you dont have to use setTimeout, the parameter is the time in milliseconds
 export function sleep(ms) {
@@ -12,7 +13,7 @@ export function isEmpty(value) {
 
 // shows message in div specified in parameter
 export function showMsg(message, divId) {
-  var messageDiv = document.querySelector(`#${divId}`);
+  const messageDiv = document.querySelector(`#${divId}`);
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
   messageDiv.style.opacity = 1;
@@ -34,14 +35,28 @@ export function showAlert(message) {
   const alertCloseBtn = document.querySelector("#accept-alert-btn");
   const tint = document.querySelector("#alert-tint");
 
-  tint.style.display = "block";
-  alertSpan.innerText = message;
-  alertWindow.style.display = "flex";
+  const newCloseBtn = alertCloseBtn.cloneNode(true);
+  alertCloseBtn.parentNode.replaceChild(newCloseBtn, alertCloseBtn);
 
-  alertCloseBtn.addEventListener("click", () => {
-    tint.style.display = "none";
-    alertWindow.style.display = "none";
-    alertSpan.innerText = "";
+  tint.style.display = "block";
+  alertSpan.textContent = message;
+  alertWindow.style.display = "flex";
+  animateWindowOpen(alertWindow, true, tint);
+
+  const closeTimeout = setTimeout(() => {
+    animateWindowClose(alertWindow, true, tint);
+    setTimeout(() => {
+      alertSpan.textContent = "";
+    }, 250);
+  }, 10000);
+
+  newCloseBtn.addEventListener("click", () => {
+    clearTimeout(closeTimeout);
+    playRandomMouseClick();
+    animateWindowClose(alertWindow, true, tint);
+    setTimeout(() => {
+      alertSpan.innerText = "";
+    }, 250);
   });
 }
 
@@ -64,7 +79,7 @@ export function abbreviateNumber(num) {
   ];
 
   const lang = localStorage.getItem("lang") || "en";
-  const roundedNum = Math.floor(num);
+  const roundedNum = Math.round(num);
 
   // numbers less than one trillion use Intl.NumberFormat
   if (roundedNum < 1e12) {
@@ -97,6 +112,8 @@ export function abbreviateNumber(num) {
   return `${formatted} ${suffix}`;
 }
 
+// abbreviates large numbers to human readable format
+// but in a shorter format(use this for prices and other things that logically should be short)
 export function shortAbbreviateNumber(num, location) {
   const bigNum = Math.floor(num);
   const lang = localStorage.getItem("lang") || "en";
@@ -139,7 +156,98 @@ export function formatTime(ms) {
   return formattedTime || `0 ${banana.i18n("time-seconds")}`;
 }
 
+// converts decimal number to percentage in income boosts etc. (so 0.5 becomes -50 and 1.5 becomes +50)
+//  (the percent sign is added in the language files)
 export function convertDecimalBoostToPercent(value) {
   if (value < 1) return "-" + (100 - value * 100).toFixed(0);
   else return "+" + (value * 100 - 100).toFixed(0);
+}
+
+// regular percentage conversion (0.5 becomes 50)
+//  (the percent sign is added in the language files)
+export function convertDecimalToPercent(value) {
+  return (value * 100).toFixed(0);
+}
+
+// animates a window opening
+// element - the element you wanna animate
+// isTint - if you want a tint to appear behind the window
+// tint - the tint element
+export function animateWindowOpen(element, isTint, tint) {
+  if (isTint) {
+    tint.style.display = "block";
+    anime({
+      targets: [tint],
+      opacity: [0, 1],
+      duration: 200,
+      easing: "easeOutCubic",
+    });
+  }
+
+  element.style.opacity = 0;
+  element.style.transform = "translate(-50%, -50%) scale(0.8)";
+
+  anime({
+    targets: [element],
+    opacity: [0, 1],
+    scale: [0.8, 1],
+    duration: 150,
+    easing: "easeOutCubic",
+  });
+}
+
+// animates a window closing
+// element - the element you wanna animate
+// isTint - if you want a tint to disappear behind the window
+// tint - the tint element
+export function animateWindowClose(element, isTint, tint) {
+  if (isTint) {
+    anime({
+      targets: [tint],
+      opacity: [1, 0],
+      duration: 200,
+      easing: "easeOutCubic",
+    });
+  }
+  anime({
+    targets: element,
+    opacity: [1, 0],
+    scale: [1, 0.8],
+    duration: 150,
+    easing: "easeInCubic",
+    complete: () => {
+      element.style.display = "none";
+      if (isTint) {
+        tint.style.display = "none";
+      }
+    },
+  });
+}
+
+// animates an element appearing
+// el - the element you wanna animate
+export function animateAppear(el) {
+  el.style.opacity = 0;
+  el.style.display = "block";
+  anime({
+    targets: el,
+    opacity: 1,
+    duration: 125,
+    easing: "easeInOutQuad",
+  });
+}
+
+// animates an element disappearing
+// el - the element you wanna animate
+export function animateDisappear(el) {
+  el.style.opacity = 1;
+  anime({
+    targets: el,
+    opacity: 0,
+    duration: 125,
+    easing: "easeInOutQuad",
+    complete: () => {
+      el.style.display = "none";
+    },
+  });
 }

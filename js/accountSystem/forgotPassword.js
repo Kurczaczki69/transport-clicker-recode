@@ -14,12 +14,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const forgotPassBtn = document.getElementById("forgot-pass-link");
+const forgotPassBtn = document.querySelector("#forgot-pass-link");
 
 forgotPassBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const auth = getAuth();
-  const email = document.getElementById("email-input-login").value;
+  const email = document.querySelector("#email-input-login").value;
   sendPasswordResetEmail(auth, email)
     .then(() => {
       showMsg(banana.i18n("auth-password-reset-sent"), "errorMsgLogin");

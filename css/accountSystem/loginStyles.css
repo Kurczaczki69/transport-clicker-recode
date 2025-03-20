@@ -1,16 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bgcolor);
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Geologica", sans-serif;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  background: var(--colorscheme3);
-  background: radial-gradient(circle, var(--colorscheme3) 45%, var(--colorscheme1) 76%);
+  background-image: url("../img/bg/bg-2.png");
+  background-position: 0%;
+  background-position: cover;
   overflow-y: hidden;
   user-select: none;
   scroll-behavior: smooth;
@@ -75,6 +76,7 @@ body {
 
 .form-input::placeholder {
   color: var(--colorscheme4);
+  font-family: "Geologica", sans-serif;
 }
 
 .form-input:focus {
@@ -130,6 +132,7 @@ body {
   color: var(--colorscheme2);
   margin-top: 0.5%;
   margin-bottom: -1%;
+  font-family: "Geologica", sans-serif;
 }
 
 #lang-dropdown:focus {
@@ -138,7 +141,7 @@ body {
 }
 
 option {
-  font-family: "Lato", sans-serif;
+  font-family: "Geologica", sans-serif;
   color: var(--colorscheme4);
   background-color: var(--colorscheme3);
 }

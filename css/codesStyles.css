@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   width: 30%;
   height: 20%;
   background-color: var(--colorscheme2);
@@ -11,6 +11,9 @@
   overflow: auto;
   display: none;
   z-index: 1000;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 #code-menu-wrapper {

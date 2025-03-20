@@ -7,6 +7,7 @@ import { syncVehiclePrices } from "./scr.js";
 import { populateThemeOptions } from "./settings.js";
 import { sleep } from "./utilities.js";
 import { initializeCities } from "./data/cityData.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 const banana = new Banana();
 
@@ -59,7 +60,7 @@ function updateLangInHtml() {
 export function setPageTitle(page) {
   const titleKey = `page-title-${page}`;
   const title = banana.i18n(titleKey);
-  if (title) {
+  if (title && title !== titleKey) {
     document.title = title;
   }
 }
@@ -69,6 +70,7 @@ const langDropdown = document.querySelector("#lang-dropdown");
 if (langDropdown) {
   langDropdown.addEventListener("change", (event) => {
     const selectedLang = event.target.value;
+    playRandomMouseClick();
     changeLang(selectedLang);
   });
 }

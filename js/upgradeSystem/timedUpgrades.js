@@ -1,9 +1,10 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
-import { getBal, setBal } from "../scr.js";
-import { clearMsg, formatTime, showAlert } from "../utilities.js";
+import { getBal, getTimedUpgrsPrices, saveGame, setBal, syncTimedUpgrPrices } from "../scr.js";
+import { animateWindowClose, animateWindowOpen, clearMsg, formatTime, showAlert } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
+import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 
 let activeTimedUpgrades = [];
 const activeTimedUpgradeLimit = 2;
@@ -32,23 +33,32 @@ function buyTimedUpgrade(upgrId) {
   const confirmationDialog = document.querySelector("#confirm-upgrade-dialog");
   let bal = getBal();
   if (bal < upgradeToBuy.price) {
-    confirmationDialog.style.display = "none";
+    animateWindowClose(confirmationDialog, false);
     showAlert(banana.i18n("cant-afford"));
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       if (!checkUpgradeByType(upgradeToBuy.type)) {
         let activeUpgrs = getActiveTimedUpgrades();
+        const timedUpgrsPrices = getTimedUpgrsPrices();
         const newActiveUpgr = {
           ...upgradeToBuy,
           startTime: Date.now(),
           endTime: Date.now() + upgradeToBuy.duration,
         };
         activeUpgrs.push(newActiveUpgr);
-        console.log(activeUpgrs);
         setActiveTimedUpgrades(activeUpgrs);
+        playRandomCash();
         bal -= upgradeToBuy.price;
         setBal(bal);
-        confirmationDialog.style.display = "none";
+        const currentPrice = timedUpgrsPrices[upgradeToBuy.id] || upgradeToBuy.price;
+        const maxPrice = 1e20; // 100 quintillion
+        const scale = Math.max(0, 1 - currentPrice / maxPrice);
+        const priceMultiplier = 1 + 0.01 * scale * Math.log10(currentPrice + 1);
+        const newPrice = Math.round(currentPrice * priceMultiplier);
+        timedUpgrsPrices[upgradeToBuy.id] = newPrice;
+        syncTimedUpgrPrices();
+        saveGame(true);
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
         showNotif(
           upgradeToBuy.name,
@@ -61,11 +71,11 @@ function buyTimedUpgrade(upgrId) {
         notifTitle.id = "notif-title" + upgradeToBuy.id;
         runUpgrade(newActiveUpgr);
       } else {
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("timed-upgr-already-active"));
       }
     } else {
-      confirmationDialog.style.display = "none";
+      animateWindowClose(confirmationDialog, false);
       showAlert(banana.i18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
     }
   }
@@ -87,6 +97,7 @@ function confirmTimedUpgrade(upgradetobuy) {
   upgradeName.textContent = upgradeToBuy.name;
   clearMsg("msg-confirm-upgrade");
   confirmationDialog.style.display = "block";
+  animateWindowOpen(confirmationDialog, false);
 
   // Remove any existing event listeners
   const newConfirmBtn = confirmBtn.cloneNode(true);
@@ -100,7 +111,8 @@ function confirmTimedUpgrade(upgradetobuy) {
   });
 
   newCancelBtn.addEventListener("click", () => {
-    confirmationDialog.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(confirmationDialog, false);
   });
 }
 
@@ -127,14 +139,17 @@ export function checkTimedUpgrLevel() {
       upgrEl.classList.remove("upgr-menu-timed-upgr-item-btn");
       upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmTimedUpgrade(upgrEl.id);
       });
     } else {
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmTimedUpgrade(upgrEl.id);
       });
     }

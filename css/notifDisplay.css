@@ -3,7 +3,7 @@
   top: 10%;
   right: 2.5%;
   background-color: var(--colorscheme2);
-  width: 13%;
+  width: 15%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@
   border-bottom: var(--border2);
   border-top: var(--border2);
   border-radius: 10px;
+  box-shadow: var(--boxshadow);
 }
 
 @media screen and (max-width: 768px) {
@@ -28,6 +29,7 @@
   align-items: left;
   justify-content: left;
   width: 100%;
+  padding-right: 0.2vw;
   height: auto;
   padding-bottom: 0.8vh;
   position: relative;
@@ -47,6 +49,7 @@
   font-size: 0.8rem;
   font-weight: 400;
   margin-left: 0.5vw;
+  width: 80%;
 }
 
 .notif-close-btn {

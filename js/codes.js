@@ -7,10 +7,11 @@ import {
   doc,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { showMsg, clearMsg } from "./utilities.js";
+import { showMsg, clearMsg, animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -38,14 +39,15 @@ if (isGamePage) {
   const openGuiBtn = document.querySelector("#nav-item-codes-menu");
 
   openGuiBtn.addEventListener("click", () => {
-    tint.style.display = "block";
+    playRandomMouseClick();
     codesMenu.style.display = "block";
+    animateWindowOpen(codesMenu, true, tint);
     clearMsg("code-menu-msgbox");
   });
 
   closeGuiBtn.addEventListener("click", () => {
-    tint.style.display = "none";
-    codesMenu.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(codesMenu, true, tint);
     clearMsg("code-menu-msgbox");
   });
 }
@@ -123,6 +125,7 @@ if (isGamePage) {
   const codeInput = document.querySelector("#code-menu-input");
   const confirmBtn = document.querySelector("#code-menu-confirm-btn");
   confirmBtn.addEventListener("click", () => {
+    playRandomMouseClick();
     useCode(codeInput.value);
     codeInput.value = "";
   });

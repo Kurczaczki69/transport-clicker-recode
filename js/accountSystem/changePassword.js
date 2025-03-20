@@ -4,8 +4,9 @@ import {
   signInWithEmailAndPassword,
   updatePassword,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { showMsg } from "../utilities.js";
+import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
 import { banana } from "../langs.js";
+import { playRandomMouseClick } from "../sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -19,23 +20,29 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const changePassBtn = document.getElementById("change-pass-btn");
-const oldPassInput = document.getElementById("change-pass-old-input");
-const newPassInput = document.getElementById("change-pass-new-input");
-const cancelBtn = document.getElementById("change-pass-cancel-btn");
-const confirmBtn = document.getElementById("change-pass-confirm-btn");
+const changePassBtn = document.querySelector("#change-pass-btn");
+const oldPassInput = document.querySelector("#change-pass-old-input");
+const newPassInput = document.querySelector("#change-pass-new-input");
+const cancelBtn = document.querySelector("#change-pass-cancel-btn");
+const confirmBtn = document.querySelector("#change-pass-confirm-btn");
+
+const passWrapper = document.querySelector("#changePassWrapper");
+const areYouSureWrapper = document.querySelector("#areYouSureWrapper");
 
 changePassBtn.addEventListener("click", () => {
-  document.getElementById("changePassWrapper").style.display = "block";
-  document.getElementById("areYouSureWrapper").style.display = "none";
+  playRandomMouseClick();
+  animateDisappear(areYouSureWrapper);
+  animateAppear(passWrapper);
 });
 
 cancelBtn.addEventListener("click", () => {
-  document.getElementById("changePassWrapper").style.display = "none";
+  playRandomMouseClick();
+  animateDisappear(passWrapper);
 });
 
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault();
+  playRandomMouseClick();
   const oldPass = oldPassInput.value;
   const newPass = newPassInput.value;
   if (isEmpty(oldPass) || isEmpty(newPass)) {
@@ -84,6 +91,6 @@ confirmBtn.addEventListener("click", (event) => {
   }
 });
 
-function isEmpty(str) {
+export function isEmpty(str) {
   return !str.trim().length;
 }

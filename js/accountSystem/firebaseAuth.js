@@ -23,9 +23,9 @@ const app = initializeApp(firebaseConfig);
 const RegisterBtn = document.querySelector("#register-btn");
 RegisterBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const username = document.getElementById("username-input reg-name").value;
-  const email = document.getElementById("email-input reg-email").value;
-  const password = document.getElementById("password-input reg-pass").value;
+  const username = document.querySelector("#username-input reg-name").value;
+  const email = document.querySelector("#email-input reg-email").value;
+  const password = document.querySelector("#password-input reg-pass").value;
 
   const auth = getAuth();
   const db = getFirestore();

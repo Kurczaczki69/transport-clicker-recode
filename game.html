@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- TRANSPORT CLICKER ALPHA 0.10.4 -->
+  <!-- TRANSPORT CLICKER BETA 1.0.0 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
-  - luku123
-  - Kiniaczu (Translator)
+  - luku123 (Main developer, Translator) (english, polish)
+  - Kiniaczu (Translator) (english)
+  - yn (user99) (Translator) (arabic)
     currently thats it :) -->
   <head>
     <meta charset="UTF-8" />
@@ -29,16 +30,24 @@
     <link rel="stylesheet" href="css/statsSystem.css" />
     <link rel="stylesheet" href="css/settingsMenu.css" />
     <link rel="stylesheet" href="css/citiesWindow.css" />
+    <link rel="stylesheet" href="css/buildingsStyles.css" />
     <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script src="node_modules/animejs/lib/anime.min.js"></script>
 
     <style>
       :root {
         --border5: solid 1.5px var(--colorscheme4);
         --border2: solid 1px var(--colorscheme4);
         --linkcolor: var(--colorscheme3);
+        --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
 
         --colorscheme1: #062925;
         --colorscheme2: #044a42;
@@ -49,15 +58,8 @@
   </head>
   <body data-page="game">
     <div id="loader-wrapper">
-      <div class="col-sm-2">
-        <div id="square5">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
-        </div>
-      </div>
+      <div class="spinner"></div>
+      <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
     </div>
 
     <div class="tints" id="window-tint" style="z-index: 799"></div>
@@ -153,7 +155,7 @@
       </div>
 
       <div id="vhcl-stats-wrapper">
-        <div id="vhcl-stats-title" data-lang="vhcl-stats-title"></div>
+        <div id="vhcl-stats-title-wrapper"><div id="vhcl-stats-title" data-lang="vhcl-stats-title"></div></div>
         <div id="vhcl-stats">
           <table id="vhcl-stats-table"></table>
         </div>
@@ -239,7 +241,10 @@
       </section>
       <div id="active-events-container"></div>
       <section id="main-screen">
-        <section id="clicker"><span id="clicker-text" data-lang="click-here"></span></section>
+        <section id="clicker">
+          <img src="img/other/bus-default.png" alt="bus" id="clicker-img" />
+        </section>
+        <div id="clicker-shadow"></div>
       </section>
     </section>
 
@@ -260,6 +265,53 @@
 
       <div class="cities-grid" id="cities-grid"></div>
     </section>
+    <!-- city details window -->
+    <section id="city-details">
+      <div class="closegui" id="city-details-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="city-details-wrapper">
+        <h3 id="city-details-title"></h3>
+        <div id="city-details-stats-wrapper">
+          <div id="city-details-stat-buildings" class="city-stats">
+            <span id="city-buildings"></span>
+            <button id="city-details-buildings-btn" data-lang="btn-build" data-city-id=""></button>
+          </div>
+          <div id="city-details-stat-others" class="city-stats">
+            <span id="city-pollution"></span> <br />
+            <span id="city-tourism"></span>
+          </div>
+          <div id="city-details-stat-vehicles" class="city-stats">
+            <span id="city-vehicles"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- buildings window -->
+
+    <section id="buildings-window">
+      <div class="closegui" id="buildings-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="buildings-search-wrapper">
+        <input
+          type="text"
+          id="buildings-search"
+          placeholder=""
+          class="inputs"
+          data-lang-placeholder="buildings-search" />
+        <button id="buildings-search-btn" class="btns" data-lang="btn-search"></button>
+        <button id="buildings-clear-search-btn" class="btns" data-lang="btn-clear"></button>
+      </div>
+
+      <div id="buildings-grid"></div>
+      <div id="no-search-results-wrapper">
+        <div id="no-search-results" data-lang="buildings-search-no-results"></div>
+      </div>
+    </section>
 
     <!-- settings window -->
 
@@ -279,7 +331,20 @@
         <select name="langs" id="lang-dropdown">
           <option value="en">English</option>
           <option value="pl">Polski</option>
+          <option value="ar">العربية</option>
         </select>
+      </div>
+      <div id="other-options-wrapper">
+        <div id="sound-switch-wrapper">
+          <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
+          <div id="switch-wrapper">
+            <!-- From Uiverse.io by gharsh11032000 -->
+            <label class="switch">
+              <input type="checkbox" id="sound-switch" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -360,8 +425,13 @@
         </div>
         <!-- TRAM CATEGORY -->
         <div id="vhcl-menu-tram-category">
+          <!-- OLD TRAMS -->
           <div id="vhcl-menu-tram-category-main">
             <table id="vhcl-menu-tram-table" class="vhcl-menu-tables"></table>
+          </div>
+          <!-- MODERN TRAMS -->
+          <div id="vhcl-menu-tram-category-modern">
+            <table id="vhcl-menu-modern-tram-table" class="vhcl-menu-tables"></table>
           </div>
         </div>
         <!-- OTHER CATEGORIES -->
@@ -467,7 +537,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vALPHA0.10.4</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vBETA1.0.0</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users credits-icons"></span> <span data-lang="credits-contributors"></span>
@@ -504,6 +574,10 @@
               Kiniaczu <br />
               <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
             </div>
+            <div class="credits-menu-contributor-item">
+              yn (user99) <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
           </div>
 
           <div id="credits-menu-translators-section">
@@ -514,7 +588,7 @@
               <span class="credits-menu-contributor-github"
                 >MIT,
                 <a target="_blank" href="https://icon-sets.iconify.design/tabler/?keyword=tabler"
-                  >https://icon-sets.iconify.design/tabler/?keyword=tabler</a
+                  >icon-sets.iconify.design/tabler/</a
                 ></span
               >
             </div>
@@ -523,9 +597,46 @@
               <span class="credits-menu-contributor-github"
                 >MIT,
                 <a target="_blank" href="https://github.com/wikimedia/banana-i18n?tab=readme-ov-file"
-                  >https://github.com/wikimedia/banana-i18n?tab=readme-ov-file</a
+                  >github.com/wikimedia/banana-i18n</a
                 ></span
               >
+            </div>
+            <div class="credits-menu-contributor-item">
+              anime.js <br />
+              <span class="credits-menu-contributor-github"
+                >MIT,
+                <a target="_blank" href="https://github.com/juliangarnier/anime/tree/master?tab=MIT-1-ov-file"
+                  >github.com/juliangarnier/anime</a
+                ></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              howler.js <br />
+              <span class="credits-menu-contributor-github"
+                >MIT,
+                <a target="_blank" href="https://github.com/goldfire/howler.js?tab=MIT-1-ov-file"
+                  >github.com/goldfire/howler.js</a
+                ></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              Geologica <br />
+              <span class="credits-menu-contributor-github"
+                >SIL Open Font License 1.1,
+                <a target="_blank" href="https://fonts.google.com/specimen/Geologica/license">fonts.google.com</a></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              City Background Pack <br />
+              <span class="credits-menu-contributor-github">
+                <a target="_blank" href="https://craftpix.net/">craftpix.net</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Public Bus <br />
+              <span class="credits-menu-contributor-github">
+                <a target="_blank" href="https://dai420.itch.io/public-bus">itch.io</a>
+              </span>
             </div>
             <div class="credits-menu-contributor-item">
               Trollleybus Lublin 150 on aleja generała Władysława Andersa.jpg - Українець627 <br />
@@ -554,12 +665,182 @@
                 <a target="_blank" href="https://commons.wikimedia.org/wiki/File:GT8_79.jpg">commons.wikimedia.org</a>
               </span>
             </div>
+            <div class="credits-menu-contributor-item">
+              Stacja Benzynowa Orlen DW 801.jpg - Lukas skywalker <br />
+              <span class="credits-menu-contributor-github"
+                >GNU Free Documentation License 1.2
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Stacja_Benzynowa_Orlen_DW_801.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Brussels Cinquantenaire R04.jpg - Marc Ryckaert <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 3.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Brussels_Cinquantenaire_R04.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Centrum Informacji Turystycznej w Buzodrowmie.jpg - Roman Szuszkiewicz <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 3.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Brussels_Cinquantenaire_R04.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Observation deck at Kyoto Tower with staff cleaning the windows, Japan.jpg - Basile Morin <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Observation_deck_at_Kyoto_Tower_with_staff_cleaning_the_windows,_Japan.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Bode Museum.jpg - Dominik Wesche <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Bode_Museum.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              TotalEnergies hydrogen station (350 bar) in Magdeburg.jpg - Michał Beim <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:TotalEnergies_hydrogen_station_(350_bar)_in_Magdeburg.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Mouse Click Sound.mp3 - Pixeliota <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/678248/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              mouse-click-single-00.flac - pbimal <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/534103/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Mouse clicking 004.wav - ristooooo1 <br />
+              <span class="credits-menu-contributor-github"
+                >Creative Commons 0
+                <a target="_blank" href="https://freesound.org/s/539147/">freesound.org</a>
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Stadium MK, Stadium Way West, Bletchley - geograph.org.uk - 7450199.jpg - Bryn Holmes <br />
+              <span class="credits-menu-contributor-github"
+                >CC Attribution-Share Alike 2.0 Generic
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Stadium_MK,_Stadium_Way_West,_Bletchley_-_geograph.org.uk_-_7450199.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Chittagong University Road (01).jpg - Moheen Reeyad <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Chittagong_University_Road_(01).jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              20210810 132120 Dworzec autobusowy Bialystok.jpg - Rakoon <br />
+              <span class="credits-menu-contributor-github"
+                >CC0 1.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:20210810_132120_Dworzec_autobusowy_Bialystok.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              East Seoul Bus Terminal, Seoul, South Korea 2023-03-31.jpg - Sharon Hahn Darlin <br />
+              <span class="credits-menu-contributor-github"
+                >CC Attribution 2.0 Generic
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:East_Seoul_Bus_Terminal,_Seoul,_South_Korea_2023-03-31.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Cieszyn, Galeria Stela.jpg - Kamil Czaiński <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Cieszyn,_Galeria_Stela.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Astoria Hotel SPB.jpg - Alex 'Florstein' Fedorov <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Astoria_Hotel_SPB.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Galeria Brodnica 1.JPG - 1bumer <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Galeria_Brodnica_1.JPG"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Riverside view of Hotel Sonar Bangla Taki taken from 3rd floor balcony of left wing.jpg - Subhrajyoti07
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Riverside_view_of_Hotel_Sonar_Bangla_Taki_taken_from_3rd_floor_balcony_of_left_wing.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Pesa Tramicus 122N (1).jpg - Jakub Pietrasiak
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Pesa_Tramicus_122N_(1).jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vALPHA0.10.4]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vBETA1.0.0]</section>
 
     <script type="module" src="js/scr.js"></script>
     <script type="module" src="js/codes.js"></script>
@@ -579,11 +860,14 @@
     <script type="module" src="js/data/upgradeData.js"></script>
     <script type="module" src="js/data/timedUpgradeData.js"></script>
     <script type="module" src="js/data/vhclData.js"></script>
+    <script type="module" src="js/data/buildingData.js"></script>
     <script type="module" src="js/notifs.js"></script>
     <script type="module" src="js/levelSystem.js"></script>
     <script type="module" src="js/settings.js"></script>
     <script type="module" src="js/data/themeData.js"></script>
     <script type="module" src="js/data/cityData.js"></script>
     <script type="module" src="js/cities.js"></script>
+    <script type="module" src="js/buildings.js"></script>
+    <script type="module" src="js/sounds.js"></script>
   </body>
 </html>

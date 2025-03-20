@@ -1,9 +1,10 @@
 import { getUpgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame } from "../scr.js";
-import { showAlert } from "../utilities.js";
+import { animateWindowClose, animateWindowOpen, showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
+import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 
 // REGULAR UPGRADES ONLY (so no timed upgrades)
 
@@ -17,6 +18,7 @@ const isGamePage = window.location.pathname.includes("game.html");
 // upgrade menu category dropdown
 if (isGamePage) {
   dropdown.addEventListener("change", () => {
+    playRandomMouseClick();
     if (dropdown.value === "0") {
       notReadySection.style.display = "none";
       vehicleTypeSection.style.display = "block";
@@ -44,14 +46,15 @@ if (isGamePage) {
   navItemUpgrMenu.addEventListener("click", () => {
     checkLevelUpgr();
     checkTimedUpgrLevel();
-    tint.style.display = "block";
+    playRandomMouseClick();
     upgradeGUI.style.display = "flex";
+    animateWindowOpen(upgradeGUI, true, tint);
   });
 
   // closing upgrade menu
   upgrMenuCloseBtn.addEventListener("click", () => {
-    tint.style.display = "none";
-    upgradeGUI.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(upgradeGUI, true, tint);
   });
 }
 
@@ -65,22 +68,26 @@ function buyUpgrade(upgrade) {
   if (upgradeToBuy.isAvailable) {
     if (!bghtUpgrs.includes(upgradeToBuy.id)) {
       if (bal <= upgradeToBuy.price) {
-        confirmationDialog.style.display = "none";
+        playRandomMouseClick();
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("cant-afford"));
       } else {
+        playRandomCash();
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
-        confirmationDialog.style.display = "none";
+        animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("upgrade-success"));
         saveGame(true);
       }
     } else {
-      confirmationDialog.style.display = "none";
+      playRandomMouseClick();
+      animateWindowClose(confirmationDialog, false);
       showAlert(banana.i18n("upgrade-already-bought"));
     }
   } else {
-    confirmationDialog.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(confirmationDialog, false);
     showAlert(banana.i18n("upgrade-not-available"));
   }
 }
@@ -95,6 +102,7 @@ function confirmUpgrade(upgradetobuy) {
   const upgradeName = document.querySelector("#confirm-upgrade-dialog-text-name");
   upgradeName.textContent = upgradeToBuy.name;
   confirmationDialog.style.display = "block";
+  animateWindowOpen(confirmationDialog, false);
 
   const newConfirmBtn = confirmBtn.cloneNode(true);
   const newCancelBtn = cancelBtn.cloneNode(true);
@@ -106,7 +114,8 @@ function confirmUpgrade(upgradetobuy) {
   });
 
   newCancelBtn.addEventListener("click", () => {
-    confirmationDialog.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(confirmationDialog, false);
   });
 }
 
@@ -134,16 +143,19 @@ export function checkLevelUpgr() {
       upgrEl.classList.add("upgr-btn-disabled");
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockUpgrade(upgrEl.id, "level");
       });
     } else if (upgrade && upgrade.requiredLevel == level) {
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmUpgrade(upgrEl.id);
       });
     } else {
       upgrEl.removeEventListener("click", () => {});
       upgrEl.addEventListener("click", () => {
+        playRandomMouseClick();
         confirmUpgrade(upgrEl.id);
       });
     }

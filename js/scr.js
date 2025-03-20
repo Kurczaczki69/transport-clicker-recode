@@ -1,16 +1,29 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { sleep, isEmpty, showAlert, abbreviateNumber, showMsg } from "./utilities.js";
+import {
+  sleep,
+  isEmpty,
+  showAlert,
+  abbreviateNumber,
+  shortAbbreviateNumber,
+  showMsg,
+  animateWindowClose,
+  animateWindowOpen,
+} from "./utilities.js";
 import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
 import { banana, setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
-import { calculateCityBoost } from "./cities.js";
-import { getCities } from "./data/cityData.js";
+import { calculateCityBoost, calculateCityClickMod } from "./cities.js";
+import { getCities, initializeCities } from "./data/cityData.js";
 import { startTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
+import { initializeBuildings } from "./data/buildingData.js";
+import { getTimedUpgrades } from "./data/timedUpgradeData.js";
+import { showNotif } from "./notifs.js";
+import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
@@ -36,18 +49,24 @@ let buyTotal = 0;
 let chosenVhcl = "";
 let bghtUpgrs = [];
 
+let timedUpgrsPrices = {};
+
 let vhclAmounts = {};
 let vhclPrices = {};
+let vhclStats = {};
 
 let unlockedCities = ["sko"];
 let citySwitchCost = 20000;
 let currentCity = "sko";
+
+let userCityData = {};
 
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
   const navItemSaveGame = document.querySelector("#nav-item-save-game");
   navItemSaveGame.addEventListener("click", () => {
+    playRandomMouseClick();
     saveGame(false);
   });
 }
@@ -68,6 +87,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentCity = userData.currentCity || currentCity;
       vhclAmounts = userData.vhclAmounts || {};
       vhclPrices = userData.vhclPrices || {};
+      userCityData = userData.userCityData || {};
+      vhclStats = userData.vhclStats || {};
+      timedUpgrsPrices = userData.timedUpgrsPrices || {};
 
       // data is saved to server only if it is a new account
       if (!userData.balance && !userData.income && !userData.clickmod) {
@@ -83,6 +105,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           currentCity: currentCity,
           vhclAmounts: vhclAmounts,
           vhclPrices: vhclPrices,
+          userCityData: userCityData,
+          vhclStats: vhclStats,
+          timedUpgrsPrices: timedUpgrsPrices,
         });
       }
       console.log("data loaded from server");
@@ -96,13 +121,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         getCodes()
           .then(() => {
-            console.log("codes loaded from server");
             sleep(700).then(() => {
               startTimedUpgrades();
+              gameSaver();
+              displayStats();
+              startGameLoop();
               const currentPage = document.body.getAttribute("data-page");
               setPageTitle(currentPage);
               $("#loader-wrapper").fadeOut("slow");
               sleep(750).then(() => {
+                initializeCities();
+                initializeBuildings();
                 populateVhclData();
                 populateUpgrData();
               });
@@ -130,15 +159,18 @@ export function saveGame(isSilent) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
   const docRef = doc(db, "users", loggedInUserId);
   const userDatatoSave = {
-    balance: bal,
-    income: income,
-    clickmod: clickmod,
+    balance: Math.round(bal * 100) / 100,
+    income: Math.round(income * 100) / 100,
+    clickmod: Math.round(clickmod * 100) / 100,
     bghtUpgrs: bghtUpgrs,
-    citySwitchCost: citySwitchCost,
+    citySwitchCost: Math.round(citySwitchCost * 100) / 100,
     unlockedCities: unlockedCities,
     currentCity: currentCity,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
+    userCityData: userCityData,
+    vhclStats: vhclStats,
+    timedUpgrsPrices: timedUpgrsPrices,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -151,7 +183,7 @@ export function saveGame(isSilent) {
     })
     .catch((error) => {
       console.error("error writing document", error);
-      window.location.href = "index.html";
+      showAlert(banana.i18n("alert-game-save-fail"));
     });
 }
 
@@ -163,6 +195,7 @@ const finishBtn = document.querySelector("#finish-operation-btn");
 function buyVhcl(vhclCode) {
   chosenVhcl = vhclCode;
   menu.style.display = "block";
+  animateWindowOpen(menu, false);
   inputEl.focus();
   finishBtn.removeEventListener("click", buyVhclChecker);
   finishBtn.addEventListener("click", buyVhclChecker, { once: true });
@@ -183,6 +216,7 @@ export function checkLevel() {
       clonedTextEl.classList.add("tabler--lock-filled");
       clonedEl.style.padding = "3%";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockVhcl(clonedEl.id, "level");
       });
     } else if (vhcl && vhcl.maxLevel < level) {
@@ -190,6 +224,7 @@ export function checkLevel() {
       clonedTextEl.classList.add("tabler--lock-filled");
       clonedEl.style.padding = "3%";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         blockVhcl(clonedEl.id, "max-level");
       });
     } else {
@@ -199,6 +234,7 @@ export function checkLevel() {
       }
       clonedEl.style.padding = "";
       clonedEl.addEventListener("click", () => {
+        playRandomMouseClick();
         buyVhcl(clonedEl.id);
       });
     }
@@ -223,7 +259,8 @@ function blockVhcl(vhclCode, reason) {
 if (isGamePage) {
   const busCntGUIBtn = document.querySelector("#closebuymenu");
   busCntGUIBtn.addEventListener("click", () => {
-    menu.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(menu, false);
     resetBuyMenu();
   });
 }
@@ -236,8 +273,10 @@ function buyVhclChecker() {
   }
 
   if (bal >= buyTotal) {
+    playRandomCash();
     buyVhclRight();
   } else {
+    playRandomMouseClick();
     showAlert(banana.i18n("cant-afford"));
     resetBuyMenu();
   }
@@ -247,24 +286,35 @@ function resetBuyMenu() {
   inputEl.value = "";
   updateTotal();
   chosenVhcl = "";
-  menu.style.display = "none";
+  animateWindowClose(menu, false);
   finishBtn.removeEventListener("click", buyVhclChecker);
 }
 
 function buyVhclRight() {
-  const vhcls = getVhcls();
-  let bus = vhcls.find((bus) => bus.code === chosenVhcl);
+  let bus = getVhcls().find((bus) => bus.code === chosenVhcl);
   const busProp = bus;
   const quantity = parseInt(inputEl.value);
 
   bal -= buyTotal;
-  income += parseInt(busProp.incomemod) * quantity;
-  clickmod += parseInt(busProp.clickmod) * quantity;
+  const incomeIncrease = parseInt(busProp.incomemod) * quantity;
+  const clickmodIncrease = parseInt(busProp.clickmod) * quantity;
+
+  income += incomeIncrease;
+  clickmod += clickmodIncrease;
+
+  if (!vhclStats[busProp.code]) {
+    vhclStats[busProp.code] = {
+      income: 0,
+      clickmod: 0,
+    };
+  }
+  vhclStats[busProp.code].income += incomeIncrease;
+  vhclStats[busProp.code].clickmod += clickmodIncrease;
 
   // increase price for each vehicle purchased
   const basePrice = vhclPrices[busProp.code] || busProp.price;
   const priceMultiplier = 1 + 0.025 * Math.log10(quantity + 1);
-  vhclPrices[busProp.code] = basePrice * priceMultiplier;
+  vhclPrices[busProp.code] = Math.round(basePrice * priceMultiplier);
 
   if (vhclAmounts[busProp.code]) {
     vhclAmounts[busProp.code] += quantity;
@@ -295,6 +345,22 @@ export function syncVehiclePrices() {
   console.log("vehicle prices synchronized");
 }
 
+export function syncTimedUpgrPrices() {
+  if (!isGamePage) return;
+  const timedUpgrs = getTimedUpgrades();
+
+  timedUpgrs.forEach((upgr) => {
+    if (timedUpgrsPrices[upgr.id]) {
+      upgr.price = timedUpgrsPrices[upgr.id];
+    } else {
+      timedUpgrsPrices[upgr.id] = upgr.price;
+    }
+  });
+
+  updateHtmlData();
+  console.log("timed upgrades prices synchronized");
+}
+
 const totalEl = document.querySelector("#show-full-cost");
 const inputEl = document.querySelector("#small-input");
 const maxBtn = document.querySelector("#buy-menu-max-button");
@@ -304,6 +370,7 @@ if (isGamePage) {
 }
 
 function setInputToMax() {
+  playRandomMouseClick();
   const bal = getBal();
   const vhclPrice = vhclPrices[chosenVhcl] || 0;
   const maxQuantity = vhclMaxQuantity || Infinity;
@@ -345,24 +412,77 @@ function getTotalIncomeBoost(timedUpgrs) {
   return totalBoost;
 }
 
-const cities = getCities();
+let totalIncome = 0;
+let shownNotif = false;
+function checkForFuelStations(cityData) {
+  if (!cityData || !cityData.buildings || !isGamePage) return;
 
-async function add() {
-  const timedUpgrs = getActiveTimedUpgrades();
-  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
-  const currentCityData = cities.find((city) => city.id === currentCity);
+  totalIncome = 0;
+
+  if (income === 0 || bal <= 0) return;
+
+  const vhcls = getVhcls();
+  const fuelTypeMap = vhcls.reduce((map, vhcl) => {
+    map[vhcl.code] = vhcl.fuelType;
+    return map;
+  }, {});
+
+  const fuelIncomeMap = vhcls.reduce((map, vhcl) => {
+    map[vhcl.code] = vhcl.incomemod;
+    return map;
+  }, {});
+
+  for (const vhclCode in vhclAmounts) {
+    if (!fuelTypeMap[vhclCode]) continue;
+
+    const fuelType = fuelTypeMap[vhclCode];
+    const stationType = fuelType === "diesel" ? "gas-station" : "hydrogen-station";
+    const hasStation = cityData.buildings.includes(stationType);
+
+    const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
+
+    if (hasStation || fuelType === "electric") {
+      totalIncome += incomeMod;
+    } else {
+      if (!shownNotif) {
+        shownNotif = true;
+        showNotif(
+          banana.i18n("notif-fuel-station"),
+          banana.i18n("notif-fuel-station-text", banana.i18n(`fuel-type-${fuelType}`)),
+          "notif-fuel-station"
+        );
+      }
+      totalIncome -= incomeMod;
+    }
+  }
+}
+
+function add() {
+  if (!isGamePage) return;
+  const timedUpgrBoost = getTotalIncomeBoost(getActiveTimedUpgrades());
+  const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
-  await sleep(100);
-  bal += Math.floor((income / 10) * timedUpgrBoost * cityBoost);
-  // console.log((income / 10) * timedUpgrBoost * cityBoost, "timedupgr: ", timedUpgrBoost, "city: ", cityBoost);
+  totalIncome = 0;
+  checkForFuelStations(currentCityData);
+  // console.log("Total income after fuel check:", totalIncome);
+
+  bal += (totalIncome / 10) * timedUpgrBoost * cityBoost;
+  // console.log(totalIncome * timedUpgrBoost * cityBoost);
+  // console.log(income);
   displayStats();
-  add();
+}
+
+function startGameLoop() {
+  if (!isGamePage) return;
+  setInterval(add, 100);
 }
 
 if (isGamePage) {
   const clickspace = document.querySelector("#clicker");
-  clickspace.addEventListener("click", clicker);
+  clickspace.addEventListener("click", (e) => {
+    clicker(e);
+  });
 }
 
 function getTotalClickBoost(timedUpgrs) {
@@ -375,11 +495,55 @@ function getTotalClickBoost(timedUpgrs) {
   return totalBoost;
 }
 
-function clicker() {
+const clickspace = document.querySelector("#clicker-img");
+let lastAnimated = Date.now();
+function clicker(e) {
+  const now = Date.now();
+  if (lastAnimated + 120 < now) {
+    lastAnimated = now;
+    anime({
+      targets: clickspace,
+      keyframes: [
+        {
+          scale: function () {
+            return Math.random() * (1.05 - 1.02) + 1.02;
+          },
+          duration: 50,
+        },
+        { scale: 1, duration: 50 },
+      ],
+      easing: "easeInOutQuad",
+      duration: 100,
+    });
+  }
+  const cities = getCities();
+  const currentCityData = cities.find((city) => city.id === currentCity);
   const timedUpgrs = getActiveTimedUpgrades();
   const totalBoost = getTotalClickBoost(timedUpgrs);
+  const cityBoost = calculateCityClickMod(currentCityData);
 
-  bal += Math.floor(clickmod * totalBoost);
+  const clickValue = Math.floor(clickmod * totalBoost * cityBoost);
+
+  bal += clickValue;
+  const indicator = document.createElement("div");
+  indicator.id = "click-indicator";
+  document.body.appendChild(indicator);
+  indicator.style.left = `${e.clientX}px`;
+  indicator.style.top = `${e.clientY - 75}px`;
+  indicator.textContent = `+${shortAbbreviateNumber(clickValue)}`;
+  anime({
+    targets: indicator,
+    keyframes: [
+      { translateY: 0, opacity: 1, scale: 1.2, duration: 100 },
+      { translateY: -75, opacity: 0, scale: 0.8, duration: 250 },
+    ],
+    easing: "easeInOutCubic",
+    duration: 500,
+  });
+  setTimeout(async () => {
+    indicator.remove();
+  }, 500);
+  playRandomMouseClick();
   // console.log(totalBoost, clickmod * totalBoost);
   displayStats();
 }
@@ -394,11 +558,12 @@ function displayStats() {
   const timedUpgrs = getActiveTimedUpgrades();
   const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
   const totalClickBoost = getTotalClickBoost(timedUpgrs);
-  const currentCityData = cities.find((city) => city.id === currentCity);
+  const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
+  const cityClickBoost = calculateCityClickMod(currentCityData);
   balShow.textContent = abbreviateNumber(bal);
-  incomeShow.textContent = abbreviateNumber(income * timedUpgrBoost * cityBoost);
-  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost);
+  incomeShow.textContent = abbreviateNumber(totalIncome * timedUpgrBoost * cityBoost);
+  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost * cityClickBoost);
 }
 
 // saving game every 90 seconds to firestore
@@ -408,9 +573,6 @@ async function gameSaver() {
   gameSaver();
 }
 
-window.addEventListener("load", add);
-window.addEventListener("load", gameSaver);
-window.addEventListener("load", displayStats);
 updateTotal();
 
 // getter and setter functions for variables
@@ -476,4 +638,31 @@ export function getCurrentCity() {
 
 export function setCurrentCity(newCurrentCity) {
   currentCity = newCurrentCity;
+}
+
+export function getUserCityData() {
+  return userCityData;
+}
+
+export function setUserCityData(newUserCityData) {
+  userCityData = newUserCityData;
+}
+
+export function updateCityProperty(cityId, property, value) {
+  if (!userCityData[cityId]) {
+    userCityData[cityId] = {};
+  }
+  userCityData[cityId][property] = value;
+}
+
+export function getVhclStats() {
+  return vhclStats;
+}
+
+export function setVhclStats(newVhclStats) {
+  vhclStats = newVhclStats;
+}
+
+export function getTimedUpgrsPrices() {
+  return timedUpgrsPrices;
 }

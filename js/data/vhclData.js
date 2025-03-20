@@ -15,6 +15,7 @@ export function initializeVehicles() {
       requiredLevel: 0,
       maxLevel: 30,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu9",
@@ -25,6 +26,7 @@ export function initializeVehicles() {
       requiredLevel: 1,
       maxLevel: 35,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu105",
@@ -35,6 +37,7 @@ export function initializeVehicles() {
       requiredLevel: 2,
       maxLevel: 35,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu12",
@@ -45,6 +48,7 @@ export function initializeVehicles() {
       requiredLevel: 3,
       maxLevel: 35,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "sola86",
@@ -55,6 +59,7 @@ export function initializeVehicles() {
       requiredLevel: 5,
       maxLevel: 35,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu18",
@@ -65,6 +70,7 @@ export function initializeVehicles() {
       requiredLevel: 6,
       maxLevel: 40,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu24",
@@ -75,6 +81,7 @@ export function initializeVehicles() {
       requiredLevel: 7,
       maxLevel: 55,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "manlion",
@@ -85,6 +92,7 @@ export function initializeVehicles() {
       requiredLevel: 9,
       maxLevel: 60,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "jelczm121m",
@@ -95,6 +103,7 @@ export function initializeVehicles() {
       requiredLevel: 10,
       maxLevel: 75,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "manlioncig",
@@ -105,6 +114,7 @@ export function initializeVehicles() {
       requiredLevel: 12,
       maxLevel: 90,
       category: "citybus",
+      fuelType: "diesel",
     },
     {
       code: "solu12h",
@@ -115,6 +125,7 @@ export function initializeVehicles() {
       requiredLevel: 13,
       maxLevel: 100,
       category: "hydrogenbus",
+      fuelType: "hydrogen",
     },
     {
       code: "solu18h",
@@ -125,6 +136,7 @@ export function initializeVehicles() {
       requiredLevel: 15,
       maxLevel: 100,
       category: "hydrogenbus",
+      fuelType: "hydrogen",
     },
     {
       code: "toyotafc",
@@ -135,6 +147,7 @@ export function initializeVehicles() {
       requiredLevel: 17,
       maxLevel: 125,
       category: "hydrogenbus",
+      fuelType: "hydrogen",
     },
     {
       code: "toyotasora",
@@ -145,6 +158,7 @@ export function initializeVehicles() {
       requiredLevel: 19,
       maxLevel: 150,
       category: "hydrogenbus",
+      fuelType: "hydrogen",
     },
     {
       code: "mercedesecitaro",
@@ -155,6 +169,7 @@ export function initializeVehicles() {
       requiredLevel: 21,
       maxLevel: 170,
       category: "hydrogenbus",
+      fuelType: "hydrogen",
     },
     {
       code: "vacanza12",
@@ -165,6 +180,7 @@ export function initializeVehicles() {
       requiredLevel: 14,
       maxLevel: 150,
       category: "intercitybus",
+      fuelType: "diesel",
     },
     {
       code: "vacanza13",
@@ -175,6 +191,7 @@ export function initializeVehicles() {
       requiredLevel: 18,
       maxLevel: 175,
       category: "intercitybus",
+      fuelType: "diesel",
     },
     {
       code: "solint12",
@@ -185,6 +202,7 @@ export function initializeVehicles() {
       requiredLevel: 22,
       maxLevel: 250,
       category: "intercitybus",
+      fuelType: "diesel",
     },
     {
       code: "volvo9700",
@@ -195,6 +213,7 @@ export function initializeVehicles() {
       requiredLevel: 25,
       maxLevel: 275,
       category: "intercitybus",
+      fuelType: "diesel",
     },
     {
       code: "volvo9700double",
@@ -205,6 +224,7 @@ export function initializeVehicles() {
       requiredLevel: 30,
       maxLevel: 310,
       category: "intercitybus",
+      fuelType: "diesel",
     },
     {
       code: "soltroll12",
@@ -215,6 +235,7 @@ export function initializeVehicles() {
       requiredLevel: 25,
       maxLevel: 320,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "soltroll18",
@@ -225,6 +246,7 @@ export function initializeVehicles() {
       requiredLevel: 37,
       maxLevel: 325,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "soltroll24",
@@ -235,6 +257,7 @@ export function initializeVehicles() {
       requiredLevel: 45,
       maxLevel: 400,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "mercedes530",
@@ -245,6 +268,7 @@ export function initializeVehicles() {
       requiredLevel: 55,
       maxLevel: 500,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "mercedescitaro2",
@@ -255,6 +279,7 @@ export function initializeVehicles() {
       requiredLevel: 63,
       maxLevel: 550,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "exquicity18",
@@ -265,6 +290,7 @@ export function initializeVehicles() {
       requiredLevel: 67,
       maxLevel: 600,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "exquicity24",
@@ -275,6 +301,7 @@ export function initializeVehicles() {
       requiredLevel: 75,
       maxLevel: 650,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "newflyerxt60",
@@ -285,6 +312,7 @@ export function initializeVehicles() {
       requiredLevel: 85,
       maxLevel: 700,
       category: "trolleybus",
+      fuelType: "electric",
     },
     {
       code: "duwaggt8",
@@ -295,6 +323,7 @@ export function initializeVehicles() {
       requiredLevel: 85,
       maxLevel: 800,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "konstal105na",
@@ -305,6 +334,7 @@ export function initializeVehicles() {
       requiredLevel: 91,
       maxLevel: 850,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "konstal112n",
@@ -315,6 +345,7 @@ export function initializeVehicles() {
       requiredLevel: 96,
       maxLevel: 900,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "konstal111n",
@@ -325,6 +356,7 @@ export function initializeVehicles() {
       requiredLevel: 101,
       maxLevel: 950,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "duwagpt",
@@ -335,6 +367,7 @@ export function initializeVehicles() {
       requiredLevel: 106,
       maxLevel: 1000,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "sgplohnere1",
@@ -345,6 +378,7 @@ export function initializeVehicles() {
       requiredLevel: 113,
       maxLevel: 1050,
       category: "tram",
+      fuelType: "electric",
     },
     {
       code: "duwagmn",
@@ -355,6 +389,117 @@ export function initializeVehicles() {
       requiredLevel: 120,
       maxLevel: 1100,
       category: "tram",
+      fuelType: "electric",
+    },
+    {
+      code: "pesatramicus122n",
+      name: "Pesa Tramicus 122N",
+      clickmod: 150,
+      incomemod: 154,
+      price: 4500000,
+      requiredLevel: 127,
+      maxLevel: 1150,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "moderusgamma",
+      name: "Moderus Gamma",
+      clickmod: 162,
+      incomemod: 166,
+      price: 5500000,
+      requiredLevel: 134,
+      maxLevel: 1200,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "pesatwist",
+      name: "Pesa Twist",
+      clickmod: 175,
+      incomemod: 179,
+      price: 6750000,
+      requiredLevel: 140,
+      maxLevel: 1250,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "pesaswing",
+      name: "Pesa Swing",
+      clickmod: 188,
+      incomemod: 193,
+      price: 8200000,
+      requiredLevel: 145,
+      maxLevel: 1300,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "newagnevelo",
+      name: "Newag Nevelo",
+      clickmod: 202,
+      incomemod: 208,
+      price: 9800000,
+      requiredLevel: 150,
+      maxLevel: 1350,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "stadlertr",
+      name: "Stadler Tango",
+      clickmod: 216,
+      incomemod: 223,
+      price: 11600000,
+      requiredLevel: 155,
+      maxLevel: 1400,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "solaristramino",
+      name: "Solaris Tramino",
+      clickmod: 230,
+      incomemod: 238,
+      price: 13600000,
+      requiredLevel: 160,
+      maxLevel: 1450,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "moderustram",
+      name: "Moderus Beta",
+      clickmod: 245,
+      incomemod: 254,
+      price: 15800000,
+      requiredLevel: 165,
+      maxLevel: 1500,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "skodatr3t",
+      name: "Škoda 19T",
+      clickmod: 260,
+      incomemod: 270,
+      price: 18200000,
+      requiredLevel: 170,
+      maxLevel: 1550,
+      category: "moderntram",
+      fuelType: "electric",
+    },
+    {
+      code: "bombardiercityrunner",
+      name: "Bombardier Cityrunner",
+      clickmod: 275,
+      incomemod: 287,
+      price: 20800000,
+      requiredLevel: 175,
+      maxLevel: 1600,
+      category: "moderntram",
+      fuelType: "electric",
     },
   ];
 }

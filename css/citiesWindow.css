@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   background-color: var(--colorscheme2);
   width: 70vw;
   height: 70vh;
@@ -12,6 +12,9 @@
   display: none;
   z-index: 800;
   overflow-y: auto;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 #cities-menu-title {
@@ -96,6 +99,19 @@
   transition: transform 0.3s;
 }
 
+.city-card-details-btn {
+  margin-right: 5%;
+  cursor: pointer;
+  width: 15vh;
+  padding: 2%;
+}
+
+#city-btns-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 #cities-menu-title-wrapper {
   display: flex;
   flex-direction: column;
@@ -133,7 +149,84 @@
   width: 18%;
 }
 
+/* City details window */
+
+#city-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--colorscheme2);
+  width: 30vw;
+  height: 55vh;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 820;
+  overflow-y: auto;
+  padding: 1.5rem;
+  padding-top: 0;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+#city-details-title {
+  text-align: left;
+  margin-bottom: 0.75rem;
+  font-size: 1.8rem;
+  color: var(--colorscheme4);
+}
+
+#city-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+#city-details-stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.city-stats {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#city-vehicles,
+#city-buildings {
+  display: block;
+  color: var(--colorscheme4);
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+#city-details-buildings-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#city-details-buildings-btn:hover {
+  transform: scale(1.05);
+}
 @media screen and (max-width: 768px) {
+  #city-details {
+    width: 70vw;
+    height: 60vh;
+  }
+
   #active-events-container {
     position: absolute;
     display: flex;
@@ -158,8 +251,9 @@
 .active-event {
   display: block;
   padding: 3%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
+  box-shadow: var(--boxshadow);
 }
 
 .event-info {

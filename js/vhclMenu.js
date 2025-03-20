@@ -1,7 +1,8 @@
 import { getBghtUpgrs, getCurrentCity, checkLevel } from "./scr.js";
-import { showAlert } from "./utilities.js";
+import { animateWindowClose, animateWindowOpen, showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
 import { getCities } from "./data/cityData.js";
+import { playRandomMouseClick } from "./sounds.js";
 
 // yes this code is 100% chatgpt feel free to improve that if you know what you're doing
 // it only took 2 prompts to get it to work somehow
@@ -65,11 +66,17 @@ const VEHICLE_CATEGORIES = {
     sections: {
       old: {
         id: "0",
-        sectionId: "vhcl-menu-tram-category",
+        sectionId: "vhcl-menu-tram-category-main",
+        translationKey: "old-trams",
+        upgradeKey: "tram",
       },
       modern: {
         id: "1",
-        sectionId: "vhcl-menu-other-categories",
+        sectionId: "vhcl-menu-tram-category-modern",
+        requiresCity: true,
+        vehicleType: "modern-trams",
+        translationKey: "modern-trams",
+        upgradeKey: "moderntram",
       },
     },
   },
@@ -130,7 +137,8 @@ class VehicleMenuManager {
   }
 
   resetDropdownValue(dropdownId, value = "0") {
-    $(`#${dropdownId}`).val(value);
+    const id = dropdownId instanceof HTMLElement ? dropdownId.id : dropdownId;
+    $(`#${id}`).val(value);
   }
 
   checkCityRequirement(category) {
@@ -147,6 +155,7 @@ class VehicleMenuManager {
     if (!category) return;
 
     const bghtUpgrs = getBghtUpgrs();
+    playRandomMouseClick();
 
     if (!bghtUpgrs.includes(category.upgradeKey)) {
       showAlert(banana.i18n("vhcl-category-locked", banana.i18n(category.translationKey)));
@@ -170,8 +179,8 @@ class VehicleMenuManager {
     if (subDropdown) {
       subDropdown.style.display = "block";
 
-      // Show first subcategory content for buses
-      if (category === VEHICLE_CATEGORIES.buses) {
+      // Show first subcategory content for different categories
+      if (category.sections) {
         const firstSubcategory = Object.values(category.sections)[0];
         if (firstSubcategory) {
           this.resetDropdownValue(category.subDropdownId, firstSubcategory.id);
@@ -191,6 +200,7 @@ class VehicleMenuManager {
     if (!subcategory) return;
 
     const bghtUpgrs = getBghtUpgrs();
+    playRandomMouseClick();
 
     if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
       showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
@@ -213,6 +223,20 @@ class VehicleMenuManager {
     );
 
     if (!subcategory) return;
+    const bghtUpgrs = getBghtUpgrs();
+    playRandomMouseClick();
+
+    if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
+      showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
+      this.resetDropdownValue(tramConfig.subDropdownId);
+      return;
+    }
+
+    if (subcategory.requiresCity && !this.checkCityRequirement(subcategory)) {
+      showAlert(banana.i18n("vhcl-category-locked-2"));
+      this.resetDropdownValue(this.subDropdowns.get(tramConfig.subDropdownId));
+      return;
+    }
 
     Object.values(tramConfig.sections).forEach((section) => {
       const sectionEl = this.sections.get(section.sectionId);
@@ -230,7 +254,7 @@ const isGamePage = document.location.pathname.includes("game.html");
 if (isGamePage) {
   // open vehicle menu
   const navItemBuy = document.querySelector("#nav-item-buy");
-  navItemBuy.addEventListener("click", () => {
+  navItemBuy.addEventListener("click", async () => {
     const bghtUpgrs = getBghtUpgrs();
     const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
@@ -249,10 +273,11 @@ if (isGamePage) {
           mainDropdown.dispatchEvent(new Event("change"));
         }
       }
-
-      tint.style.display = "block";
+      playRandomMouseClick();
       buygui.style.display = "flex";
+      animateWindowOpen(buygui, true, tint);
     } else {
+      playRandomMouseClick();
       buygui.style.display = "none";
       showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
     }
@@ -263,7 +288,7 @@ if (isGamePage) {
   closeBusGuiBtn.addEventListener("click", () => {
     const buygui = document.querySelector("#buy-vehicle");
     const tint = document.querySelector("#window-tint");
-    tint.style.display = "none";
-    buygui.style.display = "none";
+    playRandomMouseClick();
+    animateWindowClose(buygui, true, tint);
   });
 }
