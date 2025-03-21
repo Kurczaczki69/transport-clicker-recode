@@ -1,5 +1,5 @@
 import { blockCityUnlock, populateCitiesGrid, showCityDetails } from "./cities.js";
-import { getBuildings, initializeBuildings } from "./data/buildingData.js";
+import { getBuildings } from "./data/buildingData.js";
 import { getCities } from "./data/cityData.js";
 import { banana } from "./langs.js";
 import { getLevel } from "./levelSystem.js";

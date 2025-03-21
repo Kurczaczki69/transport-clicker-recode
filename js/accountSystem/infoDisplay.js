@@ -56,6 +56,7 @@ logOutBtn.addEventListener("click", () => {
   localStorage.removeItem("previousLevel");
   localStorage.removeItem("activeTimedUpgrades");
   localStorage.removeItem("activeEvents");
+  localStorage.removeItem("soundPreference");
   localStorage.setItem("loggedIn", false);
   signOut(auth)
     .then(() => {
