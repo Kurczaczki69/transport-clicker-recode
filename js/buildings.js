@@ -1,5 +1,5 @@
 import { blockCityUnlock, populateCitiesGrid, showCityDetails } from "./cities.js";
-import { getBuildings, initializeBuildings } from "./data/buildingData.js";
+import { getBuildings } from "./data/buildingData.js";
 import { getCities } from "./data/cityData.js";
 import { banana } from "./langs.js";
 import { getLevel } from "./levelSystem.js";
@@ -52,7 +52,7 @@ function buildInCity(cityId, buildingId) {
           break;
       }
       populateCitiesGrid();
-      showAlert(banana.i18n("building-built", building.name, city.name));
+      showAlert(banana.i18n("building-built", banana.i18n(`building-${building.id}`), city.name));
       saveGame(true);
     } else {
       playRandomMouseClick();
@@ -115,7 +115,7 @@ function createBuildingCard(building) {
 function blockBuilding(id, reason) {
   const building = getBuildings().find((b) => b.id === id);
   if (reason === "level") {
-    showAlert(banana.i18n("building-blocked-level", building.requiredLevel, building.name));
+    showAlert(banana.i18n("building-blocked-level", building.requiredLevel, banana.i18n(`building-${building.id}`)));
   }
 }
 
@@ -131,7 +131,7 @@ if (isGamePage) {
     const searchQuery = searchBar.value.toLowerCase();
     const buildings = getBuildings();
     const filteredBuildings = buildings.filter((building) => {
-      return building.name.toLowerCase().includes(searchQuery);
+      return banana.i18n(`building-${building.id}`).toLowerCase().includes(searchQuery);
     });
     if (filteredBuildings.length === 0) {
       noResults.style.display = "flex";
