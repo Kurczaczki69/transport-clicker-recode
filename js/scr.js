@@ -1,3 +1,4 @@
+const startTime = performance.now();
 import { getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { db, auth } from "./firebaseManager.js";
 import {
@@ -117,6 +118,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 initializeBuildings();
                 populateVhclData();
                 populateUpgrData();
+                const endTime = performance.now();
+                const loadTime = endTime - startTime;
+                console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
               });
             });
           })
