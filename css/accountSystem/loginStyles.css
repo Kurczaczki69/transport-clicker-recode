@@ -25,6 +25,7 @@ body {
   border-radius: 10px;
   width: 75vh;
   height: 90vh;
+  box-shadow: var(--boxshadow);
 }
 
 #login-box-title {
@@ -133,6 +134,7 @@ body {
   margin-top: 0.5%;
   margin-bottom: -1%;
   font-family: "Geologica", sans-serif;
+  box-shadow: var(--boxshadow);
 }
 
 #lang-dropdown:focus {

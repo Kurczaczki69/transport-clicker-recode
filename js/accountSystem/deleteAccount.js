@@ -1,26 +1,9 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getAuth,
-  deleteUser,
-  signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { deleteUser, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { auth, db } from "../firebaseManager.js";
+import { deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
 import { banana } from "../langs.js";
 import { playRandomMouseClick } from "../sounds.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
-  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
-  projectId: "transport-clicker-f0d1c",
-  storageBucket: "transport-clicker-f0d1c.appspot.com",
-  messagingSenderId: "177489808647",
-  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
-  measurementId: "G-CP6HMGD0N1",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // showing the window and hiding it
 const accDelBtn = document.getElementById("delete-account-btn");
@@ -46,7 +29,6 @@ const confirmBtn = document.getElementById("are-you-sure-confirm-btn");
 confirmBtn.addEventListener("click", async (event) => {
   event.preventDefault();
   playRandomMouseClick();
-  const auth = getAuth();
   const user = auth.currentUser;
   const password = document.getElementById("are-you-sure-pass-input").value;
   const email = user.email;

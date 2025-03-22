@@ -1,23 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { auth, db } from "../firebaseManager.js";
 import { banana } from "../langs.js";
 import { playRandomMouseClick } from "../sounds.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
-  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
-  projectId: "transport-clicker-f0d1c",
-  storageBucket: "transport-clicker-f0d1c.appspot.com",
-  messagingSenderId: "177489808647",
-  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
-  measurementId: "G-CP6HMGD0N1",
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
-const db = getFirestore();
 
 onAuthStateChanged(auth, (user) => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");

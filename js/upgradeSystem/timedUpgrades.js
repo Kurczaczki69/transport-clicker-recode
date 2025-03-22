@@ -190,6 +190,7 @@ export function removeUpgrade(upgr) {
 }
 
 export function grantUpgrade(upgrId) {
+  if (upgrId == "none") return;
   let timedUpgrades = getTimedUpgrades();
   const upgradeToGrant = timedUpgrades.find((u) => u.id === upgrId);
   if (!upgradeToGrant) {

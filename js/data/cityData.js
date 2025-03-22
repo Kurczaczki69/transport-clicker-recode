@@ -27,7 +27,7 @@ async function initializeCities() {
       unlockLevel: 0,
       pollutionLevel: 0.75,
       tourismFactor: 0.03,
-      imgPath: "img/cities/skarzysko_01.jpg",
+      imgPath: "img/cities/skarzysko_01.webp",
     },
     {
       name: banana.i18n("city-name-tychy"),
@@ -44,7 +44,7 @@ async function initializeCities() {
       unlockLevel: 15,
       pollutionLevel: 0.85,
       tourismFactor: 0.05,
-      imgPath: "img/cities/tychy_01.jpg",
+      imgPath: "img/cities/tychy_01.webp",
     },
     {
       name: banana.i18n("city-name-lublin"),
@@ -61,7 +61,7 @@ async function initializeCities() {
       unlockLevel: 40,
       pollutionLevel: 0.6,
       tourismFactor: 0.13,
-      imgPath: "img/cities/lublin_01.jpg",
+      imgPath: "img/cities/lublin_01.webp",
     },
     {
       name: banana.i18n("city-name-grudziadz"),
@@ -78,7 +78,7 @@ async function initializeCities() {
       unlockLevel: 85,
       pollutionLevel: 0.6,
       tourismFactor: 0.15,
-      imgPath: "img/cities/grudziadz_01.jpg",
+      imgPath: "img/cities/grudziadz_01.webp",
     },
     {
       name: banana.i18n("city-name-lodz"),
@@ -95,7 +95,7 @@ async function initializeCities() {
       unlockLevel: 120,
       pollutionLevel: 0.7,
       tourismFactor: 0.55,
-      imgPath: "img/cities/lodz_01.jpg",
+      imgPath: "img/cities/lodz_01.webp",
     },
   ];
 

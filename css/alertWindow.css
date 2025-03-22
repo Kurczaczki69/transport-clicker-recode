@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 768px) {
   #alert-window {
-    width: 75%;
+    width: 80%;
     height: 25%;
   }
 }
@@ -53,4 +53,11 @@
 #accept-alert-btn:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  #accept-alert-btn {
+    width: 50%;
+    padding: 4%;
+  }
 }

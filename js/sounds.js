@@ -23,7 +23,7 @@ function checkSoundPreference() {
 
 export function playRandomMouseClick() {
   const soundFiles = [
-    "./sound/mouse_click_01.flac",
+    "./sound/mouse_click_01.mp3",
     "./sound/mouse_click_02.mp3",
     "./sound/mouse_click_03.mp3",
     "./sound/mouse_click_04.mp3",

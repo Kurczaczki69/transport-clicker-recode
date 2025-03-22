@@ -11,7 +11,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-image: url("../img/bg/bg-1.png");
+  background-image: url("../img/bg/bg-2.png");
   background-position: 0%;
   background-size: cover;
   font-family: "Geologica", sans-serif;
@@ -215,6 +215,7 @@ input::placeholder {
     width: 85vw;
     height: 65vh;
     touch-action: manipulation;
+    top: 60%;
   }
 
   #clicker-img {
@@ -223,7 +224,8 @@ input::placeholder {
   }
 
   #clicker-shadow {
-    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.6);
+    top: 60%;
   }
 
   .navbar {

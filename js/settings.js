@@ -37,7 +37,7 @@ function updateColorScheme(colors) {
   root.style.setProperty("--colorscheme4", colors.color4 || "#b8e1dd");
 
   // Update background image
-  body.style.backgroundImage = `url("${colors.bgPath || "img/bg/bg-1.png"}")`;
+  body.style.backgroundImage = `url("${colors.bgPath || "img/bg/bg-2.png"}")`;
 
   // Update clicker image
   if (clicker) {

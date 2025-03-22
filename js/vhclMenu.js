@@ -138,7 +138,7 @@ class VehicleMenuManager {
 
   resetDropdownValue(dropdownId, value = "0") {
     const id = dropdownId instanceof HTMLElement ? dropdownId.id : dropdownId;
-    $(`#${id}`).val(value);
+    document.querySelector(`#${id}`).value = value;
   }
 
   checkCityRequirement(category) {
