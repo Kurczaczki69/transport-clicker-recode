@@ -9,7 +9,12 @@ Translate on crowdin:
 
 the code is horrible btw 😭
 
-If someone wants to contribute just `git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev` and that's it, you don't need any additional setup, it's just vanilla js, html and css. Then make a pull request and _maybe_ I'll accept it 
+If someone wants to contribute: 
+```
+git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
+npm install
+```
+after that you're all set, and after you finish make a pull request I'll _maybe_ accept it ;)
 
 
 ## PLANNED FEATURES FOR THE BETA PHASE
