@@ -2,7 +2,7 @@
 
 Polish game about clicking on a ~~circle~~ ~~square~~ rectangle and buying vehicles and upgrades.
 
-Game link: https://kurczaczki69.github.io/transport-clicker-recode/
+Game link: https://transport-clicker.netlify.app/
 
 Translate on crowdin:
 [![Crowdin](https://badges.crowdin.net/transport-clicker/localized.svg)](https://crowdin.com/project/transport-clicker)
