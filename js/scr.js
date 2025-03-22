@@ -1,6 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getFirestore, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { db, auth } from "./firebaseManager.js";
 import {
   sleep,
   isEmpty,
@@ -24,22 +23,6 @@ import { initializeBuildings } from "./data/buildingData.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { showNotif } from "./notifs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
-  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
-  projectId: "transport-clicker-f0d1c",
-  storageBucket: "transport-clicker-f0d1c.appspot.com",
-  messagingSenderId: "177489808647",
-  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
-  measurementId: "G-CP6HMGD0N1",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore();
-const auth = getAuth();
 
 let clickmod = 1;
 let bal = 0;
@@ -556,14 +539,14 @@ const clickShow = document.querySelector("#click-show");
 function displayStats() {
   if (!isGamePage) return;
   const timedUpgrs = getActiveTimedUpgrades();
-  const timedUpgrBoost = getTotalIncomeBoost(timedUpgrs);
-  const totalClickBoost = getTotalClickBoost(timedUpgrs);
   const currentCityData = getCities().find((city) => city.id === currentCity);
-  const cityBoost = calculateCityBoost(currentCityData);
-  const cityClickBoost = calculateCityClickMod(currentCityData);
   balShow.textContent = abbreviateNumber(bal);
-  incomeShow.textContent = abbreviateNumber(totalIncome * timedUpgrBoost * cityBoost);
-  clickShow.textContent = abbreviateNumber(clickmod * totalClickBoost * cityClickBoost);
+  incomeShow.textContent = abbreviateNumber(
+    totalIncome * getTotalIncomeBoost(timedUpgrs) * calculateCityBoost(currentCityData)
+  );
+  clickShow.textContent = abbreviateNumber(
+    clickmod * getTotalClickBoost(timedUpgrs) * calculateCityClickMod(currentCityData)
+  );
 }
 
 // saving game every 90 seconds to firestore

@@ -215,6 +215,7 @@ input::placeholder {
     width: 85vw;
     height: 65vh;
     touch-action: manipulation;
+    top: 60%;
   }
 
   #clicker-img {
@@ -223,7 +224,8 @@ input::placeholder {
   }
 
   #clicker-shadow {
-    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.6);
+    top: 60%;
   }
 
   .navbar {

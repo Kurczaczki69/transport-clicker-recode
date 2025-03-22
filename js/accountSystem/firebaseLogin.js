@@ -1,23 +1,10 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import {
-  getAuth,
   signInWithEmailAndPassword,
   sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { auth } from "../firebaseManager.js";
 import { showMsg } from "../utilities.js";
 import { banana } from "../langs.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAlr1B-qkg66Zqkr423UyFrNSLPmScZGIU",
-  authDomain: "transport-clicker-f0d1c.firebaseapp.com",
-  projectId: "transport-clicker-f0d1c",
-  storageBucket: "transport-clicker-f0d1c.appspot.com",
-  messagingSenderId: "177489808647",
-  appId: "1:177489808647:web:b54aeae2843f31ba02c9a2",
-  measurementId: "G-CP6HMGD0N1",
-};
-
-const app = initializeApp(firebaseConfig);
 
 const loginBtn = document.querySelector("#login-btn");
 loginBtn.addEventListener("click", (event) => {
@@ -25,7 +12,6 @@ loginBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const email = document.querySelector("#email-input-login").value;
   const password = document.querySelector("#password-input-login").value;
-  const auth = getAuth();
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {

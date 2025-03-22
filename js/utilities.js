@@ -226,9 +226,14 @@ export function animateWindowClose(element, isTint, tint) {
 
 // animates an element appearing
 // el - the element you wanna animate
-export function animateAppear(el) {
+// display - the css display property of the element
+export function animateAppear(el, display) {
   el.style.opacity = 0;
-  el.style.display = "block";
+  if (!display) {
+    el.style.display = "block";
+  } else {
+    el.style.display = display;
+  }
   anime({
     targets: el,
     opacity: 1,
