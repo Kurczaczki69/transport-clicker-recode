@@ -1,6 +1,11 @@
 import { banana } from "../langs.js";
 import { getCurrentCity, getUserCityData } from "../scr.js";
 import { convertDecimalBoostToPercent } from "../utilities.js";
+import skoImg from "../../img/cities/skarzysko_01.webp";
+import tycImg from "../../img/cities/tychy_01.webp";
+import lubImg from "../../img/cities/lublin_01.webp";
+import gruImg from "../../img/cities/grudziadz_01.webp";
+import lodImg from "../../img/cities/lodz_01.webp";
 
 let cities = [];
 let cityEvents = [];
@@ -27,7 +32,7 @@ async function initializeCities() {
       unlockLevel: 0,
       pollutionLevel: 0.75,
       tourismFactor: 0.03,
-      imgPath: "img/cities/skarzysko_01.webp",
+      imgPath: skoImg,
     },
     {
       name: banana.i18n("city-name-tychy"),
@@ -44,7 +49,7 @@ async function initializeCities() {
       unlockLevel: 15,
       pollutionLevel: 0.85,
       tourismFactor: 0.05,
-      imgPath: "img/cities/tychy_01.webp",
+      imgPath: tycImg,
     },
     {
       name: banana.i18n("city-name-lublin"),
@@ -61,7 +66,7 @@ async function initializeCities() {
       unlockLevel: 40,
       pollutionLevel: 0.6,
       tourismFactor: 0.13,
-      imgPath: "img/cities/lublin_01.webp",
+      imgPath: lubImg,
     },
     {
       name: banana.i18n("city-name-grudziadz"),
@@ -78,7 +83,7 @@ async function initializeCities() {
       unlockLevel: 85,
       pollutionLevel: 0.6,
       tourismFactor: 0.15,
-      imgPath: "img/cities/grudziadz_01.webp",
+      imgPath: gruImg,
     },
     {
       name: banana.i18n("city-name-lodz"),
@@ -95,7 +100,7 @@ async function initializeCities() {
       unlockLevel: 120,
       pollutionLevel: 0.7,
       tourismFactor: 0.55,
-      imgPath: "img/cities/lodz_01.webp",
+      imgPath: lodImg,
     },
   ];
 

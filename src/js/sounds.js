@@ -1,3 +1,13 @@
+import { Howl } from "howler";
+import click1 from "../sound/mouse_click_01.mp3";
+import click2 from "../sound/mouse_click_02.mp3";
+import click3 from "../sound/mouse_click_03.mp3";
+import click4 from "../sound/mouse_click_04.mp3";
+import click5 from "../sound/mouse_click_05.mp3";
+import cash1 from "../sound/cash_01.mp3";
+import cash2 from "../sound/cash_02.mp3";
+import cash3 from "../sound/cash_03.mp3";
+
 const isGamePage = window.location.pathname.includes("game.html");
 
 export function playSound(sound) {
@@ -22,20 +32,14 @@ function checkSoundPreference() {
 }
 
 export function playRandomMouseClick() {
-  const soundFiles = [
-    "./sound/mouse_click_01.mp3",
-    "./sound/mouse_click_02.mp3",
-    "./sound/mouse_click_03.mp3",
-    "./sound/mouse_click_04.mp3",
-    "./sound/mouse_click_05.mp3",
-  ];
+  const soundFiles = [click1, click2, click3, click4, click5];
 
   const randomIndex = Math.floor(Math.random() * soundFiles.length);
   playSound(soundFiles[randomIndex]);
 }
 
 export function playRandomCash() {
-  const soundFiles = ["./sound/cash_01.mp3", "./sound/cash_02.mp3", "./sound/cash_03.mp3"];
+  const soundFiles = [cash1, cash2, cash3];
 
   const randomIndex = Math.floor(Math.random() * soundFiles.length);
   playSound(soundFiles[randomIndex]);

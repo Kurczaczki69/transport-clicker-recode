@@ -2,6 +2,8 @@ import { themes } from "./data/themeData.js";
 import { banana } from "./langs.js";
 import { playRandomMouseClick } from "./sounds.js";
 import { animateWindowClose, animateWindowOpen } from "./utilities.js";
+import defaultBg from "../img/bg/bg-1.png";
+import defaultBus from "../img/other/bus-default.png";
 
 const settingsWindow = document.querySelector("#settings-menu");
 const tint = document.querySelector("#window-tint");
@@ -30,18 +32,15 @@ function updateColorScheme(colors) {
   const body = document.body;
   const clicker = document.querySelector("#clicker-img");
 
-  // Update color variables
   root.style.setProperty("--colorscheme1", colors.color1 || "#062925");
   root.style.setProperty("--colorscheme2", colors.color2 || "#044a42");
   root.style.setProperty("--colorscheme3", colors.color3 || "#3a9188");
   root.style.setProperty("--colorscheme4", colors.color4 || "#b8e1dd");
 
-  // Update background image
-  body.style.backgroundImage = `url("${colors.bgPath || "img/bg/bg-2.png"}")`;
+  body.style.backgroundImage = `url(${colors.bgPath || defaultBg})`;
 
-  // Update clicker image
   if (clicker) {
-    clicker.src = colors.busPath || "img/other/bus-default.png";
+    clicker.src = colors.busPath || defaultBus;
   }
 }
 

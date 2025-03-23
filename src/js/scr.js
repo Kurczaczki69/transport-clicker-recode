@@ -1,5 +1,5 @@
 const startTime = performance.now();
-import { getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getDoc, setDoc, doc } from "firebase/firestore";
 import { db, auth } from "./firebaseManager.js";
 import {
   sleep,
@@ -24,6 +24,39 @@ import { initializeBuildings } from "./data/buildingData.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { showNotif } from "./notifs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
+import "./vhclMenu.js";
+import "./utilities.js";
+import "./supabaseConfig.js";
+import "./stats.js";
+import "./supabaseConfig.js";
+import "./sounds.js";
+import "./settings.js";
+import "./notifs.js";
+import "./levelSystem.js";
+import "./langs.js";
+import "./firebaseManager.js";
+import "./creditsMenu.js";
+import "./cities.js";
+import "./codes.js";
+import "./buildings.js";
+import "./favicon.js";
+import "./upgradeSystem/insertDataIntoHtml.js";
+import "./upgradeSystem/timedUpgrades.js";
+import "./upgradeSystem/upgrades.js";
+import "./data/vhclData.js";
+import "./data/cityData.js";
+import "./data/buildingData.js";
+import "./data/timedUpgradeData.js";
+import "./data/upgradeData.js";
+import "./accountSystem/accountWindow.js";
+import "./accountSystem/changePassword.js";
+import "./accountSystem/deleteAccount.js";
+import "./accountSystem/firebaseAuth.js";
+import "./accountSystem/firebaseLogin.js";
+import "./accountSystem/forgotPasswordAtPassChange.js";
+import "./accountSystem/forgotPassword.js";
+import "./accountSystem/infoDisplay.js";
+import "./accountSystem/redirectIfLoggedIn.js";
 
 let clickmod = 1;
 let bal = 0;

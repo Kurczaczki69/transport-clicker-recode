@@ -1,10 +1,4 @@
-import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  setDoc,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { collection, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "./firebaseManager.js";
 import { showMsg, clearMsg, animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";

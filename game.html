@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- TRANSPORT CLICKER BETA 1.0.3 -->
+  <!-- TRANSPORT CLICKER BETA 1.1.0 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123 (Main developer, Translator) (english, polish)
@@ -14,49 +14,12 @@
     <meta
       name="description"
       content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/scrlbar.css" />
-    <link rel="stylesheet" href="css/tooltips.css" />
-    <link rel="stylesheet" href="css/upgrMenuStyles.css" />
-    <link rel="stylesheet" href="css/codesStyles.css" />
-    <link rel="stylesheet" href="css/accountSystem/accountMenuStyles.css" />
-    <link rel="stylesheet" href="css/verNumberDisplay.css" />
-    <link rel="stylesheet" href="css/loading.css" />
-    <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
-    <link rel="stylesheet" href="css/alertWindow.css" />
-    <link rel="stylesheet" href="css/icons.css" />
-    <link rel="stylesheet" href="css/creditsMenuStyles.css" />
-    <link rel="stylesheet" href="css/notifDisplay.css" />
-    <link rel="stylesheet" href="css/statsSystem.css" />
-    <link rel="stylesheet" href="css/settingsMenu.css" />
-    <link rel="stylesheet" href="css/citiesWindow.css" />
-    <link rel="stylesheet" href="css/buildingsStyles.css" />
-    <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
-      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"></script>
     <script src="node_modules/animejs/lib/anime.min.js"></script>
-
-    <style>
-      :root {
-        --border5: solid 1.5px var(--colorscheme4);
-        --border2: solid 1px var(--colorscheme4);
-        --linkcolor: var(--colorscheme3);
-        --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-
-        --colorscheme1: #062925;
-        --colorscheme2: #044a42;
-        --colorscheme3: #3a9188;
-        --colorscheme4: #b8e1dd;
-      }
-    </style>
   </head>
-  <body data-page="game">
+  <body data-page="game" class="game-page">
     <div id="loader-wrapper">
       <div class="spinner"></div>
       <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
@@ -242,7 +205,7 @@
       <div id="active-events-container"></div>
       <section id="main-screen">
         <section id="clicker">
-          <img src="img/other/bus-default.png" alt="bus" id="clicker-img" />
+          <img alt="bus" id="clicker-img" />
         </section>
         <div id="clicker-shadow"></div>
       </section>
@@ -537,7 +500,7 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vBETA1.0.3</div>
+          <div id="credits-menu-section-left-title">Transport Clicker <br />vBETA1.1.0</div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users credits-icons"></span> <span data-lang="credits-contributors"></span>
@@ -589,6 +552,15 @@
                 >MIT,
                 <a target="_blank" href="https://icon-sets.iconify.design/tabler/?keyword=tabler"
                   >icon-sets.iconify.design/tabler/</a
+                ></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              Webpack <br />
+              <span class="credits-menu-contributor-github"
+                >MIT,
+                <a target="_blank" href="https://github.com/webpack/webpack/blob/main/LICENSE"
+                  >github.com/webpack/webpack</a
                 ></span
               >
             </div>
@@ -840,35 +812,8 @@
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vBETA1.0.3]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [vBETA1.1.0]</section>
 
-    <script type="module" src="js/firebaseManager.js"></script>
-    <script type="module" src="js/scr.js"></script>
-    <script type="module" src="js/codes.js"></script>
-    <script type="module" src="js/creditsMenu.js"></script>
-    <script type="module" src="js/accountSystem/accountWindow.js"></script>
-    <script type="module" src="js/upgradeSystem/upgrades.js"></script>
-    <script type="module" src="js/data/timedUpgradeData.js"></script>
-    <script type="module" src="js/upgradeSystem/timedUpgrades.js"></script>
-    <script type="module" src="js/upgradeSystem/insertDataIntoHtml.js"></script>
-    <script type="module" src="js/accountSystem/infoDisplay.js"></script>
-    <script type="module" src="js/accountSystem/deleteAccount.js"></script>
-    <script type="module" src="js/accountSystem/changePassword.js"></script>
-    <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
-    <script type="module" src="js/langs.js"></script>
-    <script type="module" src="js/vhclMenu.js"></script>
-    <script type="module" src="js/utilities.js"></script>
-    <script type="module" src="js/data/upgradeData.js"></script>
-    <script type="module" src="js/data/timedUpgradeData.js"></script>
-    <script type="module" src="js/data/vhclData.js"></script>
-    <script type="module" src="js/data/buildingData.js"></script>
-    <script type="module" src="js/notifs.js"></script>
-    <script type="module" src="js/levelSystem.js"></script>
-    <script type="module" src="js/settings.js"></script>
-    <script type="module" src="js/data/themeData.js"></script>
-    <script type="module" src="js/data/cityData.js"></script>
-    <script type="module" src="js/cities.js"></script>
-    <script type="module" src="js/buildings.js"></script>
-    <script type="module" src="js/sounds.js"></script>
+    <script src="dist/bundle.js"></script>
   </body>
 </html>

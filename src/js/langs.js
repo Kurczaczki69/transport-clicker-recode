@@ -1,4 +1,4 @@
-import Banana from "../node_modules/banana-i18n/dist/esm/banana-i18n.js";
+import Banana from "banana-i18n";
 import { updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { initializeTimedUpgrades } from "./data/timedUpgradeData.js";
 import { initializeUpgrades } from "./data/upgradeData.js";
@@ -14,7 +14,7 @@ const banana = new Banana();
 function updateLang(lang) {
   $("#loader-wrapper").fadeIn(350);
   sleep(360).then(() => {
-    fetch(`lang/${lang}.json`)
+    fetch(`dist/lang/${lang}.json`)
       .then((response) => response.json())
       .then((messages) => {
         banana.load(messages, lang);
@@ -65,35 +65,29 @@ export function setPageTitle(page) {
   }
 }
 
-const langDropdown = document.querySelector("#lang-dropdown");
+const langDropdowns = document.querySelectorAll("#lang-dropdown, #lang-dropdown-login");
 
-if (langDropdown) {
-  langDropdown.addEventListener("change", (event) => {
+langDropdowns.forEach((dropdown) => {
+  dropdown.addEventListener("change", (event) => {
     const selectedLang = event.target.value;
     playRandomMouseClick();
     changeLang(selectedLang);
+    langDropdowns.forEach((otherDropdown) => {
+      otherDropdown.value = selectedLang;
+    });
   });
-}
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const userLang = localStorage.getItem("lang");
-  if (langDropdown) {
-    if (userLang) {
-      changeLang(userLang);
-      langDropdown.value = userLang;
-    } else {
-      const browserLang = navigator.language.split("-")[0];
-      changeLang(browserLang);
-      langDropdown.value = browserLang;
-    }
-  } else {
-    if (userLang) {
-      changeLang(userLang);
-    } else {
-      const browserLang = navigator.language.split("-")[0];
-      changeLang(browserLang);
-    }
-  }
+  const browserLang = navigator.language.split("-")[0];
+  const langToUse = userLang || browserLang;
+
+  langDropdowns.forEach((dropdown) => {
+    dropdown.value = langToUse;
+  });
+
+  changeLang(langToUse);
   updateLangInHtml();
 });
 

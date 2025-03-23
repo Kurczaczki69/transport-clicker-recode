@@ -1,3 +1,27 @@
+import bg1 from "../../img/bg/bg-1.png";
+import bg2 from "../../img/bg/bg-2.png";
+import bg3 from "../../img/bg/bg-3.png";
+import bg4 from "../../img/bg/bg-4.png";
+import bg5 from "../../img/bg/bg-5.png";
+import bg6 from "../../img/bg/bg-6.png";
+import bg7 from "../../img/bg/bg-7.png";
+import bg8 from "../../img/bg/bg-8.png";
+
+import busDefault from "../../img/other/bus-default.png";
+import busDark from "../../img/other/bus-dark.png";
+import busMetal from "../../img/other/bus-metal.png";
+import busForest from "../../img/other/bus-forest.png";
+import busOcean from "../../img/other/bus-ocean.png";
+import busLavender from "../../img/other/bus-lavender.png";
+import busAutumn from "../../img/other/bus-autumn.png";
+import busMint from "../../img/other/bus-mint.png";
+import busBerry from "../../img/other/bus-berry.png";
+import busDesert from "../../img/other/bus-desert.png";
+import busVegan from "../../img/other/bus-vegan.png";
+import busMeat from "../../img/other/bus-meat.png";
+import busSakura from "../../img/other/bus-sakura.png";
+import busCola from "../../img/other/bus-cola.png";
+
 export const themes = [
   // default
   {
@@ -6,8 +30,8 @@ export const themes = [
     color2: "#044a42",
     color3: "#3a9188",
     color4: "#b8e1dd",
-    bgPath: "./img/bg/bg-2.png",
-    busPath: "./img/other/bus-default.png",
+    bgPath: bg2,
+    busPath: busDefault,
   },
   // dark
   {
@@ -16,8 +40,8 @@ export const themes = [
     color2: "#1E1E1E",
     color3: "#2D2D2D",
     color4: "#b7c0be",
-    bgPath: "./img/bg/bg-1.png",
-    busPath: "./img/other/bus-dark.png",
+    bgPath: bg1,
+    busPath: busDark,
   },
   // metal
   {
@@ -26,8 +50,8 @@ export const themes = [
     color2: "#2D3436",
     color3: "#707D83",
     color4: "#D1D8DA",
-    bgPath: "./img/bg/bg-4.png",
-    busPath: "./img/other/bus-metal.png",
+    bgPath: bg4,
+    busPath: busMetal,
   },
   // forest
   {
@@ -36,8 +60,8 @@ export const themes = [
     color2: "#3E5622",
     color3: "#7A934E",
     color4: "#C5D6A2",
-    bgPath: "./img/bg/bg-6.png",
-    busPath: "./img/other/bus-forest.png",
+    bgPath: bg6,
+    busPath: busForest,
   },
   // ocean
   {
@@ -46,8 +70,8 @@ export const themes = [
     color2: "#13315C",
     color3: "#134074",
     color4: "#8DA9C4",
-    bgPath: "./img/bg/bg-1.png",
-    busPath: "./img/other/bus-ocean.png",
+    bgPath: bg1,
+    busPath: busOcean,
   },
   // lavender
   {
@@ -56,8 +80,8 @@ export const themes = [
     color2: "#5c4695",
     color3: "#8265A7",
     color4: "#E8DFF5",
-    bgPath: "./img/bg/bg-7.png",
-    busPath: "./img/other/bus-lavender.png",
+    bgPath: bg7,
+    busPath: busLavender,
   },
   // autumn
   {
@@ -66,8 +90,8 @@ export const themes = [
     color2: "#763626",
     color3: "#D66853",
     color4: "#F2C4CE",
-    bgPath: "./img/bg/bg-8.png",
-    busPath: "./img/other/bus-autumn.png",
+    bgPath: bg8,
+    busPath: busAutumn,
   },
   // mint
   {
@@ -76,8 +100,8 @@ export const themes = [
     color2: "#164936",
     color3: "#3B9778",
     color4: "#BFEEE0",
-    bgPath: "./img/bg/bg-2.png",
-    busPath: "./img/other/bus-mint.png",
+    bgPath: bg2,
+    busPath: busMint,
   },
   // berry
   {
@@ -86,8 +110,8 @@ export const themes = [
     color2: "#5C1738",
     color3: "#A13E65",
     color4: "#EBBDD0",
-    bgPath: "./img/bg/bg-3.png",
-    busPath: "./img/other/bus-berry.png",
+    bgPath: bg3,
+    busPath: busBerry,
   },
   // desert
   {
@@ -96,8 +120,8 @@ export const themes = [
     color2: "#5E3023",
     color3: "#CB8E4B",
     color4: "#F3DEB7",
-    bgPath: "./img/bg/bg-5.png",
-    busPath: "./img/other/bus-desert.png",
+    bgPath: bg5,
+    busPath: busDesert,
   },
   // vegan
   {
@@ -106,8 +130,8 @@ export const themes = [
     color2: "#267D38",
     color3: "#4CB963",
     color4: "#DFFCE4",
-    bgPath: "./img/bg/bg-6.png",
-    busPath: "./img/other/bus-vegan.png",
+    bgPath: bg6,
+    busPath: busVegan,
   },
   // meat
   {
@@ -116,8 +140,8 @@ export const themes = [
     color2: "#641C1C",
     color3: "#A13333",
     color4: "#FFDADA",
-    bgPath: "./img/bg/bg-8.png",
-    busPath: "./img/other/bus-meat.png",
+    bgPath: bg8,
+    busPath: busMeat,
   },
   // sakura
   {
@@ -126,8 +150,8 @@ export const themes = [
     color2: "#8C4A55",
     color3: "#F2B5BC",
     color4: "#FFE8E8",
-    bgPath: "./img/bg/bg-3.png",
-    busPath: "./img/other/bus-sakura.png",
+    bgPath: bg3,
+    busPath: busSakura,
   },
   // cola
   {
@@ -136,7 +160,7 @@ export const themes = [
     color2: "#2F1517",
     color3: "#C11B1F",
     color4: "#F2EDED",
-    bgPath: "./img/bg/bg-8.png",
-    busPath: "./img/other/bus-cola.png",
+    bgPath: bg8,
+    busPath: busCola,
   },
 ];

@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 
-body {
+body.login-page {
   margin: 0;
   padding: 0;
-  background-color: var(--bgcolor);
   font-family: "Geologica", sans-serif;
   align-items: center;
   justify-content: center;
@@ -15,7 +14,7 @@ body {
   overflow-y: hidden;
   user-select: none;
   scroll-behavior: smooth;
-  color: white;
+  color: var(--textcolor);
 }
 
 #login-box {
@@ -121,7 +120,7 @@ body {
   text-align: center;
 }
 
-#lang-dropdown {
+#lang-dropdown-login {
   width: 25%;
   padding: 0.5%;
   border: none;
@@ -137,7 +136,7 @@ body {
   box-shadow: var(--boxshadow);
 }
 
-#lang-dropdown:focus {
+#lang-dropdown-login:focus {
   outline: none;
   border: none;
 }

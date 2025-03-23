@@ -82,8 +82,11 @@ const VEHICLE_CATEGORIES = {
   },
 };
 
+const isGamePage = document.location.pathname.includes("game.html");
+
 class VehicleMenuManager {
   constructor() {
+    if (!isGamePage) return;
     this.cities = getCities();
     this.initializeElements();
     this.setupEventListeners();
@@ -248,8 +251,6 @@ class VehicleMenuManager {
 }
 
 const vehicleMenu = new VehicleMenuManager();
-
-const isGamePage = document.location.pathname.includes("game.html");
 
 if (isGamePage) {
   // open vehicle menu

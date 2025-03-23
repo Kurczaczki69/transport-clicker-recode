@@ -6,7 +6,7 @@ html {
   overflow: hidden;
 }
 
-body {
+body.game-page {
   margin: 0;
   padding: 0;
   height: 100%;
