@@ -9,12 +9,13 @@ Translate on crowdin:
 
 the code is horrible btw 😭
 
-If someone wants to contribute: 
+~~If someone wants to contribute: 
 ```
 git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
 npm install
 ```
-after that you're all set, and after you finish make a pull request I'll _maybe_ accept it ;)
+after that you're all set, and after you finish make a pull request I'll _maybe_ accept it ;)~~
+**this is outdated ^^^^, ill update it soon**
 
 
 ## PLANNED FEATURES FOR THE BETA PHASE
