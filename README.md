@@ -18,6 +18,7 @@ npm install~~
 
 ## PLANNED FEATURES FOR THE BETA PHASE
 
+❌ Switching to supabase\
 ❌ Fuel system\
 ✅ Building buildings in cities like fuel stations, power plants etc.\
 ❌ Passenger satisfaction\
