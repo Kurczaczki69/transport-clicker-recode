@@ -85,6 +85,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
 }
 
 #loading-text-wrapper {

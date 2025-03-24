@@ -90,86 +90,114 @@ if (isGamePage) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
-  if (loggedInUserId) {
-    const userDoc = await getDoc(doc(db, "users", loggedInUserId));
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      // loads existing data from server or sets default value if no data is found
-      bal = userData.balance || bal;
-      income = userData.income || income;
-      clickmod = userData.clickmod || clickmod;
-      bghtUpgrs = userData.bghtUpgrs || bghtUpgrs;
-      citySwitchCost = userData.citySwitchCost || citySwitchCost;
-      unlockedCities = userData.unlockedCities || unlockedCities;
-      currentCity = userData.currentCity || currentCity;
-      vhclAmounts = userData.vhclAmounts || {};
-      vhclPrices = userData.vhclPrices || {};
-      userCityData = userData.userCityData || {};
-      vhclStats = userData.vhclStats || {};
-      timedUpgrsPrices = userData.timedUpgrsPrices || {};
 
-      // data is saved to server only if it is a new account
-      if (!userData.balance && !userData.income && !userData.clickmod) {
-        await setDoc(doc(db, "users", loggedInUserId), {
-          email: userData.email,
-          username: userData.username,
-          balance: bal,
-          income: income,
-          clickmod: clickmod,
-          bghtUpgrs: bghtUpgrs,
-          citySwitchCost: citySwitchCost,
-          unlockedCities: unlockedCities,
-          currentCity: currentCity,
-          vhclAmounts: vhclAmounts,
-          vhclPrices: vhclPrices,
-          userCityData: userCityData,
-          vhclStats: vhclStats,
-          timedUpgrsPrices: timedUpgrsPrices,
-        });
-      }
-      console.log("data loaded from server");
-      if (auth.currentUser.emailVerified) {
-        console.log("email is verified");
-        if (vhclPrices == undefined || vhclPrices == null) {
-          vhclPrices = {};
-        }
-        if (vhclAmounts == undefined || vhclAmounts == null) {
-          vhclAmounts = {};
-        }
-        getCodes()
-          .then(() => {
-            sleep(700).then(() => {
-              startTimedUpgrades();
-              gameSaver();
-              displayStats();
-              startGameLoop();
-              const currentPage = document.body.getAttribute("data-page");
-              setPageTitle(currentPage);
-              $("#loader-wrapper").fadeOut("slow");
-              sleep(750).then(() => {
-                initializeCities();
-                initializeBuildings();
-                populateVhclData();
-                populateUpgrData();
-                const endTime = performance.now();
-                const loadTime = endTime - startTime;
-                console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
-              });
-            });
-          })
-          .catch((error) => {
-            console.error("error getting codes:", error);
-          });
-      } else {
-        console.log("email is not verified");
-        window.location.href = "index.html";
-        localStorage.removeItem("loggedInUserId");
-        localStorage.setItem("loggedIn", false);
-        showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
-      }
+  if (!loggedInUserId) return;
+
+  try {
+    const userDoc = await getDoc(doc(db, "users", loggedInUserId));
+    if (!userDoc.exists() || !auth.currentUser.emailVerified) {
+      handleInvalidUser();
+      return;
     }
+
+    await Promise.all([initializeUserData(userDoc.data()), initializeGameSystems()]);
+    startCoreSystems();
+
+    requestAnimationFrame(() => {
+      initializeSecondaryFeatures();
+    });
+  } catch (error) {
+    console.error("Error during game initialization:", error);
+    window.alert(banana.i18n("error-loading-game"));
   }
 });
+
+function handleInvalidUser() {
+  window.location.href = "index.html";
+  localStorage.removeItem("loggedInUserId");
+  localStorage.setItem("loggedIn", false);
+  showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
+}
+
+async function initializeUserData(userData) {
+  bal = userData.balance || 0;
+  income = userData.income || 0;
+  clickmod = userData.clickmod || 1;
+  bghtUpgrs = userData.bghtUpgrs || [];
+  citySwitchCost = userData.citySwitchCost || 20000;
+  unlockedCities = userData.unlockedCities || ["sko"];
+  currentCity = userData.currentCity || "sko";
+  vhclAmounts = userData.vhclAmounts || {};
+  vhclPrices = userData.vhclPrices || {};
+  userCityData = userData.userCityData || {};
+  vhclStats = userData.vhclStats || {};
+  timedUpgrsPrices = userData.timedUpgrsPrices || {};
+
+  if (!userData.balance && !userData.income && !userData.clickmod) {
+    await saveInitialUserData(userData);
+  }
+}
+
+async function initializeGameSystems() {
+  const [codesData, citiesData] = await Promise.all([getCodes(), initializeCities()]);
+
+  startTimedUpgrades();
+  displayStats();
+  startGameLoop();
+}
+
+function startCoreSystems() {
+  gameSaver();
+  const currentPage = document.body.getAttribute("data-page");
+  setPageTitle(currentPage);
+}
+
+function initializeSecondaryFeatures() {
+  initializeBuildings();
+  populateVhclData();
+  populateUpgrData();
+  syncVehiclePrices();
+  syncTimedUpgrPrices();
+
+  const loader = document.querySelector("#loader-wrapper");
+  anime({
+    targets: loader,
+    translateZ: 0,
+    opacity: 0,
+    duration: 400,
+    easing: "easeOutQuad",
+    begin: () => {
+      loader.style.willChange = "opacity";
+      loader.style.backfaceVisibility = "hidden";
+    },
+    complete: () => {
+      loader.style.display = "none";
+      loader.style.willChange = "auto";
+      const loadTime = performance.now() - startTime;
+      console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
+    },
+  });
+}
+
+async function saveInitialUserData(userData) {
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  await setDoc(doc(db, "users", loggedInUserId), {
+    email: userData.email,
+    username: userData.username,
+    balance: bal,
+    income: income,
+    clickmod: clickmod,
+    bghtUpgrs: bghtUpgrs,
+    citySwitchCost: citySwitchCost,
+    unlockedCities: unlockedCities,
+    currentCity: currentCity,
+    vhclAmounts: vhclAmounts,
+    vhclPrices: vhclPrices,
+    userCityData: userCityData,
+    vhclStats: vhclStats,
+    timedUpgrsPrices: timedUpgrsPrices,
+  });
+}
 
 /**
  * Saves the current game state to the server.
