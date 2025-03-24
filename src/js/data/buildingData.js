@@ -1,4 +1,18 @@
 import { banana } from "../langs.js";
+import gasStationImg from "../../img/buildings/gas_station.webp";
+import hydrogenStationImg from "../../img/buildings/hydrogen_station.webp";
+import busTerminalImg from "../../img/buildings/bus_terminal.webp";
+import parkImg from "../../img/buildings/park.webp";
+import touristCenterImg from "../../img/buildings/tourist_center.webp";
+import sightseeingPlatformImg from "../../img/buildings/sightseeing_platform.webp";
+import transportMuseumImg from "../../img/buildings/transport_museum.webp";
+import stadiumImg from "../../img/buildings/stadium.webp";
+import roadsWithTreesImg from "../../img/buildings/roads_with_trees.webp";
+import largeBusTerminalImg from "../../img/buildings/large_bus_terminal.webp";
+import smallMallImg from "../../img/buildings/small_mall.webp";
+import hotelImg from "../../img/buildings/hotel.webp";
+import mallImg from "../../img/buildings/mall.webp";
+import threeStarHotelImg from "../../img/buildings/3_star_hotel.webp";
 
 let buildings = [];
 const isGamePage = window.location.pathname.includes("game.html");
@@ -12,7 +26,7 @@ function initializeBuildings() {
       id: "gas-station",
       requiredLevel: 0,
       cost: 0,
-      imgPath: "img/buildings/gas_station.webp",
+      imgPath: gasStationImg,
       boostType: "special",
       boostValue: 0.0,
       fuelType: "diesel",
@@ -24,7 +38,7 @@ function initializeBuildings() {
       id: "hydrogen-station",
       requiredLevel: 12,
       cost: 250000,
-      imgPath: "img/buildings/hydrogen_station.webp",
+      imgPath: hydrogenStationImg,
       boostType: "special",
       boostValue: 0.0,
       fuelType: "hydrogen",
@@ -36,7 +50,7 @@ function initializeBuildings() {
       id: "bus-terminal",
       requiredLevel: 15,
       cost: 500000,
-      imgPath: "img/buildings/bus_terminal.webp",
+      imgPath: busTerminalImg,
       boostType: "income",
       boostValue: 1.05,
       events: [],
@@ -47,7 +61,7 @@ function initializeBuildings() {
       id: "park",
       requiredLevel: 20,
       cost: 1000000,
-      imgPath: "img/buildings/park.webp",
+      imgPath: parkImg,
       boostType: "pollution",
       boostValue: -0.05,
       events: [],
@@ -58,7 +72,7 @@ function initializeBuildings() {
       id: "tourist-center",
       requiredLevel: 35,
       cost: 6000000,
-      imgPath: "img/buildings/tourist_center.webp",
+      imgPath: touristCenterImg,
       boostType: "tourism",
       boostValue: 0.08,
       events: ["tourist-season", "city-tour"],
@@ -69,7 +83,7 @@ function initializeBuildings() {
       id: "sightseeing-platform",
       requiredLevel: 45,
       cost: 10000000,
-      imgPath: "img/buildings/sightseeing_platform.webp",
+      imgPath: sightseeingPlatformImg,
       boostType: "tourism",
       boostValue: 0.12,
       events: ["photo-tour", "sunset-tour"],
@@ -80,7 +94,7 @@ function initializeBuildings() {
       id: "transport-museum",
       requiredLevel: 60,
       cost: 15000000,
-      imgPath: "img/buildings/transport_museum.webp",
+      imgPath: transportMuseumImg,
       boostType: "tourism",
       boostValue: 0.19,
       events: ["museum-exhibition", "vintage-vehicle-show"],
@@ -91,7 +105,7 @@ function initializeBuildings() {
       id: "stadium",
       requiredLevel: 75,
       cost: 25000000,
-      imgPath: "img/buildings/stadium.webp",
+      imgPath: stadiumImg,
       boostType: "tourism",
       boostValue: 0.23,
       events: ["world-cup", "football-match"],
@@ -102,7 +116,7 @@ function initializeBuildings() {
       id: "roads-with-trees",
       requiredLevel: 85,
       cost: 50000000,
-      imgPath: "img/buildings/roads_with_trees.webp",
+      imgPath: roadsWithTreesImg,
       boostType: "pollution",
       boostValue: -0.15,
       events: [],
@@ -113,7 +127,7 @@ function initializeBuildings() {
       id: "large-bus-terminal",
       requiredLevel: 100,
       cost: 60000000,
-      imgPath: "img/buildings/large_bus_terminal.webp",
+      imgPath: largeBusTerminalImg,
       boostType: "clickmod",
       boostValue: 1.1,
       events: [],
@@ -124,7 +138,7 @@ function initializeBuildings() {
       id: "small-mall",
       requiredLevel: 100,
       cost: 75000000,
-      imgPath: "img/buildings/small_mall.webp",
+      imgPath: smallMallImg,
       boostType: "clickmod",
       boostValue: 1.15,
       events: [],
@@ -135,7 +149,7 @@ function initializeBuildings() {
       id: "hotel",
       requiredLevel: 125,
       cost: 100000000,
-      imgPath: "img/buildings/hotel.webp",
+      imgPath: hotelImg,
       boostType: "tourism",
       boostValue: 0.25,
       events: ["school-trip"],
@@ -146,7 +160,7 @@ function initializeBuildings() {
       id: "mall",
       requiredLevel: 140,
       cost: 200000000,
-      imgPath: "img/buildings/mall.webp",
+      imgPath: mallImg,
       boostType: "clickmod",
       boostValue: 1.25,
       events: [],
@@ -157,7 +171,7 @@ function initializeBuildings() {
       id: "3-star-hotel",
       requiredLevel: 155,
       cost: 550000000,
-      imgPath: "img/buildings/3_star_hotel.webp",
+      imgPath: threeStarHotelImg,
       boostType: "income",
       boostValue: 1.25,
       events: [],
