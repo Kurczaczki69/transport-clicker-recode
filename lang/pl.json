@@ -115,6 +115,7 @@
   "turbo-engine-10min-name": "Turbo silnik - 10 min",
   "turbo-engine-10min-desc": "Zarobki x7 i zarobki z klikania x3 na 10 minut",
   "error-occurred": "Wystąpił błąd",
+  "error-loading-game": "Failed to load the game. Please try again and if the problem persists, contact the developer",
   "wrong-password": "Niepoprawne hasło",
   "auth-empty-fields": "Wypełnij wszystkie pola",
   "auth-success": "Konto utworzone pomyślnie",
