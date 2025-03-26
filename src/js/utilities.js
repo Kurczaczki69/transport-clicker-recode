@@ -1,3 +1,4 @@
+import anime from "animejs";
 import { banana } from "./langs.js";
 import { playRandomMouseClick } from "./sounds.js";
 

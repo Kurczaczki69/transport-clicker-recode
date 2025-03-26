@@ -1,5 +1,6 @@
 const startTime = performance.now();
 import { getDoc, setDoc, doc } from "firebase/firestore";
+import anime from "animejs";
 import { db, auth } from "./firebaseManager.js";
 import {
   sleep,
