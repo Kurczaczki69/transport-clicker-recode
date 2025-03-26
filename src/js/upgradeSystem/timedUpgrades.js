@@ -206,7 +206,11 @@ export function grantUpgrade(upgrId) {
   activeUpgrs.push(newActiveUpgr);
   setActiveTimedUpgrades(activeUpgrs);
 
-  showNotif(upgradeToBuy.name, banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)), "notif-timed-upgr");
+  showNotif(
+    upgradeToGrant.name,
+    banana.i18n("timed-upgr-notif", formatTime(upgradeToGrant.duration)),
+    "notif-timed-upgr"
+  );
   const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
   notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
   runUpgrade(newActiveUpgr);

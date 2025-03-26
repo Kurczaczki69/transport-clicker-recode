@@ -60,7 +60,7 @@ if (isGamePage) {
         showMsg(banana.i18n("wrong-password"), "input-msg");
         console.error("deletion unsuccesful - wrong password");
       } else if (errorCode === "auth/requires-recent-login") {
-        showMsg(banana.i18n("delete-account-requires-recent-login"), "input-msg");
+        showMsg(banana.i18n("delete-acc-requires-recent-login"), "input-msg");
       } else if (errorCode === "auth/missing-password") {
         showMsg(banana.i18n("auth-login-missing-password"), "input-msg");
         console.log(errorCode);

@@ -567,10 +567,9 @@ function clicker(e) {
   const cities = getCities();
   const currentCityData = cities.find((city) => city.id === currentCity);
   const timedUpgrs = getActiveTimedUpgrades();
-  const totalBoost = getTotalClickBoost(timedUpgrs);
-  const cityBoost = calculateCityClickMod(currentCityData);
 
-  const clickValue = Math.floor(clickmod * totalBoost * cityBoost);
+  let clickValue = Math.round(clickmod * getTotalClickBoost(timedUpgrs) * calculateCityClickMod(currentCityData));
+  if (clickmod <= 2) clickValue = clickmod;
 
   bal += clickValue;
   const indicator = document.createElement("div");
@@ -578,7 +577,7 @@ function clicker(e) {
   document.body.appendChild(indicator);
   indicator.style.left = `${e.clientX}px`;
   indicator.style.top = `${e.clientY - 75}px`;
-  indicator.textContent = `+${shortAbbreviateNumber(clickValue)}`;
+  indicator.textContent = `+${shortAbbreviateNumber(clickValue)} $`;
   anime({
     targets: indicator,
     keyframes: [
@@ -607,10 +606,10 @@ function displayStats() {
   const currentCityData = getCities().find((city) => city.id === currentCity);
   balShow.textContent = abbreviateNumber(bal);
   incomeShow.textContent = abbreviateNumber(
-    totalIncome * getTotalIncomeBoost(timedUpgrs) * calculateCityBoost(currentCityData)
+    Math.round(totalIncome * getTotalIncomeBoost(timedUpgrs) * calculateCityBoost(currentCityData))
   );
   clickShow.textContent = abbreviateNumber(
-    clickmod * getTotalClickBoost(timedUpgrs) * calculateCityClickMod(currentCityData)
+    Math.round(clickmod * getTotalClickBoost(timedUpgrs) * calculateCityClickMod(currentCityData))
   );
 }
 

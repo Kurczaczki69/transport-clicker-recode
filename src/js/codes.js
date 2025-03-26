@@ -1,6 +1,6 @@
 import { collection, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "./firebaseManager.js";
-import { showMsg, clearMsg, animateWindowOpen, animateWindowClose } from "./utilities.js";
+import { animateWindowOpen, animateWindowClose, showAlert } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
 import { banana } from "./langs.js";
@@ -9,10 +9,10 @@ import { playRandomMouseClick } from "./sounds.js";
 // listeners
 
 const isGamePage = window.location.pathname.endsWith("game.html");
+const codesMenu = document.querySelector("#codes-menu");
+const tint = document.querySelector("#window-tint");
 
 if (isGamePage) {
-  const codesMenu = document.querySelector("#codes-menu");
-  const tint = document.querySelector("#window-tint");
   const closeGuiBtn = document.querySelector("#close-codes-gui-btn");
   const openGuiBtn = document.querySelector("#nav-item-codes-menu");
 
@@ -20,13 +20,11 @@ if (isGamePage) {
     playRandomMouseClick();
     codesMenu.style.display = "block";
     animateWindowOpen(codesMenu, true, tint);
-    clearMsg("code-menu-msgbox");
   });
 
   closeGuiBtn.addEventListener("click", () => {
     playRandomMouseClick();
     animateWindowClose(codesMenu, true, tint);
-    clearMsg("code-menu-msgbox");
   });
 }
 
@@ -41,7 +39,8 @@ function useCode(code) {
     applyCodeBoosts(codeData);
   } else {
     console.log("invalid code");
-    showMsg(banana.i18n("codes-invalid-code"), "code-menu-msgbox");
+    showAlert(banana.i18n("codes-invalid-code"));
+    animateWindowClose(codesMenu, true, tint);
   }
 }
 
@@ -50,12 +49,14 @@ async function applyCodeBoosts(code) {
   let codeData = usedCodes.includes(code.code);
   if (codeData) {
     console.log("code already used");
-    showMsg(banana.i18n("codes-code-already-used"), "code-menu-msgbox");
+    showAlert(banana.i18n("codes-code-already-used"));
+    animateWindowClose(codesMenu, true, tint);
   } else {
     const expireDate = new Date(code.expireDate.seconds * 1000);
     if (Date.now() > expireDate.getTime()) {
       console.log("code expired");
-      showMsg(banana.i18n("codes-code-expired"), "code-menu-msgbox");
+      showAlert(banana.i18n("codes-code-expired"));
+      animateWindowClose(codesMenu, true, tint);
     } else {
       let bal = getBal();
       bal = bal + code.moneyReward;
@@ -64,7 +65,8 @@ async function applyCodeBoosts(code) {
       usedCodes.push(code.code);
       await setUsedCodes(usedCodes);
       console.log("code used");
-      showMsg(banana.i18n("codes-success"), "code-menu-msgbox");
+      showAlert(banana.i18n("codes-success"));
+      animateWindowClose(codesMenu, true, tint);
     }
   }
 }

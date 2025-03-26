@@ -36,7 +36,7 @@ function initializeBuildings() {
       name: banana.i18n("building-hydrogen-station"),
       desc: banana.i18n("building-hydrogen-station-desc"),
       id: "hydrogen-station",
-      requiredLevel: 12,
+      requiredLevel: 5,
       cost: 250000,
       imgPath: hydrogenStationImg,
       boostType: "special",

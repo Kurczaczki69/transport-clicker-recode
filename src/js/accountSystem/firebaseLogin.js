@@ -56,6 +56,8 @@ if (loginBtn) {
           );
         } else if (errorCode === "auth/missing-password") {
           showMsg(banana.i18n("auth-login-missing-password"), "errorMsgLogin");
+        } else if (errorCode === "auth/too-many-requests") {
+          showMsg(banana.i18n("auth-login-too-many-requests"), "errorMsgLogin");
         } else {
           console.log("login failed");
           showMsg(banana.i18n("error-occured"), "errorMsgLogin");
