@@ -14,7 +14,7 @@ const isGamePage = window.location.pathname.endsWith("game.html");
 async function initializeCities() {
   if (!isGamePage) return;
 
-  const userCityData = getUserCityData();
+  const userCityData = getUserCityData() || {};
 
   cities = [
     {

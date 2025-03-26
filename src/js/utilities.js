@@ -109,7 +109,7 @@ export function abbreviateNumber(num) {
 
   const formatted = formatter.format(scaled);
 
-  return `${formatted} ${suffix}`;
+  return `${formatted}${suffix}`;
 }
 
 // abbreviates large numbers to human readable format

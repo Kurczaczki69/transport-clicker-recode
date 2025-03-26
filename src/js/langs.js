@@ -12,28 +12,22 @@ import { playRandomMouseClick } from "./sounds.js";
 const banana = new Banana();
 
 function updateLang(lang) {
-  $("#loader-wrapper").fadeIn(350);
-  sleep(360).then(() => {
-    fetch(`dist/lang/${lang}.json`)
-      .then((response) => response.json())
-      .then((messages) => {
-        banana.load(messages, lang);
-        banana.setLocale(lang);
-        updateLangInHtml();
-        initializeTimedUpgrades();
-        initializeUpgrades();
-        initializeVehicles();
-        initializeCities();
-        populateThemeOptions();
-        syncVehiclePrices();
-        const currentPage = document.body.getAttribute("data-page");
-        document.documentElement.setAttribute("lang", lang);
-        setPageTitle(currentPage);
-        sleep(200).then(() => {
-          $("#loader-wrapper").fadeOut("slow");
-        });
-      });
-  });
+  fetch(`dist/lang/${lang}.json`)
+    .then((response) => response.json())
+    .then((messages) => {
+      banana.load(messages, lang);
+      banana.setLocale(lang);
+      updateLangInHtml();
+      initializeTimedUpgrades();
+      initializeUpgrades();
+      initializeVehicles();
+      initializeCities();
+      populateThemeOptions();
+      syncVehiclePrices();
+      const currentPage = document.body.getAttribute("data-page");
+      document.documentElement.setAttribute("lang", lang);
+      setPageTitle(currentPage);
+    });
 }
 
 function changeLang(lang) {
