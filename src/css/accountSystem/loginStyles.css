@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
+
+body.login-page {
+  margin: 0;
+  padding: 0;
+  font-family: "Geologica", sans-serif;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../img/bg/bg-2.png");
+  background-position: 0%;
+  background-position: cover;
+  overflow-y: hidden;
+  user-select: none;
+  scroll-behavior: smooth;
+  color: var(--textcolor);
+}
+
+#login-box {
+  border: var(--border5);
+  margin-top: 2%;
+  background-color: var(--colorscheme2);
+  border-radius: 10px;
+  width: 75vh;
+  height: 90vh;
+  box-shadow: var(--boxshadow);
+}
+
+#login-box-title {
+  font-size: 40px;
+  text-align: center;
+}
+
+#login-box-register-link {
+  font-size: 17.5px;
+  text-align: center;
+}
+
+#register-link {
+  color: var(--linkcolor);
+  text-decoration: none;
+}
+
+#register-link:visited {
+  color: var(--linkcolor);
+}
+
+#forgot-pass-link {
+  color: var(--linkcolor);
+  margin-top: 4vh;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#forgot-pass-link:visited {
+  color: var(--linkcolor);
+}
+
+#login-form {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  width: 75%;
+  padding: 2.5%;
+  border: var(--border2);
+  border-radius: 5px;
+  margin-top: 1vh;
+  background-color: var(--colorscheme3);
+  color: var(--colorscheme4);
+}
+
+.form-input::placeholder {
+  color: var(--colorscheme4);
+  font-family: "Geologica", sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border: var(--border2);
+}
+
+.submit-form-btn {
+  cursor: pointer;
+  width: 40%;
+  padding: 2.5%;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.submit-form-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+#username-input {
+  margin-bottom: 3vh;
+}
+
+.msgDiv {
+  color: red;
+  opacity: 0;
+  display: none;
+  text-align: center;
+}
+
+#send-verification-again {
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: center;
+}
+
+#lang-dropdown-login {
+  width: 25%;
+  padding: 0.5%;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 300;
+  color: var(--colorscheme2);
+  margin-top: 0.5%;
+  margin-bottom: -1%;
+  font-family: "Geologica", sans-serif;
+  box-shadow: var(--boxshadow);
+}
+
+#lang-dropdown-login:focus {
+  outline: none;
+  border: none;
+}
+
+option {
+  font-family: "Geologica", sans-serif;
+  color: var(--colorscheme4);
+  background-color: var(--colorscheme3);
+}
+
+@media screen and (max-width: 768px) {
+  #login-box {
+    width: 80vw;
+    height: 90vh;
+  }
+
+  #lang-dropdown {
+    width: 75%;
+    padding: 2%;
+  }
+
+  .form-input {
+    width: 80%;
+    margin-top: 0.1vh;
+    padding: 2vh;
+  }
+
+  .submit-form-btn {
+    width: 80%;
+    padding: 2vh;
+  }
+
+  .submit-form-btn:hover {
+    transform: none;
+  }
+}

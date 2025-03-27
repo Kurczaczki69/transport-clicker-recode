@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
+
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body.game-page {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/bg/bg-2.png");
+  background-position: 0%;
+  background-size: cover;
+  font-family: "Geologica", sans-serif;
+  overflow: hidden;
+  user-select: none;
+  scroll-behavior: smooth;
+  color: var(--colorscheme4);
+  position: absolute;
+}
+
+a {
+  color: var(--linkcolor);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+option {
+  font-family: "Geologica", sans-serif;
+  color: var(--colorscheme4);
+  background-color: var(--colorscheme3);
+}
+
+.tints {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(21, 20, 20, 0.605);
+  display: none;
+  opacity: 0;
+}
+
+.navbar {
+  width: min(20vw, 300px);
+  height: min(15vh, 120px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row;
+  padding: 0;
+  padding-bottom: 1vh;
+  z-index: 25;
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: var(--colorscheme2);
+  border-bottom: var(--border2);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#nav-items {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 10vh;
+}
+
+.nav-item {
+  padding-left: 0.5vh;
+  padding-right: 0.5vh;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: scale(1.075);
+}
+
+.closegui {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+}
+
+.btns {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: var(--boxshadow);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.btns:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+select {
+  font-family: "Geologica", sans-serif;
+}
+
+input::placeholder {
+  font-family: "Geologica", sans-serif;
+}
+
+#vars {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-screen {
+  width: 100%;
+  height: 90%;
+}
+
+#vars-wrapper {
+  width: 100%;
+  height: 110%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--colorscheme2);
+  border-bottom: var(--border2);
+  box-shadow: var(--boxshadow);
+}
+
+.vars-item {
+  font-size: 2rem;
+  padding: 10px;
+  padding-top: 5px;
+  border-right: var(--border2);
+  width: 85%;
+  height: 7.5%;
+  text-align: center;
+}
+
+#clicks {
+  border-right: none;
+}
+
+#main {
+  display: block;
+}
+
+#clicker {
+  width: 35vw;
+  height: 35vh;
+  z-index: 23;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#clicker-img {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+#clicker-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5vh 30vw 20vh rgba(0, 0, 0, 0.9);
+}
+
+#clicker-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bolder;
+  color: var(--colorscheme3);
+}
+
+#click-indicator {
+  position: absolute;
+  z-index: 600;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 768px) {
+  #clicker {
+    width: 85vw;
+    height: 65vh;
+    touch-action: manipulation;
+    top: 60%;
+  }
+
+  #clicker-img {
+    width: 100%;
+    height: auto;
+  }
+
+  #clicker-shadow {
+    box-shadow: 0 2vh 20vw 15vh rgba(0, 0, 0, 0.6);
+    top: 60%;
+  }
+
+  .navbar {
+    width: 85vw;
+    height: 17vh;
+  }
+
+  #nav-items {
+    top: 12vh;
+  }
+
+  .nav-item {
+    padding: 0.5rem;
+  }
+
+  .btns {
+    padding: 0.5vh;
+  }
+
+  .closegui {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 40px;
+    height: 40px;
+    z-index: 9999;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tabler--x {
+    font-size: 24px;
+  }
+
+  .vars-item {
+    font-size: 1.5rem;
+  }
+}
+
+@media (hover: none) {
+  .btns:hover {
+    transform: none;
+  }
+
+  .nav-item:hover {
+    transform: none;
+  }
+}
