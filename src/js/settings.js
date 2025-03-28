@@ -26,11 +26,11 @@ if (isGamePage) {
   });
 }
 
+const clicker = document.querySelector("#clicker-img");
 function updateColorScheme(colors) {
   localStorage.setItem("colorScheme", JSON.stringify(colors));
   const root = document.documentElement;
   const body = document.body;
-  const clicker = document.querySelector("#clicker-img");
 
   root.style.setProperty("--colorscheme1", colors.color1 || "#062925");
   root.style.setProperty("--colorscheme2", colors.color2 || "#044a42");
@@ -49,6 +49,8 @@ function retrieveColorScheme() {
   if (colorScheme) {
     const colors = JSON.parse(colorScheme);
     updateColorScheme(colors);
+  } else {
+    clicker.src = defaultBus;
   }
 }
 
