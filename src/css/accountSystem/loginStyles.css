@@ -10,7 +10,7 @@ body.login-page {
   flex-direction: column;
   background-image: url("../../img/bg/bg-2.png");
   background-position: 0%;
-  background-position: cover;
+  background-size: cover;
   overflow-y: hidden;
   user-select: none;
   scroll-behavior: smooth;
