@@ -71,6 +71,12 @@
   transition: transform 0.3s;
 }
 
+@media screen and (hover: none) {
+  .settings-theme-item:hover {
+    transform: scale(1);
+  }
+}
+
 .settings-theme-name {
   text-align: center;
   font-size: 1.25rem;

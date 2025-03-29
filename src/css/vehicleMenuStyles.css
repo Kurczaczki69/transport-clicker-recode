@@ -129,8 +129,7 @@
 
 #finish-operation-btn:hover {
   transform: scale(1.05);
-  background-color: wheat;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: transform 0.3s;
   cursor: pointer;
 }
 
@@ -276,6 +275,16 @@
 .vhcl-menu-btn:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
+}
+
+@media screen and (hover: none) {
+  .vhcl-menu-btn:hover {
+    transform: scale(1);
+  }
+
+  #finish-operation-btn:hover {
+    transform: scale(1);
+  }
 }
 
 .vhcl-menu-tables {

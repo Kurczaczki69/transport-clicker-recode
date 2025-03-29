@@ -135,6 +135,12 @@
   font-weight: 600;
 }
 
+@media screen and (hover: none) {
+  .building-card:hover {
+    transform: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   #buildings-window {
     width: 90vw;

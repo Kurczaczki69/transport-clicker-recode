@@ -147,29 +147,31 @@ option {
   background-color: var(--colorscheme3);
 }
 
+@media screen and (hover: none) {
+  .submit-form-btn:hover {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 768px) {
   #login-box {
-    width: 80vw;
-    height: 90vh;
+    width: 90vw;
+    height: 85vh;
   }
 
-  #lang-dropdown {
+  #lang-dropdown-login {
     width: 75%;
     padding: 2%;
   }
 
   .form-input {
     width: 80%;
-    margin-top: 0.1vh;
+    margin-top: 1vh;
     padding: 2vh;
   }
 
   .submit-form-btn {
     width: 80%;
     padding: 2vh;
-  }
-
-  .submit-form-btn:hover {
-    transform: none;
   }
 }

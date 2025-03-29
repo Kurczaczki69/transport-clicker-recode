@@ -221,6 +221,21 @@
 #city-details-buildings-btn:hover {
   transform: scale(1.05);
 }
+
+@media screen and (hover: none) {
+  #city-details-buildings-btn:hover {
+    transform: scale(1);
+  }
+
+  .city-card:hover {
+    transform: translateY(0);
+  }
+
+  #city-card-btn:hover {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 768px) {
   #city-details {
     width: 70vw;

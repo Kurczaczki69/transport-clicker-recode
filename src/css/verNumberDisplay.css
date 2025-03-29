@@ -10,3 +10,9 @@
 #credits-btn:hover {
   color: var(--linkcolor);
 }
+
+@media screen and (hover: none) {
+  #credits-btn:hover {
+    color: var(--colorscheme4);
+  }
+}

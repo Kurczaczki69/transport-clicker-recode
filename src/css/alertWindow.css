@@ -55,6 +55,12 @@
   transition: transform 0.3s;
 }
 
+@media screen and (hover: none) {
+  #accept-alert-btn:hover {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 768px) {
   #accept-alert-btn {
     width: 50%;

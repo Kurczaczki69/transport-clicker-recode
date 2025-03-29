@@ -254,6 +254,20 @@
   transition: transform 0.3s;
 }
 
+@media screen and (hover: none) {
+  .change-pass-btns:hover {
+    transform: scale(1);
+  }
+
+  .btns-acc-window:hover {
+    transform: none;
+  }
+
+  .are-you-sure-btns:hover {
+    transform: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   #accountbox {
     width: 90vw;
@@ -267,10 +281,6 @@
   .btns-acc-window {
     width: 80vw;
     height: 5vh;
-  }
-
-  .btns-acc-window:hover {
-    transform: none;
   }
 
   #changePassWrapper {

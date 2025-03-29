@@ -16,27 +16,6 @@
   will-change: transform, opacity;
 }
 
-.upgrade-item {
-  background-color: var(--busitemcolor);
-  border: var(--border5);
-  width: 100px;
-  height: 200px;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-top: 40px;
-  margin-left: 45px;
-  text-align: center;
-  padding-top: 50px;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.upgrade-item:hover {
-  transform: scale(1.05);
-  background-color: wheat;
-  transition: background-color 0.3s, transform 0.3s;
-  cursor: pointer;
-}
-
 #upgr-menu-header {
   text-align: left;
   position: absolute;
@@ -323,6 +302,20 @@
 #cancel-upgr-btn:hover {
   transform: scale(1.05);
   transition: transform 0.3s;
+}
+
+@media screen and (hover: none) {
+  .upgr-menu-vehicle-type-item-btn:hover {
+    transform: scale(1);
+  }
+
+  #confirm-upgr-btn:hover {
+    transform: scale(1);
+  }
+
+  #cancel-upgr-btn:hover {
+    transform: scale(1);
+  }
 }
 
 #confirm-upgrade-dialog-btns {
