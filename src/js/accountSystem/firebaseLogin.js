@@ -19,7 +19,6 @@ if (loginBtn) {
           const user = userCredential.user;
           localStorage.setItem("loggedInUserId", user.uid);
           localStorage.setItem("loggedIn", true);
-          console.log("saved user id: " + user.uid);
           window.location.href = "game.html";
         } else {
           showMsg(

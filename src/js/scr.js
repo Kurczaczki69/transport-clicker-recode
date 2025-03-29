@@ -182,22 +182,24 @@ function initializeSecondaryFeatures() {
 
 async function saveInitialUserData(userData) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
-  await setDoc(doc(db, "users", loggedInUserId), {
-    email: userData.email,
-    username: userData.username,
-    balance: bal,
-    income: income,
-    clickmod: clickmod,
-    bghtUpgrs: bghtUpgrs,
-    citySwitchCost: citySwitchCost,
-    unlockedCities: unlockedCities,
-    currentCity: currentCity,
-    vhclAmounts: vhclAmounts,
-    vhclPrices: vhclPrices,
-    userCityData: userCityData,
-    vhclStats: vhclStats,
-    timedUpgrsPrices: timedUpgrsPrices,
-  });
+  await setDoc(
+    doc(db, "users", loggedInUserId),
+    {
+      balance: bal,
+      income: income,
+      clickmod: clickmod,
+      bghtUpgrs: bghtUpgrs,
+      citySwitchCost: citySwitchCost,
+      unlockedCities: unlockedCities,
+      currentCity: currentCity,
+      vhclAmounts: vhclAmounts,
+      vhclPrices: vhclPrices,
+      userCityData: userCityData,
+      vhclStats: vhclStats,
+      timedUpgrsPrices: timedUpgrsPrices,
+    },
+    { merge: true }
+  );
 }
 
 /**

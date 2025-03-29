@@ -1,6 +1,7 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -57,6 +58,7 @@ module.exports = {
         },
       ],
     }),
+    new Dotenv(),
   ],
   resolve: {
     extensions: [".js", ".json", ".css"],
