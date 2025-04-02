@@ -80,29 +80,29 @@ export function populateVhclData() {
 
   vhcls.forEach((vhcl) => {
     const row = `
-      <tr>
-        <th class="vhcl-menu-name">
-          <h4><span class="vhclName">${vhcl.name}</span></h4>
-        </th>
-        <th class="vhcl-menu-price">
+      <div class="vhcl-grid-item">
+        <div class="vhcl-menu-name">
+          <span class="vhclName">${vhcl.name}</span>
+        </div>
+        <div class="vhcl-menu-price">
           <span id="vhcl-menu-price-item">
             <b><span class="vhclPrice">${shortAbbreviateNumber(vhclPrices[vhcl.code])} $</span></b>
           </span>
-        </th>
-        <th class="vhcl-menu-citybus-income-boost">
+        </div>
+        <div class="vhcl-menu-citybus-income-boost">
           <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod, "vhcls")}$/${banana.i18n(
       "time-seconds"
     )}</span>
-        </th>
-        <th class="vhcl-menu-citybus-clickmod-boost">
+        </div>
+        <div class="vhcl-menu-citybus-clickmod-boost">
           <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${banana.i18n("click")}</span>
-        </th>
-        <th class="vhcl-menu-btn-wrapper">
+        </div>
+        <div class="vhcl-menu-btn-wrapper">
           <button class="vhcl-menu-btn" id="${vhcl.code}">
             <div class="vhcl-btn-content" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
           </button>
-        </th>
-      </tr>
+        </div>
+      </div>
     `;
 
     switch (vhcl.category) {

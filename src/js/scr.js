@@ -265,7 +265,8 @@ export function checkLevel() {
     if (vhcl && vhcl.requiredLevel > level) {
       clonedTextEl.textContent = "";
       clonedTextEl.classList.add("tabler--lock-filled");
-      clonedEl.style.padding = "3%";
+      clonedEl.classList.add("vhcl-menu-btn-locked");
+      clonedEl.classList.remove("vhcl-menu-btn");
       clonedEl.addEventListener("click", () => {
         playRandomMouseClick();
         blockVhcl(clonedEl.id, "level");
@@ -273,7 +274,8 @@ export function checkLevel() {
     } else if (vhcl && vhcl.maxLevel < level) {
       clonedTextEl.textContent = "";
       clonedTextEl.classList.add("tabler--lock-filled");
-      clonedEl.style.padding = "3%";
+      clonedEl.classList.add("vhcl-menu-btn-locked");
+      clonedEl.classList.remove("vhcl-menu-btn");
       clonedEl.addEventListener("click", () => {
         playRandomMouseClick();
         blockVhcl(clonedEl.id, "max-level");

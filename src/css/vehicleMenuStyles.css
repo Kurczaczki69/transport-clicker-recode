@@ -257,6 +257,26 @@
   height: 25%;
 }
 
+.vhcl-menu-btn-locked {
+  margin-right: 5%;
+  cursor: pointer;
+  width: 8vw;
+  padding: 5%;
+  border: none;
+  border-radius: 5px;
+  background: var(--colorscheme4);
+  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
+  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  font-weight: 750;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.vhcl-menu-btn-locked:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
 .vhcl-menu-btn {
   margin-right: 5%;
   cursor: pointer;
@@ -277,53 +297,85 @@
   transition: transform 0.3s;
 }
 
-@media screen and (hover: none) {
-  .vhcl-menu-btn:hover {
-    transform: scale(1);
-  }
-
-  #finish-operation-btn:hover {
-    transform: scale(1);
-  }
-}
-
 .vhcl-menu-tables {
-  width: 100%;
-  border-collapse: collapse;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.75rem;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-bottom: 2.5%;
+  margin-top: 1.5%;
 }
 
-.vhcl-menu-tables tr {
-  border-top: var(--border2);
+.vhcl-grid-item {
+  display: grid;
+  grid-template-areas:
+    "name name"
+    "price button"
+    "income button"
+    "click button";
+  gap: 0.1rem;
+  padding: 1rem;
+  background: var(--colorscheme2);
+  border: var(--border2);
+  box-shadow: var(--boxshadow2);
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
 }
 
-.vhcl-menu-tables tr:not(:last-child) {
-  border-bottom: var(--border2);
+.vhcl-grid-item:hover {
+  transform: translateY(-3px);
+  transition: transform 0.2s ease-in-out;
 }
 
 .vhcl-menu-name {
-  width: 40%;
-  text-align: left;
-  padding-left: 2%;
-  font-size: 2.75vh;
+  grid-area: name;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .vhcl-menu-price {
-  width: 20%;
+  grid-area: price;
+}
+
+.vhcl-menu-citybus-income-boost {
+  grid-area: income;
+}
+
+.vhcl-menu-citybus-clickmod-boost {
+  grid-area: click;
 }
 
 .vhcl-menu-btn-wrapper {
-  width: 20%;
+  grid-area: button;
+  display: flex;
+  margin-left: 50%;
 }
 
-.vhcl-menu-item {
-  height: 20%;
-  width: 100%;
-  border-top: var(--border2);
-  border-bottom: var(--border2);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+@media screen and (max-width: 768px) {
+  .vhcl-menu-tables {
+    grid-template-columns: 1fr;
+  }
+
+  .vhcl-menu-btn-wrapper {
+    margin-left: 75%;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .vhcl-menu-btn {
+    padding: 1.5vh;
+    width: 35vw;
+    font-size: 14px;
+  }
+
+  .vhcl-menu-btn-locked {
+    margin-left: 0;
+    padding: 1.5vh;
+    width: 35vw;
+    font-size: 14px;
+  }
 }
 
 #more-buses-indicator {
@@ -345,6 +397,20 @@
 
 #vhcl-menu-tram-category-main {
   display: none;
+}
+
+@media screen and (hover: none) {
+  .vhcl-menu-btn:hover {
+    transform: scale(1);
+  }
+
+  .vhcl-grid-item:hover {
+    transform: translateY(0px);
+  }
+
+  #finish-operation-btn:hover {
+    transform: scale(1);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -373,22 +439,6 @@
 
   .vhcl-menu-name {
     font-size: 1rem;
-  }
-
-  .vhcl-menu-btn {
-    padding: 2vh;
-    width: 15vw;
-  }
-
-  .vhcl-menu-price,
-  .vhcl-menu-citybus-clickmod-boost,
-  .vhcl-menu-citybus-income-boost {
-    display: block;
-    width: 100%;
-    height: 33%;
-    text-align: left;
-    padding-left: 2%;
-    margin: 0.25rem 0;
   }
 
   .vhcl-menu-btn-wrapper {

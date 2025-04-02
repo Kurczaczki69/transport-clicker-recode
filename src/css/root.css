@@ -9,6 +9,7 @@
   --border2: solid 1px var(--colorscheme4);
   --linkcolor: var(--colorscheme3);
   --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
+  --boxshadow2: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 html,
