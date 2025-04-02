@@ -37,7 +37,7 @@
   "vhcl-category-locked": "You need to buy the $1 upgrade first",
   "vhcl-category-locked-2": "This vehicle category isn't available in your current city",
   "cant-afford": "You can't afford that!",
-  "vhcl-invalid-quantity": "Enter valid quantity",
+  "vhcl-invalid-quantity": "Enter a valid quantity",
   "vhcl-purchase-success": "Bought $2 $1 {{PLURAL:$2|vehicle|vehicles}}",
   "more-buses-indicator": "More buses coming soon",
   "vhcl-category-unavailable-citybus": "You have to buy the City Buses upgrade first",
