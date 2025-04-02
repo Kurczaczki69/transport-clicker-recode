@@ -37,7 +37,7 @@
   "vhcl-category-locked": "Musisz najpierw kupić ulepszenie $1",
   "vhcl-category-locked-2": "Ta kategoria pojazdów nie jest dostępna w twoim aktualnym mieście",
   "cant-afford": "Nie stać cię!",
-  "vhcl-invalid-quantity": "Wprowadź prawidłową ilość",
+  "vhcl-invalid-quantity": "Enter a valid quantity",
   "vhcl-purchase-success": "Kupiono $2 {{PLURAL:$2|pojazd|pojazdy|pojazdów}} $1",
   "more-buses-indicator": "Więcej autobusów już niedługo",
   "vhcl-category-unavailable-citybus": "Musisz najpierw kupić ulepszenie Autobusy Miejskie",
