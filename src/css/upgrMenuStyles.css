@@ -61,21 +61,8 @@
 }
 
 #upgr-menu-category-dropdown {
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 300;
-  color: var(--colorscheme2);
-
   margin-left: 1.5vh;
-  padding: 5px;
-}
-
-#upgr-menu-category-dropdown:focus {
-  outline: none;
-  border: none;
+  padding: 0.6rem 1rem;
 }
 
 #upgr-menu-main-section-wrapper {
@@ -266,54 +253,18 @@
 
 #confirm-upgr-btn {
   margin-left: 5%;
-  cursor: pointer;
   width: 15vh;
   padding: 2.5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-#confirm-upgr-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
 }
 
 #cancel-upgr-btn {
   margin-right: 5%;
-  cursor: pointer;
   width: 15vh;
   padding: 2.5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-#cancel-upgr-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
 }
 
 @media screen and (hover: none) {
   .upgr-menu-vehicle-type-item-btn:hover {
-    transform: scale(1);
-  }
-
-  #confirm-upgr-btn:hover {
-    transform: scale(1);
-  }
-
-  #cancel-upgr-btn:hover {
     transform: scale(1);
   }
 }

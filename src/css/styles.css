@@ -95,18 +95,39 @@ option {
 .btns {
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: var(--boxshadow);
-  font-weight: 750;
+  color: black;
+  border-radius: 7px;
+  background: linear-gradient(135deg, var(--colorscheme4) 0%, var(--colorscheme3) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
   transform: scale(1);
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
 }
 
 .btns:hover {
   transform: scale(1.05);
-  transition: transform 0.3s;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdowns {
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--colorscheme4) 0%, var(--colorscheme3) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 400;
+  color: var(--colorscheme2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: "Geologica", sans-serif;
+}
+
+.dropdowns:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dropdowns:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--colorscheme4-rgb), 0.2);
 }
 
 select {
@@ -270,9 +291,14 @@ input::placeholder {
 @media (hover: none) {
   .btns:hover {
     transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .nav-item:hover {
     transform: none;
+  }
+
+  .dropdowns:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }

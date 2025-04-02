@@ -19,13 +19,6 @@
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
-  #alert-window {
-    width: 80%;
-    height: 25%;
-  }
-}
-
 #alert-message {
   text-align: center;
   font-size: 1.25rem;
@@ -37,33 +30,18 @@
 }
 
 #accept-alert-btn {
-  cursor: pointer;
   width: 40%;
   padding: 2.5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-#accept-alert-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
-
-@media screen and (hover: none) {
-  #accept-alert-btn:hover {
-    transform: scale(1);
-  }
 }
 
 @media screen and (max-width: 768px) {
   #accept-alert-btn {
     width: 50%;
     padding: 4%;
+  }
+
+  #alert-window {
+    width: 80%;
+    height: 25%;
   }
 }

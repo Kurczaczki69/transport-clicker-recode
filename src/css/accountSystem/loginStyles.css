@@ -85,22 +85,8 @@ body.login-page {
 }
 
 .submit-form-btn {
-  cursor: pointer;
   width: 40%;
   padding: 2.5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-.submit-form-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
 }
 
 #username-input {
@@ -123,22 +109,8 @@ body.login-page {
 #lang-dropdown-login {
   width: 25%;
   padding: 0.5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 300;
-  color: var(--colorscheme2);
   margin-top: 0.5%;
   margin-bottom: -1%;
-  font-family: "Geologica", sans-serif;
-  box-shadow: var(--boxshadow);
-}
-
-#lang-dropdown-login:focus {
-  outline: none;
-  border: none;
 }
 
 option {

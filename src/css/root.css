@@ -10,6 +10,9 @@
   --linkcolor: var(--colorscheme3);
   --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   --boxshadow2: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --primary-gradient: linear-gradient(135deg, var(--colorscheme4) 0%, var(--colorscheme3) 100%);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 html,

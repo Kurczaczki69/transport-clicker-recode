@@ -31,30 +31,30 @@
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform, opacity;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0.5rem 2rem;
 }
 
 #small-input {
   width: 50%;
   height: 3vh;
-  padding: 1vh;
-  border: var(--border2);
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   padding: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--colorscheme4) 0%, var(--colorscheme3) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   color: var(--colorscheme2);
-  font-weight: 100;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+#small-input:focus {
+  outline: none;
+  border-color: var(--colorscheme4);
 }
 
 #small-input::placeholder {
   color: var(--colorscheme2);
   font-family: "Lato", sans-serif;
-}
-
-#small-input:focus {
-  outline: none;
-  border: var(--border2);
 }
 
 #buy-menu-header {
@@ -114,23 +114,11 @@
 }
 
 #finish-operation-btn {
-  border: var(--border5);
-  border-radius: 10px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
   width: 25%;
   height: 5vh;
   position: absolute;
   top: 75%;
   left: 70%;
-  transition: background-color 0.3s, transform 0.3s;
-  color: black;
-}
-
-#finish-operation-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-  cursor: pointer;
 }
 
 #done-icon {
@@ -203,21 +191,8 @@
 }
 
 .vhcl-menu-dropdowns {
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 300;
-  color: var(--colorscheme2);
-
   margin-left: 1.5vh;
-  padding: 5px;
-}
-
-.vhcl-menu-dropdowns:focus {
-  outline: none;
-  border: none;
+  padding: 0.6rem 1rem;
 }
 
 #vhcl-menu-not-ready-indicator {
@@ -259,42 +234,14 @@
 
 .vhcl-menu-btn-locked {
   margin-right: 5%;
-  cursor: pointer;
   width: 8vw;
   padding: 5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-.vhcl-menu-btn-locked:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
 }
 
 .vhcl-menu-btn {
   margin-right: 5%;
-  cursor: pointer;
   width: 8vw;
   padding: 5%;
-  border: none;
-  border-radius: 5px;
-  background: var(--colorscheme4);
-  background: radial-gradient(circle, var(--colorscheme4) 38%, var(--colorscheme3) 100%);
-  box-shadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-  font-weight: 750;
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-.vhcl-menu-btn:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
 }
 
 .vhcl-menu-tables {
@@ -400,16 +347,8 @@
 }
 
 @media screen and (hover: none) {
-  .vhcl-menu-btn:hover {
-    transform: scale(1);
-  }
-
   .vhcl-grid-item:hover {
     transform: translateY(0px);
-  }
-
-  #finish-operation-btn:hover {
-    transform: scale(1);
   }
 }
 

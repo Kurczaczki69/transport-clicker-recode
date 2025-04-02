@@ -98,7 +98,7 @@ export function populateVhclData() {
           <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${banana.i18n("click")}</span>
         </div>
         <div class="vhcl-menu-btn-wrapper">
-          <button class="vhcl-menu-btn" id="${vhcl.code}">
+          <button class="vhcl-menu-btn btns" id="${vhcl.code}">
             <div class="vhcl-btn-content" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
           </button>
         </div>

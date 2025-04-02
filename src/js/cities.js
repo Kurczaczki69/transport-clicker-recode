@@ -62,7 +62,7 @@ function createCityCard(city) {
         <span>${banana.i18n("cities-price", shortAbbreviateNumber(city.cost, "price"))}</span>
       </div>
       <div id="city-btns-wrapper">
-        <button class="city-card-btn" id="${city.id}"></button>
+        <button class="city-card-btn btns" id="${city.id}"></button>
         <button class="city-card-details-btn btns" id="details-${city.id}" data-city-id="${city.id}"></button>
       </div>
     </div>
