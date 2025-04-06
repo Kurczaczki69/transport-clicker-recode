@@ -1,5 +1,5 @@
 import { getUpgrades } from "../data/upgradeData.js";
-import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame } from "../scr.js";
+import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame, getMaxFuel, setMaxFuel } from "../scr.js";
 import { animateWindowClose, animateWindowOpen, showAlert } from "../utilities.js";
 import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
@@ -11,6 +11,7 @@ import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 const notReadySection = document.querySelector("#upgr-menu-other-categories");
 const vehicleTypeSection = document.querySelector("#upgr-menu-vehicle-type-category");
 const timedUpgrSection = document.querySelector("#upgr-menu-timed-upgrades-category");
+const fuelTankSection = document.querySelector("#upgr-menu-fuel-tank-category");
 const dropdown = document.querySelector("#upgr-menu-category-dropdown");
 
 const isGamePage = window.location.pathname.includes("game.html");
@@ -23,15 +24,23 @@ if (isGamePage) {
       notReadySection.style.display = "none";
       vehicleTypeSection.style.display = "block";
       timedUpgrSection.style.display = "none";
+      fuelTankSection.style.display = "none";
     } else if (dropdown.value === "1") {
       checkTimedUpgrLevel();
       timedUpgrSection.style.display = "block";
       vehicleTypeSection.style.display = "none";
       notReadySection.style.display = "none";
+      fuelTankSection.style.display = "none";
+    } else if (dropdown.value === "2") {
+      notReadySection.style.display = "none";
+      vehicleTypeSection.style.display = "none";
+      timedUpgrSection.style.display = "none";
+      fuelTankSection.style.display = "block";
     } else {
       notReadySection.style.display = "block";
       vehicleTypeSection.style.display = "none";
       timedUpgrSection.style.display = "none";
+      fuelTankSection.style.display = "none";
     }
   });
 }
@@ -76,6 +85,12 @@ function buyUpgrade(upgrade) {
         bghtUpgrs.push(upgradeToBuy.id);
         setBal((bal -= upgradeToBuy.price));
         setBghtUpgrs(bghtUpgrs);
+
+        if (upgradeToBuy.category === "fuelTank" && upgradeToBuy.tankBoost) {
+          const currentMaxFuel = getMaxFuel();
+          setMaxFuel(currentMaxFuel + upgradeToBuy.tankBoost);
+        }
+
         animateWindowClose(confirmationDialog, false);
         showAlert(banana.i18n("upgrade-success"));
         saveGame(true);

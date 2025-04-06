@@ -25,6 +25,7 @@ import { initializeBuildings } from "./data/buildingData.js";
 import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { showNotif } from "./notifs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
+import { initFuelSystem, getFuelLevel } from "./fuel.js";
 import "./vhclMenu.js";
 import "./utilities.js";
 import "./supabaseConfig.js";
@@ -41,6 +42,7 @@ import "./cities.js";
 import "./codes.js";
 import "./buildings.js";
 import "./favicon.js";
+import "./fuel.js";
 import "./upgradeSystem/insertDataIntoHtml.js";
 import "./upgradeSystem/timedUpgrades.js";
 import "./upgradeSystem/upgrades.js";
@@ -77,8 +79,12 @@ let unlockedCities = ["sko"];
 let citySwitchCost = 20000;
 let currentCity = "sko";
 
+let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
+let maxFuel = 1000;
+
 let userCityData = {};
 
+const GAME_VERSION = "b1.2.0dev";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
@@ -133,6 +139,8 @@ async function initializeUserData(userData) {
   userCityData = userData.userCityData || {};
   vhclStats = userData.vhclStats || {};
   timedUpgrsPrices = userData.timedUpgrsPrices || {};
+  fuelLevels = userData.fuelLevels || { diesel: 1000, hydrogen: 1000, electric: 1000 };
+  maxFuel = userData.maxFuel || 1000;
 
   if (!userData.balance && !userData.income && !userData.clickmod) {
     await saveInitialUserData(userData);
@@ -159,6 +167,7 @@ function initializeSecondaryFeatures() {
   populateUpgrData();
   syncVehiclePrices();
   syncTimedUpgrPrices();
+  initFuelSystem();
 
   const loader = document.querySelector("#loader-wrapper");
   anime({
@@ -197,6 +206,9 @@ async function saveInitialUserData(userData) {
       userCityData: userCityData,
       vhclStats: vhclStats,
       timedUpgrsPrices: timedUpgrsPrices,
+      fuelLevels: fuelLevels,
+      maxFuel: maxFuel,
+      version: GAME_VERSION,
     },
     { merge: true }
   );
@@ -222,6 +234,9 @@ export function saveGame(isSilent) {
     userCityData: userCityData,
     vhclStats: vhclStats,
     timedUpgrsPrices: timedUpgrsPrices,
+    fuelLevels: fuelLevels,
+    maxFuel: maxFuel,
+    version: GAME_VERSION,
   };
   setDoc(docRef, userDatatoSave, { merge: true })
     .then(() => {
@@ -491,18 +506,19 @@ function checkForFuelStations(cityData) {
     const fuelType = fuelTypeMap[vhclCode];
     const stationType = fuelType === "diesel" ? "gas-station" : "hydrogen-station";
     const hasStation = cityData.buildings.includes(stationType);
-
+    const hasFuel = getFuelLevel(fuelType) > 0;
     const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
 
-    if (hasStation || fuelType === "electric") {
+    if ((hasStation || fuelType === "electric") && hasFuel) {
       totalIncome += incomeMod;
     } else {
       if (!shownNotif) {
         shownNotif = true;
+        const reason = !hasStation ? "notif-fuel-station" : "notif-no-fuel";
         showNotif(
-          banana.i18n("notif-fuel-station"),
-          banana.i18n("notif-fuel-station-text", banana.i18n(`fuel-type-${fuelType}`)),
-          "notif-fuel-station"
+          banana.i18n(reason),
+          banana.i18n(`${reason}-text`, banana.i18n(`fuel-type-${fuelType}`)),
+          "notif-fuel"
         );
       }
       totalIncome -= incomeMod;
@@ -717,4 +733,20 @@ export function setVhclStats(newVhclStats) {
 
 export function getTimedUpgrsPrices() {
   return timedUpgrsPrices;
+}
+
+export function getFuelLevels() {
+  return fuelLevels;
+}
+
+export function setFuelLevels(newFuelLevels) {
+  fuelLevels = newFuelLevels;
+}
+
+export function getMaxFuel() {
+  return maxFuel;
+}
+
+export function setMaxFuel(newMaxFuel) {
+  maxFuel = newMaxFuel;
 }

@@ -1,0 +1,198 @@
+#fuel-display {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--colorscheme2);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-top: var(--border2);
+  box-shadow: 0 1vh 2.5vh 2.5vh rgba(0, 0, 0, 0.2);
+}
+
+#fuel-bars-container {
+  display: flex;
+  gap: 20px;
+}
+
+.fuel-bar-wrapper {
+  width: 200px;
+}
+
+.fuel-type-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.fuel-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--colorscheme3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fuel-bar-fill {
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.fuel-bar-fill[data-fuel="diesel"] {
+  background: var(--fuelcol-gas);
+}
+
+.fuel-bar-fill[data-fuel="hydrogen"] {
+  background: var(--fuelcol-hydrogen);
+}
+
+.fuel-bar-fill[data-fuel="electric"] {
+  background: var(--fuelcol-electric);
+}
+
+#buy-fuel-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+}
+
+/* fuel window */
+
+#fuel-shop {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--colorscheme2);
+  padding: 1.5vw;
+  border-radius: 10px;
+  border: var(--border2);
+  display: none;
+  z-index: 800;
+}
+
+#fuel-shop-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.fuel-shop-item {
+  display: grid;
+  grid-template-columns: 5vw 7.5vw 5vw auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fuel-shop-item:last-child {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: var(--border2);
+}
+
+.fuel-shop-max-btn,
+.fuel-shop-buy-all-btn {
+  padding: 0.7rem 1.5rem;
+  min-width: 120px;
+  text-align: center;
+}
+
+.fuel-price {
+  white-space: nowrap;
+}
+
+.buy-fuel-item-btn {
+  padding: 10px 20px;
+  min-width: 80px;
+}
+
+.fuel-amount-input {
+  width: 7.5vw;
+  padding: 5px;
+  border: var(--border2);
+  border-radius: 5px;
+  background: var(--colorscheme3);
+  color: var(--textcolor);
+}
+
+.fuel-amount-input::placeholder {
+  color: var(--textcolor);
+  font-family: var(--mainfont);
+}
+
+#fuel-tank-capacity {
+  background: var(--colorscheme3);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: var(--border2);
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  #fuel-display {
+    padding: 5px;
+    gap: 10px;
+  }
+
+  #fuel-bars-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .fuel-bar-wrapper {
+    width: 150px;
+  }
+
+  .fuel-type-label {
+    font-size: 12px;
+  }
+
+  .fuel-bar {
+    height: 15px;
+  }
+
+  #fuel-tank-capacity {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  #buy-fuel-btn {
+    padding: 30px 10px;
+    font-size: 1rem;
+  }
+
+  #fuel-shop {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  .fuel-shop-item {
+    grid-template-columns: 1fr 2fr 1fr auto;
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+
+  .fuel-amount-input {
+    width: 100%;
+    min-width: 80px;
+  }
+
+  .buy-fuel-item-btn {
+    padding: 5px 10px;
+    min-width: 60px;
+  }
+
+  .fuel-shop-max-btn,
+  .fuel-shop-buy-all-btn {
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+  }
+}

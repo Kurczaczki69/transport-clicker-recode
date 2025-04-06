@@ -1,7 +1,7 @@
 #credits-btn {
   position: absolute;
   bottom: 0.5vh;
-  right: 0.5vh;
+  left: 0.5vh;
   color: var(--colorscheme4);
   user-select: none;
   cursor: pointer;

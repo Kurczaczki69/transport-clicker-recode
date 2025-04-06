@@ -3,15 +3,34 @@
   <!-- TRANSPORT CLICKER BETA 1.2.0 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
-  - luku123 (Main developer, Translator) (english, polish)
+  - luku123 (Main developer, Translator) (english, polish, german)
   - Kiniaczu (Translator) (english)
   - yn (user99) (Translator) (arabic)
+  - Irisik (Translator) (russian)
     currently thats it :) -->
+
+  <!-- BETA 1.2.0 ROADMAP
+  - fuel
+  - new upgrade menu design
+  - offline income
+  - more upgrades
+  - possibly more stuff
+  -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Transport Clicker is a game where you build a massive transport empire!" />
+    <meta
+      name="keywords"
+      content="transport clicker, idle game, transportation game, bus management, tram simulator, public transport game, clicker, game, clicker game" />
+    <meta name="author" content="luku" />
+    <meta property="og:title" content="Transport Clicker - Build Your Transport Empire" />
+    <meta
+      property="og:description"
+      content="Build and manage your own public transportation empire in this exciting clicker game!" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -208,6 +227,74 @@
         </section>
         <div id="clicker-shadow"></div>
       </section>
+
+      <section id="fuel-display">
+        <div id="fuel-tank-capacity">
+          <span data-lang="fuel-tank-capacity"></span>
+          <span id="fuel-tank-capacity-value">1000</span><span data-lang="unit-liter"></span>
+        </div>
+        <div id="fuel-bars-container">
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="diesel">
+              <span data-lang="fuel-type-diesel"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-liter"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="diesel"></div>
+            </div>
+          </div>
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="hydrogen">
+              <span data-lang="fuel-type-hydrogen"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-liter"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="hydrogen"></div>
+            </div>
+          </div>
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="electric">
+              <span data-lang="fuel-type-electric"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-kilowat"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="electric"></div>
+            </div>
+          </div>
+        </div>
+        <button id="buy-fuel-btn" class="btns">⛽</button>
+      </section>
+    </section>
+
+    <section id="fuel-shop">
+      <div class="closegui" id="fuel-shop-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+      <h2 data-lang="fuel-shop-title">Fuel Shop</h2>
+      <div id="fuel-shop-items">
+        <div class="fuel-shop-item" data-fuel="diesel">
+          <span data-lang="fuel-type-diesel"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">1</span>/L</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item" data-fuel="hydrogen">
+          <span data-lang="fuel-type-hydrogen"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">2</span>/L</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item" data-fuel="electric">
+          <span data-lang="fuel-type-electric"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">0.5</span>/kWh</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item">
+          <button class="fuel-shop-max-btn btns" data-lang="btn-max"></button>
+          <button class="fuel-shop-buy-all-btn btns" data-lang="btn-buy-all"></button>
+        </div>
+      </div>
     </section>
 
     <!-- cities window -->
@@ -448,8 +535,8 @@
           <select name="upgr-categories" id="upgr-menu-category-dropdown" class="dropdowns">
             <option value="0" data-lang="upgr-category-vhcl-types"></option>
             <option value="1" data-lang="upgr-category-time-upgrs"></option>
+            <option value="2" data-lang="upgr-category-fuel-tank"></option>
             <option value="3" data-lang="upgr-category-other"></option>
-            <option value="4" data-lang="upgr-category-routes"></option>
           </select>
         </h4>
       </div>
@@ -462,6 +549,10 @@
         <!-- timed upgrades -->
         <div id="upgr-menu-timed-upgrades-category" class="upgrs-categories" style="display: none">
           <table id="upgr-menu-timed-upgrades-table" class="upgrs-tables"></table>
+        </div>
+        <!-- fuel tank upgrades -->
+        <div id="upgr-menu-fuel-tank-category" class="upgrs-categories" style="display: none">
+          <table id="upgr-menu-fuel-tank-table" class="upgrs-tables"></table>
         </div>
         <!-- other categories -->
         <div id="upgr-menu-other-categories" class="upgrs-categories">
@@ -538,6 +629,10 @@
             </div>
             <div class="credits-menu-contributor-item">
               yn (user99) <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Irisik <br />
               <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
             </div>
           </div>

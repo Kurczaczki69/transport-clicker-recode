@@ -14,7 +14,7 @@ body.game-page {
   background-image: url("../img/bg/bg-2.png");
   background-position: 0%;
   background-size: cover;
-  font-family: "Geologica", sans-serif;
+  font-family: var(--mainfont);
   overflow: hidden;
   user-select: none;
   scroll-behavior: smooth;
@@ -29,7 +29,7 @@ a {
 }
 
 option {
-  font-family: "Geologica", sans-serif;
+  font-family: var(--mainfont);
   color: var(--colorscheme4);
   background-color: var(--colorscheme3);
 }
@@ -118,7 +118,7 @@ option {
   color: var(--colorscheme2);
   transition: all 0.3s ease;
   cursor: pointer;
-  font-family: "Geologica", sans-serif;
+  font-family: var(--mainfont);
 }
 
 .dropdowns:hover {
@@ -131,11 +131,22 @@ option {
 }
 
 select {
-  font-family: "Geologica", sans-serif;
+  font-family: var(--mainfont);
+}
+
+input {
+  font-family: var(--mainfont);
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 input::placeholder {
-  font-family: "Geologica", sans-serif;
+  font-family: var(--mainfont);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--colorscheme4);
 }
 
 #vars {

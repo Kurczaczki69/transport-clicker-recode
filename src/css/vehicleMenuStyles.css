@@ -54,7 +54,7 @@
 
 #small-input::placeholder {
   color: var(--colorscheme2);
-  font-family: "Lato", sans-serif;
+  font-family: var(--mainfont);
 }
 
 #buy-menu-header {
@@ -102,6 +102,7 @@
   font-weight: 500;
   border: var(--border5);
   color: var(--colorscheme2);
+  font-family: var(--mainfont);
 }
 
 #buy-menu-total-cost {
