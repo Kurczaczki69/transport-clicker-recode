@@ -161,7 +161,7 @@
   "stats-xp": "XP:",
   "stats-to-next-level": "XP needed to level up:",
   "notif-reward-title": "Reward!",
-  "notif-reward-text": "You received $1 for reaching level $2!",
+  "notif-reward-text": "You received $1 $ for reaching level $2!",
   "notif-fuel-station": "Missing fuel station!",
   "notif-fuel-station-text": "Build a $1 station in your current city to be able to earn money from $1 powered vehicles!",
   "stats-xp-needed": "$1 XP",
