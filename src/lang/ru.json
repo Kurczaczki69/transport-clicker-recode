@@ -161,7 +161,7 @@
   "stats-xp": "ОИ: ",
   "stats-to-next-level": "Нужно ОИ для повышения уровня: ",
   "notif-reward-title": "Награда!",
-  "notif-reward-text": "You received $1 for reaching level $2!",
+  "notif-reward-text": "You received $1 $ for reaching level $2!",
   "notif-fuel-station": "Отсутствует топливная станция!",
   "notif-fuel-station-text": "Постройте станцию $1 в текущем городе, чтобы иметь возможность зарабатывать деньги с $1!",
   "stats-xp-needed": "$1 ОИ",
