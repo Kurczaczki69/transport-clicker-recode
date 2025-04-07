@@ -13,6 +13,9 @@ import smallMallImg from "../../img/buildings/small_mall.webp";
 import hotelImg from "../../img/buildings/hotel.webp";
 import mallImg from "../../img/buildings/mall.webp";
 import threeStarHotelImg from "../../img/buildings/3_star_hotel.webp";
+import fuelRefineryImg from "../../img/buildings/fuel_refinery.webp";
+import hydrogenPlantImg from "../../img/buildings/hydrogen_plant.webp";
+import solarFarmImg from "../../img/buildings/solar_farm.webp";
 
 let buildings = [];
 const isGamePage = window.location.pathname.includes("game.html");
@@ -174,6 +177,42 @@ function initializeBuildings() {
       imgPath: threeStarHotelImg,
       boostType: "income",
       boostValue: 1.25,
+      events: [],
+    },
+    {
+      name: banana.i18n("building-fuel-refinery"),
+      desc: banana.i18n("building-fuel-refinery-desc"),
+      id: "fuel-refinery",
+      requiredLevel: 175,
+      cost: 20000000000,
+      imgPath: fuelRefineryImg,
+      boostType: "fuel-generation",
+      fuelType: "diesel",
+      generationRate: 1.1,
+      events: [],
+    },
+    {
+      name: banana.i18n("building-hydrogen-plant"),
+      desc: banana.i18n("building-hydrogen-plant-desc"),
+      id: "hydrogen-plant",
+      requiredLevel: 210,
+      cost: 35000000000,
+      imgPath: hydrogenPlantImg,
+      boostType: "fuel-generation",
+      fuelType: "hydrogen",
+      generationRate: 0.6,
+      events: [],
+    },
+    {
+      name: banana.i18n("building-solar-farm"),
+      desc: banana.i18n("building-solar-farm-desc"),
+      id: "solar-farm",
+      requiredLevel: 255,
+      cost: 15000000000000,
+      imgPath: solarFarmImg,
+      boostType: "fuel-generation",
+      fuelType: "electric",
+      generationRate: 0.7,
       events: [],
     },
   ];

@@ -1,9 +1,10 @@
-import { getBal, setBal, getFuelLevels, setFuelLevels, getVhclAmounts, getMaxFuel } from "./scr.js";
+import { getBal, setBal, getFuelLevels, setFuelLevels, getVhclAmounts, getMaxFuel, getUserCityData } from "./scr.js";
 import { shortAbbreviateNumber, showAlert } from "./utilities.js";
 import { banana } from "./langs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getVhcls } from "./data/vhclData.js";
+import { getBuildings } from "./data/buildingData.js";
 
 let MAX_FUEL = 1000;
 export let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
@@ -19,6 +20,8 @@ const BASE_CONSUMPTION_RATE = {
   hydrogen: 0.05,
   electric: 0.2,
 };
+
+let activeFuelGenerators = {};
 
 export function initFuelSystem() {
   const buyFuelBtn = document.querySelector("#buy-fuel-btn");
@@ -61,8 +64,9 @@ export function initFuelSystem() {
   fuelLevels = getFuelLevels();
   MAX_FUEL = getMaxFuel();
   setInterval(consumeFuel, 1000);
-  setInterval(updateFuelBars, 1000);
+  setInterval(updateFuelBars, 250);
   setInterval(updateFuelPrices, 1000);
+  setInterval(updateFuelGeneration, 1000);
 }
 
 function buyFuel(type, amount, el) {
@@ -140,6 +144,32 @@ function buyAllFuel() {
   }
 }
 
+function updateFuelGeneration() {
+  const cityData = getUserCityData();
+  const buildings = getBuildings();
+
+  Object.keys(cityData).forEach((cityId) => {
+    const cityBuildings = cityData[cityId].buildings || [];
+
+    const generators = buildings.filter((b) => b.boostType === "fuel-generation" && cityBuildings.includes(b.id));
+
+    generators.forEach((generator) => {
+      const maxSpace = MAX_FUEL - fuelLevels[generator.fuelType];
+      if (maxSpace > 0) {
+        const generationRate = parseFloat(generator.generationRate);
+        const consumptionRate = getScaledConsumptionRate(generator.fuelType);
+
+        if (generationRate >= consumptionRate) {
+          const generatedAmount = Math.min(maxSpace, generationRate);
+          fuelLevels[generator.fuelType] += generatedAmount;
+        }
+      }
+    });
+  });
+
+  setFuelLevels(fuelLevels);
+}
+
 function consumeFuel() {
   Object.keys(fuelLevels).forEach((type) => {
     if (fuelLevels[type] > 0) {
@@ -167,7 +197,7 @@ function updateFuelBars() {
     MAX_FUEL = getMaxFuel();
 
     fill.style.width = `${(fuelLevels[type] / MAX_FUEL) * 100}%`;
-    amount.textContent = Math.round(fuelLevels[type]);
+    amount.textContent = fuelLevels[type].toFixed(2);
     capacityDisplay.textContent = MAX_FUEL;
   });
 }

@@ -84,10 +84,17 @@ function createBuildingCard(building) {
   const card = document.createElement("div");
   card.className = "building-card";
 
-  const boostValue =
-    building.boostType === "income" || building.boostType === "clickmod"
-      ? convertDecimalBoostToPercent(building.boostValue)
-      : convertDecimalToPercent(building.boostValue);
+  let boostValue = 0;
+
+  if (building.boostType === "fuel-generation") {
+    const unit = building.fuelType === "electric" ? banana.i18n("unit-kilowat") : banana.i18n("unit-liter");
+    boostValue = building.generationRate = `${building.generationRate}${unit}/${banana.i18n("time-seconds")}`;
+  } else {
+    boostValue =
+      building.boostType === "income" || building.boostType === "clickmod"
+        ? `${convertDecimalBoostToPercent(building.boostValue)}%`
+        : `${convertDecimalToPercent(building.boostValue)}%`;
+  }
 
   let buildingEvents = building.events.map((event) => banana.i18n(`city-event-${event}`)).join(", ");
   if (buildingEvents === "") {
