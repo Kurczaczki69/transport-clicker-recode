@@ -8,8 +8,6 @@ Translate on crowdin:
 [![Crowdin](https://badges.crowdin.net/transport-clicker/localized.svg)](https://crowdin.com/project/transport-clicker)
 **We will soon be switching to weblate ‼️**
 
-the code is horrible btw 😭
-
 ~~If someone wants to contribute:~~ 
 ~~git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
 npm install~~
