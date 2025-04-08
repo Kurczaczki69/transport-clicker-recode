@@ -6,8 +6,7 @@ The latest branch is the dev branch, for now the main branch is kinda outdated
 
 Game link: https://transport-clicker.netlify.app/
 
-Translate on crowdin:
-[![Crowdin](https://badges.crowdin.net/transport-clicker/localized.svg)](https://crowdin.com/project/transport-clicker)
+Translate: currently not available\
 **We will soon be switching to weblate ‼️**
 
 ~~If someone wants to contribute:~~ 
