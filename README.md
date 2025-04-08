@@ -2,6 +2,8 @@
 
 Polish game about clicking on a ~~circle~~ ~~square~~ rectangle and buying vehicles and upgrades.
 
+The latest branch is the dev branch, for now the main branch is kinda outdated
+
 Game link: https://transport-clicker.netlify.app/
 
 Translate on crowdin:
