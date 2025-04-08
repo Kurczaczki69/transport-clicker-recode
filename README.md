@@ -6,6 +6,7 @@ Game link: https://transport-clicker.netlify.app/
 
 Translate on crowdin:
 [![Crowdin](https://badges.crowdin.net/transport-clicker/localized.svg)](https://crowdin.com/project/transport-clicker)
+**We will soon be switching to weblate ‼️**
 
 the code is horrible btw 😭
 
