@@ -17,7 +17,6 @@ Discord server: https://discord.gg/QMJgn3jj6r
 2. `git pull`
 4. Create a project in firebase
 5. Create a .env file like this and fill it with the values from your firebase project
-6. `npm run build`
 ```
 FIREBASE_API_KEY=
 FIREBASE_AUTH_DOMAIN=
@@ -27,6 +26,7 @@ FIREBASE_MESSAGING_SENDER_ID=
 FIREBASE_APP_ID=
 FIREBASE_MEASUREMENT_ID=
 ```
+6. `npm run build`
 6. Use the live server vs code extension or something similar thats in your ide (later i will just add the npm dev server thingy cause i dont know how to do it now)
 7. And then you have the project ready for contributing!
 
