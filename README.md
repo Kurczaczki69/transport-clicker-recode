@@ -12,12 +12,27 @@ Translate on Weblate: [here](https://hosted.weblate.org/projects/transport-click
 
 Discord server: https://discord.gg/QMJgn3jj6r
 
-~~If someone wants to contribute:~~ 
-~~git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
-npm install~~
-~~after that you're all set, and after you finish make a pull request I'll _maybe_ accept it ;)~~
-**this is outdated ^^^^, ill update it soon**
+## Contributing: 
+1. `git clone -b dev https://github.com/Kurczaczki69/transport-clicker-recode`
+2. `git pull`
+4. Create a project in firebase
+5. Create a .env file like this and fill it with the values from your firebase project
+6. `npm run build`
+```
+FIREBASE_API_KEY=
+FIREBASE_AUTH_DOMAIN=
+FIREBASE_PROJECT_ID=
+FIREBASE_STORAGE_BUCKET=
+FIREBASE_MESSAGING_SENDER_ID=
+FIREBASE_APP_ID=
+FIREBASE_MEASUREMENT_ID=
+```
+6. Use the live server vs code extension or something similar thats in your ide (later i will just add the npm dev server thingy cause i dont know how to do it now)
+7. And then you have the project ready for contributing!
 
+After contributing make a pr and i will most likely accept it if there arent any issues
+
+_btw we will soon be switching from firebase to supabase since its open source_
 
 ## PLANNED FEATURES FOR THE BETA PHASE
 
