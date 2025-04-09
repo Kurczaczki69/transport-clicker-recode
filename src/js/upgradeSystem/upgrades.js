@@ -1,7 +1,6 @@
 import { getUpgrades } from "../data/upgradeData.js";
 import { getBal, setBal, getBghtUpgrs, setBghtUpgrs, saveGame, getMaxFuel, setMaxFuel } from "../scr.js";
-import { animateWindowClose, animateWindowOpen, showAlert } from "../utilities.js";
-import { banana } from "../langs.js";
+import { animateWindowClose, animateWindowOpen, showAlert, getI18n } from "../utilities.js";
 import { getLevel } from "../levelSystem.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 import { playRandomCash, playRandomMouseClick } from "../sounds.js";
@@ -79,7 +78,7 @@ function buyUpgrade(upgrade) {
       if (bal <= upgradeToBuy.price) {
         playRandomMouseClick();
         animateWindowClose(confirmationDialog, false);
-        showAlert(banana.i18n("cant-afford"));
+        showAlert(getI18n("cant-afford"));
       } else {
         playRandomCash();
         bghtUpgrs.push(upgradeToBuy.id);
@@ -92,18 +91,18 @@ function buyUpgrade(upgrade) {
         }
 
         animateWindowClose(confirmationDialog, false);
-        showAlert(banana.i18n("upgrade-success"));
+        showAlert(getI18n("upgrade-success"));
         saveGame(true);
       }
     } else {
       playRandomMouseClick();
       animateWindowClose(confirmationDialog, false);
-      showAlert(banana.i18n("upgrade-already-bought"));
+      showAlert(getI18n("upgrade-already-bought"));
     }
   } else {
     playRandomMouseClick();
     animateWindowClose(confirmationDialog, false);
-    showAlert(banana.i18n("upgrade-not-available"));
+    showAlert(getI18n("upgrade-not-available"));
   }
 }
 
@@ -139,7 +138,7 @@ function blockUpgrade(upgradetobuy, reason) {
   const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
 
   if (reason == "level") {
-    showAlert(banana.i18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
+    showAlert(getI18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
   }
 }
 

@@ -1,7 +1,6 @@
 import { getVhcls } from "./data/vhclData.js";
 import { getVhclAmounts, getVhclStats } from "./scr.js";
-import { abbreviateNumber } from "./utilities.js";
-import { banana } from "./langs.js";
+import { abbreviateNumber, getI18n } from "./utilities.js";
 
 const statsTable = document.querySelector("#vhcl-stats-table");
 
@@ -15,19 +14,19 @@ export function displayStats() {
   const headerRow = document.createElement("tr");
 
   const nameHeader = document.createElement("th");
-  nameHeader.textContent = banana.i18n("vhcl-stats-name");
+  nameHeader.textContent = getI18n("vhcl-stats-name");
   headerRow.appendChild(nameHeader);
 
   const amountHeader = document.createElement("th");
-  amountHeader.textContent = banana.i18n("vhcl-stats-amount");
+  amountHeader.textContent = getI18n("vhcl-stats-amount");
   headerRow.appendChild(amountHeader);
 
   const incomeHeader = document.createElement("th");
-  incomeHeader.textContent = banana.i18n("vhcl-stats-income");
+  incomeHeader.textContent = getI18n("vhcl-stats-income");
   headerRow.appendChild(incomeHeader);
 
   const clickmodHeader = document.createElement("th");
-  clickmodHeader.textContent = banana.i18n("vhcl-stats-clickmod");
+  clickmodHeader.textContent = getI18n("vhcl-stats-clickmod");
   headerRow.appendChild(clickmodHeader);
 
   statsTable.appendChild(headerRow);

@@ -11,6 +11,7 @@ import {
   showMsg,
   animateWindowClose,
   animateWindowOpen,
+  getI18n,
 } from "./utilities.js";
 import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } catch (error) {
     console.error("Error during game initialization:", error);
-    window.alert(banana.i18n("error-loading-game"));
+    window.alert(getI18n("error-loading-game"));
   }
 });
 
@@ -123,7 +124,7 @@ function handleInvalidUser() {
   window.location.href = "index.html";
   localStorage.removeItem("loggedInUserId");
   localStorage.setItem("loggedIn", false);
-  showMsg(banana.i18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
+  showMsg(getI18n("email-not-verified-logged-out", "<br>"), "errorMsgLogin");
 }
 
 async function initializeUserData(userData) {
@@ -242,14 +243,14 @@ export function saveGame(isSilent) {
     .then(() => {
       if (!isSilent) {
         console.log("saved data to server");
-        showAlert(banana.i18n("alert-game-saved"));
+        showAlert(getI18n("alert-game-saved"));
       } else {
         console.log("saved data to server silently");
       }
     })
     .catch((error) => {
       console.error("error writing document", error);
-      showAlert(banana.i18n("alert-game-save-fail"));
+      showAlert(getI18n("alert-game-save-fail"));
     });
 }
 
@@ -298,7 +299,7 @@ export function checkLevel() {
     } else {
       clonedTextEl.classList.remove("tabler--lock-filled");
       if (!clonedTextEl.textContent) {
-        clonedTextEl.textContent = banana.i18n("btn-buy");
+        clonedTextEl.textContent = getI18n("btn-buy");
       }
       clonedEl.style.padding = "";
       clonedEl.addEventListener("click", () => {
@@ -316,9 +317,9 @@ function blockVhcl(vhclCode, reason) {
   const vhcl = vhcls.find((v) => v.code === vhclCode);
   let message = "";
   if (reason === "level") {
-    message = banana.i18n("vhcl-unlock-level", vhcl.requiredLevel);
+    message = getI18n("vhcl-unlock-level", vhcl.requiredLevel);
   } else if (reason === "max-level") {
-    message = banana.i18n("vhcl-unlock-max-level", vhcl.maxLevel);
+    message = getI18n("vhcl-unlock-max-level", vhcl.maxLevel);
   }
   showAlert(message);
 }
@@ -335,7 +336,7 @@ if (isGamePage) {
 
 function buyVhclChecker() {
   if (isEmpty(inputEl.value)) {
-    showAlert(banana.i18n("vhcl-invalid-quantity"));
+    showAlert(getI18n("vhcl-invalid-quantity"));
     resetBuyMenu();
     return;
   }
@@ -345,7 +346,7 @@ function buyVhclChecker() {
     buyVhclRight();
   } else {
     playRandomMouseClick();
-    showAlert(banana.i18n("cant-afford"));
+    showAlert(getI18n("cant-afford"));
     resetBuyMenu();
   }
 }
@@ -390,7 +391,7 @@ function buyVhclRight() {
     vhclAmounts[busProp.code] = quantity;
   }
 
-  showAlert(banana.i18n("vhcl-purchase-success", busProp.name, quantity));
+  showAlert(getI18n("vhcl-purchase-success", busProp.name, quantity));
   syncVehiclePrices();
   saveGame(true);
   updateHtmlData();
@@ -515,11 +516,7 @@ function checkForFuelStations(cityData) {
       if (!shownNotif) {
         shownNotif = true;
         const reason = !hasStation ? "notif-fuel-station" : "notif-no-fuel";
-        showNotif(
-          banana.i18n(reason),
-          banana.i18n(`${reason}-text`, banana.i18n(`fuel-type-${fuelType}`)),
-          "notif-fuel"
-        );
+        showNotif(getI18n(reason), getI18n(`${reason}-text`, getI18n(`fuel-type-${fuelType}`)), "notif-fuel");
       }
       totalIncome -= incomeMod;
     }

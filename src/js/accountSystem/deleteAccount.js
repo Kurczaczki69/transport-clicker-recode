@@ -1,8 +1,7 @@
 import { deleteUser, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebaseManager.js";
 import { deleteDoc, doc } from "firebase/firestore";
-import { showMsg, animateAppear, animateDisappear } from "../utilities.js";
-import { banana } from "../langs.js";
+import { showMsg, animateAppear, animateDisappear, getI18n } from "../utilities.js";
 import { playRandomMouseClick } from "../sounds.js";
 
 const isGamePage = window.location.pathname.includes("game.html");
@@ -51,21 +50,21 @@ if (isGamePage) {
       localStorage.setItem("loggedIn", false);
       localStorage.removeItem("loggedInUserId");
       localStorage.removeItem("previousLevel");
-      window.alert(banana.i18n("delete-acc-success"));
+      window.alert(getI18n("delete-acc-success"));
       window.location.href = "index.html";
       console.log("account deleted successfully");
     } catch (error) {
       const errorCode = error.code;
       if (errorCode === "auth/invalid-credential") {
-        showMsg(banana.i18n("wrong-password"), "input-msg");
+        showMsg(getI18n("wrong-password"), "input-msg");
         console.error("deletion unsuccesful - wrong password");
       } else if (errorCode === "auth/requires-recent-login") {
-        showMsg(banana.i18n("delete-acc-requires-recent-login"), "input-msg");
+        showMsg(getI18n("delete-acc-requires-recent-login"), "input-msg");
       } else if (errorCode === "auth/missing-password") {
-        showMsg(banana.i18n("auth-login-missing-password"), "input-msg");
+        showMsg(getI18n("auth-login-missing-password"), "input-msg");
         console.log(errorCode);
       } else {
-        showMsg(banana.i18n("error-occured"), "input-msg");
+        showMsg(getI18n("error-occured"), "input-msg");
         console.error("deletion unsuccesful - error:", error);
         console.log(errorCode);
       }

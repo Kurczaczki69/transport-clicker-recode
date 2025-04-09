@@ -5,11 +5,21 @@ import { initializeUpgrades } from "./data/upgradeData.js";
 import { initializeVehicles } from "./data/vhclData.js";
 import { syncVehiclePrices } from "./scr.js";
 import { populateThemeOptions } from "./settings.js";
-import { sleep } from "./utilities.js";
 import { initializeCities } from "./data/cityData.js";
 import { playRandomMouseClick } from "./sounds.js";
+import { getI18n } from "./utilities.js";
 
 const banana = new Banana();
+
+let defaultTranslations = {};
+
+// load the fallback language (English) first
+fetch("dist/lang/en.json")
+  .then((response) => response.json())
+  .then((messages) => {
+    defaultTranslations = messages;
+    banana.load(defaultTranslations, "en");
+  });
 
 function updateLang(lang) {
   fetch(`dist/lang/${lang}.json`)
@@ -39,13 +49,24 @@ function updateLangInHtml() {
   const elements = document.querySelectorAll("[data-lang]");
   elements.forEach((element) => {
     const key = element.getAttribute("data-lang");
-    element.textContent = banana.i18n(key);
+    let translation = banana.i18n(key);
+
+    if (!translation || translation == "") {
+      translation = defaultTranslations[key] || key;
+    }
+
+    element.textContent = translation;
   });
 
   const placeholders = document.querySelectorAll("[data-lang-placeholder]");
   placeholders.forEach((element) => {
     const key = element.getAttribute("data-lang-placeholder");
-    element.setAttribute("placeholder", banana.i18n(key));
+    let translation = banana.i18n(key);
+
+    if (!translation || translation == "") {
+      translation = defaultTranslations[key] || key;
+    }
+    element.setAttribute("placeholder", translation);
   });
 
   updateHtmlData();
@@ -53,7 +74,7 @@ function updateLangInHtml() {
 
 export function setPageTitle(page) {
   const titleKey = `page-title-${page}`;
-  const title = banana.i18n(titleKey);
+  const title = getI18n(titleKey);
   if (title && title !== titleKey) {
     document.title = title;
   }

@@ -1,4 +1,4 @@
-import { banana } from "../langs.js";
+import { getI18n } from "../utilities.js";
 import gasStationImg from "../../img/buildings/gas_station.webp";
 import hydrogenStationImg from "../../img/buildings/hydrogen_station.webp";
 import busTerminalImg from "../../img/buildings/bus_terminal.webp";
@@ -24,8 +24,8 @@ function initializeBuildings() {
   if (!isGamePage) return;
   buildings = [
     {
-      name: banana.i18n("building-gas-station"),
-      desc: banana.i18n("building-gas-station-desc"),
+      name: getI18n("building-gas-station"),
+      desc: getI18n("building-gas-station-desc"),
       id: "gas-station",
       requiredLevel: 0,
       cost: 0,
@@ -36,8 +36,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-hydrogen-station"),
-      desc: banana.i18n("building-hydrogen-station-desc"),
+      name: getI18n("building-hydrogen-station"),
+      desc: getI18n("building-hydrogen-station-desc"),
       id: "hydrogen-station",
       requiredLevel: 5,
       cost: 250000,
@@ -48,8 +48,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-bus-terminal"),
-      desc: banana.i18n("building-bus-terminal-desc"),
+      name: getI18n("building-bus-terminal"),
+      desc: getI18n("building-bus-terminal-desc"),
       id: "bus-terminal",
       requiredLevel: 15,
       cost: 500000,
@@ -59,8 +59,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-park"),
-      desc: banana.i18n("building-park-desc"),
+      name: getI18n("building-park"),
+      desc: getI18n("building-park-desc"),
       id: "park",
       requiredLevel: 20,
       cost: 1000000,
@@ -70,8 +70,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-tourist-center"),
-      desc: banana.i18n("building-tourist-center-desc"),
+      name: getI18n("building-tourist-center"),
+      desc: getI18n("building-tourist-center-desc"),
       id: "tourist-center",
       requiredLevel: 35,
       cost: 6000000,
@@ -81,8 +81,8 @@ function initializeBuildings() {
       events: ["tourist-season", "city-tour"],
     },
     {
-      name: banana.i18n("building-sightseeing-platform"),
-      desc: banana.i18n("building-sightseeing-platform-desc"),
+      name: getI18n("building-sightseeing-platform"),
+      desc: getI18n("building-sightseeing-platform-desc"),
       id: "sightseeing-platform",
       requiredLevel: 45,
       cost: 10000000,
@@ -92,8 +92,8 @@ function initializeBuildings() {
       events: ["photo-tour", "sunset-tour"],
     },
     {
-      name: banana.i18n("building-transport-museum"),
-      desc: banana.i18n("building-transport-museum-desc"),
+      name: getI18n("building-transport-museum"),
+      desc: getI18n("building-transport-museum-desc"),
       id: "transport-museum",
       requiredLevel: 60,
       cost: 15000000,
@@ -103,8 +103,8 @@ function initializeBuildings() {
       events: ["museum-exhibition", "vintage-vehicle-show"],
     },
     {
-      name: banana.i18n("building-stadium"),
-      desc: banana.i18n("building-stadium-desc"),
+      name: getI18n("building-stadium"),
+      desc: getI18n("building-stadium-desc"),
       id: "stadium",
       requiredLevel: 75,
       cost: 25000000,
@@ -114,8 +114,8 @@ function initializeBuildings() {
       events: ["world-cup", "football-match"],
     },
     {
-      name: banana.i18n("building-roads-with-trees"),
-      desc: banana.i18n("building-roads-with-trees-desc"),
+      name: getI18n("building-roads-with-trees"),
+      desc: getI18n("building-roads-with-trees-desc"),
       id: "roads-with-trees",
       requiredLevel: 85,
       cost: 50000000,
@@ -125,8 +125,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-large-bus-terminal"),
-      desc: banana.i18n("building-large-bus-terminal-desc"),
+      name: getI18n("building-large-bus-terminal"),
+      desc: getI18n("building-large-bus-terminal-desc"),
       id: "large-bus-terminal",
       requiredLevel: 100,
       cost: 60000000,
@@ -136,8 +136,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-small-mall"),
-      desc: banana.i18n("building-small-mall-desc"),
+      name: getI18n("building-small-mall"),
+      desc: getI18n("building-small-mall-desc"),
       id: "small-mall",
       requiredLevel: 100,
       cost: 75000000,
@@ -147,8 +147,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-hotel"),
-      desc: banana.i18n("building-hotel-desc"),
+      name: getI18n("building-hotel"),
+      desc: getI18n("building-hotel-desc"),
       id: "hotel",
       requiredLevel: 125,
       cost: 100000000,
@@ -158,8 +158,8 @@ function initializeBuildings() {
       events: ["school-trip"],
     },
     {
-      name: banana.i18n("building-mall"),
-      desc: banana.i18n("building-mall-desc"),
+      name: getI18n("building-mall"),
+      desc: getI18n("building-mall-desc"),
       id: "mall",
       requiredLevel: 140,
       cost: 200000000,
@@ -169,8 +169,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-3-star-hotel"),
-      desc: banana.i18n("building-3-star-hotel-desc"),
+      name: getI18n("building-3-star-hotel"),
+      desc: getI18n("building-3-star-hotel-desc"),
       id: "3-star-hotel",
       requiredLevel: 155,
       cost: 550000000,
@@ -180,8 +180,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-fuel-refinery"),
-      desc: banana.i18n("building-fuel-refinery-desc"),
+      name: getI18n("building-fuel-refinery"),
+      desc: getI18n("building-fuel-refinery-desc"),
       id: "fuel-refinery",
       requiredLevel: 175,
       cost: 20000000000,
@@ -192,8 +192,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-hydrogen-plant"),
-      desc: banana.i18n("building-hydrogen-plant-desc"),
+      name: getI18n("building-hydrogen-plant"),
+      desc: getI18n("building-hydrogen-plant-desc"),
       id: "hydrogen-plant",
       requiredLevel: 210,
       cost: 35000000000,
@@ -204,8 +204,8 @@ function initializeBuildings() {
       events: [],
     },
     {
-      name: banana.i18n("building-solar-farm"),
-      desc: banana.i18n("building-solar-farm-desc"),
+      name: getI18n("building-solar-farm"),
+      desc: getI18n("building-solar-farm-desc"),
       id: "solar-farm",
       requiredLevel: 255,
       cost: 15000000000000,

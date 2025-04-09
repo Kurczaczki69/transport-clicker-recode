@@ -1,7 +1,6 @@
 import { themes } from "./data/themeData.js";
-import { banana } from "./langs.js";
 import { playRandomMouseClick } from "./sounds.js";
-import { animateWindowClose, animateWindowOpen } from "./utilities.js";
+import { animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
 import defaultBg from "../img/bg/bg-1.png";
 import defaultBus from "../img/other/bus-default.png";
 
@@ -62,7 +61,7 @@ export function populateThemeOptions() {
   themes.forEach((theme) => {
     const themeItem = document.createElement("div");
     const themeName = document.createElement("p");
-    themeName.textContent = banana.i18n("theme-" + theme.name);
+    themeName.textContent = getI18n(`theme-${theme.name}`);
     themeName.classList.add("settings-theme-name");
     themeItem.appendChild(themeName);
     themeItem.classList.add("settings-theme-item");

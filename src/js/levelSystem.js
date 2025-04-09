@@ -1,8 +1,7 @@
 import { getIncome, getClickMod, getBal, setBal, syncVehiclePrices, checkLevel } from "./scr.js";
-import { abbreviateNumber, animateWindowClose, animateWindowOpen } from "./utilities.js";
+import { abbreviateNumber, animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
 import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
-import { banana } from "./langs.js";
 import { populateUpgrData, populateVhclData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { playRandomMouseClick } from "./sounds.js";
 
@@ -67,8 +66,8 @@ function calculateLevelProgress(xp) {
       bal += moneyReward;
       setBal(bal);
       showNotif(
-        banana.i18n("notif-reward-title"),
-        banana.i18n("notif-reward-text", abbreviateNumber(moneyReward), previousLevel),
+        getI18n("notif-reward-title"),
+        getI18n("notif-reward-text", abbreviateNumber(moneyReward), previousLevel),
         "notif-reward"
       );
       populateVhclData();
@@ -99,7 +98,7 @@ function displayData() {
   document.querySelector("#user-level-value").textContent = level;
   document.querySelector("#user-xp-value").textContent = abbreviateNumber(xp);
   document.querySelector("#level-bar-filled").style.width = `${levelProgress}%`;
-  document.querySelector("#to-next-level-value").textContent = banana.i18n(
+  document.querySelector("#to-next-level-value").textContent = getI18n(
     "stats-xp-needed",
     abbreviateNumber(xpToNextLevel)
   );

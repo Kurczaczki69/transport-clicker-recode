@@ -1,8 +1,7 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getBal, getTimedUpgrsPrices, saveGame, setBal, syncTimedUpgrPrices } from "../scr.js";
-import { animateWindowClose, animateWindowOpen, clearMsg, formatTime, showAlert } from "../utilities.js";
+import { animateWindowClose, animateWindowOpen, clearMsg, formatTime, showAlert, getI18n } from "../utilities.js";
 import { showNotif, getNotifCount, removeNotif } from "../notifs.js";
-import { banana } from "../langs.js";
 import { getLevel } from "../levelSystem.js";
 import { playRandomCash, playRandomMouseClick } from "../sounds.js";
 
@@ -15,7 +14,7 @@ export function startTimedUpgrades() {
   let activeUpgrs = getActiveTimedUpgrades();
   activeUpgrs = activeUpgrs.filter((upgr) => upgr.endTime > Date.now());
   activeUpgrs.forEach((upgr) => {
-    showNotif(upgr.name, banana.i18n("timed-upgr-notif", formatTime(upgr.endTime - Date.now())), "notif-timed-upgr");
+    showNotif(upgr.name, getI18n("timed-upgr-notif", formatTime(upgr.endTime - Date.now())), "notif-timed-upgr");
     const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
     notifSmallText.id = "notif-small-text" + upgr.id;
     const notifTitle = document.querySelector(`#notif-title${getNotifCount()}`);
@@ -34,7 +33,7 @@ function buyTimedUpgrade(upgrId) {
   let bal = getBal();
   if (bal < upgradeToBuy.price) {
     animateWindowClose(confirmationDialog, false);
-    showAlert(banana.i18n("cant-afford"));
+    showAlert(getI18n("cant-afford"));
   } else {
     if (activeTimedUpgrades.length < activeTimedUpgradeLimit) {
       if (!checkUpgradeByType(upgradeToBuy.type)) {
@@ -59,10 +58,10 @@ function buyTimedUpgrade(upgrId) {
         syncTimedUpgrPrices();
         saveGame(true);
         animateWindowClose(confirmationDialog, false);
-        showAlert(banana.i18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
+        showAlert(getI18n("timed-upgr-activated", formatTime(upgradeToBuy.duration)));
         showNotif(
           upgradeToBuy.name,
-          banana.i18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
+          getI18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
           "notif-timed-upgr"
         );
         const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
@@ -72,11 +71,11 @@ function buyTimedUpgrade(upgrId) {
         runUpgrade(newActiveUpgr);
       } else {
         animateWindowClose(confirmationDialog, false);
-        showAlert(banana.i18n("timed-upgr-already-active"));
+        showAlert(getI18n("timed-upgr-already-active"));
       }
     } else {
       animateWindowClose(confirmationDialog, false);
-      showAlert(banana.i18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
+      showAlert(getI18n("timed-upgr-limit-reached", activeTimedUpgradeLimit));
     }
   }
 }
@@ -121,7 +120,7 @@ function blockUpgrade(upgradetobuy, reason) {
   const upgradeToBuy = upgrades.find((u) => u.id === upgradetobuy);
 
   if (reason == "level") {
-    showAlert(banana.i18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
+    showAlert(getI18n("upgrade-blocked-level", upgradeToBuy.requiredLevel));
   }
 }
 
@@ -206,11 +205,7 @@ export function grantUpgrade(upgrId) {
   activeUpgrs.push(newActiveUpgr);
   setActiveTimedUpgrades(activeUpgrs);
 
-  showNotif(
-    upgradeToGrant.name,
-    banana.i18n("timed-upgr-notif", formatTime(upgradeToGrant.duration)),
-    "notif-timed-upgr"
-  );
+  showNotif(upgradeToGrant.name, getI18n("timed-upgr-notif", formatTime(upgradeToGrant.duration)), "notif-timed-upgr");
   const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
   notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
   runUpgrade(newActiveUpgr);
@@ -222,7 +217,7 @@ function updateTimerDisplay(upgrade, remainingTime) {
   const timerEl = document.querySelector(`#notif-small-text${upgrade.id}`);
   const titleEl = document.querySelector(`#notif-title${upgrade.id}`);
   if (timerEl) {
-    timerEl.textContent = banana.i18n("timed-upgr-notif", formatTime(remainingTime));
+    timerEl.textContent = getI18n("timed-upgr-notif", formatTime(remainingTime));
   }
   if (titleEl) {
     titleEl.textContent = currentUpgrade.name;

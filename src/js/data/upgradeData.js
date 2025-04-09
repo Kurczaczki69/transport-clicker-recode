@@ -1,4 +1,4 @@
-import { banana } from "../langs.js";
+import { getI18n } from "../utilities.js";
 
 let upgrades = [];
 
@@ -8,8 +8,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "citybus",
-      name: banana.i18n("city-buses"),
-      desc: banana.i18n("city-buses-desc"),
+      name: getI18n("city-buses"),
+      desc: getI18n("city-buses-desc"),
       requiredLevel: 0,
       price: 0,
       isAvailable: true,
@@ -21,8 +21,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "hydrogenbus",
-      name: banana.i18n("hydrogen-buses"),
-      desc: banana.i18n("hydrogen-buses-desc"),
+      name: getI18n("hydrogen-buses"),
+      desc: getI18n("hydrogen-buses-desc"),
       requiredLevel: 5,
       price: 50000,
       isAvailable: true,
@@ -34,8 +34,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "intercitybus",
-      name: banana.i18n("intercity-buses"),
-      desc: banana.i18n("intercity-buses-desc"),
+      name: getI18n("intercity-buses"),
+      desc: getI18n("intercity-buses-desc"),
       requiredLevel: 20,
       price: 185000,
       isAvailable: true,
@@ -47,8 +47,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "trolleybus",
-      name: banana.i18n("trolleybuses"),
-      desc: banana.i18n("trolleybuses-desc"),
+      name: getI18n("trolleybuses"),
+      desc: getI18n("trolleybuses-desc"),
       requiredLevel: 35,
       price: 500000,
       isAvailable: true,
@@ -60,8 +60,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "tram",
-      name: banana.i18n("trams"),
-      desc: banana.i18n("trams-desc"),
+      name: getI18n("trams"),
+      desc: getI18n("trams-desc"),
       requiredLevel: 85,
       price: 20000000,
       isAvailable: true,
@@ -73,8 +73,8 @@ function initializeUpgrades() {
     {
       category: "vehicleType",
       id: "moderntram",
-      name: banana.i18n("modern-trams"),
-      desc: banana.i18n("modern-trams-desc"),
+      name: getI18n("modern-trams"),
+      desc: getI18n("modern-trams-desc"),
       requiredLevel: 110,
       price: 110000000,
       isAvailable: true,
@@ -86,8 +86,8 @@ function initializeUpgrades() {
     {
       category: "fuelTank",
       id: "fueltank1",
-      name: banana.i18n("upgr-fuel-tank-1"),
-      desc: banana.i18n("upgr-fuel-tank-1-desc"),
+      name: getI18n("upgr-fuel-tank-1"),
+      desc: getI18n("upgr-fuel-tank-1-desc"),
       requiredLevel: 8,
       price: 25000,
       isAvailable: true,
@@ -99,8 +99,8 @@ function initializeUpgrades() {
     {
       category: "fuelTank",
       id: "fueltank2",
-      name: banana.i18n("upgr-fuel-tank-2"),
-      desc: banana.i18n("upgr-fuel-tank-2-desc"),
+      name: getI18n("upgr-fuel-tank-2"),
+      desc: getI18n("upgr-fuel-tank-2-desc"),
       requiredLevel: 15,
       price: 75000,
       isAvailable: true,
@@ -112,8 +112,8 @@ function initializeUpgrades() {
     {
       category: "fuelTank",
       id: "fueltank3",
-      name: banana.i18n("upgr-fuel-tank-3"),
-      desc: banana.i18n("upgr-fuel-tank-3-desc"),
+      name: getI18n("upgr-fuel-tank-3"),
+      desc: getI18n("upgr-fuel-tank-3-desc"),
       requiredLevel: 25,
       price: 250000,
       isAvailable: true,
@@ -125,8 +125,8 @@ function initializeUpgrades() {
     {
       category: "fuelTank",
       id: "fueltank4",
-      name: banana.i18n("upgr-fuel-tank-4"),
-      desc: banana.i18n("upgr-fuel-tank-4-desc"),
+      name: getI18n("upgr-fuel-tank-4"),
+      desc: getI18n("upgr-fuel-tank-4-desc"),
       requiredLevel: 40,
       price: 10000000,
       isAvailable: true,
@@ -138,8 +138,8 @@ function initializeUpgrades() {
     {
       category: "fuelTank",
       id: "fueltank5",
-      name: banana.i18n("upgr-fuel-tank-5"),
-      desc: banana.i18n("upgr-fuel-tank-5-desc"),
+      name: getI18n("upgr-fuel-tank-5"),
+      desc: getI18n("upgr-fuel-tank-5-desc"),
       requiredLevel: 60,
       price: 50000000,
       isAvailable: true,

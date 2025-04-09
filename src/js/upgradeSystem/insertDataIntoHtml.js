@@ -1,9 +1,8 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getUpgrades } from "../data/upgradeData.js";
-import { shortAbbreviateNumber } from "../utilities.js";
+import { shortAbbreviateNumber, getI18n } from "../utilities.js";
 import { getVhcls } from "../data/vhclData.js";
 import { checkLevel, getVhclPrices, syncTimedUpgrPrices, syncVehiclePrices, getTimedUpgrsPrices } from "../scr.js";
-import { banana } from "../langs.js";
 import { checkLevelUpgr } from "./upgrades.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
 
@@ -36,7 +35,7 @@ export function updateHtmlData() {
           timedUpgrDescs[index].innerHTML = timedUpgrades[index].desc;
           timedupgrPrices[index].innerHTML =
             timedUpgrades[index].price === 0
-              ? banana.i18n("free-indicator")
+              ? getI18n("free-indicator")
               : shortAbbreviateNumber(timedUpgrades[index].price) + " $";
         }
       }
@@ -46,7 +45,7 @@ export function updateHtmlData() {
           upgrDescs[index].innerHTML = upgrades[index].desc;
           upgrPrices[index].innerHTML =
             upgrades[index].price === 0
-              ? banana.i18n("free-indicator")
+              ? getI18n("free-indicator")
               : shortAbbreviateNumber(upgrades[index].price) + " $";
         }
       }
@@ -54,9 +53,8 @@ export function updateHtmlData() {
         vhclNames[index].innerHTML = vhcls[index].name;
         vhclPrices[index].innerHTML = shortAbbreviateNumber(vhcls[index].price) + " $";
         vhclIncomeBoosts[index].innerHTML =
-          "+" + shortAbbreviateNumber(vhcls[index].incomemod) + "$/" + banana.i18n("time-seconds");
-        vhclClickMods[index].innerHTML =
-          "+" + shortAbbreviateNumber(vhcls[index].clickmod) + "$/" + banana.i18n("click");
+          "+" + shortAbbreviateNumber(vhcls[index].incomemod) + "$/" + getI18n("time-seconds");
+        vhclClickMods[index].innerHTML = "+" + shortAbbreviateNumber(vhcls[index].clickmod) + "$/" + getI18n("click");
       }
     }
   }
@@ -90,16 +88,16 @@ export function populateVhclData() {
           </span>
         </div>
         <div class="vhcl-menu-citybus-income-boost">
-          <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod, "vhcls")}$/${banana.i18n(
+          <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod, "vhcls")}$/${getI18n(
       "time-seconds"
     )}</span>
         </div>
         <div class="vhcl-menu-citybus-clickmod-boost">
-          <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${banana.i18n("click")}</span>
+          <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${getI18n("click")}</span>
         </div>
         <div class="vhcl-menu-btn-wrapper">
           <button class="vhcl-menu-btn btns" id="${vhcl.code}">
-            <div class="vhcl-btn-content" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
+            <div class="vhcl-btn-content" data-lang="btn-buy">${getI18n("btn-buy")}</div>
           </button>
         </div>
       </div>
@@ -153,7 +151,7 @@ export function populateUpgrData() {
                 </div>
               </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible">
-                <span style="display: ${checkAvailability(upgrade)}" data-lang="unavailable">${banana.i18n(
+                <span style="display: ${checkAvailability(upgrade)}" data-lang="unavailable">${getI18n(
       "unavailable"
     )}</span>
               </th>
@@ -167,7 +165,7 @@ export function populateUpgrData() {
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
                 <button class="upgr-menu-vehicle-type-item-btn btns" id="${upgrade.id}">
-                  <div class="upgr-menu-vehicle-type-item-btn-text" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
+                  <div class="upgr-menu-vehicle-type-item-btn-text" data-lang="btn-buy">${getI18n("btn-buy")}</div>
                 </button>
               </th>
             </tr>
@@ -194,7 +192,7 @@ export function populateUpgrData() {
                 </div>
               </th>
               <th class="upgr-menu-vehicle-type-item-is-avaible">
-                <span style="display: none" data-lang="unavailable">${banana.i18n("unavailable")}</span>
+                <span style="display: none" data-lang="unavailable">${getI18n("unavailable")}</span>
               </th>
               <th class="upgr-menu-vehicle-type-item-price">
                 <span id="upgr-menu-vehicle-type-item-price-item1"
@@ -206,7 +204,7 @@ export function populateUpgrData() {
               </th>
               <th class="upgr-menu-vehicle-type-item-btn-wrapper">
                 <button class="upgr-menu-timed-upgr-item-btn btns" id="${upgr.id}">
-                  <div class="upgr-menu-timed-upgr-item-btn-text" data-lang="btn-buy">${banana.i18n("btn-buy")}</div>
+                  <div class="upgr-menu-timed-upgr-item-btn-text" data-lang="btn-buy">${getI18n("btn-buy")}</div>
                 </button>
               </th>
             </tr>

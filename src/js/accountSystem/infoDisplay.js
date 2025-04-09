@@ -1,8 +1,8 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseManager.js";
-import { banana } from "../langs.js";
 import { playRandomMouseClick } from "../sounds.js";
+import { getI18n } from "../utilities.js";
 
 const isGamePage = window.location.pathname.includes("game.html");
 
@@ -26,7 +26,7 @@ if (isGamePage) {
         });
     } else {
       const accWindow = document.getElementById("accountbox");
-      accWindow.innerHTML = banana.i18n(
+      accWindow.innerHTML = getI18n(
         "acc-not-logged-in",
         "<h2 id='accWelcome'>",
         "</h2><br><div id='acc-btn-wrapper'><a href='index.html'><button id='gotologin-btn' class='btns-acc-window'>",

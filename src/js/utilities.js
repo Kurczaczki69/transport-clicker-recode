@@ -99,7 +99,7 @@ export function abbreviateNumber(num) {
     return "∞";
   }
 
-  const suffix = banana.i18n(suffixes[order]);
+  const suffix = getI18n(suffixes[order]);
   const scaled = roundedNum / Math.pow(10, order * 3);
 
   // Use Intl.NumberFormat for locale-specific number formatting
@@ -129,7 +129,7 @@ export function shortAbbreviateNumber(num, location) {
     return formattedNum;
   } else if (location == "upgrs" || location == "price") {
     if (num === 0) {
-      return banana.i18n("free-indicator");
+      return getI18n("free-indicator");
     } else {
       return formattedNum;
     }
@@ -146,15 +146,47 @@ export function formatTime(ms) {
   const days = Math.floor(ms / (1000 * 60 * 60 * 24));
 
   const formattedTime = [
-    days > 0 ? `${days} ${banana.i18n("time-days")}` : "",
-    hours > 0 ? `${hours} ${banana.i18n("time-hours")}` : "",
-    minutes > 0 ? `${minutes} ${banana.i18n("time-minutes")}` : "",
-    seconds > 0 ? `${seconds} ${banana.i18n("time-seconds")}` : "",
+    days > 0 ? `${days} ${getI18n("time-days")}` : "",
+    hours > 0 ? `${hours} ${getI18n("time-hours")}` : "",
+    minutes > 0 ? `${minutes} ${getI18n("time-minutes")}` : "",
+    seconds > 0 ? `${seconds} ${getI18n("time-seconds")}` : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  return formattedTime || `0 ${banana.i18n("time-seconds")}`;
+  return formattedTime || `0 ${getI18n("time-seconds")}`;
+}
+
+let defaultTranslations = {};
+
+fetch("dist/lang/en.json")
+  .then((response) => response.json())
+  .then((messages) => {
+    defaultTranslations = messages;
+  });
+
+let translation = "";
+
+/**
+ * @function getI18n
+ * @description Gets a translation from the current language's dictionary.
+ * If the translation doesn't exist, it will default to the english translation.
+ * @param {string} key The key of the translation to get.
+ * @param {string} [val1] An optional value to replace placeholders in the translation.
+ * @param {string} [val2] An optional value to replace placeholders in the translation.
+ * @param {string} [val3] An optional value to replace placeholders in the translation.
+ * @returns {string} The translated string.
+ */
+export function getI18n(key, val1, val2, val3) {
+  translation = "";
+  if (!key) return key;
+  translation = banana.i18n(key, val1, val2, val3);
+  if (!translation || translation == "") {
+    banana.setLocale("en");
+    translation = banana.i18n(key, val1, val2, val3);
+    banana.setLocale(localStorage.getItem("lang") || "en");
+  }
+  return translation;
 }
 
 // converts decimal number to percentage in income boosts etc. (so 0.5 becomes -50 and 1.5 becomes +50)

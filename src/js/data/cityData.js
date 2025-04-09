@@ -1,6 +1,5 @@
-import { banana } from "../langs.js";
 import { getCurrentCity, getUserCityData } from "../scr.js";
-import { convertDecimalBoostToPercent } from "../utilities.js";
+import { convertDecimalBoostToPercent, getI18n } from "../utilities.js";
 import skoImg from "../../img/cities/skarzysko_01.webp";
 import tycImg from "../../img/cities/tychy_01.webp";
 import lubImg from "../../img/cities/lublin_01.webp";
@@ -18,7 +17,7 @@ async function initializeCities() {
 
   cities = [
     {
-      name: banana.i18n("city-name-skarzysko"),
+      name: getI18n("city-name-skarzysko"),
       id: "sko",
       population: 41793,
       density: 649,
@@ -35,7 +34,7 @@ async function initializeCities() {
       imgPath: skoImg,
     },
     {
-      name: banana.i18n("city-name-tychy"),
+      name: getI18n("city-name-tychy"),
       id: "tyc",
       population: 121472,
       density: 1482,
@@ -52,7 +51,7 @@ async function initializeCities() {
       imgPath: tycImg,
     },
     {
-      name: banana.i18n("city-name-lublin"),
+      name: getI18n("city-name-lublin"),
       id: "lub",
       population: 328868,
       density: 2230,
@@ -69,7 +68,7 @@ async function initializeCities() {
       imgPath: lubImg,
     },
     {
-      name: banana.i18n("city-name-grudziadz"),
+      name: getI18n("city-name-grudziadz"),
       id: "gru",
       population: 88658,
       density: 1541,
@@ -86,7 +85,7 @@ async function initializeCities() {
       imgPath: gruImg,
     },
     {
-      name: banana.i18n("city-name-lodz"),
+      name: getI18n("city-name-lodz"),
       id: "lod",
       population: 648711,
       density: 2212,
@@ -120,24 +119,24 @@ function initializeCityEvents() {
   const currentCityData = cities.find((city) => city.id === currentCity);
   cityEvents = [
     {
-      name: banana.i18n("city-event-carnival"),
-      description: banana.i18n("city-event-carnival-desc", currentCityData.name, convertDecimalBoostToPercent(1.2)),
+      name: getI18n("city-event-carnival"),
+      description: getI18n("city-event-carnival-desc", currentCityData.name, convertDecimalBoostToPercent(1.2)),
       id: "carnival",
       boost: 1.2,
       duration: 900000,
       cities: ["lub"],
     },
     {
-      name: banana.i18n("city-event-concert"),
-      description: banana.i18n("city-event-concert-desc", currentCityData.name, convertDecimalBoostToPercent(1.45)),
+      name: getI18n("city-event-concert"),
+      description: getI18n("city-event-concert-desc", currentCityData.name, convertDecimalBoostToPercent(1.45)),
       id: "concert",
       boost: 1.45,
       duration: 480000,
       requiresLevel: 12,
     },
     {
-      name: banana.i18n("city-event-road-construction"),
-      description: banana.i18n(
+      name: getI18n("city-event-road-construction"),
+      description: getI18n(
         "city-event-road-construction-desc",
         currentCityData.name,
         convertDecimalBoostToPercent(0.75)
@@ -147,78 +146,70 @@ function initializeCityEvents() {
       duration: 600000,
     },
     {
-      name: banana.i18n("city-event-crash"),
-      description: banana.i18n("city-event-crash-desc", currentCityData.name, convertDecimalBoostToPercent(0.4)),
+      name: getI18n("city-event-crash"),
+      description: getI18n("city-event-crash-desc", currentCityData.name, convertDecimalBoostToPercent(0.4)),
       id: "crash",
       boost: 0.4,
       duration: 180000,
       requiresLevel: 25,
     },
     {
-      name: banana.i18n("city-event-protest"),
-      description: banana.i18n("city-event-protest-desc", currentCityData.name, convertDecimalBoostToPercent(0.65)),
+      name: getI18n("city-event-protest"),
+      description: getI18n("city-event-protest-desc", currentCityData.name, convertDecimalBoostToPercent(0.65)),
       id: "protest",
       boost: 0.65,
       duration: 180000,
       cities: ["lub"],
     },
     {
-      name: banana.i18n("city-event-film-shooting"),
-      description: banana.i18n(
-        "city-event-film-shooting-desc",
-        currentCityData.name,
-        convertDecimalBoostToPercent(1.15)
-      ),
+      name: getI18n("city-event-film-shooting"),
+      description: getI18n("city-event-film-shooting-desc", currentCityData.name, convertDecimalBoostToPercent(1.15)),
       id: "film-shooting",
       boost: 1.15,
       duration: 900000,
     },
     {
-      name: banana.i18n("city-event-forest-fire"),
-      description: banana.i18n("city-event-forest-fire-desc", currentCityData.name, convertDecimalBoostToPercent(0.6)),
+      name: getI18n("city-event-forest-fire"),
+      description: getI18n("city-event-forest-fire-desc", currentCityData.name, convertDecimalBoostToPercent(0.6)),
       id: "forest-fire",
       boost: 0.6,
       duration: 200000,
     },
     {
-      name: banana.i18n("city-event-tourist-season"),
-      description: banana.i18n(
-        "city-event-tourist-season-desc",
-        currentCityData.name,
-        convertDecimalBoostToPercent(1.35)
-      ),
+      name: getI18n("city-event-tourist-season"),
+      description: getI18n("city-event-tourist-season-desc", currentCityData.name, convertDecimalBoostToPercent(1.35)),
       id: "tourist-season",
       boost: 1.35,
       duration: 300000,
       requiredBuildings: ["tourist-center"],
     },
     {
-      name: banana.i18n("city-event-city-tour"),
-      description: banana.i18n("city-event-city-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.2)),
+      name: getI18n("city-event-city-tour"),
+      description: getI18n("city-event-city-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.2)),
       id: "city-tour",
       boost: 1.2,
       duration: 150000,
       requiredBuildings: ["tourist-center"],
     },
     {
-      name: banana.i18n("city-event-photo-tour"),
-      description: banana.i18n("city-event-photo-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.25)),
+      name: getI18n("city-event-photo-tour"),
+      description: getI18n("city-event-photo-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.25)),
       id: "photo-tour",
       boost: 1.25,
       duration: 150000,
       requiredBuildings: ["sightseeing-platform"],
     },
     {
-      name: banana.i18n("city-event-sunset-tour"),
-      description: banana.i18n("city-event-sunset-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.35)),
+      name: getI18n("city-event-sunset-tour"),
+      description: getI18n("city-event-sunset-tour-desc", currentCityData.name, convertDecimalBoostToPercent(1.35)),
       id: "sunset-tour",
       boost: 1.35,
       duration: 150000,
       requiredBuildings: ["sightseeing-platform"],
     },
     {
-      name: banana.i18n("city-event-museum-exhibition"),
-      description: banana.i18n(
+      name: getI18n("city-event-museum-exhibition"),
+      description: getI18n(
         "city-event-museum-exhibition-desc",
         currentCityData.name,
         convertDecimalBoostToPercent(1.15)
@@ -229,8 +220,8 @@ function initializeCityEvents() {
       requiredBuildings: ["transport-museum"],
     },
     {
-      name: banana.i18n("city-event-vintage-vehicle-show"),
-      description: banana.i18n(
+      name: getI18n("city-event-vintage-vehicle-show"),
+      description: getI18n(
         "city-event-vintage-vehicle-show-desc",
         currentCityData.name,
         convertDecimalBoostToPercent(1.2)
@@ -241,28 +232,24 @@ function initializeCityEvents() {
       requiredBuildings: ["transport-museum"],
     },
     {
-      name: banana.i18n("city-event-world-cup"),
-      description: banana.i18n("city-event-world-cup-desc", currentCityData.name, convertDecimalBoostToPercent(1.6)),
+      name: getI18n("city-event-world-cup"),
+      description: getI18n("city-event-world-cup-desc", currentCityData.name, convertDecimalBoostToPercent(1.6)),
       id: "world-cup",
       boost: 1.6,
       duration: 300000,
       requiredBuildings: ["stadium"],
     },
     {
-      name: banana.i18n("city-event-football-match"),
-      description: banana.i18n(
-        "city-event-football-match-desc",
-        currentCityData.name,
-        convertDecimalBoostToPercent(1.4)
-      ),
+      name: getI18n("city-event-football-match"),
+      description: getI18n("city-event-football-match-desc", currentCityData.name, convertDecimalBoostToPercent(1.4)),
       id: "football-match",
       boost: 1.4,
       duration: 180000,
       requiredBuildings: ["stadium"],
     },
     {
-      name: banana.i18n("city-event-school-trip"),
-      description: banana.i18n("city-event-school-trip-desc", currentCityData.name, convertDecimalBoostToPercent(1.05)),
+      name: getI18n("city-event-school-trip"),
+      description: getI18n("city-event-school-trip-desc", currentCityData.name, convertDecimalBoostToPercent(1.05)),
       id: "school-trip",
       boost: 1.05,
       duration: 200000,

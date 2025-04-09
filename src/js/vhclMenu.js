@@ -1,6 +1,5 @@
 import { getBghtUpgrs, getCurrentCity, checkLevel } from "./scr.js";
-import { animateWindowClose, animateWindowOpen, showAlert } from "./utilities.js";
-import { banana } from "./langs.js";
+import { animateWindowClose, animateWindowOpen, showAlert, getI18n } from "./utilities.js";
 import { getCities } from "./data/cityData.js";
 import { playRandomMouseClick } from "./sounds.js";
 
@@ -161,13 +160,13 @@ class VehicleMenuManager {
     playRandomMouseClick();
 
     if (!bghtUpgrs.includes(category.upgradeKey)) {
-      showAlert(banana.i18n("vhcl-category-locked", banana.i18n(category.translationKey)));
+      showAlert(getI18n("vhcl-category-locked", getI18n(category.translationKey)));
       this.resetDropdownValue(this.mainDropdown.id);
       return;
     }
 
     if (category.requiresCity && !this.checkCityRequirement(category)) {
-      showAlert(banana.i18n("vhcl-category-locked-2"));
+      showAlert(getI18n("vhcl-category-locked-2"));
       this.resetDropdownValue(this.mainDropdown.id);
       return;
     }
@@ -206,7 +205,7 @@ class VehicleMenuManager {
     playRandomMouseClick();
 
     if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
-      showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
+      showAlert(getI18n("vhcl-category-locked", getI18n(subcategory.translationKey)));
       this.resetDropdownValue(busConfig.subDropdownId);
       return;
     }
@@ -230,13 +229,13 @@ class VehicleMenuManager {
     playRandomMouseClick();
 
     if (!bghtUpgrs.includes(subcategory.upgradeKey)) {
-      showAlert(banana.i18n("vhcl-category-locked", banana.i18n(subcategory.translationKey)));
+      showAlert(getI18n("vhcl-category-locked", getI18n(subcategory.translationKey)));
       this.resetDropdownValue(tramConfig.subDropdownId);
       return;
     }
 
     if (subcategory.requiresCity && !this.checkCityRequirement(subcategory)) {
-      showAlert(banana.i18n("vhcl-category-locked-2"));
+      showAlert(getI18n("vhcl-category-locked-2"));
       this.resetDropdownValue(this.subDropdowns.get(tramConfig.subDropdownId));
       return;
     }
@@ -280,7 +279,7 @@ if (isGamePage) {
     } else {
       playRandomMouseClick();
       buygui.style.display = "none";
-      showAlert(banana.i18n("vhcl-category-unavailable-citybus"));
+      showAlert(getI18n("vhcl-category-unavailable-citybus"));
     }
   });
 

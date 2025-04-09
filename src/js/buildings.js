@@ -1,7 +1,6 @@
 import { blockCityUnlock, populateCitiesGrid, showCityDetails } from "./cities.js";
 import { getBuildings } from "./data/buildingData.js";
 import { getCities } from "./data/cityData.js";
-import { banana } from "./langs.js";
 import { getLevel } from "./levelSystem.js";
 import {
   convertDecimalToPercent,
@@ -10,6 +9,7 @@ import {
   showAlert,
   animateWindowClose,
   animateWindowOpen,
+  getI18n,
 } from "./utilities.js";
 import { getBal, saveGame, setBal, getUserCityData, updateCityProperty } from "./scr.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
@@ -52,15 +52,15 @@ function buildInCity(cityId, buildingId) {
           break;
       }
       populateCitiesGrid();
-      showAlert(banana.i18n("building-built", banana.i18n(`building-${building.id}`), city.name));
+      showAlert(getI18n("building-built", getI18n(`building-${building.id}`), city.name));
       saveGame(true);
     } else {
       playRandomMouseClick();
-      showAlert(banana.i18n("cant-afford"));
+      showAlert(getI18n("cant-afford"));
     }
   } else {
     playRandomMouseClick();
-    showAlert(banana.i18n("building-already-built"));
+    showAlert(getI18n("building-already-built"));
   }
 }
 
@@ -87,8 +87,8 @@ function createBuildingCard(building) {
   let boostValue = 0;
 
   if (building.boostType === "fuel-generation") {
-    const unit = building.fuelType === "electric" ? banana.i18n("unit-kilowat") : banana.i18n("unit-liter");
-    boostValue = building.generationRate = `${building.generationRate}${unit}/${banana.i18n("time-seconds")}`;
+    const unit = building.fuelType === "electric" ? getI18n("unit-kilowat") : getI18n("unit-liter");
+    boostValue = building.generationRate = `${building.generationRate}${unit}/${getI18n("time-seconds")}`;
   } else {
     boostValue =
       building.boostType === "income" || building.boostType === "clickmod"
@@ -96,21 +96,21 @@ function createBuildingCard(building) {
         : `${convertDecimalToPercent(building.boostValue)}%`;
   }
 
-  let buildingEvents = building.events.map((event) => banana.i18n(`city-event-${event}`)).join(", ");
+  let buildingEvents = building.events.map((event) => getI18n(`city-event-${event}`)).join(", ");
   if (buildingEvents === "") {
-    buildingEvents = banana.i18n("none");
+    buildingEvents = getI18n("none");
   }
 
   card.innerHTML = `
-      <img src="${building.imgPath}" alt="${banana.i18n(`building-${building.id}`)}" class="building-card-image">
+      <img src="${building.imgPath}" alt="${getI18n(`building-${building.id}`)}" class="building-card-image">
     <div class="building-card-content">
-      <div class="building-card-title">${banana.i18n(`building-${building.id}`)}</div>
-      <div class="building-card-desc">${banana.i18n(`building-${building.id}-desc`)}</div>
+      <div class="building-card-title">${getI18n(`building-${building.id}`)}</div>
+      <div class="building-card-desc">${getI18n(`building-${building.id}-desc`)}</div>
       <div class="building-card-info">
-        <span>${banana.i18n("buildings-boost-type", banana.i18n(`building-boost-${building.boostType}`))}</span>
-        <span>${banana.i18n("buildings-boost", boostValue)}</span>
-        <span>${banana.i18n("cities-price", shortAbbreviateNumber(building.cost, "price"))}</span>
-        <span>${banana.i18n("buildings-events", buildingEvents)}</span>
+        <span>${getI18n("buildings-boost-type", getI18n(`building-boost-${building.boostType}`))}</span>
+        <span>${getI18n("buildings-boost", boostValue)}</span>
+        <span>${getI18n("cities-price", shortAbbreviateNumber(building.cost, "price"))}</span>
+        <span>${getI18n("buildings-events", buildingEvents)}</span>
       </div>
       <button class="building-card-btn btns" id="${building.id}"></button>
     </div>
@@ -122,7 +122,7 @@ function createBuildingCard(building) {
 function blockBuilding(id, reason) {
   const building = getBuildings().find((b) => b.id === id);
   if (reason === "level") {
-    showAlert(banana.i18n("building-blocked-level", building.requiredLevel, banana.i18n(`building-${building.id}`)));
+    showAlert(getI18n("building-blocked-level", building.requiredLevel, getI18n(`building-${building.id}`)));
   }
 }
 
@@ -138,7 +138,7 @@ if (isGamePage) {
     const searchQuery = searchBar.value.toLowerCase();
     const buildings = getBuildings();
     const filteredBuildings = buildings.filter((building) => {
-      return banana.i18n(`building-${building.id}`).toLowerCase().includes(searchQuery);
+      return getI18n(`building-${building.id}`).toLowerCase().includes(searchQuery);
     });
     if (filteredBuildings.length === 0) {
       noResults.style.display = "flex";
@@ -177,7 +177,7 @@ function addBuildingListeners() {
   const buildingBtns = document.querySelectorAll(".building-card-btn");
   buildingBtns.forEach((btn) => {
     if (getLevel() >= buildings.find((b) => b.id === btn.id).requiredLevel) {
-      btn.textContent = banana.i18n("btn-build");
+      btn.textContent = getI18n("btn-build");
       btn.addEventListener("click", () => {
         buildInCity(chosenCity, btn.id);
       });
@@ -217,7 +217,7 @@ export function addBuildListener() {
       blockCityUnlock(cityId, "level");
     });
   } else {
-    newBtn.textContent = banana.i18n("btn-build");
+    newBtn.textContent = getI18n("btn-build");
     newBtn.addEventListener("click", () => {
       playRandomMouseClick();
       populateBuildingsGrid();

@@ -6,8 +6,8 @@ import {
   convertDecimalToPercent,
   animateWindowOpen,
   animateWindowClose,
+  getI18n,
 } from "./utilities.js";
-import { banana } from "./langs.js";
 import {
   getBal,
   setBal,
@@ -55,11 +55,11 @@ function createCityCard(city) {
     <div class="city-card-content">
       <div class="city-card-title">${city.name}</div>
       <div class="city-card-info">
-        <span>${banana.i18n("cities-population", shortAbbreviateNumber(city.population))}</span>
-        <span>${banana.i18n("cities-area", shortAbbreviateNumber(city.area))}</span>
-        <span>${banana.i18n("cities-boost", convertDecimalBoostToPercent(calculatedBoost))}</span>
-        <span>${banana.i18n("cities-click-boost", convertDecimalBoostToPercent(calculatedClickBoost))}</span>
-        <span>${banana.i18n("cities-price", shortAbbreviateNumber(city.cost, "price"))}</span>
+        <span>${getI18n("cities-population", shortAbbreviateNumber(city.population))}</span>
+        <span>${getI18n("cities-area", shortAbbreviateNumber(city.area))}</span>
+        <span>${getI18n("cities-boost", convertDecimalBoostToPercent(calculatedBoost))}</span>
+        <span>${getI18n("cities-click-boost", convertDecimalBoostToPercent(calculatedClickBoost))}</span>
+        <span>${getI18n("cities-price", shortAbbreviateNumber(city.cost, "price"))}</span>
       </div>
       <div id="city-btns-wrapper">
         <button class="city-card-btn btns" id="${city.id}"></button>
@@ -77,11 +77,11 @@ export async function populateCitiesGrid() {
   const grid = document.getElementById("cities-grid");
   grid.innerHTML = "";
   const costEl = document.querySelector("#cities-switch-cost");
-  costEl.textContent = banana.i18n("cities-switch-cost", shortAbbreviateNumber(getCitySwitchCost(), "price"));
+  costEl.textContent = getI18n("cities-switch-cost", shortAbbreviateNumber(getCitySwitchCost(), "price"));
   const currentCityEl = document.querySelector("#cities-current");
   const currentCityId = getCurrentCity();
   const currentCity = cities.find((c) => c.id === currentCityId);
-  currentCityEl.textContent = banana.i18n("cities-current", currentCity.name);
+  currentCityEl.textContent = getI18n("cities-current", currentCity.name);
   if (!grid) return;
 
   cityData.forEach((city) => {
@@ -117,7 +117,7 @@ export function calculateCityClickMod(city) {
 
 function increaseSwitchCost() {
   const costEl = document.querySelector("#cities-switch-cost");
-  costEl.textContent = banana.i18n("cities-switch-cost", shortAbbreviateNumber(getCitySwitchCost(), "price"));
+  costEl.textContent = getI18n("cities-switch-cost", shortAbbreviateNumber(getCitySwitchCost(), "price"));
   const switchCost = getCitySwitchCost();
   return Math.round(switchCost * 1.05);
 }
@@ -133,11 +133,11 @@ async function unlockCity(city) {
       playRandomCash();
       setBal(getBal() - unlockCost);
       unlockedCities.push(cityToUnlock.id);
-      showAlert(banana.i18n("city-unlocked", cityToUnlock.name));
+      showAlert(getI18n("city-unlocked", cityToUnlock.name));
       populateCitiesGrid();
       saveGame(true);
     } else {
-      showAlert(banana.i18n("cant-afford"));
+      showAlert(getI18n("cant-afford"));
     }
   } else {
     switchCity(cityToUnlock.id);
@@ -149,7 +149,7 @@ export async function blockCityUnlock(city, reason) {
   const cityToBlock = cities.find((c) => c.id === city);
 
   if (reason == "level") {
-    showAlert(banana.i18n("city-blocked-level", cityToBlock.unlockLevel));
+    showAlert(getI18n("city-blocked-level", cityToBlock.unlockLevel));
   }
 }
 
@@ -163,18 +163,18 @@ async function switchCity(city) {
     if (getBal() >= switchCost) {
       playRandomCash();
       const currentCityEl = document.querySelector("#cities-current");
-      currentCityEl.textContent = banana.i18n("cities-current", cityToSwitch.name);
+      currentCityEl.textContent = getI18n("cities-current", cityToSwitch.name);
       setBal(getBal() - switchCost);
       setCurrentCity(cityToSwitch.id);
       let newSwitchCost = increaseSwitchCost();
       setCitySwitchCost(newSwitchCost);
-      showAlert(banana.i18n("city-switched", cityToSwitch.name));
+      showAlert(getI18n("city-switched", cityToSwitch.name));
       populateCitiesGrid();
       saveGame(true);
     }
   } else {
     playRandomMouseClick();
-    showAlert(banana.i18n("city-already-current-city"));
+    showAlert(getI18n("city-already-current-city"));
   }
 }
 
@@ -186,13 +186,13 @@ async function addListeners() {
   unlockBtns.forEach((btn) => {
     const city = cities.find((c) => c.id === btn.id);
     if (unlockedCities.includes(city.id)) {
-      btn.textContent = banana.i18n("btn-switch-city");
+      btn.textContent = getI18n("btn-switch-city");
       btn.addEventListener("click", () => {
         switchCity(city.id);
       });
     } else {
       if (getLevel() >= city.unlockLevel) {
-        btn.textContent = banana.i18n("btn-unlock");
+        btn.textContent = getI18n("btn-unlock");
         btn.addEventListener("click", () => {
           unlockCity(city.id);
         });
@@ -212,7 +212,7 @@ async function addListeners() {
   detailsBtns.forEach((btn) => {
     const cityId = btn.getAttribute("data-city-id");
     const city = cities.find((c) => c.id === cityId);
-    btn.textContent = banana.i18n("btn-details");
+    btn.textContent = getI18n("btn-details");
     btn.addEventListener("click", () => {
       playRandomMouseClick();
       showCityDetails(city);
@@ -238,17 +238,17 @@ if (isGamePage) {
 }
 
 export function showCityDetails(city) {
-  const vehiclesList = city.vehicles.map((vehicle) => banana.i18n(vehicle)).join(", ");
-  const buildingsList = city.buildings.map((building) => banana.i18n(`building-${building}`)).join(", ");
+  const vehiclesList = city.vehicles.map((vehicle) => getI18n(vehicle)).join(", ");
+  const buildingsList = city.buildings.map((building) => getI18n(`building-${building}`)).join(", ");
 
-  cityDetailsTitle.textContent = banana.i18n("city-details-title", city.name);
-  cityDetailsStatVehicles.textContent = banana.i18n("city-details-stat-vehicles", vehiclesList);
-  cityDetailsStatBuildings.textContent = banana.i18n("city-details-stat-buildings", buildingsList);
-  cityDetailsStatPollution.textContent = banana.i18n(
+  cityDetailsTitle.textContent = getI18n("city-details-title", city.name);
+  cityDetailsStatVehicles.textContent = getI18n("city-details-stat-vehicles", vehiclesList);
+  cityDetailsStatBuildings.textContent = getI18n("city-details-stat-buildings", buildingsList);
+  cityDetailsStatPollution.textContent = getI18n(
     "city-details-stat-pollution",
     convertDecimalToPercent(city.pollutionLevel)
   );
-  cityDetailsStatTourism.textContent = banana.i18n(
+  cityDetailsStatTourism.textContent = getI18n(
     "city-details-stat-tourism",
     convertDecimalToPercent(city.tourismFactor)
   );
@@ -370,9 +370,9 @@ function updateActiveEventsDisplay() {
 
     eventElement.innerHTML = `
       <div class="event-info">
-        <div class="event-name">${banana.i18n(`city-event-${event.id}`)}</div>
-        <div class="event-boost">${banana.i18n("cities-boost", convertDecimalBoostToPercent(event.boost))}</div>
-        <div class="event-timer">${banana.i18n("timed-upgr-notif", timeFormat(timeLeft))}</div>
+        <div class="event-name">${getI18n(`city-event-${event.id}`)}</div>
+        <div class="event-boost">${getI18n("cities-boost", convertDecimalBoostToPercent(event.boost))}</div>
+        <div class="event-timer">${getI18n("timed-upgr-notif", timeFormat(timeLeft))}</div>
       </div>
     `;
 

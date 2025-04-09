@@ -1,9 +1,8 @@
 import { collection, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "./firebaseManager.js";
-import { animateWindowOpen, animateWindowClose, showAlert } from "./utilities.js";
+import { animateWindowOpen, animateWindowClose, showAlert, getI18n } from "./utilities.js";
 import { getBal, setBal, saveGame } from "./scr.js";
 import { grantUpgrade } from "./upgradeSystem/timedUpgrades.js";
-import { banana } from "./langs.js";
 import { playRandomMouseClick } from "./sounds.js";
 
 // listeners
@@ -39,7 +38,7 @@ function useCode(code) {
     applyCodeBoosts(codeData);
   } else {
     console.log("invalid code");
-    showAlert(banana.i18n("codes-invalid-code"));
+    showAlert(getI18n("codes-invalid-code"));
     animateWindowClose(codesMenu, true, tint);
   }
 }
@@ -49,13 +48,13 @@ async function applyCodeBoosts(code) {
   let codeData = usedCodes.includes(code.code);
   if (codeData) {
     console.log("code already used");
-    showAlert(banana.i18n("codes-code-already-used"));
+    showAlert(getI18n("codes-code-already-used"));
     animateWindowClose(codesMenu, true, tint);
   } else {
     const expireDate = new Date(code.expireDate.seconds * 1000);
     if (Date.now() > expireDate.getTime()) {
       console.log("code expired");
-      showAlert(banana.i18n("codes-code-expired"));
+      showAlert(getI18n("codes-code-expired"));
       animateWindowClose(codesMenu, true, tint);
     } else {
       let bal = getBal();
@@ -65,7 +64,7 @@ async function applyCodeBoosts(code) {
       usedCodes.push(code.code);
       await setUsedCodes(usedCodes);
       console.log("code used");
-      showAlert(banana.i18n("codes-success"));
+      showAlert(getI18n("codes-success"));
       animateWindowClose(codesMenu, true, tint);
     }
   }

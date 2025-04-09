@@ -1,6 +1,5 @@
 import { getBal, setBal, getFuelLevels, setFuelLevels, getVhclAmounts, getMaxFuel, getUserCityData } from "./scr.js";
-import { shortAbbreviateNumber, showAlert } from "./utilities.js";
-import { banana } from "./langs.js";
+import { getI18n, shortAbbreviateNumber, showAlert } from "./utilities.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getVhcls } from "./data/vhclData.js";
@@ -71,7 +70,7 @@ export function initFuelSystem() {
 
 function buyFuel(type, amount, el) {
   if (!amount || amount <= 0) {
-    showAlert(banana.i18n("invalid-amount"));
+    showAlert(getI18n("invalid-amount"));
     return;
   }
 
@@ -80,12 +79,12 @@ function buyFuel(type, amount, el) {
   const bal = getBal();
 
   if (bal < cost) {
-    showAlert(banana.i18n("cant-afford"));
+    showAlert(getI18n("cant-afford"));
     return;
   }
 
   if (fuelLevels[type] + amount > MAX_FUEL) {
-    showAlert(banana.i18n("fuel-tank-full"));
+    showAlert(getI18n("fuel-tank-full"));
     return;
   }
 
@@ -93,9 +92,9 @@ function buyFuel(type, amount, el) {
   fuelLevels[type] += amount;
   setFuelLevels(fuelLevels);
   el.value = "";
-  let amountWithUnit = amount + banana.i18n("unit-liter");
-  if (type == "electric") amountWithUnit = amount + banana.i18n("unit-kilowat");
-  showAlert(banana.i18n("fuel-purchased", amountWithUnit, banana.i18n(`fuel-type-${type}`)));
+  let amountWithUnit = amount + getI18n("unit-liter");
+  if (type == "electric") amountWithUnit = amount + getI18n("unit-kilowat");
+  showAlert(getI18n("fuel-purchased", amountWithUnit, getI18n(`fuel-type-${type}`)));
   playRandomCash();
   updateFuelBars();
 }
@@ -113,20 +112,20 @@ function buyAllFuel() {
       totalCost += amount * price;
 
       if (fuelLevels[fuelType] + amount > MAX_FUEL) {
-        showAlert(banana.i18n("fuel-tank-full"));
+        showAlert(getI18n("fuel-tank-full"));
         return;
       }
 
       purchases.push({ type: fuelType, amount: amount });
     } else {
-      showAlert(banana.i18n("invalid-amount"));
+      showAlert(getI18n("invalid-amount"));
       return;
     }
   });
 
   const bal = getBal();
   if (bal < totalCost) {
-    showAlert(banana.i18n("cant-afford"));
+    showAlert(getI18n("cant-afford"));
     return;
   }
 
@@ -140,7 +139,7 @@ function buyAllFuel() {
     setFuelLevels(fuelLevels);
     updateFuelBars();
     playRandomCash();
-    showAlert(banana.i18n("fuel-purchased-multiple", shortAbbreviateNumber(totalCost)));
+    showAlert(getI18n("fuel-purchased-multiple", shortAbbreviateNumber(totalCost)));
   }
 }
 

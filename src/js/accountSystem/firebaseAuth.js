@@ -1,8 +1,7 @@
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseManager.js";
-import { showMsg } from "../utilities.js";
-import { banana } from "../langs.js";
+import { showMsg, getI18n } from "../utilities.js";
 
 const RegisterBtn = document.querySelector("#register-btn");
 if (RegisterBtn) {
@@ -14,7 +13,7 @@ if (RegisterBtn) {
 
     // check if all fields are filled out
     if (username === "" || email === "" || password === "") {
-      showMsg(banana.i18n("auth-empty-fields"), "errorMsgRegister");
+      showMsg(getI18n("auth-empty-fields"), "errorMsgRegister");
       console.error("one or more empty fields");
     } else {
       createUserWithEmailAndPassword(auth, email, password)
@@ -25,7 +24,7 @@ if (RegisterBtn) {
             email: email,
             username: username,
           };
-          showMsg(banana.i18n("auth-success"), "errorMsgRegister");
+          showMsg(getI18n("auth-success"), "errorMsgRegister");
           // after creating user, save data to db
           const docRef = doc(db, "users", user.uid);
           setDoc(docRef, userData)
@@ -33,12 +32,12 @@ if (RegisterBtn) {
             .then(() => {
               sendEmailVerification(auth.currentUser)
                 .then(() => {
-                  showMsg(banana.i18n("auth-verification-email-sent"), "errorMsgRegister");
+                  showMsg(getI18n("auth-verification-email-sent"), "errorMsgRegister");
                 })
                 .catch((error) => {
                   console.log(error);
                   console.log(error.code);
-                  showMsg(banana.i18n("error-occured"), "errorMsgRegister");
+                  showMsg(getI18n("error-occured"), "errorMsgRegister");
                 });
             })
             .catch((error) => {
@@ -49,16 +48,16 @@ if (RegisterBtn) {
           const errorCode = error.code;
           // handling different error codes
           if (errorCode == "auth/email-already-in-use") {
-            showMsg(banana.i18n("auth-email-already-in-use"), "errorMsgRegister");
+            showMsg(getI18n("auth-email-already-in-use"), "errorMsgRegister");
             console.log(errorCode);
           } else if (errorCode == "auth/password-does-not-meet-requirements") {
-            showMsg(banana.i18n("auth-password-doesnt-meet-requirements", "<br>"), "errorMsgRegister");
+            showMsg(getI18n("auth-password-doesnt-meet-requirements", "<br>"), "errorMsgRegister");
             console.log(errorCode);
           } else if (errorCode == "auth/invalid-email") {
-            showMsg(banana.i18n("auth-invalid-email"), "errorMsgRegister");
+            showMsg(getI18n("auth-invalid-email"), "errorMsgRegister");
             console.log(errorCode);
           } else {
-            showMsg(banana.i18n("error-occured"), "errorMsgRegister");
+            showMsg(getI18n("error-occured"), "errorMsgRegister");
             console.log(errorCode);
           }
         });
