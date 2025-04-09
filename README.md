@@ -10,6 +10,8 @@ Translate on Weblate: [here](https://hosted.weblate.org/projects/transport-click
 
 [![Translation status](https://hosted.weblate.org/widget/transport-clicker/287x66-black.png)](https://hosted.weblate.org/engage/transport-clicker/)
 
+Discord server: https://discord.gg/QMJgn3jj6r
+
 ~~If someone wants to contribute:~~ 
 ~~git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
 npm install~~
