@@ -32,7 +32,7 @@ FIREBASE_MEASUREMENT_ID=
 
 After contributing make a pr and i will most likely accept it if there arent any issues
 
-_btw we will soon be switching from firebase to supabase since its open source_
+_btw we will soon be switching from firebase to supabase since its open source(and cheaper)_
 
 ## PLANNED FEATURES FOR THE BETA PHASE
 
