@@ -6,8 +6,7 @@ The latest branch is the dev branch, for now the main branch is kinda outdated
 
 Game link: https://transport-clicker.netlify.app/
 
-Translate: currently not available\
-**We will soon be switching to weblate ‼️**
+Translate on Weblate: will be available soon\
 
 ~~If someone wants to contribute:~~ 
 ~~git clone https://github.com/Kurczaczki69/transport-clicker-recode/tree/dev
