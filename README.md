@@ -29,7 +29,8 @@ FIREBASE_MEASUREMENT_ID=
 ```
 6. `npm run build`
 7. Use the live server vs code extension or something similar thats in your ide (later i will just add the npm dev server thingy cause i dont know how to do it now)
-8. And then you have the project ready for contributing!
+8. You can run `npm run watch` so that your project will build on every file change
+9. And then you have the project ready for contributing!
 
 After contributing make a pr and i will most likely accept it if there arent any issues
 
