@@ -207,26 +207,36 @@ export function convertDecimalToPercent(value) {
 // isTint - if you want a tint to appear behind the window
 // tint - the tint element
 export function animateWindowOpen(element, isTint, tint) {
+  const isLowPerf = localStorage.getItem("lowPerfPreference") || "off";
   if (isTint) {
     tint.style.display = "block";
-    anime({
-      targets: [tint],
-      opacity: [0, 1],
-      duration: 200,
-      easing: "easeOutCubic",
-    });
+    if (isLowPerf === "on") {
+      tint.style.opacity = 1;
+    } else {
+      anime({
+        targets: [tint],
+        opacity: [0, 1],
+        duration: 200,
+        easing: "easeOutCubic",
+      });
+    }
   }
 
   element.style.opacity = 0;
   element.style.transform = "translate(-50%, -50%) scale(0.8)";
 
-  anime({
-    targets: [element],
-    opacity: [0, 1],
-    scale: [0.8, 1],
-    duration: 150,
-    easing: "easeOutCubic",
-  });
+  if (isLowPerf === "on") {
+    element.style.opacity = 1;
+    element.style.transform = "translate(-50%, -50%) scale(1)";
+  } else {
+    anime({
+      targets: [element],
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      duration: 150,
+      easing: "easeOutCubic",
+    });
+  }
 }
 
 // animates a window closing
@@ -234,27 +244,41 @@ export function animateWindowOpen(element, isTint, tint) {
 // isTint - if you want a tint to disappear behind the window
 // tint - the tint element
 export function animateWindowClose(element, isTint, tint) {
+  const isLowPerf = localStorage.getItem("lowPerfPreference") || "off";
   if (isTint) {
+    if (isLowPerf === "on") {
+      tint.style.opacity = 0;
+    } else {
+      anime({
+        targets: [tint],
+        opacity: [1, 0],
+        duration: 200,
+        easing: "easeInCubic",
+      });
+    }
+  }
+  if (isLowPerf === "on") {
+    element.style.display = "none";
+    element.style.opacity = 0;
+    element.style.transform = "translate(-50%, -50%) scale(0.8)";
+    if (isTint) {
+      tint.style.display = "none";
+    }
+  } else {
     anime({
-      targets: [tint],
+      targets: element,
       opacity: [1, 0],
-      duration: 200,
-      easing: "easeOutCubic",
+      scale: [1, 0.8],
+      duration: 150,
+      easing: "easeInCubic",
+      complete: () => {
+        element.style.display = "none";
+        if (isTint) {
+          tint.style.display = "none";
+        }
+      },
     });
   }
-  anime({
-    targets: element,
-    opacity: [1, 0],
-    scale: [1, 0.8],
-    duration: 150,
-    easing: "easeInCubic",
-    complete: () => {
-      element.style.display = "none";
-      if (isTint) {
-        tint.style.display = "none";
-      }
-    },
-  });
 }
 
 // animates an element appearing

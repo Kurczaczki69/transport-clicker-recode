@@ -112,18 +112,31 @@
   align-items: center;
 }
 
-#sound-switch-wrapper {
-  position: absolute;
-  top: 85%;
-  left: 5%;
+.switch-wrappers {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
+.switches-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  position: absolute;
+  top: 85%;
+  left: 5%;
+}
+
 #sound-title-wrap {
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+#low-perf-title-wrap {
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 #switch-wrapper {

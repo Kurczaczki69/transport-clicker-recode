@@ -17,7 +17,7 @@ import { getVhcls, vhclMaxQuantity } from "./data/vhclData.js";
 import { getCodes } from "./codes.js";
 import { getActiveTimedUpgrades } from "./upgradeSystem/timedUpgrades.js";
 import { getLevel } from "./levelSystem.js";
-import { banana, setPageTitle } from "./langs.js";
+import { setPageTitle } from "./langs.js";
 import { populateUpgrData, populateVhclData, updateHtmlData } from "./upgradeSystem/insertDataIntoHtml.js";
 import { calculateCityBoost, calculateCityClickMod } from "./cities.js";
 import { getCities, initializeCities } from "./data/cityData.js";
@@ -87,7 +87,7 @@ let lastSaveTime = 0;
 
 let userCityData = {};
 
-const GAME_VERSION = "b1.2.0dev";
+const GAME_VERSION = "b1.2.0";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
@@ -589,23 +589,26 @@ function getTotalClickBoost(timedUpgrs) {
 const clickspace = document.querySelector("#clicker-img");
 let lastAnimated = Date.now();
 function clicker(e) {
+  const isLowPerf = localStorage.getItem("lowPerfPreference") || "off";
   const now = Date.now();
   if (lastAnimated + 120 < now) {
     lastAnimated = now;
-    anime({
-      targets: clickspace,
-      keyframes: [
-        {
-          scale: function () {
-            return Math.random() * (1.05 - 1.02) + 1.02;
+    if (isLowPerf === "off") {
+      anime({
+        targets: clickspace,
+        keyframes: [
+          {
+            scale: function () {
+              return Math.random() * (1.05 - 1.02) + 1.02;
+            },
+            duration: 50,
           },
-          duration: 50,
-        },
-        { scale: 1, duration: 50 },
-      ],
-      easing: "easeInOutQuad",
-      duration: 100,
-    });
+          { scale: 1, duration: 50 },
+        ],
+        easing: "easeInOutQuad",
+        duration: 100,
+      });
+    }
   }
   const cities = getCities();
   const currentCityData = cities.find((city) => city.id === currentCity);
@@ -615,24 +618,26 @@ function clicker(e) {
   if (clickmod <= 2) clickValue = clickmod;
 
   bal += clickValue;
-  const indicator = document.createElement("div");
-  indicator.id = "click-indicator";
-  document.body.appendChild(indicator);
-  indicator.style.left = `${e.clientX}px`;
-  indicator.style.top = `${e.clientY - 75}px`;
-  indicator.textContent = `+${shortAbbreviateNumber(clickValue)} $`;
-  anime({
-    targets: indicator,
-    keyframes: [
-      { translateY: 0, opacity: 1, scale: 1.2, duration: 100 },
-      { translateY: -75, opacity: 0, scale: 0.8, duration: 250 },
-    ],
-    easing: "easeInOutCubic",
-    duration: 500,
-  });
-  setTimeout(async () => {
-    indicator.remove();
-  }, 500);
+  if (isLowPerf === "off") {
+    const indicator = document.createElement("div");
+    indicator.id = "click-indicator";
+    document.body.appendChild(indicator);
+    indicator.style.left = `${e.clientX}px`;
+    indicator.style.top = `${e.clientY - 75}px`;
+    indicator.textContent = `+${shortAbbreviateNumber(clickValue)} $`;
+    anime({
+      targets: indicator,
+      keyframes: [
+        { translateY: 0, opacity: 1, scale: 1.2, duration: 100 },
+        { translateY: -75, opacity: 0, scale: 0.8, duration: 250 },
+      ],
+      easing: "easeInOutCubic",
+      duration: 500,
+    });
+    setTimeout(async () => {
+      indicator.remove();
+    }, 500);
+  }
   playRandomMouseClick();
   // console.log(totalBoost, clickmod * totalBoost);
   displayStats();

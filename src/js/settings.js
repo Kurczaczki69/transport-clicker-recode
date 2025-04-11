@@ -77,6 +77,7 @@ export function populateThemeOptions() {
 }
 
 const soundSwitch = document.querySelector("#sound-switch");
+const lowPerfSwitch = document.querySelector("#low-perf-switch");
 function retrieveSoundPreference() {
   if (!isGamePage) return;
   const soundPreference = localStorage.getItem("soundPreference") || "on";
@@ -86,9 +87,23 @@ function retrieveSoundPreference() {
   }
 }
 
+function retrieveLowPerfPreference() {
+  if (!isGamePage) return;
+  const lowPerfPreference = localStorage.getItem("lowPerfPreference") || "off";
+  if (lowPerfPreference === "on") {
+    lowPerfSwitch.checked = true;
+    updateLowPerfPreference();
+  }
+}
+
 function updateSoundPreference() {
   const soundPreference = soundSwitch.checked ? "on" : "off";
   localStorage.setItem("soundPreference", soundPreference);
+}
+
+function updateLowPerfPreference() {
+  const lowPerfPreference = lowPerfSwitch.checked ? "on" : "off";
+  localStorage.setItem("lowPerfPreference", lowPerfPreference);
 }
 
 if (isGamePage) {
@@ -96,9 +111,15 @@ if (isGamePage) {
     updateSoundPreference();
     playRandomMouseClick();
   });
+
+  lowPerfSwitch.addEventListener("change", () => {
+    updateLowPerfPreference();
+    playRandomMouseClick();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   retrieveColorScheme();
   retrieveSoundPreference();
+  retrieveLowPerfPreference();
 });
