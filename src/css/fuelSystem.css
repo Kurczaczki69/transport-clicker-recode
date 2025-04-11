@@ -181,8 +181,7 @@
   }
 
   .fuel-amount-input {
-    width: 100%;
-    min-width: 80px;
+    width: 75%;
   }
 
   .buy-fuel-item-btn {
