@@ -84,11 +84,11 @@ function createBuildingCard(building) {
   const card = document.createElement("div");
   card.className = "building-card";
 
-  let boostValue = 0;
+  let boostValue = "";
 
   if (building.boostType === "fuel-generation") {
     const unit = building.fuelType === "electric" ? getI18n("unit-kilowat") : getI18n("unit-liter");
-    boostValue = building.generationRate = `${building.generationRate}${unit}/${getI18n("time-seconds")}`;
+    boostValue = `${building.generationRate}${unit}/${getI18n("time-seconds")}`;
   } else {
     boostValue =
       building.boostType === "income" || building.boostType === "clickmod"
