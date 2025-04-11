@@ -197,9 +197,21 @@ function initializeSecondaryFeatures() {
       loader.style.willChange = "auto";
       const loadTime = performance.now() - startTime;
       console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
+
+      const lastLogoutTime = parseInt(localStorage.getItem("lastLogoutTime")) || Date.now();
+      const offlineDuration = (Date.now() - lastLogoutTime) / 1000; // in seconds
+      const offlineIncome = Math.floor((offlineDuration / 10) * (income / 25));
+
+      bal += offlineIncome;
+      localStorage.setItem("lastLogoutTime", Date.now());
+      showAlert(getI18n("offline-income-earned", abbreviateNumber(offlineIncome)));
     },
   });
 }
+
+window.addEventListener("beforeunload", async (event) => {
+  localStorage.setItem("lastLogoutTime", Date.now());
+});
 
 async function saveInitialUserData(userData) {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
