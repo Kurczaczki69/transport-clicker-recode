@@ -325,5 +325,7 @@
   "upgr-fuel-tank-2-desc": "Erhöht Tankkapazität um 1000L",
   "upgr-fuel-tank-3-desc": "Erhöht Tankkapazität um 2500L",
   "upgr-fuel-tank-4-desc": "Erhöht Tankkapazität um 5000L",
-  "upgr-fuel-tank-5-desc": "Erhöht Tankkapazität um 15000L"
+  "upgr-fuel-tank-5-desc": "Erhöht Tankkapazität um 15000L",
+  "settings-menu-low-perf": "Geringe Leistung:",
+  "offline-income-earned": "Sie haben $1 verdient, während Sie offline waren"
 }
