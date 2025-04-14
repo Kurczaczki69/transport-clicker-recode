@@ -327,5 +327,9 @@
   "upgr-fuel-tank-4-desc": "Erhöht Tankkapazität um 5000L",
   "upgr-fuel-tank-5-desc": "Erhöht Tankkapazität um 15000L",
   "settings-menu-low-perf": "Geringe Leistung:",
-  "offline-income-earned": "Sie haben $1 verdient, während Sie offline waren"
+  "offline-income-earned": "Sie haben $1 $ verdient, während Sie offline waren",
+  "upgr-autorefuel-desc": "Kauft automatisch Treibstoff, wenn er zur Neige geht",
+  "auto-refuel-cant-afford": "Sie haben nicht aufgetankt, weil Sie es sich nicht leisten können",
+  "upgr-autorefuel": "Auto-tanken",
+  "auto-refuel-success": "Treibstoff gekauft"
 }
