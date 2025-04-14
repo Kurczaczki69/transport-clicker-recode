@@ -148,6 +148,19 @@ function initializeUpgrades() {
       clickboost: 0,
       num: 12,
     },
+    {
+      category: "others",
+      id: "autorefuel",
+      name: getI18n("upgr-autorefuel"),
+      desc: getI18n("upgr-autorefuel-desc"),
+      requiredLevel: 115,
+      price: 5000000000000,
+      unlocks: "autorefuel",
+      isAvailable: true,
+      incomeboost: 0,
+      clickboost: 0,
+      num: 13,
+    },
   ];
 }
 

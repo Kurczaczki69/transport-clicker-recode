@@ -136,9 +136,11 @@ export function populateUpgrData() {
   const upgradeContent = document.querySelector("#upgr-menu-vehicle-type-table");
   const fuelTankContent = document.querySelector("#upgr-menu-fuel-tank-table");
   const timedUpgrContent = document.querySelector("#upgr-menu-timed-upgrades-table");
+  const othersContent = document.querySelector("#upgr-menu-others-table");
   const timedUpgrsPrices = getTimedUpgrsPrices();
   upgradeContent.innerHTML = "";
   fuelTankContent.innerHTML = "";
+  othersContent.innerHTML = "";
   timedUpgrContent.innerHTML = "";
 
   upgrades.forEach((upgrade) => {
@@ -176,6 +178,9 @@ export function populateUpgrData() {
         break;
       case "fuelTank":
         fuelTankContent.innerHTML += row;
+        break;
+      case "others":
+        othersContent.innerHTML += row;
         break;
     }
   });

@@ -11,6 +11,7 @@ const notReadySection = document.querySelector("#upgr-menu-other-categories");
 const vehicleTypeSection = document.querySelector("#upgr-menu-vehicle-type-category");
 const timedUpgrSection = document.querySelector("#upgr-menu-timed-upgrades-category");
 const fuelTankSection = document.querySelector("#upgr-menu-fuel-tank-category");
+const othersSection = document.querySelector("#upgr-menu-others-category");
 const dropdown = document.querySelector("#upgr-menu-category-dropdown");
 
 const isGamePage = window.location.pathname.includes("game.html");
@@ -24,22 +25,32 @@ if (isGamePage) {
       vehicleTypeSection.style.display = "block";
       timedUpgrSection.style.display = "none";
       fuelTankSection.style.display = "none";
+      othersSection.style.display = "none";
     } else if (dropdown.value === "1") {
       checkTimedUpgrLevel();
       timedUpgrSection.style.display = "block";
       vehicleTypeSection.style.display = "none";
       notReadySection.style.display = "none";
       fuelTankSection.style.display = "none";
+      othersSection.style.display = "none";
     } else if (dropdown.value === "2") {
       notReadySection.style.display = "none";
       vehicleTypeSection.style.display = "none";
       timedUpgrSection.style.display = "none";
       fuelTankSection.style.display = "block";
+      othersSection.style.display = "none";
+    } else if (dropdown.value === "3") {
+      notReadySection.style.display = "none";
+      vehicleTypeSection.style.display = "none";
+      timedUpgrSection.style.display = "none";
+      fuelTankSection.style.display = "none";
+      othersSection.style.display = "block";
     } else {
       notReadySection.style.display = "block";
       vehicleTypeSection.style.display = "none";
       timedUpgrSection.style.display = "none";
       fuelTankSection.style.display = "none";
+      othersSection.style.display = "none";
     }
   });
 }

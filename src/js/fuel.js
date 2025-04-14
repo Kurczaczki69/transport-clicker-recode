@@ -1,9 +1,19 @@
-import { getBal, setBal, getFuelLevels, setFuelLevels, getVhclAmounts, getMaxFuel, getUserCityData } from "./scr.js";
+import {
+  getBal,
+  setBal,
+  getFuelLevels,
+  setFuelLevels,
+  getVhclAmounts,
+  getMaxFuel,
+  getUserCityData,
+  getBghtUpgrs,
+} from "./scr.js";
 import { getI18n, shortAbbreviateNumber, showAlert } from "./utilities.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { animateWindowOpen, animateWindowClose } from "./utilities.js";
 import { getVhcls } from "./data/vhclData.js";
 import { getBuildings } from "./data/buildingData.js";
+import { showNotif } from "./notifs.js";
 
 let MAX_FUEL = 1000;
 export let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
@@ -169,6 +179,7 @@ function updateFuelGeneration() {
   setFuelLevels(fuelLevels);
 }
 
+const MIN_FUEL_THRESHOLD = 25;
 function consumeFuel() {
   Object.keys(fuelLevels).forEach((type) => {
     const vehiclesOfType = getVhcls().filter((v) => v.fuelType === type);
@@ -182,8 +193,34 @@ function consumeFuel() {
       const adjustedConsumptionRate = baseConsumptionRate * scalingFactor;
       const totalConsumption = Math.min(adjustedConsumptionRate * totalVehiclesOfType, fuelLevels[type] * 0.01);
 
-      fuelLevels[type] = Math.max(0, fuelLevels[type] - totalConsumption);
+      if (fuelLevels[type] <= MIN_FUEL_THRESHOLD) {
+        fuelLevels[type] = 0;
+      } else {
+        fuelLevels[type] = Math.max(0, fuelLevels[type] - totalConsumption);
+      }
       setFuelLevels(fuelLevels);
+    }
+
+    const bghtUpgrs = getBghtUpgrs();
+    if (fuelLevels[type] <= MIN_FUEL_THRESHOLD && bghtUpgrs.includes("autorefuel")) {
+      const price = getScaledFuelPrice(type);
+      const bal = getBal();
+      const maxAffordable = Math.floor(bal / price);
+      const refillAmount = Math.min(maxAffordable, MAX_FUEL);
+
+      if (refillAmount > 0) {
+        setBal(bal - refillAmount * price);
+        fuelLevels[type] += refillAmount;
+        setFuelLevels(fuelLevels);
+        showNotif(
+          getI18n("auto-refuel-success"),
+          getI18n("fuel-purchased", refillAmount + getI18n("unit-liter"), getI18n(`fuel-type-${type}`)),
+          "notif-fuel"
+        );
+        playRandomCash();
+      } else {
+        showAlert(getI18n("auto-refuel-cant-afford"));
+      }
     }
   });
 }
