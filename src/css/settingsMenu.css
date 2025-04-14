@@ -248,4 +248,24 @@
   .settings-theme-name {
     bottom: -3rem;
   }
+
+  .switches-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    left: 10%;
+  }
+
+  #low-perf-title-wrap {
+    margin: 0;
+  }
+
+  #sound-title-wrap {
+    margin: 0;
+  }
+
+  #lang-title-wrap {
+    margin: 0;
+  }
 }

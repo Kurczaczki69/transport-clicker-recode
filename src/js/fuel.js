@@ -171,9 +171,17 @@ function updateFuelGeneration() {
 
 function consumeFuel() {
   Object.keys(fuelLevels).forEach((type) => {
-    if (fuelLevels[type] > 0) {
-      const consumptionRate = getScaledConsumptionRate(type);
-      fuelLevels[type] = Math.max(0, fuelLevels[type] - consumptionRate);
+    const vehiclesOfType = getVhcls().filter((v) => v.fuelType === type);
+    const totalVehiclesOfType = vehiclesOfType.reduce((total, vehicle) => {
+      return total + (getVhclAmounts()[vehicle.code] || 0);
+    }, 0);
+
+    if (totalVehiclesOfType > 0 && fuelLevels[type] > 0) {
+      const baseConsumptionRate = getScaledConsumptionRate(type);
+      const scalingFactor = 1 / (Math.log10(totalVehiclesOfType + 10) * 0.01);
+      const adjustedConsumptionRate = baseConsumptionRate * scalingFactor;
+      const totalConsumption = Math.min(adjustedConsumptionRate * totalVehiclesOfType, fuelLevels[type] * 0.01);
+      fuelLevels[type] = Math.max(0, fuelLevels[type] - totalConsumption);
       setFuelLevels(fuelLevels);
     }
   });
@@ -214,7 +222,7 @@ function getScaledConsumptionRate(type) {
   const vehiclesOfType = vehicles
     .filter((v) => v.fuelType === type)
     .reduce((total, v) => total + (amounts[v.code] || 0), 0);
-  const scaleFactor = Math.max(1, Math.log10(vehiclesOfType + 1) * 1.5);
+  const scaleFactor = Math.max(1, Math.log10(vehiclesOfType + 1) * 0.001);
   return BASE_CONSUMPTION_RATE[type] * scaleFactor;
 }
 
