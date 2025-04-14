@@ -178,9 +178,10 @@ function consumeFuel() {
 
     if (totalVehiclesOfType > 0 && fuelLevels[type] > 0) {
       const baseConsumptionRate = getScaledConsumptionRate(type);
-      const scalingFactor = 1 / (Math.log10(totalVehiclesOfType + 10) * 0.01);
+      const scalingFactor = Math.max(0.1, 1 / (Math.log10(totalVehiclesOfType + 10) * 0.5));
       const adjustedConsumptionRate = baseConsumptionRate * scalingFactor;
       const totalConsumption = Math.min(adjustedConsumptionRate * totalVehiclesOfType, fuelLevels[type] * 0.01);
+
       fuelLevels[type] = Math.max(0, fuelLevels[type] - totalConsumption);
       setFuelLevels(fuelLevels);
     }
@@ -191,7 +192,7 @@ function updateFuelPrices() {
   Object.keys(BASE_FUEL_PRICES).forEach((type) => {
     const priceElement = document.querySelector(`.fuel-shop-item[data-fuel="${type}"] .price-value`);
     if (priceElement) {
-      priceElement.textContent = getScaledFuelPrice(type).toFixed(2);
+      priceElement.textContent = shortAbbreviateNumber(getScaledFuelPrice(type));
     }
   });
 }
@@ -212,8 +213,13 @@ function updateFuelBars() {
 function getScaledFuelPrice(type) {
   const amounts = getVhclAmounts();
   const totalVehicles = Object.values(amounts || {}).reduce((a, b) => a + b, 0);
-  const scaleFactor = Math.max(1, Math.log10(totalVehicles + 1) * 2);
-  return BASE_FUEL_PRICES[type] * scaleFactor;
+  const bal = getBal();
+  const scaleFactor = Math.max(1, Math.pow(Math.log10(totalVehicles + 1), 2) * 7.5);
+
+  const earlyGameDiscount = totalVehicles < 400 ? 0.4 : 1;
+  const balanceDiscount = bal < 100000 ? 0.7 : 1;
+
+  return BASE_FUEL_PRICES[type] * scaleFactor * earlyGameDiscount * balanceDiscount;
 }
 
 function getScaledConsumptionRate(type) {

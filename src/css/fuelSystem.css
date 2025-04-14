@@ -82,7 +82,7 @@
 
 .fuel-shop-item {
   display: grid;
-  grid-template-columns: 5vw 7.5vw 5vw auto;
+  grid-template-columns: 5vw 7.5vw 7.5vw auto;
   align-items: center;
   gap: 1rem;
 }
