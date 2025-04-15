@@ -39,7 +39,7 @@ _btw we will soon be switching from firebase to supabase since its open source(a
 ## PLANNED FEATURES FOR THE BETA PHASE
 
 ❌ Switching to supabase\
-❌ Fuel system\
+✅ Fuel system\
 ✅ Building buildings in cities like fuel stations, power plants etc.\
 ❌ Passenger satisfaction\
 ❌ Prestige/rebirth system\
@@ -48,7 +48,7 @@ _btw we will soon be switching from firebase to supabase since its open source(a
 ❌ Choosing a company name\
 ❌ Seasonal events (eg. christmas, easter, halloween)\
 ❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
-❌ Offline income\
+✅ Offline income\
 ❌ Passenger numbers or something like that\
 ❌ Hiring workers\
 ❌ Extensive route system\
