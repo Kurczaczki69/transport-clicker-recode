@@ -1,6 +1,6 @@
 # TRANSPORT CLICKER
 
-Polish game about clicking on a ~~circle~~ ~~square~~ rectangle and buying vehicles and upgrades.
+Polish game about clicking on a ~~circle~~ ~~square~~ ~~rectangle~~ bus and buying vehicles and upgrades.
 
 The latest branch is the dev branch, for now the main branch is kinda outdated
 
