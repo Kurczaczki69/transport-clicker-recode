@@ -6,6 +6,8 @@ import { getI18n } from "../utilities.js";
 
 const isGamePage = window.location.pathname.includes("game.html");
 
+// handle showing data from the server and logging out
+
 if (isGamePage) {
   onAuthStateChanged(auth, (user) => {
     const loggedInUserId = localStorage.getItem("loggedInUserId");

@@ -17,8 +17,10 @@ if (isGamePage) {
 
   changePassBtn.addEventListener("click", () => {
     playRandomMouseClick();
-    animateDisappear(areYouSureWrapper);
-    animateAppear(passWrapper);
+    if (passWrapper.style.display === "none" || passWrapper.style.display === "") {
+      animateAppear(passWrapper);
+      animateDisappear(areYouSureWrapper);
+    }
   });
 
   cancelBtn.addEventListener("click", () => {

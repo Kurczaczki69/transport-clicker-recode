@@ -17,8 +17,10 @@ if (isGamePage) {
   if (accDelBtn) {
     accDelBtn.addEventListener("click", () => {
       playRandomMouseClick();
-      animateAppear(areYouSureWrapper);
-      animateDisappear(passWrapper);
+      if (areYouSureWrapper.style.display === "none" || areYouSureWrapper.style.display === "") {
+        animateAppear(areYouSureWrapper);
+        animateDisappear(passWrapper);
+      }
     });
   }
 
