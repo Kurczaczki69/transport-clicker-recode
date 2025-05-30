@@ -14,6 +14,7 @@
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform, opacity;
+  overflow-y: auto;
 }
 
 #settings-menu-title {
@@ -141,6 +142,95 @@
 
 #switch-wrapper {
   margin-left: 10%;
+}
+
+.company-name-wrapper {
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  width: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+  gap: 0.5rem;
+}
+
+.company-name-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  gap: 0.5rem;
+}
+
+#company-name-input {
+  width: 15vw;
+  height: 4vh;
+  padding: 0.3rem;
+  font-size: 1rem;
+  margin: auto;
+}
+
+#company-name-confirm-btn {
+  width: 7vw;
+  height: calc(4vh + 0.6rem);
+}
+
+#company-name-msgbox {
+  color: red;
+  font-size: 0.9rem;
+  position: absolute;
+  top: 20%;
+  font-weight: 400;
+  display: none;
+}
+
+#company-name-current {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#company-name-current-disp {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .company-name-wrapper {
+    position: absolute;
+    left: unset;
+    bottom: -30%;
+    width: 100%;
+    margin-top: 2rem;
+    align-items: flex-start;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
+  }
+
+  .company-name-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  #company-name-input,
+  #company-name-confirm-btn {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  #company-name-msgbox {
+    position: static;
+    top: unset;
+    margin-bottom: 0.5rem;
+  }
 }
 
 /* Switch */

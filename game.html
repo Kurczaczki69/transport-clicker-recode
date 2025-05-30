@@ -23,12 +23,14 @@
     <meta name="description" content="Transport Clicker is a game where you build a massive transport empire!" />
     <meta
       name="keywords"
-      content="transport clicker, idle game, transportation game, bus management, tram simulator, public transport game, clicker, game, clicker game" />
+      content="transport clicker, idle game, transportation game, bus management, tram simulator, public transport game, clicker, game, clicker game"
+    />
     <meta name="author" content="luku" />
     <meta property="og:title" content="Transport Clicker - Build Your Transport Empire" />
     <meta
       property="og:description"
-      content="Build and manage your own public transportation empire in this exciting clicker game!" />
+      content="Build and manage your own public transportation empire in this exciting clicker game!"
+    />
     <meta property="og:type" content="website" />
     <meta name="robots" content="index, follow" />
     <title>Transport Clicker</title>
@@ -74,7 +76,8 @@
           placeholder=""
           data-lang-placeholder="delete-acc-placeholder"
           id="are-you-sure-pass-input"
-          class="inputs" />
+          class="inputs"
+        />
         <div id="are-you-sure-btn-wrapper">
           <button id="are-you-sure-cancel-btn" class="are-you-sure-btns btns" data-lang="btn-cancel"></button>
           <button id="are-you-sure-confirm-btn" class="are-you-sure-btns btns" data-lang="btn-delete-acc"></button>
@@ -90,13 +93,15 @@
             placeholder=""
             data-lang-placeholder="change-pass-old-placeholder"
             id="change-pass-old-input"
-            class="inputs" />
+            class="inputs"
+          />
           <input
             type="password"
             placeholder=""
             data-lang-placeholder="change-pass-new-placeholder"
             id="change-pass-new-input"
-            class="inputs" />
+            class="inputs"
+          />
           <div id="dont-remember-pass">
             <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
           </div>
@@ -158,7 +163,8 @@
             id="code-menu-input"
             placeholder=""
             class="inputs"
-            data-lang-placeholder="code-menu-input-placeholder" />
+            data-lang-placeholder="code-menu-input-placeholder"
+          />
           <button id="code-menu-confirm-btn" class="btns" data-lang="ok"></button>
         </form>
       </div>
@@ -351,7 +357,8 @@
           id="buildings-search"
           placeholder=""
           class="inputs"
-          data-lang-placeholder="buildings-search" />
+          data-lang-placeholder="buildings-search"
+        />
         <button id="buildings-search-btn" class="btns" data-lang="btn-search"></button>
         <button id="buildings-clear-search-btn" class="btns" data-lang="btn-clear"></button>
       </div>
@@ -409,6 +416,26 @@
           </div>
         </div>
       </div>
+      <!-- company name -->
+      <div class="company-name-wrapper">
+        <p id="company-name" data-lang="settings-menu-company-name"></p>
+        <p id="company-name-msgbox"></p>
+        <form action="javascript:void(0)" class="company-name-form">
+          <div id="company-name-input-wrapper">
+            <input
+              type="text"
+              id="company-name-input"
+              placeholder=""
+              class="inputs"
+              data-lang-placeholder="settings-menu-company-name-placeholder"
+            />
+          </div>
+          <div id="company-name-btn-wrapper">
+            <button id="company-name-confirm-btn" class="btns" data-lang="btn-confirm"></button>
+          </div>
+        </form>
+        <p id="company-name-current"><span data-lang="settings-menu-company-name-current"></span> <span id="company-name-current-disp"></span></p>
+      </div>
     </section>
 
     <!-- vehicle purchase menu -->
@@ -434,7 +461,8 @@
               name="vhcl-subcategories-1"
               id="vhcl-menu-subcategory-dropdown-1"
               class="vhcl-menu-dropdowns dropdowns"
-              style="display: block">
+              style="display: block"
+            >
               <option value="0" data-lang="city-buses"></option>
               <option value="1" data-lang="hydrogen-buses"></option>
               <option value="2" data-lang="intercity-buses"></option>
@@ -443,21 +471,24 @@
               name="vhcl-subcategories-2"
               id="vhcl-menu-subcategory-dropdown-2"
               class="vhcl-menu-dropdowns dropdowns"
-              style="display: none">
+              style="display: none"
+            >
               <option value="0" data-lang="unavailable"></option>
             </select>
             <select
               name="vhcl-subcategories-3"
               class="vhcl-menu-dropdowns dropdowns"
               id="vhcl-menu-subcategory-dropdown-3"
-              style="display: none">
+              style="display: none"
+            >
               <option value="0" data-lang="trolleybuses"></option>
             </select>
             <select
               name="vhcl-subcategories-4"
               id="vhcl-menu-subcategory-dropdown-4"
               class="vhcl-menu-dropdowns dropdowns"
-              style="display: none">
+              style="display: none"
+            >
               <option value="0" data-lang="old-trams"></option>
               <option value="1" data-lang="modern-trams"></option>
             </select>
@@ -520,7 +551,8 @@
               placeholder=""
               id="small-input"
               min="1"
-              data-lang-placeholder="vhcl-buy-menu-placeholder" />
+              data-lang-placeholder="vhcl-buy-menu-placeholder"
+            />
             <button id="buy-menu-max-button" class="btns" data-lang="btn-max"></button>
           </div>
         </div>

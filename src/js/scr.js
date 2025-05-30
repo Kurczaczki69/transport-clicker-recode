@@ -83,6 +83,8 @@ let currentCity = "sko";
 let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
 let maxFuel = 1000;
 
+let companyName = "My Company";
+
 let lastSaveTime = 0;
 
 let userCityData = {};
@@ -153,6 +155,7 @@ async function initializeUserData(userData) {
   fuelLevels = userData.fuelLevels || { diesel: 1000, hydrogen: 1000, electric: 1000 };
   maxFuel = userData.maxFuel || 1000;
   lastSaveTime = userData.lastSaveTime || Date.now();
+  companyName = userData.companyName || getI18n("default-company-name");
 
   if (!userData.balance && !userData.income && !userData.clickmod) {
     await saveInitialUserData(userData);
@@ -204,7 +207,9 @@ function initializeSecondaryFeatures() {
 
       bal += offlineIncome;
       localStorage.setItem("lastLogoutTime", Date.now());
-      showAlert(getI18n("offline-income-earned", abbreviateNumber(offlineIncome)));
+      if (offlineDuration > 120) {
+        showAlert(getI18n("offline-income-earned", abbreviateNumber(offlineIncome)));
+      }
     },
   });
 }
@@ -233,6 +238,7 @@ async function saveInitialUserData(userData) {
       fuelLevels: fuelLevels,
       maxFuel: maxFuel,
       version: GAME_VERSION,
+      companyName: companyName,
       lastSaveTime: Date.now(),
     },
     { merge: true }
@@ -262,6 +268,7 @@ export function saveGame(isSilent) {
     fuelLevels: fuelLevels,
     maxFuel: maxFuel,
     version: GAME_VERSION,
+    companyName: companyName,
     lastSaveTime: Date.now(),
   };
   setDoc(docRef, userDatatoSave, { merge: true })
