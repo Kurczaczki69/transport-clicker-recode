@@ -1,6 +1,7 @@
 import { themes } from "./data/themeData.js";
 import { playRandomMouseClick } from "./sounds.js";
 import { animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
+import { displayCompanyName } from "./scr.js";
 import defaultBg from "../img/bg/bg-1.png";
 import defaultBus from "../img/other/bus-default.png";
 
@@ -15,6 +16,7 @@ if (isGamePage) {
   openWindowBtn.addEventListener("click", () => {
     populateThemeOptions();
     playRandomMouseClick();
+    displayCompanyName();
     settingsWindow.style.display = "block";
     animateWindowOpen(settingsWindow, true, tint);
   });

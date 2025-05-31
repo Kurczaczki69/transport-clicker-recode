@@ -286,6 +286,49 @@ export function saveGame(isSilent) {
     });
 }
 
+// company name logic
+
+export function displayCompanyName() {
+  const companyNameEl = document.querySelector("#company-name-current-disp");
+  if (companyNameEl) {
+    companyNameEl.textContent = companyName;
+  }
+}
+
+const COMPANY_NAME_MAX_LENGTH = 30;
+const COMPANY_NAME_MIN_LENGTH = 3;
+
+export function getCompanyName() {
+  return companyName;
+}
+
+function setCompanyName(newName) {
+  if (!newName || newName.trim() === "") {
+    showAlert(getI18n("company-name-invalid"));
+    return;
+  } else if (newName.length > COMPANY_NAME_MAX_LENGTH) {
+    showAlert(getI18n("company-name-too-long", COMPANY_NAME_MAX_LENGTH));
+    return;
+  } else if (newName.length < COMPANY_NAME_MIN_LENGTH) {
+    showAlert(getI18n("company-name-too-short", COMPANY_NAME_MIN_LENGTH));
+    return;
+  }
+  companyName = newName.trim();
+  displayCompanyName();
+  showAlert(getI18n("company-name-changed", companyName));
+  saveGame(true);
+}
+
+const companyNameInput = document.querySelector("#company-name-input");
+const companyNameBtn = document.querySelector("#company-name-confirm-btn");
+
+if (isGamePage) {
+  companyNameBtn.addEventListener("click", () => {
+    playRandomMouseClick();
+    setCompanyName(companyNameInput.value);
+  });
+}
+
 // vehicle buy logic
 
 const menu = document.querySelector("#buy-menu");
