@@ -331,5 +331,14 @@
   "upgr-autorefuel": "Automatyczne tankowanie",
   "upgr-autorefuel-desc": "Automatycznie kupuje paliwo, gdy się skończy",
   "auto-refuel-success": "Kupiono paliwo",
-  "auto-refuel-cant-afford": "Nie udało się zatankować, ponieważ cię na to nie stać"
+  "auto-refuel-cant-afford": "Nie udało się zatankować, ponieważ cię na to nie stać",
+  "company-name-too-long": "Nazwa firmy nie może być dłuższa niż $1 znaków",
+  "settings-menu-company-name": "Nazwa firmy:",
+  "default-company-name": "Moja Firma Transportowa",
+  "btn-save": "Zapisz",
+  "settings-menu-company-name-placeholder": "Wpisz nazwę firmy",
+  "settings-menu-company-name-current": "Aktualna nazwa:",
+  "company-name-changed": "Nazwa firmy zmieniona na $1",
+  "company-name-too-short": "Nazwa firmy nie może być krótsza niż $1 znaki",
+  "company-name-invalid": "Proszę podać poprawną nazwę"
 }
