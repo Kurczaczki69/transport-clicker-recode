@@ -8,7 +8,7 @@ Game link: https://transport-clicker.netlify.app/
 
 Translate on Weblate: [here](https://hosted.weblate.org/projects/transport-clicker/)
 
-[![Translation status](https://hosted.weblate.org/widget/transport-clicker/287x66-black.png)](https://hosted.weblate.org/engage/transport-clicker/)
+[![Translation status](https://hosted.weblate.org/widget/transport-clicker/287x66-black.png)](https://hosted.weblate.org/projects/transport-clicker/)
 
 Discord server: https://discord.gg/QMJgn3jj6r
 
