@@ -302,6 +302,9 @@ export function getCompanyName() {
   return companyName;
 }
 
+const companyNameInput = document.querySelector("#company-name-input");
+const companyNameBtn = document.querySelector("#company-name-confirm-btn");
+
 function setCompanyName(newName) {
   if (!newName || newName.trim() === "") {
     showAlert(getI18n("company-name-invalid"));
@@ -315,12 +318,10 @@ function setCompanyName(newName) {
   }
   companyName = newName.trim();
   displayCompanyName();
+  companyNameInput.value = "";
   showAlert(getI18n("company-name-changed", companyName));
   saveGame(true);
 }
-
-const companyNameInput = document.querySelector("#company-name-input");
-const companyNameBtn = document.querySelector("#company-name-confirm-btn");
 
 if (isGamePage) {
   companyNameBtn.addEventListener("click", () => {
