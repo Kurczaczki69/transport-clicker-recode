@@ -331,5 +331,14 @@
   "upgr-autorefuel-desc": "Kauft automatisch Treibstoff, wenn er zur Neige geht",
   "auto-refuel-cant-afford": "Sie haben nicht aufgetankt, weil Sie es sich nicht leisten können",
   "upgr-autorefuel": "Auto-tanken",
-  "auto-refuel-success": "Treibstoff gekauft"
+  "auto-refuel-success": "Treibstoff gekauft",
+  "default-company-name": "Mein Transportunternehmen",
+  "btn-save": "Speichern",
+  "settings-menu-company-name": "Firmenname:",
+  "settings-menu-company-name-current": "Aktueller Name:",
+  "company-name-changed": "Firmenname geändert in $1",
+  "company-name-invalid": "Bitte geben Sie einen gültigen Firmennamen ein",
+  "company-name-too-short": "Der Firmenname darf nicht kürzer als $1 Zeichen sein",
+  "settings-menu-company-name-placeholder": "Firmenname eingeben",
+  "company-name-too-long": "Der Firmenname darf nicht länger als $1 Zeichen sein"
 }
