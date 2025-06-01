@@ -83,7 +83,7 @@ let currentCity = "sko";
 let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
 let maxFuel = 1000;
 
-let companyName = "My Company";
+let companyName = "My Transport Company";
 
 let lastSaveTime = 0;
 

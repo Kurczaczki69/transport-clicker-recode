@@ -135,6 +135,7 @@
   "auth-login-too-many-requests": "Too many requests. Please try again later",
   "auth-password-reset-sent": "A password reset link has been sent to the given email",
   "auth-missing-email": "Please enter your email",
+  "auth-username-taken": "This username is already taken by someone else",
   "login-page-subtitle": "Log In",
   "login-page-subtitle2": "Register",
   "login-page-register-text": "Don't have an account?",
