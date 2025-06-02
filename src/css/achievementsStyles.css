@@ -1,0 +1,100 @@
+#achievements-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--colorscheme2);
+  width: 70vw;
+  height: 70vh;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 800;
+  overflow-y: auto;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+#achievements-menu-title {
+  text-align: center;
+  position: static;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  color: var(--textcolor);
+  font-weight: 700;
+}
+
+#achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.achievement-card {
+  background: rgba(40, 44, 52, 0.93);
+  border: 2px solid #444a57;
+  border-radius: 14px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+  transition: box-shadow 0.2s, opacity 0.2s, border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.achievement-card:hover {
+  box-shadow: 0 4px 24px rgba(60, 180, 120, 0.1);
+  opacity: 1;
+  background: rgba(50, 54, 62, 0.98);
+}
+
+.achievement-card.unlocked {
+  border-color: #75ad39;
+  box-shadow: 0 2px 16px rgba(110, 231, 183, 0.18);
+  opacity: 1;
+  background: rgba(60, 80, 60, 0.13);
+}
+
+.achievement-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--textcolor);
+  letter-spacing: 0.5px;
+}
+
+.achievement-desc {
+  font-size: 1rem;
+  color: var(--textcolor2);
+}
+
+.achievement-status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  color: #888;
+}
+
+.achievement-card.unlocked .achievement-status {
+  color: #6ee7b7;
+}
+
+@media screen and (max-width: 768px) {
+  #achievements-window {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #achievements-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+}

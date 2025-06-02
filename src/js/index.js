@@ -17,6 +17,7 @@ import "../css/statsSystem.css";
 import "../css/settingsMenu.css";
 import "../css/citiesWindow.css";
 import "../css/buildingsStyles.css";
+import "../css/achievementsStyles.css";
 import "../css/accountSystem/loginStyles.css";
 
 import "./scr.js";

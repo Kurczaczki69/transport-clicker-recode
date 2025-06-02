@@ -181,15 +181,6 @@
   height: calc(4vh + 0.6rem);
 }
 
-#company-name-msgbox {
-  color: red;
-  font-size: 0.9rem;
-  position: absolute;
-  top: 20%;
-  font-weight: 400;
-  display: none;
-}
-
 #company-name-current {
   font-size: 1rem;
   font-weight: 500;
@@ -224,12 +215,6 @@
     width: 100%;
     min-width: 0;
     margin: 0;
-  }
-
-  #company-name-msgbox {
-    position: static;
-    top: unset;
-    margin-bottom: 0.5rem;
   }
 }
 

@@ -5,6 +5,7 @@
   --colorscheme4: #b8e1dd;
   --bgcolor: var(--colorscheme1);
   --textcolor: var(--colorscheme4);
+  --textcolor2: var(--colorscheme3);
   --border5: solid 1.5px var(--colorscheme4);
   --border2: solid 1px var(--colorscheme4);
   --linkcolor: var(--colorscheme3);

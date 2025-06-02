@@ -27,6 +27,8 @@ import { getTimedUpgrades } from "./data/timedUpgradeData.js";
 import { showNotif } from "./notifs.js";
 import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { initFuelSystem, getFuelLevel } from "./fuel.js";
+import { initializeAchievements } from "./data/achievementsData.js";
+import { populateAchievementGrid } from "./achievements/achievementUI.js";
 import "./vhclMenu.js";
 import "./utilities.js";
 import "./supabaseConfig.js";
@@ -52,6 +54,9 @@ import "./data/cityData.js";
 import "./data/buildingData.js";
 import "./data/timedUpgradeData.js";
 import "./data/upgradeData.js";
+import "./data/achievementsData.js";
+import "./achievements/achievementSystem.js";
+import "./achievements/achievementUI.js";
 import "./accountSystem/accountWindow.js";
 import "./accountSystem/changePassword.js";
 import "./accountSystem/deleteAccount.js";
@@ -61,6 +66,7 @@ import "./accountSystem/forgotPasswordAtPassChange.js";
 import "./accountSystem/forgotPassword.js";
 import "./accountSystem/infoDisplay.js";
 import "./accountSystem/redirectIfLoggedIn.js";
+import { achievementConditionChecks, checkAchievements, unlockAchievement } from "./achievements/achievementSystem.js";
 
 let clickmod = 1;
 let bal = 0;
@@ -79,6 +85,8 @@ let vhclStats = {};
 let unlockedCities = ["sko"];
 let citySwitchCost = 20000;
 let currentCity = "sko";
+
+let unlockedAchievements = [];
 
 let fuelLevels = { diesel: 1000, hydrogen: 1000, electric: 1000 };
 let maxFuel = 1000;
@@ -146,6 +154,7 @@ async function initializeUserData(userData) {
   bghtUpgrs = userData.bghtUpgrs || [];
   citySwitchCost = userData.citySwitchCost || 20000;
   unlockedCities = userData.unlockedCities || ["sko"];
+  unlockedAchievements = userData.unlockedAchievements || [];
   currentCity = userData.currentCity || "sko";
   vhclAmounts = userData.vhclAmounts || {};
   vhclPrices = userData.vhclPrices || {};
@@ -178,8 +187,10 @@ function startCoreSystems() {
 
 function initializeSecondaryFeatures() {
   initializeBuildings();
+  initializeAchievements();
   populateVhclData();
   populateUpgrData();
+  populateAchievementGrid();
   syncVehiclePrices();
   syncTimedUpgrPrices();
   initFuelSystem();
@@ -229,6 +240,7 @@ async function saveInitialUserData(userData) {
       bghtUpgrs: bghtUpgrs,
       citySwitchCost: citySwitchCost,
       unlockedCities: unlockedCities,
+      unlockedAchievements: unlockedAchievements,
       currentCity: currentCity,
       vhclAmounts: vhclAmounts,
       vhclPrices: vhclPrices,
@@ -259,6 +271,7 @@ export function saveGame(isSilent) {
     bghtUpgrs: bghtUpgrs,
     citySwitchCost: Math.round(citySwitchCost * 100) / 100,
     unlockedCities: unlockedCities,
+    unlockedAchievements: unlockedAchievements,
     currentCity: currentCity,
     vhclAmounts: vhclAmounts,
     vhclPrices: vhclPrices,
@@ -618,6 +631,8 @@ function add() {
 function startGameLoop() {
   if (!isGamePage) return;
   setInterval(add, 100);
+  setInterval(checkAchievements, 4000);
+  setInterval(achievementConditionChecks, 10000);
 }
 
 if (isGamePage) {
@@ -827,4 +842,12 @@ export function getMaxFuel() {
 
 export function setMaxFuel(newMaxFuel) {
   maxFuel = newMaxFuel;
+}
+
+export function getUnlockedAchievements() {
+  return unlockedAchievements;
+}
+
+export function setUnlockedAchievements(newUnlockedAchievements) {
+  unlockedAchievements = newUnlockedAchievements;
 }

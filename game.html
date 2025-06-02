@@ -4,10 +4,13 @@
   <!-- CONTRIBUTORS LIST -->
   <!--
   - luku123 (Main developer, Translator) (english, polish, german)
-  - Kiniaczu (Translator) (english)
-  - yn (user99) (Translator) (arabic)
-  - Irisik (Translator) (russian)
-  - NathanBnm (Translator) (french)
+  - Kiniaczu (Translator (crowdin)) (english)
+  - yn (user99) (Translator (crowdin)) (arabic)
+  - Irisik (Translator (crowdin)) (russian)
+
+  weblate contributors:
+  - NathanBnm - french
+  - Maksim_220 Кабанов - russian
     currently thats it :) -->
 
   <!-- ROADMAP FOR 1.3.0
@@ -207,6 +210,10 @@
             <div class="nav-item" id="nav-item-save-game">
               <span class="tabler--brand-onedrive"></span>
               <span class="tooltip" data-lang="tooltip-save"></span>
+            </div>
+            <div class="nav-item" id="nav-item-achievements">
+              <span class="tabler--trophy"></span>
+              <span class="tooltip" data-lang="tooltip-achievements"></span>
             </div>
             <div class="nav-item" id="nav-item-open-stats">
               <span class="tabler--chart-bar"></span>
@@ -419,7 +426,6 @@
       <!-- company name -->
       <div class="company-name-wrapper">
         <p id="company-name" data-lang="settings-menu-company-name"></p>
-        <p id="company-name-msgbox"></p>
         <form action="javascript:void(0)" class="company-name-form">
           <div id="company-name-input-wrapper">
             <input
@@ -628,6 +634,21 @@
       </div>
     </section>
 
+    <!-- achievements window -->
+
+    <section id="achievements-window">
+      <div class="closegui" id="achievements-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <h2 id="achievements-menu-title" data-lang="achievements-menu-title"></h2>
+      <div id="achievements-wrapper">
+        <div id="achievements-grid">
+          
+        </div>
+      </div>
+    </section>
+
     <section id="alert-window">
       <div id="alert-window-info-wrapper">
         <span id="alert-message" data-lang="error-occured"></span>
@@ -691,6 +712,10 @@
             </div>
             <div class="credits-menu-contributor-item">
               NathanBnm <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Maksim_220 Кабанов <br />
               <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
             </div>
           </div>
