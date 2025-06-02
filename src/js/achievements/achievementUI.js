@@ -1,5 +1,5 @@
 import { playRandomMouseClick } from "../sounds.js";
-import { animateWindowOpen, animateWindowClose } from "../utilities.js";
+import { animateWindowOpen, animateWindowClose, getI18n } from "../utilities.js";
 import { getAllAchievements } from "../data/achievementsData.js";
 import { getUnlockedAchievements } from "../scr.js";
 
@@ -14,6 +14,7 @@ if (isGamePage) {
   achievementsOpenBtn.addEventListener("click", () => {
     achievementsWindow.style.display = "block";
     playRandomMouseClick();
+    displayAchievementsProgress();
     animateWindowOpen(achievementsWindow, true, tint);
   });
 
@@ -52,4 +53,13 @@ export function checkAchievementStatus(achievementId) {
   } else {
     return false;
   }
+}
+
+export function displayAchievementsProgress() {
+  const progressEl = document.querySelector("#achievements-progress");
+  const totalAchievements = getAllAchievements().length;
+  const unlockedAchievements = getUnlockedAchievements().length;
+  const progressPercent = (unlockedAchievements / totalAchievements) * 100;
+  
+  progressEl.textContent = getI18n("achievements-menu-progress", progressPercent.toFixed(2), unlockedAchievements, totalAchievements);
 }

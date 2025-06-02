@@ -2,18 +2,17 @@ import * as game from "../scr.js";
 import { getAllAchievements } from "../data/achievementsData.js";
 import { showNotif } from "../notifs.js";
 import { getI18n } from "../utilities.js";
+import { displayAchievementsProgress } from "./achievementUI.js";
 
 export function checkAchievements() {
     const achievements = getAllAchievements();
     const unlockedAchievements = game.getUnlockedAchievements();
 
-    console.log("Checking achievements...");
+    displayAchievementsProgress();
     achievements.forEach((achievement) => {
         if (unlockedAchievements.includes(achievement.id)) {
             const achDiv = document.querySelector(`#ach-${achievement.id}`);
-            console.log(`Achievement ${achievement.id} is already unlocked.`);
             if (achDiv.classList.contains("locked")) {
-                console.log(`Unlocking achievement ${achievement.id} in UI.`);
                 achDiv.classList.remove("locked");
                 achDiv.classList.add("unlocked");
                 const statusEmoji = achDiv.querySelector(".achievement-status");
@@ -37,22 +36,18 @@ export function unlockAchievement(achievementId) {
 
     // check if achievement is already unlocked
     if (game.getUnlockedAchievements().includes(achievementId)) {
-        console.log(`Achievement ${achievementId} is already unlocked.`);
         return;
     }
 
     // if all checks pass, unlock the achievement
-    console.log(`Unlocking achievement: ${achievementId}`);
     let newUnlockedAchievements = [...game.getUnlockedAchievements(), achievementId];
     game.setUnlockedAchievements(newUnlockedAchievements);
 }
 
 export function achievementConditionChecks() {
-    console.log("Running achievement condition checks...");
     const achievements = getAllAchievements();
     achievements.forEach((achievement) => {
         if (achievement.check && achievement.check(game)) {
-            console.log(`Achievement condition met for: ${achievement.id}`);
             unlockAchievement(achievement.id);
         }
     });

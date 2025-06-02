@@ -377,6 +377,7 @@
   "achievement-clicking-king": "Clicking king",
   "achievement-clicking-king-desc": "Earn 1M $ per click",
   "achievements-menu-title": "🏆 Achievements",
+  "achievements-menu-progress": "Progress: $1% ($2/$3 Unlocked)",
   "fuel-type-diesel": "Petrol",
   "fuel-type-hydrogen": "Hydrogen",
   "fuel-type-electric": "Electricity",
