@@ -340,5 +340,10 @@
   "settings-menu-company-name-current": "Aktualna nazwa:",
   "company-name-changed": "Nazwa firmy zmieniona na $1",
   "company-name-too-short": "Nazwa firmy nie może być krótsza niż $1 znaki",
-  "company-name-invalid": "Proszę podać poprawną nazwę"
+  "company-name-invalid": "Proszę podać poprawną nazwę",
+  "auth-username-taken": "Ta nazwa użytkownika jest już zajęta przez kogoś innego",
+  "notif-achievement-unlocked": "Osiągnięcie odblokowane!",
+  "notif-achievement-unlocked-text": "Odblokowano osiągnięcie: $1!",
+  "tooltip-achievements": "Osiągnięcia",
+  "achievements-menu-title": "🏆 Osiągnięcia"
 }
