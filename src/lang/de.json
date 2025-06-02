@@ -340,5 +340,10 @@
   "company-name-invalid": "Bitte geben Sie einen gültigen Firmennamen ein",
   "company-name-too-short": "Der Firmenname darf nicht kürzer als $1 Zeichen sein",
   "settings-menu-company-name-placeholder": "Firmenname eingeben",
-  "company-name-too-long": "Der Firmenname darf nicht länger als $1 Zeichen sein"
+  "company-name-too-long": "Der Firmenname darf nicht länger als $1 Zeichen sein",
+  "notif-achievement-unlocked": "Leistung freigeschaltet!",
+  "tooltip-achievements": "Leistungen",
+  "achievements-menu-title": "🏆 Leistungen",
+  "notif-achievement-unlocked-text": "Du hast die Leistung freigeschaltet: $1!",
+  "auth-username-taken": "Dieser Benutzername ist bereits von jemand anderem besetzt"
 }
