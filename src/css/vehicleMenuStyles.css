@@ -36,7 +36,7 @@
 
 #small-input {
   width: 50%;
-  height: 3vh;
+  height: min(3vh, 40px);
   padding: 5px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -98,7 +98,7 @@
 
 #buy-menu-max-button {
   width: calc(auto + 10%);
-  height: 4.75vh;
+  height: min(4.4vh, 40px);
   font-weight: 500;
   border: var(--border5);
   color: var(--colorscheme2);
@@ -108,7 +108,7 @@
 #buy-menu-total-cost {
   position: absolute;
   left: 5%;
-  top: 71%;
+  top: max(71%, 77%);
   text-align: left;
   width: 60%;
   height: 5vh;
@@ -163,7 +163,7 @@
 #vhcl-menu-header {
   text-align: left;
   position: absolute;
-  left: 5%;
+  left: min(5vw, 50px);
   font-size: 2rem;
 }
 
@@ -187,7 +187,7 @@
   align-items: center;
   position: absolute;
   top: 10%;
-  left: 10%;
+  left: min(10vw, 100px);
   gap: 1rem;
 }
 
@@ -235,13 +235,13 @@
 
 .vhcl-menu-btn-locked {
   margin-right: 5%;
-  width: 8vw;
+  width: min(8vw, 100px);
   padding: 5%;
 }
 
 .vhcl-menu-btn {
   margin-right: 5%;
-  width: 8vw;
+  width: min(8vw, 100px);
   padding: 5%;
 }
 

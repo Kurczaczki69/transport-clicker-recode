@@ -19,14 +19,14 @@
 #upgr-menu-header {
   text-align: left;
   position: absolute;
-  left: 5%;
+  left: min(5vw, 50px);
   font-size: 2rem;
 }
 
 #upgr-menu-category-name {
   position: absolute;
   top: 10%;
-  left: 10%;
+  left: min(10vw, 100px);
   font-size: 1.25rem;
   display: flex;
   flex-direction: row;
@@ -98,7 +98,7 @@
 
 .upgr-menu-vehicle-type-item-btn {
   margin-right: 5%;
-  width: 6.824vw;
+  width: min(6.824vw, 100px);
   padding: 5%;
 }
 
@@ -109,7 +109,7 @@
 
 .upgr-btn-disabled {
   margin-right: 5%;
-  width: 6.824vw;
+  width: min(6.824vw, 100px);
   padding: 5%;
 }
 
