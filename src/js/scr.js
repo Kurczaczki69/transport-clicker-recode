@@ -97,7 +97,7 @@ let lastSaveTime = 0;
 
 let userCityData = {};
 
-const GAME_VERSION = "b1.3.0dev";
+const GAME_VERSION = "b1.3.0";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
