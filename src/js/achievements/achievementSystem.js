@@ -19,7 +19,7 @@ export function checkAchievements() {
                 if (statusEmoji) {
                     statusEmoji.textContent = "✅";
                 }
-                showNotif(getI18n("notif-achievement-unlocked"), getI18n("notif-achievement-unlocked-text", achievement.name), "notif-achievement");
+                showNotif(getI18n("notif-achievement-unlocked"), getI18n("notif-achievement-unlocked-text", achievement.name), "notif-achievement", true);
             }
         }
     });

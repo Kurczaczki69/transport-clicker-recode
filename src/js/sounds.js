@@ -7,6 +7,7 @@ import click5 from "../sound/mouse_click_05.mp3";
 import cash1 from "../sound/cash_01.mp3";
 import cash2 from "../sound/cash_02.mp3";
 import cash3 from "../sound/cash_03.mp3";
+import achievement1 from "../sound/achievement_01.mp3";
 
 const isGamePage = window.location.pathname.includes("game.html");
 
@@ -43,4 +44,8 @@ export function playRandomCash() {
 
   const randomIndex = Math.floor(Math.random() * soundFiles.length);
   playSound(soundFiles[randomIndex]);
+}
+
+export function playAchievementSound() {
+  playSound(achievement1);
 }

@@ -1,4 +1,4 @@
-import { playRandomMouseClick } from "./sounds.js";
+import { playAchievementSound, playRandomMouseClick } from "./sounds.js";
 
 let notifCount = 0;
 
@@ -6,7 +6,7 @@ export function getNotifCount() {
   return notifCount;
 }
 
-export function showNotif(title, smalltext, type) {
+export function showNotif(title, smalltext, type, sound) {
   // creating notification text elements
   const notifTitle = document.createElement("span");
   const notifSmallText = document.createElement("span");
@@ -53,6 +53,10 @@ export function showNotif(title, smalltext, type) {
       removeNotif(btn.parentElement.id);
     });
   });
+
+  if (sound) {
+    playAchievementSound();
+  }
 }
 
 export function removeNotif(id) {
