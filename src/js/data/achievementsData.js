@@ -171,15 +171,6 @@ function initializeAchievements() {
       check: (game) => game.getClickMod() >= 10000,
     },
     {
-      id: "fuel_balancer",
-      name: getI18n("achievement-fuel-balancer"),
-      desc: getI18n("achievement-fuel-balancer-desc"),
-      check: (game) => {
-        const fuel = game.getFuelLevels();
-        return fuel.diesel === fuel.hydrogen && fuel.hydrogen === fuel.electric && fuel.diesel > 0;
-      },
-    },
-    {
       id: "billionaire",
       name: getI18n("achievement-billionaire"),
       desc: getI18n("achievement-billionaire-desc"),
