@@ -9,6 +9,7 @@ import { initializeCities } from "./data/cityData.js";
 import { playRandomMouseClick } from "./sounds.js";
 import { getI18n } from "./utilities.js";
 import { populateAchievementGrid } from "./achievements/achievementUI.js";
+import { initializeAchievements } from "./data/achievementsData.js";
 
 const banana = new Banana();
 
@@ -33,6 +34,7 @@ function updateLang(lang) {
       initializeUpgrades();
       initializeVehicles();
       initializeCities();
+      initializeAchievements();
       populateThemeOptions();
       populateAchievementGrid();
       syncVehiclePrices();
