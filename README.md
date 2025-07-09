@@ -45,14 +45,14 @@ _btw we will soon be switching from firebase to supabase since its open source(a
 ❌ Prestige/rebirth system\
 ❌ Strikes, weather etc. and other negative effects\
 ❌ Leaderboards, profiles, friends\
-❌ Choosing a company name\
+✅ Choosing a company name\
 ❌ Seasonal events (eg. christmas, easter, halloween)\
 ❌ Trains, ferries, planes, rockets, metro, space stations, etc. etc.\
 ✅ Offline income\
 ❌ Passenger numbers or something like that\
 ❌ Hiring workers\
 ❌ Extensive route system\
-❌ Achievements\
+✅ Achievements\
 ❌ Better UI with different images, pixel art or something like that 
 
 ## PLANNED FEATURES FOR THE ALPHA PHASE
