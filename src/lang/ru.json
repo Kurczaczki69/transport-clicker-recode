@@ -356,5 +356,19 @@
   "achievement-100-clickmod-desc": "Зарабатывайте по 100 $ за нажатие",
   "achievement-millionaire": "Миллионер",
   "achievement-trillionaire": "Триллионер",
-  "achievement-billionaire": "Миллиардер"
+  "achievement-billionaire": "Миллиардер",
+  "achievement-first-10000-desc": "Заработайте свои первые 10 тысяч $",
+  "achievement-10-income-desc": "Ваш доход в секунду перешёл границу в 10$ в секунду",
+  "achievement-100-income-desc": "Ваш доход в секунду перешёл границу в 100$ в секунду",
+  "achievement-first-city": "Первый город",
+  "achievement-first-city-desc": "Разблокируйте свой первый город",
+  "achievement-upgrade-buyer-desc": "Купите своё первое улучшение",
+  "achievement-upgrade-enthusiast": "Энтузиаст",
+  "achievement-upgrade-enthusiast-desc": "Купите 10 улучшений",
+  "achievement-fuel-hoarder-desc": "Имейте 1000 Л каждого топлива",
+  "achievement-company-named-desc": "Поменяйте название своей компании",
+  "achievement-millionaire-desc": "Имейте в кармане 1 млн. $",
+  "achievement-max-fuel-desc": "Наполните свои баки до предела",
+  "achievement-city-explorer": "Городской исследователь",
+  "achievement-city-explorer-desc": "Проложите маршруты 3-ёх городах"
 }
