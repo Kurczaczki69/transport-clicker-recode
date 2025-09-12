@@ -3,6 +3,7 @@
 
 let vhcls = [];
 export const vhclMaxQuantity = 10000000000;
+export const DEFAULT_CAPACITY = 40;
 
 export function initializeVehicles() {
   vhcls = [

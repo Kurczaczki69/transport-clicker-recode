@@ -1,6 +1,6 @@
 const startTime = performance.now();
 import { getDoc, setDoc, doc } from "firebase/firestore";
-import anime from "animejs";
+import anime, { set } from "animejs";
 import { db, auth } from "./firebaseManager.js";
 import {
   sleep,
@@ -29,6 +29,7 @@ import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { initFuelSystem, getFuelLevel } from "./fuel.js";
 import { initializeAchievements } from "./data/achievementsData.js";
 import { populateAchievementGrid } from "./achievements/achievementUI.js";
+import { calculateSpawnRateBasedOnFares, calculateTotalCapacity } from "./paxUtils.js";
 import "./vhclMenu.js";
 import "./utilities.js";
 import "./supabaseConfig.js";
@@ -46,6 +47,7 @@ import "./codes.js";
 import "./buildings.js";
 import "./favicon.js";
 import "./fuel.js";
+import "./paxUtils.js";
 import "./upgradeSystem/insertDataIntoHtml.js";
 import "./upgradeSystem/timedUpgrades.js";
 import "./upgradeSystem/upgrades.js";
@@ -97,7 +99,10 @@ let lastSaveTime = 0;
 
 let userCityData = {};
 
-const GAME_VERSION = "b1.3.0";
+let totalCapacity = 0;
+const DEF_FARE_PER_PAX = 2.5;
+
+const GAME_VERSION = "b1.4.0";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
@@ -212,6 +217,15 @@ function initializeSecondaryFeatures() {
       const loadTime = performance.now() - startTime;
       console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
 
+      totalCapacity = calculateTotalCapacity();
+      //testing
+      calculateSpawnRateBasedOnFares(2.5);
+      calculateSpawnRateBasedOnFares(5);
+      calculateSpawnRateBasedOnFares(10);
+      calculateSpawnRateBasedOnFares(20);
+      calculateSpawnRateBasedOnFares(1);
+
+      // handle offline income
       const lastLogoutTime = parseInt(localStorage.getItem("lastLogoutTime")) || Date.now();
       const offlineDuration = (Date.now() - lastLogoutTime) / 1000; // in seconds
       const offlineIncome = Math.floor((offlineDuration / 10) * (income / 25));
@@ -482,6 +496,8 @@ function buyVhclRight() {
 
   showAlert(getI18n("vhcl-purchase-success", busProp.name, quantity));
   syncVehiclePrices();
+  totalCapacity = calculateTotalCapacity();
+  console.log("New total capacity:", totalCapacity);
   saveGame(true);
   updateHtmlData();
   resetBuyMenu();
@@ -618,14 +634,23 @@ function add() {
   const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
-  totalIncome = 0;
+  totalIncome = spawnPax();
   checkForFuelStations(currentCityData);
   // console.log("Total income after fuel check:", totalIncome);
 
   bal += (totalIncome / 10) * timedUpgrBoost * cityBoost;
-  // console.log(totalIncome * timedUpgrBoost * cityBoost);
-  // console.log(income);
+  // console.log(`Income this tick: ${(totalIncome / 10 * timedUpgrBoost * cityBoost).toFixed(2)}`);
+  // console.log(`Income per second: ${(totalIncome * timedUpgrBoost * cityBoost).toFixed(2)}`);
   displayStats();
+}
+
+function spawnPax() {
+  if (!isGamePage) return;
+  const spawnRate = calculateSpawnRateBasedOnFares(DEF_FARE_PER_PAX);
+  const spawnRatePerTick = spawnRate;
+  let moneyEarned = (spawnRatePerTick * DEF_FARE_PER_PAX);
+  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
+  return moneyEarned;
 }
 
 function startGameLoop() {
