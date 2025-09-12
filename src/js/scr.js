@@ -72,7 +72,6 @@ import { achievementConditionChecks, checkAchievements, unlockAchievement } from
 
 let clickmod = 1;
 let bal = 0;
-let income = 0;
 
 let buyTotal = 0;
 let chosenVhcl = "";
@@ -154,7 +153,6 @@ function handleInvalidUser() {
 
 async function initializeUserData(userData) {
   bal = userData.balance || 0;
-  income = userData.income || 0;
   clickmod = userData.clickmod || 1;
   bghtUpgrs = userData.bghtUpgrs || [];
   citySwitchCost = userData.citySwitchCost || 20000;
@@ -171,7 +169,7 @@ async function initializeUserData(userData) {
   lastSaveTime = userData.lastSaveTime || Date.now();
   companyName = userData.companyName || getI18n("default-company-name");
 
-  if (!userData.balance && !userData.income && !userData.clickmod) {
+  if (!userData.balance && !userData.clickmod) {
     await saveInitialUserData(userData);
   }
 }
@@ -218,17 +216,11 @@ function initializeSecondaryFeatures() {
       console.log(`Game loaded in ${loadTime.toFixed(2)} ms`);
 
       totalCapacity = calculateTotalCapacity();
-      //testing
-      calculateSpawnRateBasedOnFares(2.5);
-      calculateSpawnRateBasedOnFares(5);
-      calculateSpawnRateBasedOnFares(10);
-      calculateSpawnRateBasedOnFares(20);
-      calculateSpawnRateBasedOnFares(1);
 
       // handle offline income
       const lastLogoutTime = parseInt(localStorage.getItem("lastLogoutTime")) || Date.now();
       const offlineDuration = (Date.now() - lastLogoutTime) / 1000; // in seconds
-      const offlineIncome = Math.floor((offlineDuration / 10) * (income / 25));
+      const offlineIncome = Math.floor((offlineDuration / 10) * (totalIncome / 25));
 
       bal += offlineIncome;
       localStorage.setItem("lastLogoutTime", Date.now());
@@ -249,7 +241,6 @@ async function saveInitialUserData(userData) {
     doc(db, "users", loggedInUserId),
     {
       balance: bal,
-      income: income,
       clickmod: clickmod,
       bghtUpgrs: bghtUpgrs,
       citySwitchCost: citySwitchCost,
@@ -280,7 +271,6 @@ export function saveGame(isSilent) {
   const docRef = doc(db, "users", loggedInUserId);
   const userDatatoSave = {
     balance: Math.round(bal * 100) / 100,
-    income: Math.round(income * 100) / 100,
     clickmod: Math.round(clickmod * 100) / 100,
     bghtUpgrs: bghtUpgrs,
     citySwitchCost: Math.round(citySwitchCost * 100) / 100,
@@ -471,7 +461,6 @@ function buyVhclRight() {
   const incomeIncrease = parseInt(busProp.incomemod) * quantity;
   const clickmodIncrease = parseInt(busProp.clickmod) * quantity;
 
-  income += incomeIncrease;
   clickmod += clickmodIncrease;
 
   if (!vhclStats[busProp.code]) {
@@ -588,12 +577,13 @@ function getTotalIncomeBoost(timedUpgrs) {
 
 let totalIncome = 0;
 let shownNotif = false;
+
 function checkForFuelStations(cityData) {
   if (!cityData || !cityData.buildings || !isGamePage) return;
 
-  totalIncome = 0;
+  totalIncome = spawnPax();
 
-  if (income === 0 || bal <= 0) return;
+  if (totalIncome === 0 || bal <= 0) return;
 
   const vhcls = getVhcls();
   const fuelTypeMap = vhcls.reduce((map, vhcl) => {
@@ -634,7 +624,6 @@ function add() {
   const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
-  totalIncome = spawnPax();
   checkForFuelStations(currentCityData);
   // console.log("Total income after fuel check:", totalIncome);
 
@@ -649,7 +638,7 @@ function spawnPax() {
   const spawnRate = calculateSpawnRateBasedOnFares(DEF_FARE_PER_PAX);
   const spawnRatePerTick = spawnRate;
   let moneyEarned = (spawnRatePerTick * DEF_FARE_PER_PAX);
-  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
+  // console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
   return moneyEarned;
 }
 
@@ -771,7 +760,7 @@ export function setBal(newBal) {
 }
 
 export function getIncome() {
-  return income;
+  return totalIncome;
 }
 
 export function getClickMod() {
