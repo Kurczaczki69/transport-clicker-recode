@@ -31,8 +31,9 @@ export function populateAchievementGrid() {
   achGrid.innerHTML = "";
   achievements.forEach((achievement) => {
     const achDiv = document.createElement("div");
-    let status = checkAchievementStatus(achievement.id) ? "unlocked" : "locked";
-    let statusEmoji = checkAchievementStatus(achievement.id) ? "✅" : "❌";
+    const unlocked = checkAchievementStatus(achievement.id);
+    let status = unlocked ? "unlocked" : "locked";
+    let statusEmoji = unlocked ? "✅" : "❌";
     achDiv.innerHTML = `
       <div class="achievement-card ${status}" id="ach-${achievement.id}">
         <div class="achievement-status">${statusEmoji}</div>
