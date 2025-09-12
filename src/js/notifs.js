@@ -48,9 +48,10 @@ export function showNotif(title, smalltext, type, sound) {
 
   const notifCloseBtns = document.querySelectorAll(".notif-close-btn");
   notifCloseBtns.forEach((btn) => {
+    const parentId = btn.parentElement?.id;
     btn.addEventListener("click", () => {
       playRandomMouseClick();
-      removeNotif(btn.parentElement.id);
+      if (parentId) removeNotif(parentId);
     });
   });
 
@@ -60,7 +61,9 @@ export function showNotif(title, smalltext, type, sound) {
 }
 
 export function removeNotif(id) {
-  document.getElementById(id).remove();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.remove();
   notifCount--;
   if (document.querySelectorAll(".notif").length === 0) {
     const notifDisplay = document.querySelector("#notif-display");

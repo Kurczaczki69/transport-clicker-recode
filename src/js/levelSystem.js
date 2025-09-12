@@ -91,7 +91,6 @@ function calculateMoneyReward(level) {
 
 function displayData() {
   const income = getIncome();
-  console.log("Income for display:", income);
   const clickMod = getClickMod();
   const xp = calculateXP(income, clickMod);
   const { level, levelProgress, xpRequirement, previousXpRequirement, xpToNextLevel } = calculateLevelProgress(xp);
@@ -107,7 +106,6 @@ function displayData() {
 
 export function getLevel() {
   const income = getIncome();
-  console.log("Income for level calculation:", income);
   const clickMod = getClickMod();
   const xp = calculateXP(income, clickMod);
   const { level, levelProgress, xpRequirement, previousXpRequirement, xpToNextLevel } = calculateLevelProgress(xp);
