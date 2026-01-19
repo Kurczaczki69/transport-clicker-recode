@@ -1,0 +1,54 @@
+#budgeting-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--colorscheme2);
+  width: 70vw;
+  height: 70vh;
+  border: var(--border5);
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  z-index: 800;
+  overflow-y: auto;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#budgeting-menu-content {
+  display: grid;
+  gap: min(2.5vw, 25px);
+  padding: min(2vw, 20px);
+  margin-left: min(2.5vw, 25px);
+}
+
+#budgeting-menu-title {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+#budget-fare-global-input {
+  width: min(20vw, 200px);
+  padding: min(0.75vw, 10px);
+  font-size: 1rem;
+  border: var(--border3);
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: none;
+}
+
+.budget-form-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: min(1.5vw, 15px);
+}
+
+#budget-global-fare-confirm-btn {
+  padding: min(0.75vw, 10px) min(1.5vw, 15px);
+}

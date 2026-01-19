@@ -22,6 +22,7 @@
   "btn-delete-acc": "Delete account",
   "btn-search": "Search",
   "btn-clear": "Clear",
+  "btn-confirm": "Confirm",
   "confirm-upgrade": "Do you want to buy the upgrade",
   "not-ready-text1": "This will be available in the upcoming updates",
   "unavailable": "Unavailable",
@@ -69,6 +70,7 @@
   "tooltip-buy-vhcls": "Buy vehicles",
   "tooltip-buy-upgrs": "Buy upgrades",
   "tooltip-cities": "Cities",
+  "tooltip-budget": "Budget",
   "tooltip-codes": "Codes",
   "tooltip-save": "Save game",
   "tooltip-changelog": "Changelog",
@@ -404,5 +406,11 @@
   "upgr-autorefuel-desc": "Automatically buys fuel when it runs out",
   "auto-refuel-success": "Bought fuel",
   "auto-refuel-cant-afford": "Failed to refuel because you can't afford it",
-  "offline-income-earned": "You earned $1 $ while you were offline"
+  "offline-income-earned": "You earned $1 $ while you were offline",
+  "budget-global-fare": "Global ticket price: ",
+  "budget-global-fare-placeholder": "Enter ticket price",
+  "budgeting-menu-title": "💰 Budget",
+  "budget-global-fare-desc": "Tip: The higher the ticket price, the fewer passengers will board your vehicles.",
+  "budget-fare-invalid": "Please enter a valid ticket price (must be greater than 0)",
+  "budget-fare-changed": "Ticket price changed to $$1"
 }

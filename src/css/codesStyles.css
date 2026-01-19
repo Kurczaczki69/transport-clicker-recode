@@ -60,6 +60,7 @@
   width: 60%;
   color: var(--colorscheme4);
   transform: translate(-50%, -50%);
+  margin-top: 2.5vh;
 }
 
 #code-menu-confirm-btn {

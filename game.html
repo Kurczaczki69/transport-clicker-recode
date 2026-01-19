@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <!-- TRANSPORT CLICKER BETA 1.3.0 -->
   <!-- CONTRIBUTORS LIST -->
@@ -199,6 +199,10 @@
               <span class="tabler--map-pin"></span>
               <span class="tooltip" data-lang="tooltip-cities"></span>
             </div>
+            <div class="nav-item" id="nav-item-budget-menu">
+              <span class="tabler--report-money"></span>
+              <span class="tooltip" data-lang="tooltip-budget"></span>
+            </div>
             <div class="nav-item" id="nav-item-codes-menu">
               <span class="tabler--code"></span>
               <span class="tooltip" data-lang="tooltip-codes"></span>
@@ -343,6 +347,34 @@
           <div id="city-details-stat-vehicles" class="city-stats">
             <span id="city-vehicles"></span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- budgeting window -->
+
+    <section id="budgeting-window">
+      <div class="closegui" id="budgeting-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="budgeting-menu-content">
+        <h2 id="budgeting-menu-title" data-lang="budgeting-menu-title"></h2>
+
+        <div class="budgeting-menu-el">
+          <div class="budget-form-wrapper">
+            <label for="budget-fare-global-input" data-lang="budget-global-fare"></label>
+            <input
+              type="number"
+              id="budget-fare-global-input"
+              class="inputs"
+              min="0"
+              data-lang-placeholder="budget-global-fare-placeholder"
+            />
+            <button class="btns" id="budget-global-fare-confirm-btn" data-lang="btn-confirm"></button>
+          </div>
+          <br />
+          <span id="budget-global-fare-desc" data-lang="budget-global-fare-desc"></span>
         </div>
       </div>
     </section>
@@ -894,7 +926,9 @@
               Jingle_Win_Synth_05.wav - LittleRobotSoundFactory <br />
               <span class="credits-menu-contributor-github"
                 >CC Attribution 4.0 International
-                <a target="_blank" href="https://freesound.org/people/LittleRobotSoundFactory/sounds/274182/">freesound.org</a>
+                <a target="_blank" href="https://freesound.org/people/LittleRobotSoundFactory/sounds/274182/"
+                  >freesound.org</a
+                >
               </span>
             </div>
             <div class="credits-menu-contributor-item">

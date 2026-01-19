@@ -29,7 +29,7 @@ import { playRandomCash, playRandomMouseClick } from "./sounds.js";
 import { initFuelSystem, getFuelLevel } from "./fuel.js";
 import { initializeAchievements } from "./data/achievementsData.js";
 import { populateAchievementGrid } from "./achievements/achievementUI.js";
-import { calculateSpawnRateBasedOnFares, calculateTotalCapacity } from "./paxUtils.js";
+import { calculateSpawnRateBasedOnFares, calculateTotalCapacity, getFarePerPax, setFarePerPax } from "./paxUtils.js";
 import "./vhclMenu.js";
 import "./utilities.js";
 import "./supabaseConfig.js";
@@ -99,7 +99,6 @@ let lastSaveTime = 0;
 let userCityData = {};
 
 let totalCapacity = 0;
-const DEF_FARE_PER_PAX = 2.5;
 
 const GAME_VERSION = "b1.4.0";
 const isGamePage = window.location.pathname.endsWith("game.html");
@@ -168,6 +167,10 @@ async function initializeUserData(userData) {
   maxFuel = userData.maxFuel || 1000;
   lastSaveTime = userData.lastSaveTime || Date.now();
   companyName = userData.companyName || getI18n("default-company-name");
+  
+  if (userData.farePerPax) {
+    setFarePerPax(userData.farePerPax);
+  }
 
   if (!userData.balance && !userData.clickmod) {
     await saveInitialUserData(userData);
@@ -256,6 +259,7 @@ async function saveInitialUserData(userData) {
       maxFuel: maxFuel,
       version: GAME_VERSION,
       companyName: companyName,
+      farePerPax: getFarePerPax(),
       lastSaveTime: Date.now(),
     },
     { merge: true }
@@ -286,6 +290,7 @@ export function saveGame(isSilent) {
     maxFuel: maxFuel,
     version: GAME_VERSION,
     companyName: companyName,
+    farePerPax: getFarePerPax(),
     lastSaveTime: Date.now(),
   };
   setDoc(docRef, userDatatoSave, { merge: true })
@@ -635,10 +640,11 @@ function add() {
 
 function spawnPax() {
   if (!isGamePage) return;
-  const spawnRate = calculateSpawnRateBasedOnFares(DEF_FARE_PER_PAX);
+  const farePerPax = getFarePerPax();
+  const spawnRate = calculateSpawnRateBasedOnFares(farePerPax);
   const spawnRatePerTick = spawnRate;
-  let moneyEarned = (spawnRatePerTick * DEF_FARE_PER_PAX);
-  // console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
+  let moneyEarned = (spawnRatePerTick * farePerPax);
+  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
   return moneyEarned;
 }
 

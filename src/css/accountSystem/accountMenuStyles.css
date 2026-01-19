@@ -116,6 +116,10 @@
   max-width: 29%;
 }
 
+#are-you-sure-pass-input {
+  margin-top: 2.5vh;
+}
+
 .are-you-sure-btns {
   width: 100%;
   padding: 10%;
@@ -131,7 +135,6 @@
   width: 60%;
   padding: 2.5%;
   border-radius: 5px;
-  margin-top: 2.5vh;
   border: var(--border2);
   background-color: var(--colorscheme3);
   color: var(--colorscheme4);

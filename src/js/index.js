@@ -4,6 +4,7 @@ import "../css/fuelSystem.css";
 import "../css/loading.css";
 import "../css/scrlbar.css";
 import "../css/notifDisplay.css";
+import "../css/budgetingStyles.css";
 import "../css/icons.css";
 import "../css/tooltips.css";
 import "../css/verNumberDisplay.css";

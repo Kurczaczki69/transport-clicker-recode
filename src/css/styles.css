@@ -46,7 +46,7 @@ option {
 }
 
 .navbar {
-  width: min(23vw, 330px);
+  width: min(25vw, 350px);
   height: min(15vh, 120px);
   display: flex;
   justify-content: center;
