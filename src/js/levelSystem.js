@@ -1,5 +1,6 @@
-import { getIncome, getClickMod, getBal, setBal, syncVehiclePrices, checkLevel } from "./scr.js";
+import { getClickMod, getBal, setBal, syncVehiclePrices, checkLevel } from "./scr.js";
 import { abbreviateNumber, animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
+import { calculateTotalCapacity, getFarePerPax } from "./paxUtils.js";
 import { showNotif } from "./notifs.js";
 import { displayStats } from "./stats.js";
 import { populateUpgrData, populateVhclData } from "./upgradeSystem/insertDataIntoHtml.js";
@@ -31,12 +32,14 @@ if (isGamePage) {
 
 // all the math etc.
 
-function calculateXP(income, clickMod) {
-  const xpFromIncome = income * 4;
+function calculateXP(totalCapacity, farePerPax, clickMod) {
+  const xpFromCapacity = totalCapacity;
+  
+  const xpFromFare = farePerPax * 5;
+  
   const xpFromClickMod = clickMod * 6;
-  let xp;
-  xp = xpFromIncome + xpFromClickMod;
-  return xp;
+  
+  return xpFromCapacity + xpFromFare + xpFromClickMod;
 }
 
 let previousLevel = localStorage.getItem("previousLevel") || 0;
@@ -50,7 +53,7 @@ function calculateLevelProgress(xp) {
     level++;
     xp -= xpRequirement;
     previousXpRequirement = xpRequirement;
-    xpRequirement = Math.floor(xpRequirement * 1.1); // increase by 10%
+    xpRequirement = Math.floor(xpRequirement * 1.17); // increase by 17%
   }
 
   if (previousLevel == 0 || previousLevel == null || previousLevel == undefined) {
@@ -90,9 +93,10 @@ function calculateMoneyReward(level) {
 }
 
 function displayData() {
-  const income = getIncome();
+  const totalCapacity = calculateTotalCapacity();
+  const farePerPax = getFarePerPax();
   const clickMod = getClickMod();
-  const xp = calculateXP(income, clickMod);
+  const xp = calculateXP(totalCapacity, farePerPax, clickMod);
   const { level, levelProgress, xpRequirement, previousXpRequirement, xpToNextLevel } = calculateLevelProgress(xp);
 
   document.querySelector("#user-level-value").textContent = level;
@@ -105,10 +109,11 @@ function displayData() {
 }
 
 export function getLevel() {
-  const income = getIncome();
+  const totalCapacity = calculateTotalCapacity();
+  const farePerPax = getFarePerPax();
   const clickMod = getClickMod();
-  const xp = calculateXP(income, clickMod);
-  const { level, levelProgress, xpRequirement, previousXpRequirement, xpToNextLevel } = calculateLevelProgress(xp);
+  const xp = calculateXP(totalCapacity, farePerPax, clickMod);
+  const { level } = calculateLevelProgress(xp);
 
   return level;
 }

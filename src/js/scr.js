@@ -581,14 +581,11 @@ function getTotalIncomeBoost(timedUpgrs) {
 }
 
 let totalIncome = 0;
-let shownNotif = false;
+let shownNotifStation = false;
+let shownNotifFuel = false;
 
 function checkForFuelStations(cityData) {
   if (!cityData || !cityData.buildings || !isGamePage) return;
-
-  totalIncome = spawnPax();
-
-  if (totalIncome === 0 || bal <= 0) return;
 
   const vhcls = getVhcls();
   const fuelTypeMap = vhcls.reduce((map, vhcl) => {
@@ -596,10 +593,11 @@ function checkForFuelStations(cityData) {
     return map;
   }, {});
 
-  const fuelIncomeMap = vhcls.reduce((map, vhcl) => {
-    map[vhcl.code] = vhcl.incomemod;
-    return map;
-  }, {});
+  let incomeMultiplier = 1;
+  let currentNoFuel = false;
+  let currentNoStation = false;
+  let fuelTypeForFuelNotif = "";
+  let fuelTypeForStationNotif = "";
 
   for (const vhclCode in vhclAmounts) {
     if (!fuelTypeMap[vhclCode]) continue;
@@ -607,20 +605,38 @@ function checkForFuelStations(cityData) {
     const fuelType = fuelTypeMap[vhclCode];
     const stationType = fuelType === "diesel" ? "gas-station" : "hydrogen-station";
     const hasStation = cityData.buildings.includes(stationType);
-    const hasFuel = getFuelLevel(fuelType) > 0;
-    const incomeMod = fuelIncomeMap[vhclCode] * vhclAmounts[vhclCode];
+    const fuelLevel = getFuelLevel(fuelType);
 
-    if ((hasStation || fuelType === "electric") && hasFuel) {
-      totalIncome += incomeMod;
-    } else {
-      if (!shownNotif) {
-        shownNotif = true;
-        const reason = !hasStation ? "notif-fuel-station" : "notif-no-fuel";
-        showNotif(getI18n(reason), getI18n(`${reason}-text`, getI18n(`fuel-type-${fuelType}`)), "notif-fuel");
-      }
-      totalIncome -= incomeMod;
+    // no income if no fuel
+    if (fuelLevel === 0) {
+      currentNoFuel = true;
+      fuelTypeForFuelNotif = fuelType;
+      totalIncome = 0;
+    }
+
+    // halved income without station
+    if (fuelType !== "electric" && !hasStation) {
+      currentNoStation = true;
+      fuelTypeForStationNotif = fuelType;
+      incomeMultiplier = 0.5;
     }
   }
+
+  console.log(shownNotifStation, shownNotifFuel, currentNoFuel, currentNoStation);
+  // showing notifications
+  if (currentNoFuel && !shownNotifFuel) {
+    shownNotifFuel = true;
+    showNotif(getI18n("notif-no-fuel"), getI18n("notif-no-fuel-text", getI18n(`fuel-type-${fuelTypeForFuelNotif}`)), "notif-fuel");
+  } else if (currentNoStation && !shownNotifStation) {
+    shownNotifStation = true;
+    showNotif(getI18n("notif-fuel-station"), getI18n("notif-fuel-station-text", getI18n(`fuel-type-${fuelTypeForStationNotif}`)), "notif-fuel");
+  } else if (!currentNoFuel) {
+    shownNotifFuel = false;
+  } else if (!currentNoStation) {
+    shownNotifStation = false;
+  }
+
+  totalIncome *= incomeMultiplier;
 }
 
 function add() {
@@ -629,12 +645,14 @@ function add() {
   const currentCityData = getCities().find((city) => city.id === currentCity);
   const cityBoost = calculateCityBoost(currentCityData);
 
+  totalIncome = spawnPax();
   checkForFuelStations(currentCityData);
-  // console.log("Total income after fuel check:", totalIncome);
+  
+  console.log("Total income after fuel check:", totalIncome);
 
   bal += (totalIncome / 10) * timedUpgrBoost * cityBoost;
-  // console.log(`Income this tick: ${(totalIncome / 10 * timedUpgrBoost * cityBoost).toFixed(2)}`);
-  // console.log(`Income per second: ${(totalIncome * timedUpgrBoost * cityBoost).toFixed(2)}`);
+  console.log(`Income this tick: ${(totalIncome / 10 * timedUpgrBoost * cityBoost).toFixed(2)}`);
+  console.log(`Income per second: ${(totalIncome * timedUpgrBoost * cityBoost).toFixed(2)}`);
   displayStats();
 }
 
@@ -644,7 +662,7 @@ function spawnPax() {
   const spawnRate = calculateSpawnRateBasedOnFares(farePerPax);
   const spawnRatePerTick = spawnRate;
   let moneyEarned = (spawnRatePerTick * farePerPax);
-  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Earned $${moneyEarned.toFixed(2)}`);
+  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Fares paid: $${moneyEarned.toFixed(2)}`);
   return moneyEarned;
 }
 

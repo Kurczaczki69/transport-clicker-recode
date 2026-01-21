@@ -169,7 +169,7 @@
   "notif-reward-title": "Reward!",
   "notif-reward-text": "You received $1 $ for reaching level $2!",
   "notif-fuel-station": "Missing fuel station!",
-  "notif-fuel-station-text": "Build a $1 station in your current city to be able to earn money from $1 powered vehicles!",
+  "notif-fuel-station-text": "Build a $1 station in your current city to be able to earn money from $1 powered vehicles! Your income will be reduced by 50% until you do so.",
   "notif-achievement-unlocked": "Achievement unlocked!",
   "notif-achievement-unlocked-text": "You unlocked the achievement: $1!",
   "stats-xp-needed": "$1 XP",
