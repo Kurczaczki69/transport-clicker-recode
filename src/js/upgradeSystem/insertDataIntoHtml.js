@@ -1,7 +1,7 @@
 import { getTimedUpgrades } from "../data/timedUpgradeData.js";
 import { getUpgrades } from "../data/upgradeData.js";
 import { shortAbbreviateNumber, getI18n } from "../utilities.js";
-import { getVhcls } from "../data/vhclData.js";
+import { DEFAULT_CAPACITY, getVhcls } from "../data/vhclData.js";
 import { checkLevel, getVhclPrices, syncTimedUpgrPrices, syncVehiclePrices, getTimedUpgrsPrices } from "../scr.js";
 import { checkLevelUpgr } from "./upgrades.js";
 import { checkTimedUpgrLevel } from "./timedUpgrades.js";
@@ -52,8 +52,7 @@ export function updateHtmlData() {
       if (index < vhcls.length) {
         vhclNames[index].innerHTML = vhcls[index].name;
         vhclPrices[index].innerHTML = shortAbbreviateNumber(vhcls[index].price) + " $";
-        vhclIncomeBoosts[index].innerHTML =
-          "+" + shortAbbreviateNumber(vhcls[index].incomemod) + "$/" + getI18n("time-seconds");
+        vhclIncomeBoosts[index].innerHTML = getI18n("vhcl-buy-menu-capacity") + (vhcls[index].capacity || DEFAULT_CAPACITY) + " " + getI18n("passenger-abbreviation");
         vhclClickMods[index].innerHTML = "+" + shortAbbreviateNumber(vhcls[index].clickmod) + "$/" + getI18n("click");
       }
     }
@@ -75,6 +74,7 @@ export function populateVhclData() {
   intercityBusCategory.innerHTML = "";
   trolleyBusCategory.innerHTML = "";
   tramCategory.innerHTML = "";
+  modernTramCategory.innerHTML = "";
 
   vhcls.forEach((vhcl) => {
     const row = `
@@ -88,9 +88,7 @@ export function populateVhclData() {
           </span>
         </div>
         <div class="vhcl-menu-citybus-income-boost">
-          <span class="vhclIncomeBoost">+${shortAbbreviateNumber(vhcl.incomemod, "vhcls")}$/${getI18n(
-      "time-seconds"
-    )}</span>
+          <span class="vhclIncomeBoost">${getI18n("vhcl-buy-menu-capacity")}${vhcl.capacity || DEFAULT_CAPACITY} ${getI18n("passenger-abbreviation")}</span>
         </div>
         <div class="vhcl-menu-citybus-clickmod-boost">
           <span class="vhclClickMod">+${shortAbbreviateNumber(vhcl.clickmod, "vhcls")}$/${getI18n("click")}</span>

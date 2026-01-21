@@ -622,7 +622,7 @@ function checkForFuelStations(cityData) {
     }
   }
 
-  console.log(shownNotifStation, shownNotifFuel, currentNoFuel, currentNoStation);
+  // console.log(shownNotifStation, shownNotifFuel, currentNoFuel, currentNoStation);
   // showing notifications
   if (currentNoFuel && !shownNotifFuel) {
     shownNotifFuel = true;
@@ -648,11 +648,11 @@ function add() {
   totalIncome = spawnPax();
   checkForFuelStations(currentCityData);
   
-  console.log("Total income after fuel check:", totalIncome);
+  // console.log("Total income after fuel check:", totalIncome);
 
   bal += (totalIncome / 10) * timedUpgrBoost * cityBoost;
-  console.log(`Income this tick: ${(totalIncome / 10 * timedUpgrBoost * cityBoost).toFixed(2)}`);
-  console.log(`Income per second: ${(totalIncome * timedUpgrBoost * cityBoost).toFixed(2)}`);
+  // console.log(`Income this tick: ${(totalIncome / 10 * timedUpgrBoost * cityBoost).toFixed(2)}`);
+  // console.log(`Income per second: ${(totalIncome * timedUpgrBoost * cityBoost).toFixed(2)}`);
   displayStats();
 }
 
@@ -662,7 +662,7 @@ function spawnPax() {
   const spawnRate = calculateSpawnRateBasedOnFares(farePerPax);
   const spawnRatePerTick = spawnRate;
   let moneyEarned = (spawnRatePerTick * farePerPax);
-  console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Fares paid: $${moneyEarned.toFixed(2)}`);
+  // console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Fares paid: $${moneyEarned.toFixed(2)}`);
   return moneyEarned;
 }
 
