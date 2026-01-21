@@ -163,7 +163,7 @@
   "notif-reward-title": "Nagroda!",
   "notif-reward-text": "Otrzymałeś $1 $ za osiągnięcie poziomu $2!",
   "notif-fuel-station": "Brakująca stacja paliwowa!",
-  "notif-fuel-station-text": "Zbuduj stację $1 w twoim aktualnym mieście, aby móc zarabiać z pojazdów napędzanych $1!",
+  "notif-fuel-station-text": "Zbuduj stację $1 w twoim aktualnym mieście, aby móc zarabiać z pojazdów napędzanych $1! Twoje zarobki zostaną zmniejszone o 50% dopóki tego nie zrobisz.",
   "stats-xp-needed": "$1 XP",
   "settings-menu-title": "🛠️ Ustawienia",
   "settings-menu-theme": "Motyw:",
@@ -404,5 +404,13 @@
   "achievement-income-master": "Mistrz zarobków",
   "achievement-billionaire-desc": "Miej 1 miliard $",
   "achievement-trillionaire": "Bilioner",
-  "achievement-trillionaire-desc": "Miej 1 bilion $"
+  "achievement-trillionaire-desc": "Miej 1 bilion $",
+  "btn-confirm": "Potwierdź",
+  "tooltip-budget": "Budżet",
+  "budget-global-fare": "Globalna cena biletu: ",
+  "budget-global-fare-placeholder": "Podaj cenę biletu",
+  "budgeting-menu-title": "💰 Budżet",
+  "budget-global-fare-desc": "Porada: Im wyższa cena biletu, tym mniej pasażerów będzie jeździło twoimi pojazdami.",
+  "budget-fare-invalid": "Podaj poprawną cenę (musi być wyższa niż 0)",
+  "budget-fare-changed": "Cena biletu zmieniona na $1 $"
 }
