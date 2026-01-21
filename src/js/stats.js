@@ -21,10 +21,6 @@ export function displayStats() {
   amountHeader.textContent = getI18n("vhcl-stats-amount");
   headerRow.appendChild(amountHeader);
 
-  const incomeHeader = document.createElement("th");
-  incomeHeader.textContent = getI18n("vhcl-stats-income");
-  headerRow.appendChild(incomeHeader);
-
   const clickmodHeader = document.createElement("th");
   clickmodHeader.textContent = getI18n("vhcl-stats-clickmod");
   headerRow.appendChild(clickmodHeader);
@@ -41,10 +37,6 @@ export function displayStats() {
     const amountCell = document.createElement("td");
     amountCell.textContent = abbreviateNumber(vhclAmounts[vhcl.code] || 0);
     row.appendChild(amountCell);
-
-    const incomeCell = document.createElement("td");
-    incomeCell.textContent = abbreviateNumber(vhclStats[vhcl.code]?.income || 0);
-    row.appendChild(incomeCell);
 
     const clickmodCell = document.createElement("td");
     clickmodCell.textContent = abbreviateNumber(vhclStats[vhcl.code]?.clickmod || 0);

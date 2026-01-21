@@ -463,7 +463,6 @@ function buyVhclRight() {
   const quantity = parseInt(inputEl.value);
 
   bal -= buyTotal;
-  const incomeIncrease = parseInt(busProp.incomemod) * quantity;
   const clickmodIncrease = parseInt(busProp.clickmod) * quantity;
 
   clickmod += clickmodIncrease;
@@ -474,7 +473,6 @@ function buyVhclRight() {
       clickmod: 0,
     };
   }
-  vhclStats[busProp.code].income += incomeIncrease;
   vhclStats[busProp.code].clickmod += clickmodIncrease;
 
   // increase price for each vehicle purchased
