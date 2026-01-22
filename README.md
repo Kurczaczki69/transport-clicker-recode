@@ -51,7 +51,7 @@ After contributing make a pr and i will most likely accept it if there arent any
 ❌ Hiring workers\
 ❌ Extensive route system\
 ✅ Achievements\
-❌ Better UI with different images, pixel art or something like that 
+✅ Better UI with different images, pixel art or something like that 
 
 ## PLANNED FEATURES FOR THE ALPHA PHASE
 ### The alpha phase is finished yayyayayayay! 🎉
