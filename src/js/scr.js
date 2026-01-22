@@ -99,6 +99,7 @@ let lastSaveTime = 0;
 let userCityData = {};
 
 let totalCapacity = 0;
+let totalPax = 0;
 
 const GAME_VERSION = "b1.4.0";
 const isGamePage = window.location.pathname.endsWith("game.html");
@@ -654,14 +655,33 @@ function add() {
   displayStats();
 }
 
+let lastDespawnTime = Date.now();
+
 function spawnPax() {
-  if (!isGamePage) return;
+  if (!isGamePage) return 0;
   const farePerPax = getFarePerPax();
   const spawnRate = calculateSpawnRateBasedOnFares(farePerPax);
-  const spawnRatePerTick = spawnRate;
-  let moneyEarned = (spawnRatePerTick * farePerPax);
-  // console.log(`Spawned ${spawnRatePerTick.toFixed(2)} pax, Fares paid: $${moneyEarned.toFixed(2)}`);
+  const spawnRatePerTick = Math.floor(spawnRate);
+  const maxCapacity = calculateTotalCapacity();
+
+  if (totalPax > maxCapacity) {
+    totalPax = maxCapacity;
+  }
+  
+  totalPax += spawnRatePerTick;
+  const moneyEarned = spawnRatePerTick * farePerPax;
+  
+  console.log(`Spawned ${spawnRatePerTick} pax, Fares paid: $${moneyEarned.toFixed(2)}, Total pax: ${totalPax}/${calculateTotalCapacity()}`);
+  despawnPax(spawnRatePerTick * 1.75);
   return moneyEarned;
+}
+
+function despawnPax(paxToDespawn) {
+  if (!isGamePage) return;
+  if (Date.now() - lastDespawnTime < 500) return; // despawn every half a second
+  totalPax -= paxToDespawn;
+  console.log(`Despawned ${paxToDespawn} pax. Remaining pax: ${totalPax}`);
+  lastDespawnTime = Date.now();
 }
 
 function startGameLoop() {

@@ -21,6 +21,11 @@
   transition-duration: 0.2s;
 }
 
+.vars-item:hover .tooltip {
+  opacity: 0.9;
+  transition-duration: 0.2s;
+}
+
 @media screen and (hover: none) {
   .nav-item:hover .tooltip {
     opacity: 0;

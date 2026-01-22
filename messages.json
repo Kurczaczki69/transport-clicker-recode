@@ -80,6 +80,7 @@
   "tooltip-account": "Account",
   "tooltip-settings": "Settings",
   "tooltip-achievements": "Achievements",
+  "tooltip-income-long": "Income is calculated based on the total capacity of all your vehicles, the global ticket price and different boosts and events.",
   "error": "error",
   "code-menu-input-placeholder": "Enter code",
   "code-menu-title": "💻 Codes",
