@@ -169,6 +169,7 @@
   "stats-level": "Level:",
   "stats-xp": "XP:",
   "stats-to-next-level": "XP needed to level up:",
+  "stats-total-capacity": "Total capacity of all vehicles:",
   "notif-reward-title": "Reward!",
   "notif-reward-text": "You received $1 $ for reaching level $2!",
   "notif-fuel-station": "Missing fuel station!",

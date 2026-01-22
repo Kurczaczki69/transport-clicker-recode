@@ -671,7 +671,7 @@ function spawnPax() {
   totalPax += spawnRatePerTick;
   const moneyEarned = spawnRatePerTick * farePerPax;
   
-  console.log(`Spawned ${spawnRatePerTick} pax, Fares paid: $${moneyEarned.toFixed(2)}, Total pax: ${totalPax}/${calculateTotalCapacity()}`);
+  // console.log(`Spawned ${spawnRatePerTick} pax, Fares paid: $${moneyEarned.toFixed(2)}, Total pax: ${totalPax}/${calculateTotalCapacity()}`);
   despawnPax(spawnRatePerTick * 1.75);
   return moneyEarned;
 }
@@ -680,7 +680,7 @@ function despawnPax(paxToDespawn) {
   if (!isGamePage) return;
   if (Date.now() - lastDespawnTime < 500) return; // despawn every half a second
   totalPax -= paxToDespawn;
-  console.log(`Despawned ${paxToDespawn} pax. Remaining pax: ${totalPax}`);
+  // console.log(`Despawned ${paxToDespawn} pax. Remaining pax: ${totalPax}`);
   lastDespawnTime = Date.now();
 }
 

@@ -1,4 +1,5 @@
 import { getVhcls } from "./data/vhclData.js";
+import { calculateTotalCapacity } from "./paxUtils.js";
 import { getVhclAmounts, getVhclStats } from "./scr.js";
 import { abbreviateNumber, getI18n } from "./utilities.js";
 
@@ -8,8 +9,12 @@ export function displayStats() {
   const vhcls = getVhcls();
   const vhclAmounts = getVhclAmounts();
   const vhclStats = getVhclStats();
+  const totalCapacity = calculateTotalCapacity();
+  const totalCapacityValue = document.querySelector("#total-capacity-value");
 
   statsTable.innerHTML = "";
+
+  totalCapacityValue.textContent = abbreviateNumber(totalCapacity);
 
   const headerRow = document.createElement("tr");
 

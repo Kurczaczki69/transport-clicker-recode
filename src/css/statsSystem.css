@@ -73,6 +73,12 @@
   font-size: 1rem;
 }
 
+#total-capacity {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1%;
+}
+
 #vhcl-stats-wrapper {
   text-align: center;
   position: absolute;
