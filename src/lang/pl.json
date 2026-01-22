@@ -412,5 +412,9 @@
   "budgeting-menu-title": "💰 Budżet",
   "budget-global-fare-desc": "Porada: Im wyższa cena biletu, tym mniej pasażerów będzie jeździło twoimi pojazdami.",
   "budget-fare-invalid": "Podaj poprawną cenę (musi być wyższa niż 0)",
-  "budget-fare-changed": "Cena biletu zmieniona na $1 $"
+  "budget-fare-changed": "Cena biletu zmieniona na $1 $",
+  "passenger-abbreviation": "pas.",
+  "vhcl-buy-menu-capacity": "Pojemność: ",
+  "tooltip-income-long": "Dochód jest obliczany na podstawie łącznej pojemności wszystkich twoich pojazdów, globalnej ceny biletu oraz różnych boostów i eventów.",
+  "stats-total-capacity": "Łączna pojemność wszystkich pojazdów:"
 }
