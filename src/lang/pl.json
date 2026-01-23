@@ -71,7 +71,6 @@
   "tooltip-save": "Zapisz grę",
   "tooltip-changelog": "Lista zmian",
   "tooltip-stats": "Statystyki",
-  "tooltip-account": "Konto",
   "tooltip-settings": "Ustawienia",
   "error": "błąd",
   "code-menu-input-placeholder": "Podaj Kod",
@@ -97,7 +96,6 @@
   "delete-acc-placeholder": "Podaj swoje hasło",
   "delete-acc-requires-recent-login": "Proszę kliknąć przycisk ponownie",
   "delete-acc-success": "Konto usunięte pomyślnie",
-  "acc-menu-welcome": "Witaj, ",
   "acc-menu-email": "E-mail: ",
   "acc-menu-change-pass": "Zmień hasło",
   "acc-menu-logout": "Wyloguj się",
@@ -416,5 +414,9 @@
   "passenger-abbreviation": "pas.",
   "vhcl-buy-menu-capacity": "Pojemność: ",
   "tooltip-income-long": "Dochód jest obliczany na podstawie łącznej pojemności wszystkich twoich pojazdów, globalnej ceny biletu oraz różnych boostów i eventów.",
-  "stats-total-capacity": "Łączna pojemność wszystkich pojazdów:"
+  "stats-total-capacity": "Łączna pojemność wszystkich pojazdów:",
+  "acc-menu-err-not-logged-in": "Nie jesteś zalogowany/a!",
+  "settings-menu-tab-general": "Ogólne",
+  "settings-menu-tab-account": "Konto",
+  "settings-help-translate": "Pomóż nam przetłumaczyć grę! Kliknij $1tutaj$2 aby dowiedzieć się więcej."
 }
