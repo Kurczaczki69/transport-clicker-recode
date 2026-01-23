@@ -51,75 +51,6 @@
     <div class="tints" id="window-tint" style="z-index: 799"></div>
     <div class="tints" id="alert-tint" style="z-index: 805"></div>
 
-    <!-- account window elements -->
-
-    <section id="accountbox">
-      <div class="closegui" id="acc-menu-close-btn">
-        <span class="tabler--x"></span>
-      </div>
-
-      <div id="accMenuWrapper">
-        <h2 id="accWelcome"><span data-lang="acc-menu-welcome"></span><span id="accName"></span> 👋</h2>
-        <div id="email-wrap"><b data-lang="acc-menu-email"></b><span id="accEmail"></span></div>
-        <div id="acc-btn-wrapper">
-          <button id="change-pass-btn" class="btns-acc-window btns">
-            <span data-lang="acc-menu-change-pass"></span>
-          </button>
-          <button id="logout-btn" class="btns-acc-window btns"><span data-lang="acc-menu-logout"></span></button>
-          <button id="delete-account-btn" class="btns-acc-window btns"><span data-lang="btn-delete-acc"></span></button>
-        </div>
-      </div>
-
-      <div id="areYouSureWrapper">
-        <h2 id="are-you-sure-title" data-lang="delete-acc-title"></h2>
-        <h4 id="are-you-sure-desc" data-lang="delete-acc-desc"></h4>
-        <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
-
-        <div id="input-msg"></div>
-        <input
-          type="password"
-          placeholder=""
-          data-lang-placeholder="delete-acc-placeholder"
-          id="are-you-sure-pass-input"
-          class="inputs"
-        />
-        <div id="are-you-sure-btn-wrapper">
-          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns btns" data-lang="btn-cancel"></button>
-          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns btns" data-lang="btn-delete-acc"></button>
-        </div>
-      </div>
-
-      <div id="changePassWrapper">
-        <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
-        <div id="input-msg-change-pass"></div>
-        <div id="change-pass-input-wrapper">
-          <input
-            type="password"
-            placeholder=""
-            data-lang-placeholder="change-pass-old-placeholder"
-            id="change-pass-old-input"
-            class="inputs"
-          />
-          <input
-            type="password"
-            placeholder=""
-            data-lang-placeholder="change-pass-new-placeholder"
-            id="change-pass-new-input"
-            class="inputs"
-          />
-          <div id="dont-remember-pass">
-            <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
-          </div>
-        </div>
-        <div id="change-pass-btn-wrapper-wrapper">
-          <div id="change-pass-btn-wrapper">
-            <button id="change-pass-cancel-btn" class="change-pass-btns btns" data-lang="btn-cancel"></button>
-            <button id="change-pass-confirm-btn" class="change-pass-btns btns" data-lang="change-pass"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- stats window elements -->
 
     <section id="stats-window">
@@ -146,7 +77,10 @@
       </div>
 
       <div id="vhcl-stats-wrapper">
-        <div id="total-capacity"><span data-lang="stats-total-capacity"></span> <span id="total-capacity-value" data-lang="error"></span> <span data-lang="passenger-abbreviation"></span></div>
+        <div id="total-capacity">
+          <span data-lang="stats-total-capacity"></span> <span id="total-capacity-value" data-lang="error"></span>
+          <span data-lang="passenger-abbreviation"></span>
+        </div>
         <div id="vhcl-stats-title-wrapper"><div id="vhcl-stats-title" data-lang="vhcl-stats-title"></div></div>
         <div id="vhcl-stats">
           <table id="vhcl-stats-table"></table>
@@ -226,10 +160,6 @@
             <div class="nav-item" id="nav-item-open-stats">
               <span class="tabler--chart-bar"></span>
               <span class="tooltip" data-lang="tooltip-stats"></span>
-            </div>
-            <div class="nav-item" id="nav-item-account-page">
-              <span class="tabler--lock-open"></span>
-              <span class="tooltip" data-lang="tooltip-account"></span>
             </div>
             <div class="nav-item" id="nav-item-settings-page">
               <span class="tabler--settings"></span>
@@ -420,65 +350,143 @@
       </div>
 
       <h2 id="settings-menu-title" data-lang="settings-menu-title"></h2>
-      <div id="settings-theme-wrapper">
-        <span data-lang="settings-menu-theme" id="settings-menu-theme-text"></span>
-        <div id="settings-theme-items"></div>
+      <div id="settings-tabs-wrap">
+        <div class="settings-tab-item settings-tab-active" id="settings-general-tab-btn">
+          <span data-lang="settings-menu-tab-general"></span>
+        </div>
+        <div class="settings-tab-item" id="settings-account-tab-btn">
+          <span data-lang="settings-menu-tab-account"></span>
+        </div>
       </div>
 
-      <div id="lang-options-wrapper">
-        <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
-        <select name="langs" id="lang-dropdown" class="dropdowns">
-          <option value="en">English</option>
-          <option value="pl">Polski</option>
-          <option value="ru">Русский</option>
-          <option value="de">Deutsch</option>
-          <option value="fr">Français</option>
-        </select>
-      </div>
-      <div id="other-options-wrapper">
-        <div class="switches-wrapper">
-          <div id="sound-switch-wrapper" class="switch-wrappers">
-            <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
-            <div id="switch-wrapper">
-              <!-- From Uiverse.io by gharsh11032000 -->
-              <label class="switch">
-                <input type="checkbox" id="sound-switch" />
-                <span class="slider"></span>
-              </label>
-            </div>
+      <div id="settings-general-tab">
+        <div id="settings-theme-wrapper">
+          <span data-lang="settings-menu-theme" id="settings-menu-theme-text"></span>
+          <div id="settings-theme-items"></div>
+        </div>
+
+        <div id="settings-lang-wrap">
+          <p id="help-translate-text"></p>
+          <div id="lang-options-wrapper">
+            <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
+            <select name="langs" id="lang-dropdown" class="dropdowns">
+              <option value="en">English</option>
+              <option value="pl">Polski</option>
+              <option value="ru">Русский</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+            </select>
           </div>
-          <div id="low-perf-switch-wrapper" class="switch-wrappers">
-            <p id="low-perf-title-wrap" data-lang="settings-menu-low-perf"></p>
-            <div id="switch-wrapper">
-              <!-- From Uiverse.io by gharsh11032000 -->
-              <label class="switch">
-                <input type="checkbox" id="low-perf-switch" />
-                <span class="slider"></span>
-              </label>
+        </div>
+        <div id="other-options-wrapper">
+          <div class="switches-wrapper">
+            <div id="sound-switch-wrapper" class="switch-wrappers">
+              <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
+              <div id="switch-wrapper">
+                <!-- From Uiverse.io by gharsh11032000 -->
+                <label class="switch">
+                  <input type="checkbox" id="sound-switch" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div id="low-perf-switch-wrapper" class="switch-wrappers">
+              <p id="low-perf-title-wrap" data-lang="settings-menu-low-perf"></p>
+              <div id="switch-wrapper">
+                <!-- From Uiverse.io by gharsh11032000 -->
+                <label class="switch">
+                  <input type="checkbox" id="low-perf-switch" />
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
+        <!-- company name -->
+        <div class="company-name-wrapper">
+          <p id="company-name" data-lang="settings-menu-company-name"></p>
+          <form action="javascript:void(0)" class="company-name-form">
+            <div id="company-name-input-wrapper">
+              <input
+                type="text"
+                id="company-name-input"
+                placeholder=""
+                class="inputs"
+                data-lang-placeholder="settings-menu-company-name-placeholder"
+              />
+            </div>
+            <div id="company-name-btn-wrapper">
+              <button id="company-name-confirm-btn" class="btns" data-lang="btn-save"></button>
+            </div>
+          </form>
+          <p id="company-name-current">
+            <span data-lang="settings-menu-company-name-current"></span> <span id="company-name-current-disp"></span>
+          </p>
+        </div>
       </div>
-      <!-- company name -->
-      <div class="company-name-wrapper">
-        <p id="company-name" data-lang="settings-menu-company-name"></p>
-        <form action="javascript:void(0)" class="company-name-form">
-          <div id="company-name-input-wrapper">
+
+      <div id="settings-account-tab">
+        <div id="accMenuWrapper">
+          <div id="email-wrap"><b data-lang="acc-menu-email"></b><span id="accEmail"></span></div>
+          <div id="acc-btn-wrapper">
+            <button id="change-pass-btn" class="btns-acc-window btns">
+              <span data-lang="acc-menu-change-pass"></span>
+            </button>
+            <button id="logout-btn" class="btns-acc-window btns"><span data-lang="acc-menu-logout"></span></button>
+            <button id="delete-account-btn" class="btns-acc-window btns">
+              <span data-lang="btn-delete-acc"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="areYouSureWrapper">
+          <h2 id="are-you-sure-title" data-lang="delete-acc-title"></h2>
+          <h4 id="are-you-sure-desc" data-lang="delete-acc-desc"></h4>
+          <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
+
+          <div id="input-msg"></div>
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="delete-acc-placeholder"
+            id="are-you-sure-pass-input"
+            class="inputs"
+          />
+          <div id="are-you-sure-btn-wrapper">
+            <button id="are-you-sure-cancel-btn" class="are-you-sure-btns btns" data-lang="btn-cancel"></button>
+            <button id="are-you-sure-confirm-btn" class="are-you-sure-btns btns" data-lang="btn-delete-acc"></button>
+          </div>
+        </div>
+
+        <div id="changePassWrapper">
+          <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
+          <div id="input-msg-change-pass"></div>
+          <div id="change-pass-input-wrapper">
             <input
-              type="text"
-              id="company-name-input"
+              type="password"
               placeholder=""
+              data-lang-placeholder="change-pass-old-placeholder"
+              id="change-pass-old-input"
               class="inputs"
-              data-lang-placeholder="settings-menu-company-name-placeholder"
             />
+            <input
+              type="password"
+              placeholder=""
+              data-lang-placeholder="change-pass-new-placeholder"
+              id="change-pass-new-input"
+              class="inputs"
+            />
+            <div id="dont-remember-pass">
+              <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
+            </div>
           </div>
-          <div id="company-name-btn-wrapper">
-            <button id="company-name-confirm-btn" class="btns" data-lang="btn-save"></button>
+          <div id="change-pass-btn-wrapper-wrapper">
+            <div id="change-pass-btn-wrapper">
+              <button id="change-pass-cancel-btn" class="change-pass-btns btns" data-lang="btn-cancel"></button>
+              <button id="change-pass-confirm-btn" class="change-pass-btns btns" data-lang="change-pass"></button>
+            </div>
           </div>
-        </form>
-        <p id="company-name-current">
-          <span data-lang="settings-menu-company-name-current"></span> <span id="company-name-current-disp"></span>
-        </p>
+        </div>
       </div>
     </section>
 

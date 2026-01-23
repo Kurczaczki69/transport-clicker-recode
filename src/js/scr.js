@@ -59,7 +59,6 @@ import "./data/upgradeData.js";
 import "./data/achievementsData.js";
 import "./achievements/achievementSystem.js";
 import "./achievements/achievementUI.js";
-import "./accountSystem/accountWindow.js";
 import "./accountSystem/changePassword.js";
 import "./accountSystem/deleteAccount.js";
 import "./accountSystem/firebaseAuth.js";

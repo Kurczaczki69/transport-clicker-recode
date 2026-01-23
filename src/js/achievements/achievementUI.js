@@ -25,6 +25,7 @@ if (isGamePage) {
 }
 
 export function populateAchievementGrid() { 
+  if (!isGamePage) return;
   const achGrid = document.querySelector("#achievements-grid");
   const achievements = getAllAchievements();
 

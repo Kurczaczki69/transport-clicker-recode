@@ -10,7 +10,6 @@ import "../css/tooltips.css";
 import "../css/verNumberDisplay.css";
 import "../css/upgrMenuStyles.css";
 import "../css/codesStyles.css";
-import "../css/accountSystem/accountMenuStyles.css";
 import "../css/vehicleMenuStyles.css";
 import "../css/alertWindow.css";
 import "../css/creditsMenuStyles.css";

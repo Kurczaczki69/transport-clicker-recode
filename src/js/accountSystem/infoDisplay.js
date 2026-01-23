@@ -2,7 +2,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseManager.js";
 import { playRandomMouseClick } from "../sounds.js";
-import { getI18n } from "../utilities.js";
+import { getI18n, showMsg } from "../utilities.js";
 
 const isGamePage = window.location.pathname.includes("game.html");
 
@@ -17,8 +17,7 @@ if (isGamePage) {
         .then((docSnap) => {
           if (docSnap.exists()) {
             const userData = docSnap.data();
-            document.getElementById("accName").innerText = userData.username;
-            document.getElementById("accEmail").innerText = userData.email;
+            document.querySelector("#accEmail").innerText = userData.email;
           } else {
             console.log("no document found matching id");
           }
@@ -27,13 +26,7 @@ if (isGamePage) {
           console.log("error getting document", error);
         });
     } else {
-      const accWindow = document.getElementById("accountbox");
-      accWindow.innerHTML = getI18n(
-        "acc-not-logged-in",
-        "<h2 id='accWelcome'>",
-        "</h2><br><div id='acc-btn-wrapper'><a href='index.html'><button id='gotologin-btn' class='btns-acc-window'>",
-        "</button></a></div>"
-      );
+      alert(getI18n("acc-menu-err-not-logged-in"));
       console.log("User Id not found in local storage");
       window.location.href = "index.html";
     }

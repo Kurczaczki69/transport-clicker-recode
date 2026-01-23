@@ -1,6 +1,6 @@
 import { themes } from "./data/themeData.js";
 import { playRandomMouseClick } from "./sounds.js";
-import { animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
+import { animateAppear, animateDisappear, animateWindowClose, animateWindowOpen, getI18n } from "./utilities.js";
 import { displayCompanyName } from "./scr.js";
 import defaultBg from "../img/bg/bg-1.png";
 import defaultBus from "../img/other/bus-default.png";
@@ -14,6 +14,8 @@ const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {
   openWindowBtn.addEventListener("click", () => {
+    const helpTranslateText = document.querySelector("#help-translate-text");
+    helpTranslateText.innerHTML = getI18n("settings-help-translate", '<a href="https://hosted.weblate.org/projects/transport-clicker/" target="_blank" class="link">', "</a>");
     populateThemeOptions();
     playRandomMouseClick();
     displayCompanyName();
@@ -26,6 +28,32 @@ if (isGamePage) {
     animateWindowClose(settingsWindow, true, tint);
   });
 }
+
+// switching tabs
+const generalTab = document.querySelector("#settings-general-tab");
+const accountTab = document.querySelector("#settings-account-tab");
+const generalTabBtn = document.querySelector("#settings-general-tab-btn");
+const accountTabBtn = document.querySelector("#settings-account-tab-btn");
+
+if (isGamePage) {
+  generalTabBtn.addEventListener("click", () => {
+    playRandomMouseClick();
+    animateDisappear(accountTab);
+    animateAppear(generalTab, "block");
+    generalTabBtn.classList.add("settings-tab-active");
+    accountTabBtn.classList.remove("settings-tab-active");
+  });
+
+  accountTabBtn.addEventListener("click", () => {
+    playRandomMouseClick();
+    animateDisappear(generalTab);
+    animateAppear(accountTab, "block");
+    generalTabBtn.classList.remove("settings-tab-active");
+    accountTabBtn.classList.add("settings-tab-active");
+  });
+}
+
+// themes
 
 const clicker = document.querySelector("#clicker-img");
 function updateColorScheme(colors) {
