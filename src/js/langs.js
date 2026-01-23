@@ -14,6 +14,7 @@ import { initializeAchievements } from "./data/achievementsData.js";
 const banana = new Banana();
 
 let defaultTranslations = {};
+const isGamePage = window.location.pathname.includes("game.html");
 
 // load the fallback language (English) first
 fetch("dist/lang/en.json")
@@ -38,6 +39,14 @@ function updateLang(lang) {
       populateThemeOptions();
       populateAchievementGrid();
       syncVehiclePrices();
+      if (isGamePage) {
+        const helpTranslateText = document.querySelector("#help-translate-text");
+        helpTranslateText.innerHTML = getI18n(
+          "settings-help-translate",
+          '<a href="https://hosted.weblate.org/projects/transport-clicker/" target="_blank" class="link">',
+          "</a>",
+        );
+      }
       const currentPage = document.body.getAttribute("data-page");
       document.documentElement.setAttribute("lang", lang);
       setPageTitle(currentPage);
