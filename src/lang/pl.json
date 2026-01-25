@@ -416,5 +416,7 @@
   "acc-menu-err-not-logged-in": "Nie jesteś zalogowany/a!",
   "settings-menu-tab-general": "Ogólne",
   "settings-menu-tab-account": "Konto",
-  "settings-help-translate": "Pomóż nam przetłumaczyć grę! Kliknij $1tutaj$2 aby dowiedzieć się więcej."
+  "settings-help-translate": "Pomóż nam przetłumaczyć grę! Kliknij $1tutaj$2 aby dowiedzieć się więcej.",
+  "achievement-quadrillionaire": "Trylioner",
+  "achievement-quadrillionaire-desc": "Miej 1 trylion $"
 }
