@@ -147,12 +147,6 @@ function initializeAchievements() {
       check: (game) => game.getIncome() >= 1000,
     },
     {
-      id: "big_spender",
-      name: getI18n("achievement-big-spender"),
-      desc: getI18n("achievement-big-spender-desc"),
-      check: (game) => game.getBal() <= 0,
-    },
-    {
       id: "big_earnings",
       name: getI18n("achievement-big-earnings"),
       desc: getI18n("achievement-big-earnings-desc"),
@@ -193,6 +187,12 @@ function initializeAchievements() {
       name: getI18n("achievement-trillionaire"),
       desc: getI18n("achievement-trillionaire-desc"),
       check: (game) => game.getBal() >= 1000000000000,
+    },
+    {
+      id: "quadrillionaire",
+      name: getI18n("achievement-quadrillionaire"),
+      desc: getI18n("achievement-quadrillionaire-desc"),
+      check: (game) => game.getBal() >= 1000000000000000,
     },
   ];
 

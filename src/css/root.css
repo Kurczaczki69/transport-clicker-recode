@@ -3,12 +3,13 @@
   --colorscheme2: #044a42;
   --colorscheme3: #3a9188;
   --colorscheme4: #b8e1dd;
+  --colorscheme5: #66ada6;
   --bgcolor: var(--colorscheme1);
   --textcolor: var(--colorscheme4);
-  --textcolor2: var(--colorscheme3);
+  --textcolor2: var(--colorscheme5);
   --border5: solid 1.5px var(--colorscheme4);
   --border2: solid 1px var(--colorscheme4);
-  --linkcolor: var(--colorscheme3);
+  --linkcolor: var(--textcolor2);
   --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
   --boxshadow2: 0 4px 6px rgba(0, 0, 0, 0.1);
   --mainfont: "Geologica", sans-serif;

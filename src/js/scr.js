@@ -667,10 +667,11 @@ function spawnPax() {
     totalPax = maxCapacity;
   }
   
+  // total pax number is unused for now, but it will be useful later
   totalPax += spawnRatePerTick;
   const moneyEarned = spawnRatePerTick * farePerPax;
   
-  // console.log(`Spawned ${spawnRatePerTick} pax, Fares paid: $${moneyEarned.toFixed(2)}, Total pax: ${totalPax}/${calculateTotalCapacity()}`);
+  // console.log(`Spawned ${abbreviateNumber(spawnRatePerTick)} pax, Fares paid: $${abbreviateNumber(moneyEarned.toFixed(2))}, Total pax: ${abbreviateNumber(totalPax)}/${abbreviateNumber(calculateTotalCapacity())}`);
   despawnPax(spawnRatePerTick * 1.75);
   return moneyEarned;
 }

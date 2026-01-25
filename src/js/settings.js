@@ -65,6 +65,7 @@ function updateColorScheme(colors) {
   root.style.setProperty("--colorscheme2", colors.color2 || "#044a42");
   root.style.setProperty("--colorscheme3", colors.color3 || "#3a9188");
   root.style.setProperty("--colorscheme4", colors.color4 || "#b8e1dd");
+  root.style.setProperty("--colorscheme5", colors.color5 || "#66ada6");
 
   body.style.backgroundImage = `url(${colors.bgPath || defaultBg})`;
 
