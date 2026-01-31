@@ -502,6 +502,39 @@ export function initializeVehicles() {
       fuelType: "electric",
       capacity: 300,
     },
+    {
+      code: "alstomcitadisx05",
+      name: "Alstom Citadis X05",
+      clickmod: 285,
+      price: 23000000,
+      requiredLevel: 180,
+      maxLevel: 1650,
+      category: "moderntram",
+      fuelType: "electric",
+      capacity: 300,
+    },
+    {
+      code: "siemensavenio",
+      name: "Siemens Avenio",
+      clickmod: 290,
+      price: 25000000,
+      requiredLevel: 185,
+      maxLevel: 1700,
+      category: "moderntram",
+      fuelType: "electric",
+      capacity: 300,
+    },
+    {
+      code: "skodaforcitysmart38t", // fun fact this is the longest tram currently in production (60m long) :)
+      name: "Škoda ForCity Smart 38T",
+      clickmod: 300,
+      price: 20800000,
+      requiredLevel: 190,
+      maxLevel: 1750,
+      category: "moderntram",
+      fuelType: "electric",
+      capacity: 368,
+    },
   ];
 }
 
