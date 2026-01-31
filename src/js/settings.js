@@ -5,6 +5,8 @@ import { displayCompanyName } from "./scr.js";
 import defaultBg from "../img/bg/bg-1.png";
 import defaultBus from "../img/other/bus-default.png";
 
+//TODO: add a switch to disable/enable debug logging in settings
+
 const settingsWindow = document.querySelector("#settings-menu");
 const tint = document.querySelector("#window-tint");
 const openWindowBtn = document.querySelector("#nav-item-settings-page");

@@ -33,11 +33,14 @@ if (isGamePage) {
 // all the math etc.
 
 function calculateXP(totalCapacity, farePerPax, clickMod) {
-  const xpFromCapacity = totalCapacity;
+  const xpFromCapacity = totalCapacity * 3;
   
-  const xpFromFare = farePerPax * 5;
+  const xpFromFare = farePerPax * 5000;
   
   const xpFromClickMod = clickMod * 6;
+  // console.log("XP from Capacity: " + xpFromCapacity);
+  // console.log("XP from Fare: " + xpFromFare);
+  // console.log("XP from Click Mod: " + xpFromClickMod);
   
   return xpFromCapacity + xpFromFare + xpFromClickMod;
 }
@@ -53,7 +56,7 @@ function calculateLevelProgress(xp) {
     level++;
     xp -= xpRequirement;
     previousXpRequirement = xpRequirement;
-    xpRequirement = Math.floor(xpRequirement * 1.17); // increase by 17%
+    xpRequirement = Math.floor(xpRequirement * 1.16); // increase by 16%
   }
 
   if (previousLevel == 0 || previousLevel == null || previousLevel == undefined) {
