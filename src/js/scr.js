@@ -679,6 +679,10 @@ function spawnPax() {
 function despawnPax(paxToDespawn) {
   if (!isGamePage) return;
   if (Date.now() - lastDespawnTime < 500) return; // despawn every half a second
+  if (totalPax <= 0) {
+    totalPax = 0;
+    return;
+  }
   totalPax -= paxToDespawn;
   // console.log(`Despawned ${paxToDespawn} pax. Remaining pax: ${totalPax}`);
   lastDespawnTime = Date.now();
