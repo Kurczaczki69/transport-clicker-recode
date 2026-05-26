@@ -100,7 +100,7 @@ let userCityData = {};
 let totalCapacity = 0;
 let totalPax = 0;
 
-const GAME_VERSION = "b1.4.0";
+const GAME_VERSION = "b1.4.1";
 const isGamePage = window.location.pathname.endsWith("game.html");
 
 if (isGamePage) {

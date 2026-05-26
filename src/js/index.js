@@ -21,3 +21,4 @@ import "../css/achievementsStyles.css";
 import "../css/accountSystem/loginStyles.css";
 
 import "./scr.js";
+import "./testing/notificationTester.js";

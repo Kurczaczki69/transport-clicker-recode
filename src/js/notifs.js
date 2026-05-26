@@ -6,7 +6,7 @@ export function getNotifCount() {
   return notifCount;
 }
 
-export function showNotif(title, smalltext, type, sound) {
+export function showNotif(title, smalltext, type, sound, customId) {
   // creating notification text elements
   const notifTitle = document.createElement("span");
   const notifSmallText = document.createElement("span");
@@ -26,11 +26,14 @@ export function showNotif(title, smalltext, type, sound) {
   const notif = document.createElement("div");
   notif.classList.add("notif");
   notif.classList.add(type);
-  notif.id = "notif" + notifCount;
-  notifCount++;
+  const notifId = customId || notifCount;
+  notif.id = "notif" + notifId;
   if (type === "notif-timed-upgr") {
-    notifSmallText.id = "notif-small-text" + notifCount;
-    notifTitle.id = "notif-title" + notifCount;
+    notifSmallText.id = "notif-small-text" + notifId;
+    notifTitle.id = "notif-title" + notifId;
+  }
+  if (!customId) {
+    notifCount++;
   }
 
   // appending everything together
@@ -46,14 +49,15 @@ export function showNotif(title, smalltext, type, sound) {
   const notifDisplay = document.querySelector("#notif-display");
   notifDisplay.style.display = "block";
 
-  const notifCloseBtns = document.querySelectorAll(".notif-close-btn");
-  notifCloseBtns.forEach((btn) => {
-    const parentId = btn.parentElement?.id;
-    btn.addEventListener("click", () => {
-      playRandomMouseClick();
-      if (parentId) removeNotif(parentId);
-    });
-  });
+  if (type === "notif-reward" || type === "notif-fuel" || type === "notif-achievement") {
+    const notifCloseBtn = notif.querySelector(".notif-close-btn");
+    if (notifCloseBtn) {
+      notifCloseBtn.addEventListener("click", () => {
+        playRandomMouseClick();
+        removeNotif(notif.id);
+      });
+    }
+  }
 
   if (sound) {
     playAchievementSound();
@@ -64,7 +68,6 @@ export function removeNotif(id) {
   const el = document.getElementById(id);
   if (!el) return;
   el.remove();
-  notifCount--;
   if (document.querySelectorAll(".notif").length === 0) {
     const notifDisplay = document.querySelector("#notif-display");
     notifDisplay.style.display = "none";

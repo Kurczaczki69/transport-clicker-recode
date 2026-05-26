@@ -14,11 +14,7 @@ export function startTimedUpgrades() {
   let activeUpgrs = getActiveTimedUpgrades();
   activeUpgrs = activeUpgrs.filter((upgr) => upgr.endTime > Date.now());
   activeUpgrs.forEach((upgr) => {
-    showNotif(upgr.name, getI18n("timed-upgr-notif", formatTime(upgr.endTime - Date.now())), "notif-timed-upgr");
-    const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
-    notifSmallText.id = "notif-small-text" + upgr.id;
-    const notifTitle = document.querySelector(`#notif-title${getNotifCount()}`);
-    notifTitle.id = "notif-title" + upgr.id;
+    showNotif(upgr.name, getI18n("timed-upgr-notif", formatTime(upgr.endTime - Date.now())), "notif-timed-upgr", false, upgr.id);
     runUpgrade(upgr);
   });
   setActiveTimedUpgrades(activeUpgrs);
@@ -62,12 +58,10 @@ function buyTimedUpgrade(upgrId) {
         showNotif(
           upgradeToBuy.name,
           getI18n("timed-upgr-notif", formatTime(upgradeToBuy.duration)),
-          "notif-timed-upgr"
+          "notif-timed-upgr",
+          false,
+          upgradeToBuy.id
         );
-        const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
-        notifSmallText.id = "notif-small-text" + upgradeToBuy.id;
-        const notifTitle = document.querySelector(`#notif-title${getNotifCount()}`);
-        notifTitle.id = "notif-title" + upgradeToBuy.id;
         runUpgrade(newActiveUpgr);
       } else {
         animateWindowClose(confirmationDialog, false);
@@ -205,9 +199,7 @@ export function grantUpgrade(upgrId) {
   activeUpgrs.push(newActiveUpgr);
   setActiveTimedUpgrades(activeUpgrs);
 
-  showNotif(upgradeToGrant.name, getI18n("timed-upgr-notif", formatTime(upgradeToGrant.duration)), "notif-timed-upgr");
-  const notifSmallText = document.querySelector(`#notif-small-text${getNotifCount()}`);
-  notifSmallText.id = "notif-small-text" + upgradeToGrant.id;
+  showNotif(upgradeToGrant.name, getI18n("timed-upgr-notif", formatTime(upgradeToGrant.duration)), "notif-timed-upgr", false, upgradeToGrant.id);
   runUpgrade(newActiveUpgr);
 }
 
