@@ -1,0 +1,387 @@
+#buy-vehicle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--colorscheme2);
+  width: 70vw;
+  height: 70vh;
+  border: var(--border5);
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  z-index: 800;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+#buy-menu {
+  background-color: var(--colorscheme2);
+  border: var(--border5);
+  border-radius: 20px;
+  width: 30vw;
+  height: 35vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  padding: 10px;
+  display: none;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0.5rem 2rem;
+}
+
+#small-input {
+  width: 50%;
+  height: min(3vh, 40px);
+  padding: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--colorscheme4) 0%, var(--colorscheme3) 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--colorscheme2);
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+#small-input:focus {
+  outline: none;
+  border-color: var(--colorscheme4);
+}
+
+#small-input::placeholder {
+  color: var(--colorscheme2);
+  font-family: var(--mainfont);
+}
+
+#buy-menu-header {
+  margin-left: 0.5vw;
+}
+
+#buy-menu-desc {
+  text-align: left;
+  margin-left: 0.5vw;
+}
+
+#buy-menu-bottom-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+#buy-menu-middle-row {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#buy-menu-top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#buy-menu-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0.5vw;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#buy-menu-max-button {
+  width: calc(auto + 10%);
+  height: min(4.4vh, 40px);
+  font-weight: 500;
+  border: var(--border5);
+  color: var(--colorscheme2);
+  font-family: var(--mainfont);
+}
+
+#buy-menu-total-cost {
+  position: absolute;
+  left: 5%;
+  top: max(71%, 77%);
+  text-align: left;
+  width: 60%;
+  height: 5vh;
+}
+
+#finish-operation-btn {
+  width: 25%;
+  height: 5vh;
+  position: absolute;
+  top: 75%;
+  left: 70%;
+}
+
+#done-icon {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+  #buy-menu {
+    width: 80vw;
+    height: 35vh;
+  }
+
+  #buy-menu-total-cost {
+    position: absolute;
+    left: 5%;
+    top: 71%;
+    text-align: left;
+    width: 60%;
+    height: 5vh;
+  }
+
+  #buy-menu-max-button {
+    width: calc(auto + 10%);
+    height: 4.4vh;
+    font-weight: 500;
+    border: var(--border5);
+    color: var(--colorscheme2);
+  }
+}
+
+.not-ready {
+  color: red;
+  font-weight: 400;
+}
+
+/* NEW STYLES */
+
+#vhcl-menu-header {
+  text-align: left;
+  position: absolute;
+  left: min(5vw, 50px);
+  font-size: 2rem;
+}
+
+#vhcl-menu-category-name {
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#vhcl-menu-subcategory-name {
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#vhcl-menu-dropdowns-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  left: min(10vw, 100px);
+  gap: 1rem;
+}
+
+.vhcl-menu-dropdowns {
+  margin-left: 1.5vh;
+  padding: 0.6rem 1rem;
+}
+
+#vhcl-menu-not-ready-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  text-align: center;
+}
+
+#vhcl-menu-other-categories {
+  display: none;
+}
+
+#vhcl-menu-main-section-wrapper {
+  overflow-y: auto;
+  width: 100%;
+  height: 75%;
+  border-radius: 3px;
+}
+
+#vhcl-menu-bus-sub-citybus-category {
+  display: block;
+}
+
+#vhcl-menu-bus-sub-hydrogen-category {
+  display: none;
+}
+
+#vhcl-menu-bus-sub-intercity-category {
+  display: none;
+}
+
+#vhcl-menu-title-wrapper {
+  width: 100%;
+  height: 25%;
+}
+
+.vhcl-menu-btn-locked {
+  margin-right: 5%;
+  width: min(8vw, 100px);
+  padding: 5%;
+}
+
+.vhcl-menu-btn {
+  margin-right: 5%;
+  width: min(8vw, 100px);
+  padding: 5%;
+}
+
+.vhcl-menu-tables {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.75rem;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-bottom: 2.5%;
+  margin-top: 1.5%;
+}
+
+.vhcl-grid-item {
+  display: grid;
+  grid-template-areas:
+    "name name"
+    "price button"
+    "income button"
+    "click button";
+  gap: 0.1rem;
+  padding: 1rem;
+  background: var(--colorscheme2);
+  border: var(--border2);
+  box-shadow: var(--boxshadow2);
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.vhcl-grid-item:hover {
+  transform: translateY(-3px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.vhcl-menu-name {
+  grid-area: name;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.vhcl-menu-price {
+  grid-area: price;
+}
+
+.vhcl-menu-citybus-income-boost {
+  grid-area: income;
+}
+
+.vhcl-menu-citybus-clickmod-boost {
+  grid-area: click;
+}
+
+.vhcl-menu-btn-wrapper {
+  grid-area: button;
+  display: flex;
+  margin-left: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .vhcl-menu-tables {
+    grid-template-columns: 1fr;
+  }
+
+  .vhcl-menu-btn-wrapper {
+    margin-left: 75%;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .vhcl-menu-btn {
+    padding: 1.5vh;
+    width: 35vw;
+    font-size: 14px;
+  }
+
+  .vhcl-menu-btn-locked {
+    margin-left: 0;
+    padding: 1.5vh;
+    width: 35vw;
+    font-size: 14px;
+  }
+}
+
+#more-buses-indicator {
+  text-align: center;
+  font-size: 20px;
+}
+
+#vhcl-menu-trolleybus-category {
+  display: none;
+}
+
+#vhcl-menu-tram-category {
+  display: none;
+}
+
+#vhcl-menu-tram-category-modern {
+  display: none;
+}
+
+#vhcl-menu-tram-category-main {
+  display: none;
+}
+
+@media screen and (hover: none) {
+  .vhcl-grid-item:hover {
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #buy-vehicle {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #vhcl-menu-dropdowns-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 10%;
+    gap: 0rem;
+  }
+
+  #vhcl-menu-subcategory-name {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: absolute;
+    top: 40%;
+    left: 0%;
+  }
+
+  .vhcl-menu-name {
+    font-size: 1rem;
+  }
+
+  .vhcl-menu-btn-wrapper {
+    width: 20%;
+  }
+}

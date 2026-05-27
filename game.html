@@ -1,62 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <!-- TRANSPORT CLICKER BETA 1.0.3 -->
+  <!-- TRANSPORT CLICKER BETA 1.4.1 -->
   <!-- CONTRIBUTORS LIST -->
   <!--
-  - luku123 (Main developer, Translator) (english, polish)
-  - Kiniaczu (Translator) (english)
-  - yn (user99) (Translator) (arabic)
+  - luku123 (Main developer, Translator) (english, polish, german)
+
+  weblate contributors:
+  - NathanBnm, Gameking - french
+  - Maksim_220 Кабанов, Irisik, vanapro1 - russian
+  - Mirekon - german
+  - Phebe - dutch
+  - JiZPaper - chinese simplified
+
+  crowdin contributors:
+  - Kiniaczu - english
+  - yn (user99) - arabic
+  - Irisik - russian
     currently thats it :) -->
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transport Clicker is a game where you build a massive transport empire!" />
     <meta
-      name="description"
-      content="Transport Clicker to gra o rozbudowywaniu swojego imperium transportowego przez kupowanie pojazdów i ulepszanie swojego imperium" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/scrlbar.css" />
-    <link rel="stylesheet" href="css/tooltips.css" />
-    <link rel="stylesheet" href="css/upgrMenuStyles.css" />
-    <link rel="stylesheet" href="css/codesStyles.css" />
-    <link rel="stylesheet" href="css/accountSystem/accountMenuStyles.css" />
-    <link rel="stylesheet" href="css/verNumberDisplay.css" />
-    <link rel="stylesheet" href="css/loading.css" />
-    <link rel="stylesheet" href="css/vehicleMenuStyles.css" />
-    <link rel="stylesheet" href="css/alertWindow.css" />
-    <link rel="stylesheet" href="css/icons.css" />
-    <link rel="stylesheet" href="css/creditsMenuStyles.css" />
-    <link rel="stylesheet" href="css/notifDisplay.css" />
-    <link rel="stylesheet" href="css/statsSystem.css" />
-    <link rel="stylesheet" href="css/settingsMenu.css" />
-    <link rel="stylesheet" href="css/citiesWindow.css" />
-    <link rel="stylesheet" href="css/buildingsStyles.css" />
-    <link rel="icon" type="image/x-icon" href="img/logo/favicon.ico" />
+      name="keywords"
+      content="transport clicker, idle game, transportation game, bus management, tram simulator, public transport game, clicker, game, clicker game"
+    />
+    <meta name="author" content="luku" />
+    <meta property="og:title" content="Transport Clicker - Build Your Transport Empire" />
+    <meta
+      property="og:description"
+      content="Build and manage your own public transportation empire in this exciting clicker game!"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
     <title>Transport Clicker</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
-      integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"></script>
-    <script src="node_modules/animejs/lib/anime.min.js"></script>
-
-    <style>
-      :root {
-        --border5: solid 1.5px var(--colorscheme4);
-        --border2: solid 1px var(--colorscheme4);
-        --linkcolor: var(--colorscheme3);
-        --boxshadow: 0 8px 24px 0 rgba(39, 38, 38, 0.473);
-
-        --colorscheme1: #062925;
-        --colorscheme2: #044a42;
-        --colorscheme3: #3a9188;
-        --colorscheme4: #b8e1dd;
-      }
-    </style>
   </head>
-  <body data-page="game">
+  <body data-page="game" class="game-page">
     <div id="loader-wrapper">
       <div class="spinner"></div>
       <div id="loading-text-wrapper"><h5 id="loading-text" data-lang="loading">Loading...</h5></div>
@@ -64,70 +46,6 @@
 
     <div class="tints" id="window-tint" style="z-index: 799"></div>
     <div class="tints" id="alert-tint" style="z-index: 805"></div>
-
-    <!-- account window elements -->
-
-    <section id="accountbox">
-      <div class="closegui" id="acc-menu-close-btn">
-        <span class="tabler--x"></span>
-      </div>
-
-      <div id="accMenuWrapper">
-        <h2 id="accWelcome"><span data-lang="acc-menu-welcome"></span><span id="accName"></span> 👋</h2>
-        <div id="email-wrap"><b data-lang="acc-menu-email"></b><span id="accEmail"></span></div>
-        <div id="acc-btn-wrapper">
-          <button id="change-pass-btn" class="btns-acc-window"><span data-lang="acc-menu-change-pass"></span></button>
-          <button id="logout-btn" class="btns-acc-window"><span data-lang="acc-menu-logout"></span></button>
-          <button id="delete-account-btn" class="btns-acc-window"><span data-lang="btn-delete-acc"></span></button>
-        </div>
-      </div>
-
-      <div id="areYouSureWrapper">
-        <h2 id="are-you-sure-title" data-lang="delete-acc-title"></h2>
-        <h4 id="are-you-sure-desc" data-lang="delete-acc-desc"></h4>
-        <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
-
-        <div id="input-msg"></div>
-        <input
-          type="password"
-          placeholder=""
-          data-lang-placeholder="delete-acc-placeholder"
-          id="are-you-sure-pass-input"
-          class="inputs" />
-        <div id="are-you-sure-btn-wrapper">
-          <button id="are-you-sure-cancel-btn" class="are-you-sure-btns" data-lang="btn-cancel"></button>
-          <button id="are-you-sure-confirm-btn" class="are-you-sure-btns" data-lang="btn-delete-acc"></button>
-        </div>
-      </div>
-
-      <div id="changePassWrapper">
-        <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
-        <div id="input-msg-change-pass"></div>
-        <div id="change-pass-input-wrapper">
-          <input
-            type="password"
-            placeholder=""
-            data-lang-placeholder="change-pass-old-placeholder"
-            id="change-pass-old-input"
-            class="inputs" />
-          <input
-            type="password"
-            placeholder=""
-            data-lang-placeholder="change-pass-new-placeholder"
-            id="change-pass-new-input"
-            class="inputs" />
-          <div id="dont-remember-pass">
-            <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
-          </div>
-        </div>
-        <div id="change-pass-btn-wrapper-wrapper">
-          <div id="change-pass-btn-wrapper">
-            <button id="change-pass-cancel-btn" class="change-pass-btns" data-lang="btn-cancel"></button>
-            <button id="change-pass-confirm-btn" class="change-pass-btns" data-lang="change-pass"></button>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- stats window elements -->
 
@@ -155,6 +73,10 @@
       </div>
 
       <div id="vhcl-stats-wrapper">
+        <div id="total-capacity">
+          <span data-lang="stats-total-capacity"></span> <span id="total-capacity-value" data-lang="error"></span>
+          <span data-lang="passenger-abbreviation"></span>
+        </div>
         <div id="vhcl-stats-title-wrapper"><div id="vhcl-stats-title" data-lang="vhcl-stats-title"></div></div>
         <div id="vhcl-stats">
           <table id="vhcl-stats-table"></table>
@@ -177,7 +99,8 @@
             id="code-menu-input"
             placeholder=""
             class="inputs"
-            data-lang-placeholder="code-menu-input-placeholder" />
+            data-lang-placeholder="code-menu-input-placeholder"
+          />
           <button id="code-menu-confirm-btn" class="btns" data-lang="ok"></button>
         </form>
       </div>
@@ -190,6 +113,7 @@
         <div id="vars-wrapper">
           <div class="vars-item" id="income">
             <span id="income-show" data-lang="error"></span> $/<span data-lang="time-seconds"></span>
+            <span class="tooltip" data-lang="tooltip-income-long"></span>
           </div>
           <div class="vars-item" id="balance"><span id="bal-show" data-lang="error"></span> $</div>
           <div class="vars-item" id="clicks">
@@ -213,6 +137,10 @@
               <span class="tabler--map-pin"></span>
               <span class="tooltip" data-lang="tooltip-cities"></span>
             </div>
+            <div class="nav-item" id="nav-item-budget-menu">
+              <span class="tabler--report-money"></span>
+              <span class="tooltip" data-lang="tooltip-budget"></span>
+            </div>
             <div class="nav-item" id="nav-item-codes-menu">
               <span class="tabler--code"></span>
               <span class="tooltip" data-lang="tooltip-codes"></span>
@@ -221,13 +149,13 @@
               <span class="tabler--brand-onedrive"></span>
               <span class="tooltip" data-lang="tooltip-save"></span>
             </div>
+            <div class="nav-item" id="nav-item-achievements">
+              <span class="tabler--trophy"></span>
+              <span class="tooltip" data-lang="tooltip-achievements"></span>
+            </div>
             <div class="nav-item" id="nav-item-open-stats">
               <span class="tabler--chart-bar"></span>
               <span class="tooltip" data-lang="tooltip-stats"></span>
-            </div>
-            <div class="nav-item" id="nav-item-account-page">
-              <span class="tabler--lock-open"></span>
-              <span class="tooltip" data-lang="tooltip-account"></span>
             </div>
             <div class="nav-item" id="nav-item-settings-page">
               <span class="tabler--settings"></span>
@@ -242,10 +170,78 @@
       <div id="active-events-container"></div>
       <section id="main-screen">
         <section id="clicker">
-          <img src="img/other/bus-default.png" alt="bus" id="clicker-img" />
+          <img alt="bus" id="clicker-img" />
         </section>
         <div id="clicker-shadow"></div>
       </section>
+
+      <section id="fuel-display">
+        <div id="fuel-tank-capacity">
+          <span data-lang="fuel-tank-capacity"></span>
+          <span id="fuel-tank-capacity-value">1000</span><span data-lang="unit-liter"></span>
+        </div>
+        <div id="fuel-bars-container">
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="diesel">
+              <span data-lang="fuel-type-diesel"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-liter"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="diesel"></div>
+            </div>
+          </div>
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="hydrogen">
+              <span data-lang="fuel-type-hydrogen"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-liter"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="hydrogen"></div>
+            </div>
+          </div>
+          <div class="fuel-bar-wrapper">
+            <div class="fuel-type-label" data-fuel="electric">
+              <span data-lang="fuel-type-electric"></span>: <span class="fuel-amount">0</span
+              ><span data-lang="unit-kilowat"></span>
+            </div>
+            <div class="fuel-bar">
+              <div class="fuel-bar-fill" data-fuel="electric"></div>
+            </div>
+          </div>
+        </div>
+        <button id="buy-fuel-btn" class="btns">⛽</button>
+      </section>
+    </section>
+
+    <section id="fuel-shop">
+      <div class="closegui" id="fuel-shop-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+      <h2 data-lang="fuel-shop-title">Fuel Shop</h2>
+      <div id="fuel-shop-items">
+        <div class="fuel-shop-item" data-fuel="diesel">
+          <span data-lang="fuel-type-diesel"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">1</span>/L</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item" data-fuel="hydrogen">
+          <span data-lang="fuel-type-hydrogen"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">2</span>/L</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item" data-fuel="electric">
+          <span data-lang="fuel-type-electric"></span>
+          <input type="number" min="1" class="fuel-amount-input" data-lang-placeholder="vhcl-buy-menu-placeholder" />
+          <span class="fuel-price">$<span class="price-value">0.5</span>/kWh</span>
+          <button class="buy-fuel-item-btn btns" data-lang="btn-buy"></button>
+        </div>
+        <div class="fuel-shop-item">
+          <button class="fuel-shop-max-btn btns" data-lang="btn-max"></button>
+          <button class="fuel-shop-buy-all-btn btns" data-lang="btn-buy-all"></button>
+        </div>
+      </div>
     </section>
 
     <!-- cities window -->
@@ -276,7 +272,7 @@
         <div id="city-details-stats-wrapper">
           <div id="city-details-stat-buildings" class="city-stats">
             <span id="city-buildings"></span>
-            <button id="city-details-buildings-btn" data-lang="btn-build" data-city-id=""></button>
+            <button id="city-details-buildings-btn" class="btns" data-lang="btn-build" data-city-id=""></button>
           </div>
           <div id="city-details-stat-others" class="city-stats">
             <span id="city-pollution"></span> <br />
@@ -285,6 +281,34 @@
           <div id="city-details-stat-vehicles" class="city-stats">
             <span id="city-vehicles"></span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- budgeting window -->
+
+    <section id="budgeting-window">
+      <div class="closegui" id="budgeting-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="budgeting-menu-content">
+        <h2 id="budgeting-menu-title" data-lang="budgeting-menu-title"></h2>
+
+        <div class="budgeting-menu-el">
+          <div class="budget-form-wrapper">
+            <label for="budget-fare-global-input" data-lang="budget-global-fare"></label>
+            <input
+              type="number"
+              id="budget-fare-global-input"
+              class="inputs"
+              min="0"
+              data-lang-placeholder="budget-global-fare-placeholder"
+            />
+            <button class="btns" id="budget-global-fare-confirm-btn" data-lang="btn-confirm"></button>
+          </div>
+          <br />
+          <span id="budget-global-fare-desc" data-lang="budget-global-fare-desc"></span>
         </div>
       </div>
     </section>
@@ -302,7 +326,8 @@
           id="buildings-search"
           placeholder=""
           class="inputs"
-          data-lang-placeholder="buildings-search" />
+          data-lang-placeholder="buildings-search"
+        />
         <button id="buildings-search-btn" class="btns" data-lang="btn-search"></button>
         <button id="buildings-clear-search-btn" class="btns" data-lang="btn-clear"></button>
       </div>
@@ -321,28 +346,141 @@
       </div>
 
       <h2 id="settings-menu-title" data-lang="settings-menu-title"></h2>
-      <div id="settings-theme-wrapper">
-        <span data-lang="settings-menu-theme" id="settings-menu-theme-text"></span>
-        <div id="settings-theme-items"></div>
+      <div id="settings-tabs-wrap">
+        <div class="settings-tab-item settings-tab-active" id="settings-general-tab-btn">
+          <span data-lang="settings-menu-tab-general"></span>
+        </div>
+        <div class="settings-tab-item" id="settings-account-tab-btn">
+          <span data-lang="settings-menu-tab-account"></span>
+        </div>
       </div>
 
-      <div id="lang-options-wrapper">
-        <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
-        <select name="langs" id="lang-dropdown">
-          <option value="en">English</option>
-          <option value="pl">Polski</option>
-          <option value="ar">العربية</option>
-        </select>
+      <div id="settings-general-tab">
+        <div id="settings-theme-wrapper">
+          <span data-lang="settings-menu-theme" id="settings-menu-theme-text"></span>
+          <div id="settings-theme-items"></div>
+        </div>
+
+        <div id="settings-lang-wrap">
+          <p id="help-translate-text"></p>
+          <div id="lang-options-wrapper">
+            <p id="lang-title-wrap" data-lang="acc-menu-lang"></p>
+            <select name="langs" id="lang-dropdown" class="dropdowns">
+              <option value="en">English</option>
+              <option value="pl">Polski</option>
+              <option value="ru">Русский</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+        </div>
+        <div id="other-options-wrapper">
+          <div class="switches-wrapper">
+            <div id="sound-switch-wrapper" class="switch-wrappers">
+              <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
+              <div id="switch-wrapper">
+                <!-- From Uiverse.io by gharsh11032000 -->
+                <label class="switch">
+                  <input type="checkbox" id="sound-switch" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div id="low-perf-switch-wrapper" class="switch-wrappers">
+              <p id="low-perf-title-wrap" data-lang="settings-menu-low-perf"></p>
+              <div id="switch-wrapper">
+                <!-- From Uiverse.io by gharsh11032000 -->
+                <label class="switch">
+                  <input type="checkbox" id="low-perf-switch" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- company name -->
+        <div class="company-name-wrapper">
+          <p id="company-name" data-lang="settings-menu-company-name"></p>
+          <form action="javascript:void(0)" class="company-name-form">
+            <div id="company-name-input-wrapper">
+              <input
+                type="text"
+                id="company-name-input"
+                placeholder=""
+                class="inputs"
+                data-lang-placeholder="settings-menu-company-name-placeholder"
+              />
+            </div>
+            <div id="company-name-btn-wrapper">
+              <button id="company-name-confirm-btn" class="btns" data-lang="btn-save"></button>
+            </div>
+          </form>
+          <p id="company-name-current">
+            <span data-lang="settings-menu-company-name-current"></span> <span id="company-name-current-disp"></span>
+          </p>
+        </div>
       </div>
-      <div id="other-options-wrapper">
-        <div id="sound-switch-wrapper">
-          <p id="sound-title-wrap" data-lang="settings-menu-sound"></p>
-          <div id="switch-wrapper">
-            <!-- From Uiverse.io by gharsh11032000 -->
-            <label class="switch">
-              <input type="checkbox" id="sound-switch" />
-              <span class="slider"></span>
-            </label>
+
+      <div id="settings-account-tab">
+        <div id="accMenuWrapper">
+          <div id="email-wrap"><b data-lang="acc-menu-email"></b><span id="accEmail"></span></div>
+          <div id="acc-btn-wrapper">
+            <button id="change-pass-btn" class="btns-acc-window btns">
+              <span data-lang="acc-menu-change-pass"></span>
+            </button>
+            <button id="logout-btn" class="btns-acc-window btns"><span data-lang="acc-menu-logout"></span></button>
+            <button id="delete-account-btn" class="btns-acc-window btns">
+              <span data-lang="btn-delete-acc"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="areYouSureWrapper">
+          <h2 id="are-you-sure-title" data-lang="delete-acc-title"></h2>
+          <h4 id="are-you-sure-desc" data-lang="delete-acc-desc"></h4>
+          <h4 id="are-you-sure-warning" data-lang="delete-acc-warning"></h4>
+
+          <div id="input-msg"></div>
+          <input
+            type="password"
+            placeholder=""
+            data-lang-placeholder="delete-acc-placeholder"
+            id="are-you-sure-pass-input"
+            class="inputs"
+          />
+          <div id="are-you-sure-btn-wrapper">
+            <button id="are-you-sure-cancel-btn" class="are-you-sure-btns btns" data-lang="btn-cancel"></button>
+            <button id="are-you-sure-confirm-btn" class="are-you-sure-btns btns" data-lang="btn-delete-acc"></button>
+          </div>
+        </div>
+
+        <div id="changePassWrapper">
+          <h2 id="change-pass-title" data-lang="change-pass-title"></h2>
+          <div id="input-msg-change-pass"></div>
+          <div id="change-pass-input-wrapper">
+            <input
+              type="password"
+              placeholder=""
+              data-lang-placeholder="change-pass-old-placeholder"
+              id="change-pass-old-input"
+              class="inputs"
+            />
+            <input
+              type="password"
+              placeholder=""
+              data-lang-placeholder="change-pass-new-placeholder"
+              id="change-pass-new-input"
+              class="inputs"
+            />
+            <div id="dont-remember-pass">
+              <label id="dont-remember-pass-link" data-lang="dont-remember-pass-link"></label>
+            </div>
+          </div>
+          <div id="change-pass-btn-wrapper-wrapper">
+            <div id="change-pass-btn-wrapper">
+              <button id="change-pass-cancel-btn" class="change-pass-btns btns" data-lang="btn-cancel"></button>
+              <button id="change-pass-confirm-btn" class="change-pass-btns btns" data-lang="change-pass"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -359,7 +497,7 @@
         <div id="vhcl-menu-dropdowns-wrapper">
           <h4 id="vhcl-menu-category-name">
             <span data-lang="category"></span>
-            <select name="vhcl-categories" class="vhcl-menu-dropdowns" id="vhcl-menu-category-dropdown">
+            <select name="vhcl-categories" class="vhcl-menu-dropdowns dropdowns" id="vhcl-menu-category-dropdown">
               <option value="0" data-lang="buses"></option>
               <option value="1" data-lang="trolleybuses"></option>
               <option value="2" data-lang="trams"></option>
@@ -370,8 +508,9 @@
             <select
               name="vhcl-subcategories-1"
               id="vhcl-menu-subcategory-dropdown-1"
-              class="vhcl-menu-dropdowns"
-              style="display: block">
+              class="vhcl-menu-dropdowns dropdowns"
+              style="display: block"
+            >
               <option value="0" data-lang="city-buses"></option>
               <option value="1" data-lang="hydrogen-buses"></option>
               <option value="2" data-lang="intercity-buses"></option>
@@ -379,22 +518,25 @@
             <select
               name="vhcl-subcategories-2"
               id="vhcl-menu-subcategory-dropdown-2"
-              class="vhcl-menu-dropdowns"
-              style="display: none">
+              class="vhcl-menu-dropdowns dropdowns"
+              style="display: none"
+            >
               <option value="0" data-lang="unavailable"></option>
             </select>
             <select
               name="vhcl-subcategories-3"
-              class="vhcl-menu-dropdowns"
+              class="vhcl-menu-dropdowns dropdowns"
               id="vhcl-menu-subcategory-dropdown-3"
-              style="display: none">
+              style="display: none"
+            >
               <option value="0" data-lang="trolleybuses"></option>
             </select>
             <select
               name="vhcl-subcategories-4"
               id="vhcl-menu-subcategory-dropdown-4"
-              class="vhcl-menu-dropdowns"
-              style="display: none">
+              class="vhcl-menu-dropdowns dropdowns"
+              style="display: none"
+            >
               <option value="0" data-lang="old-trams"></option>
               <option value="1" data-lang="modern-trams"></option>
             </select>
@@ -405,37 +547,37 @@
       <div id="vhcl-menu-main-section-wrapper">
         <!-- CATEGORY WITH BUSES -->
         <div id="vhcl-menu-bus-category">
-          <div id="vhcl-menu-bus-sub-citybus-category">
-            <table id="vhcl-menu-citybus-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-bus-sub-citybus-category" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-citybus-table" class="vhcl-menu-tables"></div>
           </div>
           <!-- HYDROGEN BUSES -->
-          <div id="vhcl-menu-bus-sub-hydrogen-category">
-            <table id="vhcl-menu-hydrogenbus-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-bus-sub-hydrogen-category" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-hydrogenbus-table" class="vhcl-menu-tables"></div>
           </div>
           <!-- INTERCITY BUSES -->
-          <div id="vhcl-menu-bus-sub-intercity-category">
-            <table id="vhcl-menu-intercitybus-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-bus-sub-intercity-category" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-intercitybus-table" class="vhcl-menu-tables"></div>
           </div>
         </div>
         <!-- TROLLEYBUS CATEGORY -->
         <div id="vhcl-menu-trolleybus-category">
-          <div id="vhcl-menu-trolleybus-category-main">
-            <table id="vhcl-menu-trolleybus-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-trolleybus-category-main" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-trolleybus-table" class="vhcl-menu-tables"></div>
           </div>
         </div>
         <!-- TRAM CATEGORY -->
         <div id="vhcl-menu-tram-category">
           <!-- OLD TRAMS -->
-          <div id="vhcl-menu-tram-category-main">
-            <table id="vhcl-menu-tram-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-tram-category-main" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-tram-table" class="vhcl-menu-tables"></div>
           </div>
           <!-- MODERN TRAMS -->
-          <div id="vhcl-menu-tram-category-modern">
-            <table id="vhcl-menu-modern-tram-table" class="vhcl-menu-tables"></table>
+          <div id="vhcl-menu-tram-category-modern" class="vhcl-menu-subcategories">
+            <div id="vhcl-menu-modern-tram-table" class="vhcl-menu-tables"></div>
           </div>
         </div>
         <!-- OTHER CATEGORIES -->
-        <div id="vhcl-menu-other-categories">
+        <div id="vhcl-menu-other-categories" class="vhcl-menu-subcategories">
           <h5 id="vhcl-menu-not-ready-indicator" data-lang="not-ready-text1"></h5>
         </div>
       </div>
@@ -457,7 +599,8 @@
               placeholder=""
               id="small-input"
               min="1"
-              data-lang-placeholder="vhcl-buy-menu-placeholder" />
+              data-lang-placeholder="vhcl-buy-menu-placeholder"
+            />
             <button id="buy-menu-max-button" class="btns" data-lang="btn-max"></button>
           </div>
         </div>
@@ -465,7 +608,7 @@
           <h3 id="buy-menu-total-cost">
             <b data-lang="vhcl-buy-menu-full-cost"></b> <span id="show-full-cost"></span>$
           </h3>
-          <div id="finish-operation-btn">
+          <div id="finish-operation-btn" class="btns">
             <span class="tabler--check" id="done-icon"></span>
           </div>
         </div>
@@ -483,11 +626,11 @@
         <h2 id="upgr-menu-header" data-lang="title-upgrades"></h2>
         <h4 id="upgr-menu-category-name">
           <span data-lang="category"></span>
-          <select name="upgr-categories" id="upgr-menu-category-dropdown">
+          <select name="upgr-categories" id="upgr-menu-category-dropdown" class="dropdowns">
             <option value="0" data-lang="upgr-category-vhcl-types"></option>
             <option value="1" data-lang="upgr-category-time-upgrs"></option>
+            <option value="2" data-lang="upgr-category-fuel-tank"></option>
             <option value="3" data-lang="upgr-category-other"></option>
-            <option value="4" data-lang="upgr-category-routes"></option>
           </select>
         </h4>
       </div>
@@ -500,6 +643,14 @@
         <!-- timed upgrades -->
         <div id="upgr-menu-timed-upgrades-category" class="upgrs-categories" style="display: none">
           <table id="upgr-menu-timed-upgrades-table" class="upgrs-tables"></table>
+        </div>
+        <!-- fuel tank upgrades -->
+        <div id="upgr-menu-fuel-tank-category" class="upgrs-categories" style="display: none">
+          <table id="upgr-menu-fuel-tank-table" class="upgrs-tables"></table>
+        </div>
+        <!-- other upgrades -->
+        <div id="upgr-menu-others-category" class="upgrs-categories">
+          <table id="upgr-menu-others-table" class="upgrs-tables"></table>
         </div>
         <!-- other categories -->
         <div id="upgr-menu-other-categories" class="upgrs-categories">
@@ -516,10 +667,26 @@
           </div>
 
           <div id="confirm-upgrade-dialog-btns">
-            <button id="confirm-upgr-btn" data-lang="btn-buy"></button>
-            <button id="cancel-upgr-btn" data-lang="btn-cancel"></button>
+            <button id="confirm-upgr-btn" class="btns" data-lang="btn-buy"></button>
+            <button id="cancel-upgr-btn" class="btns" data-lang="btn-cancel"></button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- achievements window -->
+
+    <section id="achievements-window">
+      <div class="closegui" id="achievements-menu-close-btn">
+        <span class="tabler--x"></span>
+      </div>
+
+      <div id="achievements-titles-wrapper">
+        <h2 id="achievements-menu-title" data-lang="achievements-menu-title"></h2>
+        <h3 id="achievements-progress"></h3>
+      </div>
+      <div id="achievements-wrapper">
+        <div id="achievements-grid"></div>
       </div>
     </section>
 
@@ -527,7 +694,7 @@
       <div id="alert-window-info-wrapper">
         <span id="alert-message" data-lang="error-occured"></span>
       </div>
-      <button id="accept-alert-btn" data-lang="ok"></button>
+      <button id="accept-alert-btn" class="btns" data-lang="ok"></button>
     </section>
 
     <section id="credits-window">
@@ -537,7 +704,9 @@
 
       <div id="credits-menu-wrapper">
         <div id="credits-menu-section-left">
-          <div id="credits-menu-section-left-title">Transport Clicker <br />vBETA1.0.3</div>
+          <div id="credits-menu-section-left-title">
+            <span>Transport Clicker <span class="ver-display"></span></span>
+          </div>
           <div class="credits-menu-section-left-item" id="credits-menu-authors-btn">
             <div class="link-wrapper">
               <span class="tabler--users credits-icons"></span> <span data-lang="credits-contributors"></span>
@@ -578,6 +747,38 @@
               yn (user99) <br />
               <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
             </div>
+            <div class="credits-menu-contributor-item">
+              Irisik <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              NathanBnm <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Maksim_220 Кабанов <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              vanapro1 <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Mirekon <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Gameking <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Phebe <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              JiZPaper <br />
+              <span class="credits-menu-contributor-github" data-lang="credits-translator"></span>
+            </div>
           </div>
 
           <div id="credits-menu-translators-section">
@@ -589,6 +790,15 @@
                 >MIT,
                 <a target="_blank" href="https://icon-sets.iconify.design/tabler/?keyword=tabler"
                   >icon-sets.iconify.design/tabler/</a
+                ></span
+              >
+            </div>
+            <div class="credits-menu-contributor-item">
+              Webpack <br />
+              <span class="credits-menu-contributor-github"
+                >MIT,
+                <a target="_blank" href="https://github.com/webpack/webpack/blob/main/LICENSE"
+                  >github.com/webpack/webpack</a
                 ></span
               >
             </div>
@@ -745,6 +955,15 @@
               </span>
             </div>
             <div class="credits-menu-contributor-item">
+              Jingle_Win_Synth_05.wav - LittleRobotSoundFactory <br />
+              <span class="credits-menu-contributor-github"
+                >CC Attribution 4.0 International
+                <a target="_blank" href="https://freesound.org/people/LittleRobotSoundFactory/sounds/274182/"
+                  >freesound.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
               Stadium MK, Stadium Way West, Bletchley - geograph.org.uk - 7450199.jpg - Bryn Holmes <br />
               <span class="credits-menu-contributor-github"
                 >CC Attribution-Share Alike 2.0 Generic
@@ -835,40 +1054,47 @@
                 >
               </span>
             </div>
+            <div class="credits-menu-contributor-item">
+              Sinclair Refinery, Sinclair, Wyoming.jpg - James St. John
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:Sinclair_Refinery,_Sinclair,_Wyoming.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              2018. Sotavento. Planta de xeración de hidróxeno.jpg - Luis Miguel Bugallo Sánchez (Lmbuga)
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a
+                  target="_blank"
+                  href="https://commons.wikimedia.org/wiki/File:2018._Sotavento._Planta_de_xeraci%C3%B3n_de_hidr%C3%B3xeno.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
+            <div class="credits-menu-contributor-item">
+              Suzu Photovoltaic Power Station 1.jpg - Qurren
+              <br />
+              <span class="credits-menu-contributor-github"
+                >CC BY-SA 4.0
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/File:Suzu_Photovoltaic_Power_Station_1.jpg"
+                  >commons.wikimedia.org</a
+                >
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="credits-btn"><span data-lang="about-game"></span> [vBETA1.0.3]</section>
+    <section id="credits-btn"><span data-lang="about-game"></span> [<span class="ver-display"></span>]</section>
 
-    <script type="module" src="js/firebaseManager.js"></script>
-    <script type="module" src="js/scr.js"></script>
-    <script type="module" src="js/codes.js"></script>
-    <script type="module" src="js/creditsMenu.js"></script>
-    <script type="module" src="js/accountSystem/accountWindow.js"></script>
-    <script type="module" src="js/upgradeSystem/upgrades.js"></script>
-    <script type="module" src="js/data/timedUpgradeData.js"></script>
-    <script type="module" src="js/upgradeSystem/timedUpgrades.js"></script>
-    <script type="module" src="js/upgradeSystem/insertDataIntoHtml.js"></script>
-    <script type="module" src="js/accountSystem/infoDisplay.js"></script>
-    <script type="module" src="js/accountSystem/deleteAccount.js"></script>
-    <script type="module" src="js/accountSystem/changePassword.js"></script>
-    <script type="module" src="js/accountSystem/forgotPasswordAtPassChange.js"></script>
-    <script type="module" src="js/langs.js"></script>
-    <script type="module" src="js/vhclMenu.js"></script>
-    <script type="module" src="js/utilities.js"></script>
-    <script type="module" src="js/data/upgradeData.js"></script>
-    <script type="module" src="js/data/timedUpgradeData.js"></script>
-    <script type="module" src="js/data/vhclData.js"></script>
-    <script type="module" src="js/data/buildingData.js"></script>
-    <script type="module" src="js/notifs.js"></script>
-    <script type="module" src="js/levelSystem.js"></script>
-    <script type="module" src="js/settings.js"></script>
-    <script type="module" src="js/data/themeData.js"></script>
-    <script type="module" src="js/data/cityData.js"></script>
-    <script type="module" src="js/cities.js"></script>
-    <script type="module" src="js/buildings.js"></script>
-    <script type="module" src="js/sounds.js"></script>
+    <script src="dist/bundle.js"></script>
   </body>
 </html>

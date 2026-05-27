@@ -1,0 +1,24 @@
+import "../css/root.css";
+import "../css/styles.css";
+import "../css/fuelSystem.css";
+import "../css/loading.css";
+import "../css/scrlbar.css";
+import "../css/notifDisplay.css";
+import "../css/budgetingStyles.css";
+import "../css/icons.css";
+import "../css/tooltips.css";
+import "../css/verNumberDisplay.css";
+import "../css/upgrMenuStyles.css";
+import "../css/codesStyles.css";
+import "../css/vehicleMenuStyles.css";
+import "../css/alertWindow.css";
+import "../css/creditsMenuStyles.css";
+import "../css/statsSystem.css";
+import "../css/settingsMenu.css";
+import "../css/citiesWindow.css";
+import "../css/buildingsStyles.css";
+import "../css/achievementsStyles.css";
+import "../css/accountSystem/loginStyles.css";
+
+import "./scr.js";
+import "./testing/notificationTester.js";

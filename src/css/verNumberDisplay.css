@@ -1,0 +1,18 @@
+#credits-btn {
+  position: absolute;
+  bottom: 0.5vh;
+  left: 0.5vh;
+  color: var(--colorscheme4);
+  user-select: none;
+  cursor: pointer;
+}
+
+#credits-btn:hover {
+  color: var(--linkcolor);
+}
+
+@media screen and (hover: none) {
+  #credits-btn:hover {
+    color: var(--colorscheme4);
+  }
+}

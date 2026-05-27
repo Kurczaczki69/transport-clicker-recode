@@ -1,0 +1,696 @@
+#settings-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--colorscheme2);
+  width: 70vw;
+  height: 70vh;
+  border: var(--border5);
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  z-index: 800;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  overflow-y: auto;
+}
+
+#settings-menu-title {
+  text-align: left;
+  position: absolute;
+  left: 5%;
+  font-size: 2rem;
+}
+
+#settings-account-tab {
+  display: none;
+}
+
+#settings-tabs-wrap {
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.settings-tab-item {
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding-bottom: 0.2rem;
+}
+
+.settings-tab-active {
+  border-bottom: var(--border5);
+}
+
+#settings-theme-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 100%;
+}
+
+#settings-menu-theme-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+#settings-theme-items {
+  position: relative;
+  left: -6%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  padding-bottom: 3rem;
+  gap: 1rem;
+}
+
+.settings-theme-item {
+  min-width: 15vh;
+  height: 15vh;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 2%;
+  background-color: var(--colorscheme4);
+  box-shadow: 0 0.5vw 1vh 0 rgba(39, 38, 38, 0.473);
+  border: var(--border5);
+  transform: scale(1);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.settings-theme-item:hover {
+  transform: scale(1.01);
+  transition: transform 0.3s;
+}
+
+@media screen and (hover: none) {
+  .settings-theme-item:hover {
+    transform: scale(1);
+  }
+}
+
+.settings-theme-name {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+  position: absolute;
+  width: 100%;
+  bottom: -4rem;
+}
+
+#settings-theme-items::-webkit-scrollbar {
+  height: 8px;
+}
+
+#lang-dropdown {
+  font-size: 1rem;
+  text-align: center;
+  margin-left: 10%;
+  height: 5vh;
+  width: 20vw;
+}
+
+#lang-title-wrap {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#settings-lang-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: 70%;
+  left: 5%;
+}
+
+#help-translate-text {
+  margin-bottom: 0.2rem;
+}
+
+#lang-options-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switch-wrappers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switches-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  position: absolute;
+  top: 85%;
+  left: 5%;
+}
+
+#sound-title-wrap {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#low-perf-title-wrap {
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#switch-wrapper {
+  margin-left: 10%;
+}
+
+.company-name-wrapper {
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+  gap: 0.5rem;
+}
+
+.company-name-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  gap: 0.5rem;
+}
+
+#company-name-input {
+  width: 15vw;
+  height: 4vh;
+  padding: 0.3rem;
+  font-size: 1rem;
+  margin: auto;
+}
+
+#company-name-confirm-btn {
+  width: 7vw;
+  height: calc(4vh + 0.6rem);
+}
+
+#company-name-current {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#company-name-current-disp {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  #settings-tabs-wrap {
+    top: 8%;
+    left: 5%;
+    gap: 1rem;
+  }
+
+  #settings-lang-wrap {
+    top: 80%;
+  }
+
+  .switches-wrapper {
+    top: 98%;
+  }
+
+  .company-name-wrapper {
+    position: absolute;
+    left: unset;
+    bottom: -40%;
+    width: 100%;
+    margin-top: 2rem;
+    align-items: flex-start;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
+  }
+
+  .company-name-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  #company-name-input,
+  #company-name-confirm-btn {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+}
+
+/* Switch */
+/* From Uiverse.io by gharsh11032000 */
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 1.5em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--colorscheme3);
+  border-radius: 50px;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  inset: 0;
+  background-color: var(--colorscheme1);
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: var(--colorscheme4);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px var(--colorscheme4);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.6em);
+}
+
+@media screen and (max-width: 768px) {
+  #settings-menu {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #settings-menu-title {
+    position: absolute;
+    top: -2.5%;
+    left: 8%;
+  }
+
+  #settings-menu-theme-text {
+    position: absolute;
+    top: 12%;
+    left: 10%;
+  }
+
+  #settings-theme-items {
+    gap: 2rem;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+  }
+
+  #lang-dropdown {
+    width: 40vw;
+  }
+
+  #lang-options-wrapper {
+    left: 10%;
+  }
+
+  #sound-switch-wrapper {
+    left: 10%;
+  }
+
+  .settings-theme-item {
+    width: 3vw;
+    min-height: 10vh;
+    margin: 1.5%;
+  }
+
+  .settings-theme-name {
+    bottom: -3rem;
+  }
+
+  .switches-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    left: 10%;
+  }
+
+  #low-perf-title-wrap {
+    margin: 0;
+  }
+
+  #sound-title-wrap {
+    margin: 0;
+  }
+
+  #lang-title-wrap {
+    margin: 0;
+  }
+}
+
+/* Account Menu Styles */
+#dont-remember-pass-link {
+  color: var(--linkcolor);
+  text-decoration: none;
+  font-weight: 600;
+  position: absolute;
+  bottom: 14%;
+  cursor: pointer;
+}
+
+#dont-remember-pass-link:visited {
+  color: var(--linkcolor);
+}
+
+#accMenuInfoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+}
+
+#email-wrap {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  font-size: 1.25rem;
+}
+
+#acc-btn-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+}
+
+.btns-acc-window {
+  width: 325%;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  margin-bottom: 15%;
+}
+
+#delete-account-btn {
+  background: rgb(255, 17, 0);
+  background: linear-gradient(135deg, rgba(255, 17, 0, 1) 0%, rgba(232, 110, 3, 1) 100%);
+}
+
+#areYouSureWrapper {
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  position: absolute;
+  top: -20%;
+  left: 40%;
+  background-color: var(--colorscheme2);
+  width: 50%;
+  height: 50%;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 9999;
+  padding: 10px;
+  font-size: 2.5vh;
+}
+
+#are-you-sure-desc {
+  text-align: left;
+  font-size: 2.25vh;
+  margin-bottom: -3%;
+  font-weight: 400;
+}
+
+#are-you-sure-warning {
+  text-align: left;
+  font-size: 2.5vh;
+  font-weight: 1000;
+  margin-bottom: -1%;
+  color: red;
+}
+
+#are-you-sure-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  max-width: 29%;
+}
+
+#are-you-sure-pass-input {
+  margin-top: 2.5vh;
+}
+
+.are-you-sure-btns {
+  width: 100%;
+  padding: 10%;
+  margin-right: 2vh;
+}
+
+#are-you-sure-confirm-btn {
+  background: rgb(255, 17, 0);
+  background: linear-gradient(135deg, rgba(255, 17, 0, 1) 0%, rgba(232, 110, 3, 1) 100%);
+}
+
+.inputs {
+  width: 60%;
+  padding: 2.5%;
+  border-radius: 5px;
+  border: var(--border2);
+  background-color: var(--colorscheme3);
+  color: var(--colorscheme4);
+}
+
+.inputs::placeholder {
+  color: var(--colorscheme4);
+}
+
+.inputs:focus {
+  outline: none;
+  border: var(--border2);
+}
+
+#input-msg {
+  font-size: 2vh;
+  color: red;
+  position: absolute;
+}
+
+#input-msg-change-pass {
+  font-size: 2vh;
+  color: red;
+  position: absolute;
+}
+
+#changePassWrapper {
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  position: absolute;
+  top: -20%;
+  left: 40%;
+  background-color: var(--colorscheme2);
+  width: 50%;
+  height: 50%;
+  border: var(--border5);
+  border-radius: 20px;
+  flex-direction: column;
+  display: none;
+  z-index: 9999;
+  padding: 1vw;
+  font-size: 2.5vh;
+}
+
+#change-pass-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#change-pass-new-input {
+  margin-top: 1.5vh;
+}
+
+#change-pass-btn-wrapper-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: -7%;
+}
+
+#change-pass-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 5%;
+  max-width: 30%;
+}
+
+.change-pass-btns {
+  width: 100%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  margin-bottom: 15%;
+  margin-left: 5%;
+}
+
+@media screen and (hover: none) {
+  .change-pass-btns:hover {
+    transform: scale(1);
+  }
+
+  .btns-acc-window:hover {
+    transform: none;
+  }
+
+  .are-you-sure-btns:hover {
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #accountbox {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  #email-wrap {
+    top: 23%;
+  }
+
+  .btns-acc-window {
+    width: 80vw;
+    height: 5vh;
+  }
+
+  #changePassWrapper {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45%;
+    width: 90%;
+  }
+
+  #change-pass-input-wrapper {
+    width: 100%;
+    position: absolute;
+    left: 10%;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+
+  #dont-remember-pass-link {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+  }
+
+  .inputs {
+    width: 70%;
+  }
+
+  .change-pass-btns {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+  }
+
+  #change-pass-btn-wrapper {
+    width: 100%;
+    position: absolute;
+    left: 10%;
+    top: 80%;
+  }
+
+  #input-msg-change-pass {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translateY(-50%);
+  }
+
+  #change-pass-title {
+    position: absolute;
+    left: 10%;
+  }
+
+  #areYouSureWrapper {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 43%;
+    width: 90%;
+  }
+
+  #are-you-sure-title {
+    font-size: 1.4rem;
+  }
+
+  #are-you-sure-desc {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+
+  #are-you-sure-warning {
+    font-size: 1.1rem;
+  }
+
+  #are-you-sure-btn-wrapper {
+    width: 100%;
+    height: 17%;
+    position: absolute;
+    top: 80%;
+    left: 5%;
+  }
+}
