@@ -43,6 +43,7 @@ export function showAlert(message) {
   alertSpan.textContent = message;
   alertWindow.style.display = "flex";
   animateWindowOpen(alertWindow, true, tint);
+  newCloseBtn.focus();
 
   const closeTimeout = setTimeout(() => {
     animateWindowClose(alertWindow, true, tint);
