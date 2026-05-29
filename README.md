@@ -2,7 +2,7 @@
 
 Polish game about clicking on a ~~circle~~ ~~square~~ ~~rectangle~~ bus and buying vehicles and upgrades.
 
-The latest branch is the dev branch, for now the main branch is kinda outdated
+The main branch contains the latest stable version, the dev branch contains all the latest commits and everything
 
 Game link: https://transport-clicker.netlify.app/
 
