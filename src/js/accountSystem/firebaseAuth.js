@@ -1,15 +1,7 @@
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { setDoc, doc, query, where, getDocs, collection } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseManager.js";
 import { showMsg, getI18n } from "../utilities.js";
-
-// checks if the username is already taken
-async function isUsernameTaken(username) {
-  const usersRef = collection(db, "users");
-  const q = query(usersRef, where("username", "==", username));
-  const querySnapshot = await getDocs(q);
-  return !querySnapshot.empty;
-}
 
 const RegisterBtn = document.querySelector("#register-btn");
 if (RegisterBtn) {
@@ -24,13 +16,6 @@ if (RegisterBtn) {
       showMsg(getI18n("auth-empty-fields"), "errorMsgRegister");
       console.error("one or more empty fields");
     } else {
-      // check if username is already taken
-      if (await isUsernameTaken(username)) {
-        showMsg(getI18n("auth-username-taken"), "errorMsgRegister");
-        console.error("username already taken");
-        return;
-      }
-
       createUserWithEmailAndPassword(auth, email, password)
         // create user
         .then((userCredential) => {
