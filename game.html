@@ -128,39 +128,39 @@
           <div id="nav-items">
             <div class="nav-item" id="nav-item-buy">
               <span class="tabler--bus"></span>
-              <span class="tooltip" data-lang="tooltip-buy-vhcls"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-buy-vhcls"></span>
             </div>
             <div class="nav-item" id="nav-item-upgr-menu">
               <span class="tabler--rocket"></span>
-              <span class="tooltip" data-lang="tooltip-buy-upgrs"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-buy-upgrs"></span>
             </div>
             <div class="nav-item" id="nav-item-city-menu">
               <span class="tabler--map-pin"></span>
-              <span class="tooltip" data-lang="tooltip-cities"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-cities"></span>
             </div>
             <div class="nav-item" id="nav-item-budget-menu">
               <span class="tabler--report-money"></span>
-              <span class="tooltip" data-lang="tooltip-budget"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-budget"></span>
             </div>
             <div class="nav-item" id="nav-item-codes-menu">
               <span class="tabler--code"></span>
-              <span class="tooltip" data-lang="tooltip-codes"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-codes"></span>
             </div>
             <div class="nav-item" id="nav-item-save-game">
               <span class="tabler--brand-onedrive"></span>
-              <span class="tooltip" data-lang="tooltip-save"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-save"></span>
             </div>
             <div class="nav-item" id="nav-item-achievements">
               <span class="tabler--trophy"></span>
-              <span class="tooltip" data-lang="tooltip-achievements"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-achievements"></span>
             </div>
             <div class="nav-item" id="nav-item-open-stats">
               <span class="tabler--chart-bar"></span>
-              <span class="tooltip" data-lang="tooltip-stats"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-stats"></span>
             </div>
             <div class="nav-item" id="nav-item-settings-page">
               <span class="tabler--settings"></span>
-              <span class="tooltip" data-lang="tooltip-settings"></span>
+              <span class="tooltip tooltip-nav" data-lang="tooltip-settings"></span>
             </div>
           </div>
         </div>
@@ -272,12 +272,20 @@
         <h3 id="city-details-title"></h3>
         <div id="city-details-stats-wrapper">
           <div id="city-details-stat-buildings" class="city-stats">
-            <span id="city-buildings"></span>
+            <span id="city-buildings" data-lang="buildings-description"></span>
             <button id="city-details-buildings-btn" class="btns" data-lang="btn-build" data-city-id=""></button>
           </div>
+          <div id="city-details-stat-routes" class="city-stats">
+            <span data-lang="routes-description"></span>
+            <button id="city-details-routes-btn" class="btns" data-lang="btn-routes" data-city-id=""></button>
+          </div>
           <div id="city-details-stat-others" class="city-stats">
-            <span id="city-pollution"></span> <br />
-            <span id="city-tourism"></span>
+            <div class="city-stat-wrapper">
+              <span id="city-pollution" class="city-stats-tooltip-item"></span> <span class="tooltip" data-lang="tooltip-pollution"></span>
+            </div> <br />
+            <div class="city-stat-wrapper">
+              <span id="city-tourism" class="city-stats-tooltip-item"></span> <span class="tooltip" data-lang="tooltip-tourism"></span>
+            </div>
           </div>
           <div id="city-details-stat-vehicles" class="city-stats">
             <span id="city-vehicles"></span>

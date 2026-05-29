@@ -48,12 +48,16 @@ function createCityCard(city) {
   const card = document.createElement("div");
   const calculatedBoost = calculateCityBoost(city);
   const calculatedClickBoost = calculateCityClickMod(city);
+  const cities = getCities();
+  const cityData = cities;
+  const currentCityId = getCurrentCity();
+  const currentCity = cities.find((c) => c.id === currentCityId);
   card.className = "city-card";
 
   card.innerHTML = `
     <img src="${city.imgPath}" alt="${city.name}" class="city-card-image">
     <div class="city-card-content">
-      <div class="city-card-title">${city.name}</div>
+      <div class="city-card-title">${currentCityId === city.id ? `${city.name} (${getI18n("cities-current-2")})` : city.name}</div>
       <div class="city-card-info">
         <span>${getI18n("cities-population", shortAbbreviateNumber(city.population))}</span>
         <span>${getI18n("cities-area", shortAbbreviateNumber(city.area))}</span>
@@ -212,7 +216,7 @@ async function addListeners() {
   detailsBtns.forEach((btn) => {
     const cityId = btn.getAttribute("data-city-id");
     const city = cities.find((c) => c.id === cityId);
-    btn.textContent = getI18n("btn-details");
+    btn.textContent = getI18n("btn-routes-and-buildings");
     btn.addEventListener("click", () => {
       playRandomMouseClick();
       showCityDetails(city);
@@ -239,18 +243,16 @@ if (isGamePage) {
 
 export function showCityDetails(city) {
   const vehiclesList = city.vehicles.map((vehicle) => getI18n(vehicle)).join(", ");
-  const buildingsList = city.buildings.map((building) => getI18n(`building-${building}`)).join(", ");
 
   cityDetailsTitle.textContent = getI18n("city-details-title", city.name);
   cityDetailsStatVehicles.textContent = getI18n("city-details-stat-vehicles", vehiclesList);
-  cityDetailsStatBuildings.textContent = getI18n("city-details-stat-buildings", buildingsList);
   cityDetailsStatPollution.textContent = getI18n(
     "city-details-stat-pollution",
-    convertDecimalToPercent(city.pollutionLevel)
+    convertDecimalToPercent(city.pollutionLevel),
   );
   cityDetailsStatTourism.textContent = getI18n(
     "city-details-stat-tourism",
-    convertDecimalToPercent(city.tourismFactor)
+    convertDecimalToPercent(city.tourismFactor),
   );
 
   cityBuildBtn.setAttribute("data-city-id", city.id);
@@ -301,7 +303,7 @@ function triggerRandomEvent() {
   const availableEvents = events.filter(
     (event) =>
       (!event.requiresLevel || event.requiresLevel <= currentLevel) &&
-      !activeEvents.some((active) => active.id === event.id)
+      !activeEvents.some((active) => active.id === event.id),
   );
 
   // checks for buildings

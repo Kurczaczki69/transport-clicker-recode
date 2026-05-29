@@ -192,7 +192,7 @@
   line-height: 1.15;
 }
 
-#city-details-buildings-btn {
+#city-details-buildings-btn, #city-details-routes-btn {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
 }

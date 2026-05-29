@@ -57,6 +57,7 @@ import "./data/buildingData.js";
 import "./data/timedUpgradeData.js";
 import "./data/upgradeData.js";
 import "./data/achievementsData.js";
+import "./data/routeData.js";
 import "./achievements/achievementSystem.js";
 import "./achievements/achievementUI.js";
 import "./accountSystem/changePassword.js";
