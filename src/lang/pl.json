@@ -417,5 +417,15 @@
   "settings-menu-tab-account": "Konto",
   "settings-help-translate": "Pomóż nam przetłumaczyć grę! Kliknij $1tutaj$2 aby dowiedzieć się więcej.",
   "achievement-quadrillionaire": "Trylioner",
-  "achievement-quadrillionaire-desc": "Miej 1 trylion $"
+  "achievement-quadrillionaire-desc": "Miej 1 trylion $",
+  "tooltip-pollution": "Zanieczyszczenie obniża twój dochód. Może ono zostać zmniejszone przez budowanie budynków, które je zmniejszają.",
+  "tooltip-tourism": "Turystyka zwiększa twój dochód. Może zostać zwiększona przez budowanie atrakcji w mieście.",
+  "cities-current-2": "aktualne",
+  "routes-description": "Możesz przypisywać trasy do pojazdów w każdym mieście. Każda trasa zwiększa w różnym stopniu ilość pasażerów, którzy wsiadają do twoich pojazdów. Im więcej pasażerów wsiada do twoich pojazdów tym większy staje się twój dochód. Możesz też budować budynki w miastach, które dają różne korzyści.",
+  "buildings-description": "Możesz budować budynki w miastach. Budynki dają różne korzyści.",
+  "btn-routes-and-buildings": "Trasy i budynki",
+  "btn-routes": "Trasy",
+  "route-sko-1": "1: Łyżwy(wysypisko) - Szydłowiecka(pętla)",
+  "route-sko-2": "2: 1 Maja(Jeżynowa) - Szydłowiecka(pętla)",
+  "route-sko-5": "5: Ekonomii(Zakłady metalowe) - 3 Maja(Posadaj)"
 }
